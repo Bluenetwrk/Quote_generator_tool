@@ -1,0 +1,547 @@
+/* ------------------------Employer registration  starts-------------------- */
+.readPageBackBtn{
+    background-color: rgb(40, 4, 99);
+    color: white;
+    border: none;
+    padding: 7px 15px 10px 13px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 1.0rem;
+    margin-left: 6px;
+    height: 33px;
+    width: 62px;
+    margin-right: 20px;
+}
+.empRegBackBtnContainer{
+    background-color: red;
+
+}
+.empRegBackButton{
+    background-color: rgb(40, 4, 99);
+    color: white;
+    border: none;
+    padding: 10px 15px 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 1.0rem; 
+    margin-left: 10px;
+}
+/* .empRegBackButton:hover{
+    background-color: white;
+    color: rgb(40, 4, 99);
+    border: 2px solid  rgb(40, 4, 99);
+} */
+.jobseekerHelpDropDown{
+    position:absolute;
+
+   padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 0px;
+    border-radius: 8px;
+    border: 1px solid rgb(202, 202, 202);
+    cursor: pointer;
+    z-index:100;
+    background-color: white;
+    margin-top: 17px;
+    /* margin-left:50px; */
+}
+.jobseekerHelpDropDown::after {
+    content: "";
+    position: absolute;
+    top: -0.7rem;
+    right: 9rem;
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+    background-color: white;
+    border-left: 1px solid grey;
+    border-top: 1px solid grey;
+}
+.dropdownwrapperHomeRegistration {
+    position:absolute;
+
+   padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 0px;
+    border-radius: 8px;
+    border: 1px solid rgb(202, 202, 202);
+    cursor: pointer;
+    z-index:100;
+    background-color: white;
+    margin-top: 17px;
+}
+
+.dropdownwrapperHomeRegistration::after {
+    content: "";
+    position: absolute;
+    top: -0.7rem;
+    right: 9rem;
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+    background-color: white;
+    border-left: 1px solid grey;
+    border-top: 1px solid grey;
+}
+
+.dropdownwrapperHomeRegistrationMob {
+    position:absolute;
+
+   padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 0px;
+    border-radius: 8px;
+    border: 1px solid rgb(202, 202, 202);
+    cursor: pointer;
+    z-index:100;
+    background-color: white;
+    margin-top: 67px;
+    margin-left: 106px;
+}
+
+.dropdownwrapperHomeRegistrationMob::after {
+    content: "";
+    position: absolute;
+    top: -0.7rem;
+    right: 1rem;
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+    background-color: white;
+    border-left: 1px solid grey;
+    border-top: 1px solid grey;
+}
+
+
+
+.RegEntireFullWrapper {
+    /* background-color: red; */
+    /* padding-top: 1%; */
+    overflow-y: hidden;
+}
+
+/* ----------Employer registration  ends---------------- */
+.EntireFullWrapper {
+    background-color: rgb(240, 240, 241);
+    /* padding-top: 1%; */
+    overflow-y: hidden;
+}
+.EntireFullWrapperStd{
+    background-color: rgb(240, 240, 241);
+}
+
+.EntireWrapper {
+    margin-left: 22%;
+    width: 49%;
+    border: 1px solid rgb(40, 4, 99);
+    /* border: 1px solid blue; */
+    border-radius: 10px;
+    background-color: white;
+    margin-top: 5px;
+    /* height: 624px; */
+    height:100%;
+    margin-bottom: 18px;
+}
+
+.EntireWrapperStd {
+    margin-left: 22%;
+    width: 49%;
+    border: 1px solid rgb(40, 4, 99);
+    /* border: 1px solid blue; */
+    border-radius: 10px;
+    background-color: white;
+    margin-top: 5px;
+    height: 690px;
+}
+
+.screen1 .jodit-wysiwyg {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    /* color: #bd1515; */
+    /* background-color: purple;  */
+    padding: 10px;
+    /* min-height: 200px; */
+    border-radius: 5px;
+    min-height: 33px !important;
+    height: 2px;
+  }
+  
+  .screen1 .jodit-placeholder {
+    /* color: #d71212; */
+    font-style: italic;
+    /* background-color: #bd1515; */
+  }
+  
+  .screen1 .jodit-workplace {
+    /* background-color: #ee1111; */
+    border: 0 solid #dadada;
+    /* max-height: 100%; */
+    min-height: 80px !important;
+    height: 45px !important;
+  }
+  .screen1 .jodit-container:not(.jodit_inline) {
+    background-color: #f5f5f6;
+    border: 1px solid #dadada;
+    border-radius: 3px;
+    min-height: 20px !important;
+    height:170px !important;
+  }
+
+
+
+@media(max-width:1200px){
+    .empRegBackButton{
+        margin-left:15px;
+    }
+}
+@media (max-width:650px){
+    .EntireWrapper {
+        margin-left: 9%;  
+        width: 80%;
+        border: 1px solid rgb(40, 4, 99);
+        border-radius: 10px;
+    }
+    .dropdownwrapperHomeRegistrationMob {
+        margin-left: 192px;
+      }
+}
+
+@media (max-width:376px){
+    
+    .dropdownwrapperHomeRegistrationMob {
+        margin-left: 142px;
+      }
+}
+@media (max-width:320px){
+    
+    .dropdownwrapperHomeRegistrationMob {
+        margin-left: 100px;
+      }
+}
+
+.imageViewWrapper {
+    /* background-color: blue; */
+    /* padding-bottom: 8%; */
+    display: flex;
+
+}
+
+.loader {
+    margin-top: -110px;
+    /* background-color: aqua; */
+    width: 20%;
+    margin-left: 40%;
+}
+
+.imageView {
+    height: 120px;
+    width: 120px;
+    border-radius: 180%;
+    /* background-color: red; */
+    /* margin-top:2%; */
+}
+
+.fileView {
+    height: 120px;
+    width: 120px;
+    margin-left: -120px;
+    border-radius: 180%;
+    /* background-color: blue; */
+}
+
+
+.addfileDiconwrapper {
+    margin-left: -120px;
+    width: 100px;   
+    /* background-color: rgb(255, 157, 127); */
+}
+
+.addfileD {
+    height: 120px;
+    width: 120px;
+    
+    border-radius: 180%;
+    /* background-color: rgb(168, 168, 224); */
+}
+@media(max-width:500px){
+    .empRegBackButton{
+        margin-left:10px;
+        margin-bottom:10px;
+    }
+    
+.imageView {
+    height: 110px;
+    width: 110px;
+    border-radius: 180%;
+    /* background-color: red; */
+    /* margin-top:2%; */
+}
+
+.fileView {
+    height: 110px;
+    width: 110px;
+    margin-left: -110px;
+    border-radius: 180%;
+    /* background-color: blue; */
+}
+
+.addfileDiconwrapper {
+    margin-left: -100px;
+    width: 100px;   
+    /* background-color: rgb(255, 157, 127); */
+}
+
+.addfileD {
+    height: 110px;
+    width: 110px;
+    
+    border-radius: 180%;
+    /* background-color: rgb(168, 168, 224); */
+}
+}
+
+.addfile::-webkit-file-upload-button {
+    display: none;
+
+}
+
+.addfile {
+    color: transparent;
+}
+
+/* .addfile::before {
+    content: url('../img/icons8-upload-48\ \(1\).png');    
+
+  }  */
+.saveDelete {
+    display: flex;
+    /* background-color: rgb(35, 206, 206); */
+    margin-top: 20px;
+}
+.hint{
+    opacity:0.5;
+}
+
+.saveImage {
+    height: 30px;
+    /* margin: 2%; */
+    width: 60px;
+    border-radius: 5px;
+    border: 1px solid white;
+    background-color: rgb(40, 4, 99);
+    color : white;
+    margin-left: 4%;
+    font-size:small;
+    font-weight:500;
+}
+
+.DeleteImage {
+    height: 30px;
+    margin-left: 4%;
+    width: 60px;
+    border-radius: 5px;
+    border: 1px solid white;
+    color : white;
+    background-color: red;
+    font-size:small;
+    font-weight:500;
+}
+.Editor{
+    margin-top: -19px;
+    margin-left: 18px;
+    width:87%
+}
+
+.EmpEditor{
+    margin-top: 0px;
+    margin-left: 18px;
+    width:87%
+}
+.inputWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    /* background-color: aqua; */
+    /* height: 90%; */
+    margin-top: -26px;
+    margin-left: 18px;
+
+}
+.jodit-toolbar-editor-collection,
+.jodit-toolbar-editor-collection_mode_horizontal,
+.jodit-toolbar-editor-collection_size_middle {
+    height: 2px !important;
+}
+
+.inputName {
+    width: 48%;
+    margin-left: 2%;
+    padding-top: 0px;
+
+}
+
+h4 {
+    width: 1%;
+    font-weight: 550;
+    font-size: small;
+    white-space: nowrap;
+    margin-left: 15px;
+    
+
+}
+
+.input {
+    width: 80%;
+    height: 26px;
+    border-radius: 5px;
+    border: 1px solid rgb(40, 4, 99);
+    margin-top: -100px;
+    margin-left: 16px;
+
+}
+
+.Save {
+    height: 30px;
+    margin: 2%;
+    width: 60px;
+    border-radius: 5px;
+    border: 1px solid;
+    background-color: rgb(40, 4, 99);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    /* margin-left: 2.8%; */
+}
+
+.cancel {
+    cursor: pointer;
+    
+    height: 30px;
+    margin: 2%;
+    /* margin-left: 70%; */
+    width: 60px;
+    border-radius: 5px;
+    border: 1px solid;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+}
+
+/* ....... Employee update profile for image upload.....*/
+
+
+.EmpimageViewWrapper {
+    /* background-color: blue; */
+    display: flex;
+    width:95%;
+    margin-left: 2%;
+    margin-top: 2%;
+        
+
+}
+
+.Emploader {
+    margin-top: -80px;
+    /* background-color: aqua; */
+    width: 20%;
+    margin-left: 40%;
+}
+.EmpimageView {
+    height: 100px;
+    width: 110px;
+    /* background-color: red; */
+    border:none;
+    /* z-index:999; */
+}
+.EmpfileView {
+    height: 100px;
+    margin-left: 0%;
+    width: 110px;
+    border:none;
+    /* background-color: blue; */
+    /* border-radius: 180%; */
+}
+.EmpaddfileDiconwrapper {
+    margin-left: -110px;
+    width: 15%;
+    /* background-color: rgb(255, 157, 127); */
+}
+.EmpaddfileD {
+    height: 100px;
+    width: 110px;
+    border-radius: 180%;
+    /* background-color: rgb(168, 168, 224); */
+}
+.addfile::-webkit-file-upload-button {
+    display: none;
+}
+.addfile {
+    color: transparent;
+    /* background-color: aquamarine; */
+    border:none
+}
+.EmpDeleteImage{
+    height: 25px;
+    margin-left: 25px;
+    width: 60px;
+    border-radius: 5px;
+    border: 1px solid white;
+    color : white;
+    background-color: red;
+    font-size:small;
+    font-weight:500;   
+}
+.EmpsaveImage {
+    height: 25px;
+    width: 60px;
+    border-radius: 5px;
+    border: 1px solid white;
+    background-color: rgb(40, 4, 99);
+    color : white;
+    margin-left: 2%;
+    font-size:small;
+    font-weight:500;    
+}
+
+/*..... for Mobile view ... */
+
+.MobileName{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+.Mobileinput{
+    width: 87%;
+     height: 32px;
+   border-radius: 5px;
+     border: 1px solid rgb(40, 4, 99);
+    margin-left: 10px; 
+    margin-bottom: 5px;    
+}
+
+.Mobilecancel{
+    height: 30px;
+    width: 60px;
+    border-radius: 5px;
+    border: 1px solid;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    margin-left: 5%;
+    margin-bottom: 5px;
+}
+.MobileSave {
+    margin-bottom: 5px;
+    height: 30px;
+    width: 60px;
+    border-radius: 5px;
+    border: 1px solid;
+    background-color: rgb(40, 4, 99);
+    color: white;
+    font-weight: bold;
+    margin-left: 2%;
+}

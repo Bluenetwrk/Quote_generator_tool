@@ -1,0 +1,550 @@
+
+.searchBothForNavWrapper{
+    width:40%;
+    margin-left: 34%;
+    margin-top: -47.5px;
+    background-color: white;
+    border-radius: 3px;
+
+}
+
+
+.navigationWrapper{
+    text-align:right;
+    margin:10px;
+
+}
+.navigation{
+    background-color:rgb(214, 212, 212);
+    padding:3px;
+    padding-right:10px; 
+    border:none;
+}
+
+.inputboxsearchNav{
+    padding: 10px;
+    /* margin-left: 2%; */
+    width: 86%;
+    border : 1px solid rgb(204, 209, 211);
+    /* background-color: red; */
+    border: 0px white;
+    border-radius: 3px;
+    /* background-color: red; */
+} 
+
+
+
+.searchButton{
+    background-color: rgb(40, 4, 99);
+    color: white;
+    /* font-size:medium; */
+    font-weight: bold;
+    height: 40px;
+    border:1px solid rgb(40, 4, 99);
+    margin-left: 5%;
+    margin-top: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    width:80px
+}
+.notanyjob {
+    color: red;
+    text-align: center;
+}
+
+.carwrapper {
+    background-color: rgb(219, 223, 220);
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.card {
+    background-color: white;
+    border: 1px solid rgb(194, 193, 193);
+    margin: 1%;
+    width: 47%;
+    /* border-top: 4px solid rgb(144, 162, 201);
+     */
+    border-top: 4px solid rgb(55, 16, 92);
+}
+
+.skillsWrapper {
+    display: flex;
+}
+
+.Titlewrapper {
+    display: flex;
+    width: 90%;
+}
+
+.jobTitle {
+    width: 7000px
+}
+
+.description {
+    font-size: medium;
+    font-weight: 540;
+    display: inline;
+}
+
+.AlltexWrapper {
+    margin-left: 6%;
+}
+
+.descriptionAndApply {
+    display: flex;
+    align-items: center;
+}
+
+.description {
+    flex-wrap: wrap;
+    width: 60%;
+    word-wrap: break-word
+}
+
+.seeMore {
+    color: rgb(121, 68, 207)
+}
+
+/* .buttons{
+    display: flex;
+    /* justify-content:space-evenly; */
+
+/* .button{
+    border: 1px solid;
+    font-weight: 550; 
+    font-size: small; 
+    height: 30px;
+    width:10%;   
+    margin: 2%;
+}
+.delete{
+    margin-left: 65%;
+    background-color: rgb(252, 56, 56);
+    color: white;
+} */
+/* .update{
+    margin-left: 6%;
+    background-color: rgb(40, 4, 99);;
+    color: white;
+} */
+
+/* .text{
+    font-weight: 550;
+} */
+
+/* ...................................Li......................... */
+.arrowWrapper{
+    display: inline;
+    margin-left: 7%;
+    margin-top: 2px;
+}
+.arrow {
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 2.3px;
+    /* margin-left: 0.5%; */
+  }  
+  .up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    margin-top: 2px;
+    position: absolute;
+}
+.down {
+    transform: rotate(90deg);
+    -webkit-transform: rotate(45deg);
+    margin-top: 8px;
+    /* position: absolute; */
+
+  }
+  .up:hover {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    /* background-color: blue; */
+    position: absolute;
+    margin-top: 0px;
+  }
+  .down:hover {
+    transform: rotate(90deg);
+    -webkit-transform: rotate(45deg);
+   
+  }
+  .arrow:hover{
+    border: solid grey;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 2.3px;
+  }
+
+.seeMore {
+    color: blue;
+}
+
+.Uiwarpper {
+    margin-top: 10px;
+    margin-left: -35px;
+    width:102%
+}
+
+
+.ul {
+    display: flex;
+    margin: 0px;
+    /* padding-top: 35px; */
+    /* padding-bottom:35px ; */
+}
+.ul:nth-child(1){
+    background-color: rgb(40, 4, 99);    
+    color:white;
+    /* height: 60px; */
+    /* padding: 0%; */
+
+}
+.ul:nth-child(even){
+    background-color: rgb(242,244,245);  
+    /* background:rgb(242, 244, 245) */
+
+    /* color:white; */
+    /* height: 60px; */
+    /* padding: 0%; */
+
+}
+
+.li {
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    display: inline-block;
+    width: 12%;
+    /* border: 1px solid rgb(9, 247, 247); */
+    border : 1px solid rgb(238,241,242);    
+    text-align: center;
+    align-content: center;
+    overflow-wrap:break-word;
+}
+
+.liDescription {
+    width: 17%;
+    overflow-wrap:break-word;
+    text-align: center;
+}
+
+.Jtitle {
+    width: 11%;
+    overflow-wrap:break-word
+}
+
+.Package {
+    width: 6.5%;
+    overflow-wrap:break-word
+
+}
+.Pdate{
+    width:11%;
+    overflow-wrap:break-word
+
+}
+.experiance {
+    width: 10%;
+    overflow-wrap:break-word
+
+}
+.Skills{
+    width:15%
+}
+
+.Location {
+    width: 9%;
+    overflow-wrap:break-word
+
+}
+.BJtitle{
+    width:40%
+}
+.BPdate{
+    width:40%
+}
+.BAction{
+    width:30%
+}
+.Action{
+    width:13%;
+    overflow-wrap:break-word;
+}
+
+.Acbuttons {
+    height: 25px;
+    display: flex;
+    margin-left:18%;
+  }
+.BAcbuttons {
+    height: 25px;
+    display: flex;
+    margin-left:28%;
+  }
+  @media (max-width:1200px) {
+.Acbuttons {
+    margin-left:10%;    
+  }
+  }
+  @media (max-width:1050px) {
+.Acbuttons {
+    margin-left:4%;    
+  }
+  }
+
+
+.Abutton {
+    border: 1px solid;
+}
+.update {
+    background-color: rgb(40, 4, 99);
+    color: white;
+    cursor: pointer;
+    /* margin-left:2%; */
+}
+.delete {
+    background-color: rgb(252, 56, 56);
+    color: white;
+    cursor: pointer;
+    margin-left:2%;
+
+}
+
+.NuApplied{
+    width:15%
+}
+.viewButton{
+    background-color: rgb(40, 4, 99);
+    color: white;
+    font-weight: bold;
+    font-size: medium;
+    width:40%;
+    border:1px solid rgb(40, 4, 99);
+    cursor: pointer;
+}
+
+.text {
+    font-weight: 550;
+}
+
+/* For mobile View  */
+
+.searchBoth {
+    margin-left: 15%;
+    display: flex;
+}
+
+.p {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.inputboxsearch {
+    display: inline-flex;
+    height: 35px;
+    margin-left: 2%;
+    width: 55%;
+    border-radius: 5px;
+    border : 1px solid rgb(190, 191, 192);
+}
+
+#JobCardWrapper {
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+    padding: 10px;
+    /* background-color: rgb(204, 103, 103); */
+    border-radius: 10px;
+    width: 90%;
+
+}
+
+.JobCard {
+    /* display: flex; */
+    /* background-color: aqua;    */
+    margin-top: 25px;
+    margin-bottom: 10px;
+    margin-left: 8px;
+    /* height: 250px; */
+    width: 100%;
+    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    box-shadow: 2px 2px 2px 2px #999999;
+    padding-bottom: 6px;
+}
+
+
+.JobTitleDateWrapper{
+    margin-left: 15px;
+    display: flex;
+    margin-top: -10px;
+}
+.jobTitle{
+    font-weight: 500;
+    font-size:medium;
+    display: inline;
+    text-decoration: underline;
+    width:90%;
+    overflow: hidden;
+    text-wrap: nowrap;
+}
+.Date{
+    font-weight: 500;
+    font-size: x-small;
+    width:25%;
+}
+.companyNameLocationWrapper{
+    margin-left: 15px;
+}
+.logo{
+    width:25px;
+    height:20px;
+    margin-top: -50px;
+
+}
+
+.companyName{
+    margin-left: 5px;
+    font-weight: 400;
+    text-decoration: underline;  
+    font-size: medium;
+    width:100%
+}
+
+.jobLocation{
+    font-weight: 500;
+    font-size: small;
+    margin-left: 5px;
+    margin-top:4px;
+
+}
+.jobLocationImage{
+    width:20px;
+    height:20px;
+    margin-top: 6.5px;
+    margin-left: 15px;
+
+}
+.graduationImage{
+    width:20px;
+    height:20px;
+    /* margin-left: 2px; */
+    /* margin-top: 20px; */
+}
+
+.jobtypeAndDate{
+    font-size: small;
+    margin-left: 15px;
+    font-weight: 500;
+}
+.qualificationAndExperiance{
+    font-size: small;
+    margin-left: 5px;
+    /* font-weight: 500; */
+}
+.skillWrapper{
+    margin-left: 15px;
+
+}
+.skillsHeading{
+    font-weight: 600;
+    font-size: small;
+
+}
+.skills{    
+    font-weight: 400;
+    font-size: small;    
+}
+
+.jobDescriptionHeading{
+    margin-left: 13px;
+    font-weight:500;
+    margin-top:5px
+    
+}
+.jobDescription{
+    margin-top: -15px;
+    margin-left: 13px;
+    width:93%;
+    font-weight: 400;
+    font-size: small;
+}
+
+.MobileviewButton{
+    border: 1px solid rgb(40, 4, 99);
+    background-color:  rgb(40, 4, 99);
+    color: white;
+    font-weight: bold;
+    width:19%;
+    height: 27px;
+    margin-left: 7%;
+    border-radius: 5px;
+
+}
+.MobileZeroViewButton{
+    border-radius: 5px;
+
+    border: 1px solid rgb(40, 4, 99);
+    background-color:  rgb(40, 4, 99);
+    color: white;
+    font-weight: bold;
+    width:13%;
+    height: 27px;
+    margin-left: 7%;
+}
+.ApplyPackage {
+    display: flex;
+    margin-top: 10px;
+    margin-left: 13px;
+    background-color: rgb(241,248,234);
+    /* background-color: rgb(225, 209, 250); */
+    border: 1px solid rgb(40, 4, 99);
+    height: 50px;
+    width:75%;
+    padding-bottom: 15px;
+    border-radius: 10px;
+}
+.salaryRange{
+    font-weight:bold;
+    font-size:large;
+    margin-top:22px
+}
+
+.MobileAcbuttons {
+    height: 28px;
+    display: flex;
+    width:60%;
+    margin-top:20px;
+    margin-left: 12%;
+
+  }
+.MobileDelete {
+    border: 1px solid red;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    width:70%;
+    height: 29px;
+    margin-left: 15%;
+    border-radius: 5px;
+}
+.MobileUpdate{
+    border: 1px solid rgb(40, 4, 99);
+    background-color:  rgb(40, 4, 99);
+    color: white;
+    font-weight: bold;
+    width:70%;
+    height: 29px;
+    margin-left: 8%;
+    border-radius: 5px;
+
+}
+.NoOfJobSeekersApplied{
+    font-weight:550;
+    margin-left: 13px;
+    font-size:small
+
+}

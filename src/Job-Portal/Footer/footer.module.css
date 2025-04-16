@@ -1,0 +1,52 @@
+
+
+.top{
+    margin-left: -5%;
+}
+.OnlyforIT{
+    margin: 0;
+}
+.ITwalkin{
+    font-weight: bold;
+    font-size: xx-large;
+    margin: 0;
+    /* width:100%; */
+}
+
+.footerWraper{
+    background-color:rgb(39,4,98);
+    /* background-color: rgb(29, 1, 75); */
+    width: 100%;
+
+    align-items: center;
+}
+.Bottom{
+    display: flex;
+    margin-left: 10px;
+    /* justify-content: space-between; */
+    color:white
+
+}
+
+i{
+    margin-left: 15px;
+    text-decoration: none;
+}
+i:hover{    
+    transform: scale(1.05) ;
+}
+
+.brands{
+    font-size:xx-large;
+    /* margin-left: 10%; */
+    /* background-color: blue; */
+    display: flex;
+    /* margin-top: 12px; */
+margin-left:10%; 
+color: white;
+
+}
+
+
+
+

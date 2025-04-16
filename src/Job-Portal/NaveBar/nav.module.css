@@ -1,0 +1,1376 @@
+.blogInputboxsearch {
+    border-radius: 4px;
+    border: 2px solid rgb(40, 4, 99);
+    height: 29px;
+    width: 90%;
+    /* margin-top: 6px; */
+    transition: width 0.9sease-in-out;
+    /* margin-right: 8px; */
+    margin-left: 9px;
+    
+
+}
+input:focus {
+    outline: none;
+    /* border: none;  */
+}
+.blogInputboxsearch::placeholder{
+    font-size:9.1px;
+}
+
+
+.ITwalkinWrapperHomeMobile{
+    margin-left: 20px;
+
+    /* margin-top: 10px; */
+    /* background-color: red; */
+    width:120px;
+}
+.MobIwalkinLogologo{
+    width:100%;
+    /* margin-top: 6px; */
+    height: 40px;
+
+}
+
+.ITwalkinMob{
+    margin-top: 10px;
+
+    color:white;
+font-weight: bold;
+font-size: xx-large;
+}
+.onlyforITjobsMob{
+    margin-top: -40px;
+    /* margin-top: -17px; */
+    color:white;
+    /* font-weight: 400; */
+
+    }
+
+.ITwalkinWrapper{
+/* margin-left: 4%; */
+/* background-color: red; */
+width:140px;
+    height:60px
+}
+.IwalkinLogologo{
+    width:100%;
+    margin-top: 10px;
+}
+
+.ITwalkin{
+color:white;
+font-weight: bold;
+font-size: xx-large;
+
+}
+.onlyforITjobs{
+margin-top: -37px;
+color:white;
+margin-left: 10px;
+font-weight: 400;
+}
+
+.LoginlinkwrapperHome {
+    align-items: center;
+    display: flex;
+    flex-wrap: nowrap;
+    width:25%;
+    height: 30px;
+    margin-left: 65%;
+}
+.openAccount{
+    margin-left: 6%;
+    text-decoration: none;
+    color: white;
+    font-size: small;
+    font-weight: 540;
+    text-wrap: nowrap;
+    /* padding-left: 40px ;
+    padding-right: 40px ; */
+    border-radius: 5px;
+    cursor: pointer;
+    /* position: absolute; */
+}
+
+@media (max-width:900px){
+    .LoginlinkwrapperHome{
+        width:20%;
+        margin-left: 70%;
+    
+    }
+}
+
+
+.HomeprofileIcon{
+    height: 35px;
+    /* margin-left: 10%; */
+    margin-top: 5px;
+    cursor: pointer;
+}
+.HomeSearchCandidate{
+    margin-left: 6%;
+    text-decoration: none;
+    color: white;
+    font-size: small;
+    font-weight: 540;
+    text-wrap: nowrap;
+    padding: 8px 10px;
+    border-radius: 5px;
+}
+
+.dropdownwrapperHome {
+    position:absolute;
+    /* right : 1.5rem; */
+    /* left: 86.3%; */
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 0px;
+    border-radius: 8px;
+    border: 1px solid rgb(202, 202, 202);
+    cursor: pointer;
+    z-index:100;
+    background-color: white;
+    width:100px;
+    margin-top: 9px;
+    margin-left: -76px;
+}
+.dropdownwrapperHome::after {
+    content: "";
+    position: absolute;
+    top: -0.7rem;
+    right: 1rem;
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+    background-color: white;
+    border-left: 1px solid grey;
+    border-top: 1px solid grey;
+}
+.dropdownwrapperHomeRegistration {
+    position:absolute;
+    /* right : 1.5rem; */
+    /* left: 86.3%; */
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 0px;
+    border-radius: 8px;
+    border: 1px solid rgb(202, 202, 202);
+    cursor: pointer;
+    z-index:100;
+    background-color: white;
+    width:70px;
+    /* margin-top: 9px; */
+    margin-left: 25px;
+}
+.dropdownwrapperHomeRegistration::after {
+    content: "";
+    position: absolute;
+    top: -0.7rem;
+    right: 1rem;
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+    background-color: white;
+    border-left: 1px solid grey;
+    border-top: 1px solid grey;
+}
+
+.Supfullnavewrapper {
+    display: flex;
+    background-color: rgb(40, 4, 99);
+    width: 99.5%;
+    height: 60px;
+    align-items: center;
+    border-radius: 30px;
+    margin-left: 3px;
+    margin-top: 10px;
+    /* position:sticky;
+    top:0px */
+}
+
+.fullnavewrapper * {
+    /* background-color: green; */
+    z-index: 1000;
+}
+
+.fullnavewrapper {
+    display: flex;
+    background-color: rgb(40, 4, 99);
+    width: 100%;
+    height: 60px;
+    align-items: center;
+    position:sticky;
+    top:0px;
+    z-index: 100; 
+    justify-content: space-between;
+}
+
+
+.fullnavewrapperLS{
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+}
+.fullnavewrapperRS{
+    display: flex;
+    align-items: center;
+    margin-right: 12px;
+    gap: 23px;
+}
+.empFullnavewrapperLS{
+    display: flex;
+    align-items: center;
+    gap: 15px;  
+}
+.empFullnavewrapperRS{
+    display: flex;
+    align-items: center;
+    margin-right: 12px;
+    gap: 4px;
+}
+
+.fullnavewrapperMobile{
+    display: flex;
+    background-color: rgb(40, 4, 99);
+    width: 100%;
+    height: 60px;
+    align-items: center;
+    position:sticky;
+    top:0px;
+    z-index: 100; 
+    justify-content: space-between;
+}
+.fullnavewrapperRSMobile{
+    display: flex;
+    align-items: center;
+}
+.fullnavewrapperLSMobile{
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.empFullnavewrapperRSMobile{
+    display: flex;
+    align-items: center;
+    margin-right: 21px;
+}
+.empFullnavewrapperLSMobile{
+    display: flex;
+    align-items: center;
+    margin-right: -30px;
+}
+
+.empFullnavewrapper {
+    display: flex;
+    background-color: rgb(40, 4, 99);
+    width: 100%;
+    height: 60px;
+    align-items: center;
+    position:sticky;
+    top:0px;
+    z-index: 100; 
+    justify-content: space-between;
+}
+@media (max-width: 768px) and (min-width: 425px) {
+    .empFullnavewrapperLS {
+        gap: 4px;
+    }
+    .empFullnavewrapperRS{
+        gap:0px;
+    }
+}
+
+
+.linkWrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-left: 5%;
+    width: 79%;
+    height: 60px;
+    align-items: center;
+}
+
+/* for mobile only fullNave */
+.MobilEmployeeFullnavewrapper{
+    display: flex;
+    background-color: rgb(40, 4, 99);
+    width: 100%;
+    height: 60px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logoWrapper {
+    width: 14%;
+    margin-left: 2%;
+    margin-top: 5px;
+
+}
+
+.logo {
+    width: 100%;
+
+}
+
+
+.PostJobLink {
+    /* background-color: aqua; */
+    margin: -3%;
+    text-decoration: none;
+    color: white;
+    font-size: small;
+    font-weight: 540;
+    /* width:14%; */
+    text-wrap: nowrap;
+    padding: 8px 10px;
+    border-radius: 5px;
+}
+
+.PostHelpLink {
+    /* background-color: aqua; */
+    /* margin: -3%; */
+    text-decoration: none;
+    color: white;
+    font-size: small;
+    font-weight: 540;
+    /* width:14%; */
+    text-wrap: nowrap;
+    padding: 8px 10px;
+    border-radius: 5px;
+    /* position:absolute; */
+    /* left:65%; */ 
+}
+
+.PostDriveLink {
+    /* background-color: aqua; */
+    /* margin: -3%; */
+    text-decoration: none;
+    color: white;
+    font-size: small;
+    font-weight: 540;
+    /* width:14%; */
+    text-wrap: nowrap;
+    padding: 8px 10px;
+    border-radius: 5px;
+    /* position:absolute;
+    left:75%; */
+}
+
+.SearchCandidate {
+    margin-left: 53%;
+    text-decoration: none;
+    color: white;
+    font-size: small;
+    font-weight: 540;
+    text-wrap: nowrap;
+    padding: 8px 10px;
+    border-radius: 5px;
+    position: absolute;
+    /* background-color: wh; */
+}
+
+.SearchCandidates {
+    /* margin-left: 60%; */
+    text-decoration: none;
+    color: white;
+    font-size: small;
+    font-weight: 540;
+    text-wrap: nowrap;
+    padding: 8px 10px;
+    border-radius: 5px;
+    /* position: absolute; */
+    /* background-color: wh; */
+}
+
+.enableDrive {
+    margin-left: 52%;
+    text-decoration: none;
+    color: white;
+    font-size: small;
+    font-weight: 540;
+    text-wrap: nowrap;
+    padding: 8px 10px;
+    border-radius: 5px;
+    position: absolute;
+    top: 13px;
+}
+
+.blast{
+    margin-top:20px;
+    animation: flash 2s infinite;    
+    cursor: pointer;
+}
+
+@keyframes flash {
+    0% { opacity: 0.3; }   /* Low */
+    50% { opacity: 1; }    /* High */
+    75% { opacity: 1; }    /* Hold for some time */
+    100% { opacity: 0.3; } /* Low again */
+  }
+
+
+
+.AllJobJobSeeker {
+    /* margin: 2%; */
+    text-decoration: none;
+    color: white;
+    font-size: small;
+    font-weight: 540;
+    text-wrap: nowrap;
+    padding: 8px 10px;
+    border-radius: 5px;
+}
+.link {
+    margin-left: 2%;
+    text-decoration: none;
+    color: white;
+    font-size: small;
+    font-weight: 540;
+    /* width:12%; */
+    text-wrap: nowrap;
+    padding: 5px 8px;
+    border-radius: 3px;
+    text-align: center;
+}
+.Aboutlink {
+    margin-left: 10%;
+    text-decoration: none;
+    color: white;
+    font-size: small;
+    font-weight: 540;
+    /* width:12%; */
+    text-wrap: nowrap;
+    padding: 5px 8px;
+    border-radius: 3px;
+    text-align: center;
+}
+.linkSuperAdmin {
+    /* background-color: aqua; */
+    margin-left: 2%;
+    text-decoration: none;
+    color: white;
+    font-size: small;
+    font-weight: 540;
+    width:14%;
+    text-wrap: nowrap;
+    padding: 5px 8px;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.linkSuperAdmin:hover {
+    color: red;
+}
+.link:hover {
+    /* color: red; */
+}
+
+.Hlink{
+    /* background-color: aqua; */
+    margin-left: 2%;
+    text-decoration: none;
+    color: white;
+    font-size: medium;
+    font-weight: 540;
+    width:18%    
+}
+.HomeJobs{
+    /* margin-left: 35px; */
+    text-decoration: none;
+    color: white;
+    font-size: small;
+    font-weight: 540;
+    /* width:18%  */
+    /* position: absolute; */
+    padding-left: 10px ;
+    padding-right: 10px ;
+    padding-top: 8px ;
+    padding-bottom: 8px ;
+    border-radius: 5px;
+    z-index: 1000;
+    display: inline-block;
+    width:62px;
+}
+
+.Loginlink:hover {
+    color: red;
+}
+.IconeWrapper {
+    display: flex;
+    width: 30%;
+    margin-left: 10%;
+}
+
+
+.JobSeekerIconeWrapper{
+    margin-left: 70%;
+    z-index: 100;
+
+}
+@media (max-width:1000px){
+.JobSeekerIconeWrapper{
+    margin-left: 65%;
+
+}
+}
+.JobSeekerprofileIcon {
+    width: 35px;
+    height: 35px;
+    margin-top: 6px;
+    cursor: pointer;
+    margin-left: 90px;
+}
+.JobSeekerdropdownwrapper{
+    margin-left: 34px;
+
+    position: absolute;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 8px;
+    background-color: white;
+    border: 1px solid rgb(202, 202, 202);
+    cursor: pointer;
+    margin-top: 7px;
+    z-index: -100;
+
+}
+
+/* @media (min-width:2000px) {
+    .JobSeekerdropdownwrapper{
+    margin-left: 2.4%;
+    }
+}
+@media (max-width:2000px) {
+    .JobSeekerdropdownwrapper{
+    margin-left: 1.6%;
+    }
+}
+@media (max-width:1500px) {
+    .JobSeekerdropdownwrapper{
+    margin-left: 0.7%;
+    }
+}
+@media (max-width:1250px) {
+    .JobSeekerdropdownwrapper{
+    margin-left: -0.1%;
+    }
+}
+@media (max-width:1050px) {
+    .JobSeekerdropdownwrapper{
+    margin-left: -1.3%;
+    }
+}
+@media (max-width:900px) {
+    .JobSeekerdropdownwrapper{
+    margin-left: -2%;
+    }
+} */
+
+.profileIcon {
+    /* width: 35px; */
+    height: 35px;
+    margin-left: 63%;
+    margin-top: 5px;
+    cursor: pointer;
+    /* background-color: aqua; */
+}
+
+
+
+.EmpIconeWrapper{
+    margin-left: 86%;
+    align-items: center;
+    z-index: 1;
+}
+
+.EmpProfileIcon {
+    height: 35px;
+    margin-top: 5px;
+    cursor: pointer;
+    /* margin-left: 50px; */
+}
+
+.Empdropdownwrapper {
+    margin-left: -70px;
+
+    position: absolute;    
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 0px;
+    border-radius: 8px;
+    background-color: white;
+    border: 1px solid rgb(202, 202, 202);
+    cursor: pointer;
+    z-index: 100;
+    margin-top: 8px;
+}
+.Empdropdownwrapper::after {
+    content: "";
+    position: absolute;
+    top: -0.7rem;
+    right: 1rem;
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+    background-color: white;
+    border-left: 1px solid grey;
+    border-top: 1px solid grey;
+    z-index: 100;
+
+}
+ 
+/* 
+@media(max-width:1800px){
+    .Empdropdownwrapper {
+        margin-left: -5px;
+           }
+    }
+@media(max-width:1600px){
+    .Empdropdownwrapper {
+        margin-left: -15px;
+           }
+    }
+@media(max-width:1350px){
+    .Empdropdownwrapper {
+        margin-left: -70px;
+           }
+    }
+
+    @media(max-width:1250px){
+        .Empdropdownwrapper {
+        margin-left: -70px;
+          
+        }
+        }
+    @media(max-width:1190px){
+        .Empdropdownwrapper {
+        margin-left: -36px;
+          
+        }
+        }
+        
+     @media(max-width:1020px){
+        .Empdropdownwrapper {
+        margin-left: -42px;
+
+           }
+        }
+
+    @media(max-width:900px){
+        .Empdropdownwrapper {
+        margin-left: -53px;
+
+         }
+        }  
+    @media(max-width:850px){
+        .Empdropdownwrapper {
+        margin-left: -65px;
+
+         }
+        }   */
+
+
+
+.notificationIcon {
+    margin-top: 8px;
+    /* background-color: blue; */
+}
+
+.Loginlink {
+    display: flex;
+    flex-wrap: nowrap;
+    text-decoration: none;
+    color: white;
+    font-size: medium;
+    font-weight: 540;
+    /* margin-left: 8%; */
+
+}
+.StuLogin{
+    margin-left: 18%;
+}
+
+.JobSeekerdropdownwrapper::after {
+    content: "";
+    position: absolute;
+    top: -0.7rem;
+    right: 1rem;
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+    background-color: white;
+    border-left: 1px solid grey;
+    border-top: 1px solid grey;
+}
+.Alldownwrapper{
+    /* position: sticky; */
+    top:60px;
+    z-index: 100;
+    /* margin-left: -10px; */
+
+}
+.dropdownwrapper::after {
+    content: "";
+    position: absolute;
+    top: -0.7rem;
+    right: 1rem;
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+    background-color: white;
+    border-left: 1px solid grey;
+    border-top: 1px solid grey;
+
+}
+
+
+.text {
+
+    width: 100%;
+    color: rgb(20, 20, 20);
+    font-weight: 400;
+    text-decoration: none;
+}
+
+/* ........For Mobile  nave...... */
+
+
+    /* ,,,......... */
+    .MovileNavOptions{
+    background-color: white;
+    font-weight: bold;
+    white-space:wrap;
+    width: 200px;
+    z-index: 100; 
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    box-shadow: 1px 1px 3px 3px #999999;
+    padding-bottom: 7px;
+    padding-top: 20px;    
+    width:37%;
+    height: 600px;
+    position:fixed;
+    transition: 0.5s;
+    /* margin-top: 16px; */
+    /* margin-left: -1000px; */
+
+}
+.textinMobileSodeBar{
+    padding-top:9px;
+    padding-bottom: 9px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+.arrow {
+    border: solid black;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 2.3px;
+    margin-left: 5px;
+  }  
+  .up {
+    transform: rotate(315deg);
+    -webkit-transform: rotate(315deg);
+}
+.up:hover{
+    transform: rotate(315deg);
+    -webkit-transform: rotate(315deg);
+}
+  .down {
+    transform: rotate(90deg);
+    -webkit-transform: rotate(45deg);
+}
+  .down:hover {
+    transform: rotate(90deg);
+    -webkit-transform: rotate(45deg);
+}
+.textBigSodeBar{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-left: 15px;
+    cursor: pointer;
+    /* margin-top: 25px; */
+}
+.active{
+    background-color: white;
+    color:rgb(40, 4, 99);
+    padding-left: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+
+.Moblogo{
+    width: 100%;
+    height:30px;
+
+}
+@media (max-width:390px){
+    .AlllJobs{
+        margin-left: -100px;
+    }
+    }
+
+/* .AllJobs{
+    margin-left: 500%;
+} */
+
+.Moblink{
+    margin: 2%;
+    text-decoration: none;
+    color: white;
+    font-size: medium;
+    font-weight: 540;
+    width:14%;
+    white-space:nowrap;
+}
+
+
+
+.MobJobseekerProfileIcon{
+    width: 35px;
+    height: 35px;
+    /* margin-left: 145%; */
+    margin-top: 5px;
+    cursor: pointer;
+    /* background-color: aqua; */
+}
+.JobMobileProfileIcon{
+    width: 35px;
+    height: 33px;
+    margin-left: 55%;
+    margin-top: 4px;
+    cursor: pointer;
+}
+
+
+
+/*......... Home Nave....... */
+/* .MobHomelogoWrapper {
+    width: 14%;
+    margin-left: 10%;
+    margin-top: 10px;
+} */
+.MobHomelogo{
+    width: 70px;
+    margin-left: 65%;
+    margin-top: 10px;
+   height:30px;
+}
+
+
+.NavIconBars{
+    width:24px;
+    height:23px;
+   margin-left: 5%;
+   margin-top: 0px;
+   color:"red"
+}
+.NavIconCross{
+    width:24px;
+    height:23px;
+   margin-left: 5%;
+   /* margin-top: 5px; */
+   color:"red"
+
+}
+.Aboutus{
+    margin-left: -2px;
+}
+.HomeIcon{
+    height:28px;
+    width:45px;
+    margin-top: 4px;
+    margin-left: 17%;
+}
+
+.MobileLoginIconWrapper {
+
+    display: flex;
+    flex-wrap: nowrap;
+    /* margin-left: 40%; */
+    height: 60px;
+    align-items: center;
+
+}
+
+.MobloginLogo{
+    width:30px;
+   height:30px;
+   margin-top: 3px;
+   margin-left: 12px;
+
+}
+
+    .MobHomeDropdownwrapper {
+        position: absolute;
+        margin-left: -70px;
+        margin-top: 19px;
+        padding-right: 5px;
+        padding-left: 5px;
+        padding-bottom: 0px;
+        border-radius: 8px;
+        border: 1px solid rgb(202, 202, 202);
+        cursor: pointer;
+        z-index: 100;
+        background-color: white;
+        width:100px
+    }
+
+ @media(max-width:760px){
+    .MobileLoginIconWrapper {
+        margin-left: 52%;
+}
+.MobIwalkinLogologo{
+    width:100%;
+    margin-top: 6px;
+    height: 29px;
+    margin-left: 6px;
+
+}
+    }
+
+@media(max-width:480px){
+   .MobileLoginIconWrapper {
+    margin-left: 46%;
+}
+    }
+
+@media(max-width:400px){
+   .MobileLoginIconWrapper {
+       margin-left: 42%;
+
+}
+    }
+@media(max-width:375px){
+    .MobileLoginIconWrapper{
+    margin-left: 39%;
+
+    }
+}
+@media(max-width:350px){
+    .MobileLoginIconWrapper{
+    margin-left: 37%;
+    }   
+    }
+@media(max-width:340px){
+    .MobileLoginIconWrapper{
+    margin-left: 35%;
+    }   
+    }
+@media(max-width:325px){
+    .MobileLoginIconWrapper{
+    margin-left: 32%;
+    }   
+    }
+@media(max-width:315px){
+    .MobileLoginIconWrapper{
+    margin-left: 30%;
+    }   
+    }
+@media(max-width:305px){     
+    .MobHomeDropdownwrapper {
+        position: absolute;
+        margin-left: -60px;
+        margin-top: 146px;
+        /* padding-right: 5px; */
+        /* padding-left: 5px; */
+        /* padding-bottom: 0px; */
+        border-radius: 8px;
+        border: 1px solid rgb(202, 202, 202);
+        cursor: pointer;
+        z-index: 100;
+        width:90px
+    } }
+
+@media(max-width:299px){ 
+    .MobileLoginIconWrapper{
+        margin-left: 27%;
+        }    
+    .MobHomeDropdownwrapper {
+        position: absolute;
+        margin-left: -37px;
+        margin-top: 160px;
+        /* padding-right: 5px; */
+        /* padding-left: 5px; */
+        /* padding-bottom: 0px; */
+        border-radius: 8px;
+        border: 1px solid rgb(202, 202, 202);
+        cursor: pointer;
+        z-index: 100;
+        background-color: red;
+        width:65px
+    } }
+    @media(max-width:285px){ 
+        .MobileLoginIconWrapper{
+            margin-left: 21%;
+            }  }
+        
+        .MobHomeDropdownwrapper::after {
+            content: "";
+            z-index: 100;
+            position: absolute;
+            top: -0.7rem;
+            right: 1rem;
+            width: 20px;
+            height: 20px;
+            transform: rotate(45deg);
+            background-color: white;
+            border-left: 1px solid grey;
+            border-top: 1px solid grey;
+            z-index: 100;
+        
+        }
+
+        .PostedJobs{
+            margin-left: -0%;
+            /* background-color: aqua; */
+            font-weight: 700;
+            font-size: small;
+        }
+        .PostJob{
+            margin-left: 10%;
+            font-weight: 700;
+            font-size: small;
+        }
+
+        .MobileIconeWrapperEmp{
+    /* display: flex; */
+    /* width: 30%; */
+    margin-left: 20%;
+}
+@media (max-width :318px){
+    .MobileIconeWrapperEmp{
+    margin-left: 10%;
+    }
+}
+@media (min-width :400px){
+    .MobileIconeWrapperEmp{
+    margin-left: 30%;
+    }
+}
+
+        .EmpMobileProfileIcon{
+            width: 35px;
+            height: 35px;
+            margin-left: 38px;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+        
+.EmpMobDropdownwrapper{
+    position: absolute;
+    padding-right: 11px;
+    padding-left: 9px;
+    padding-bottom: 0px;
+    border-radius: 8px;
+    background-color: white;
+    border: 1px solid rgb(202, 202, 202);
+    cursor: pointer;
+    width:62px;
+    z-index: 100;  
+    margin-top: 8px;
+}
+.EmpMobDropdownwrapperMobile{
+        position: absolute;
+padding-right: 11px;
+padding-left: 9px;
+padding-bottom: 0px;
+border-radius: 8px;
+background-color: white;
+border: 1px solid rgb(202, 202, 202);
+cursor: pointer;
+width: 75px;
+z-index: 100;
+margin-top: 8px;
+right: 56px;
+}
+
+.EmpMobDropdownwrapperMobile ::after{
+    content: "";
+    position: absolute;
+    top: -0.7rem;
+    right: 1rem;
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+    background-color: white;
+    border-left: 1px solid grey;
+    border-top: 1px solid grey;
+}
+.EmpMobDropdownwrapper::after {
+    content: "";
+    position: absolute;
+    top: -0.7rem;
+    right: 1rem;
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+    background-color: white;
+    border-left: 1px solid grey;
+    border-top: 1px solid grey;
+}
+
+
+/* Job Seeker */
+
+
+.MobJobseekerDropdownwrapper{
+    position: absolute;
+    /* right : 1.5rem; */
+
+    margin-left: 76%;
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-bottom: 0px;
+    border-radius: 8px;
+    background-color: white;
+    border: 1px solid rgb(202, 202, 202);
+    cursor: pointer;
+    /* width:102px;  */
+    z-index: 100;   
+}
+.MobJobseekerDropdownwrapperlogin{
+position: absolute;
+    right: -114px;
+    /* margin-left: 76%; */
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-bottom: 0px;
+    border-radius: 8px;
+    background-color: white;
+    border: 1px solid rgb(202, 202, 202);
+    cursor: pointer;
+    /* width: 102px; */
+    z-index: 100;
+    top: 52px;
+}
+.MobJobseekerDropdownwrapper::after {
+    content: "";
+    position: absolute;
+    top: -0.7rem;
+    right: 1rem;
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+    background-color: white;
+    border-left: 1px solid grey;
+    border-top: 1px solid grey;
+
+}
+.MobJobseekerDropdownwrapperlogin::after {
+    content: "";
+    position: absolute;
+    top: -0.7rem;
+    right: 1rem;
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+    background-color: white;
+    border-left: 1px solid grey;
+    border-top: 1px solid grey;
+
+}
+
+
+
+@media (max-width :475px){
+    .MobJobseekerDropdownwrapperlogin{
+       right:-212px;
+    }    
+}
+@media (max-width :376px){
+    .MobJobseekerDropdownwrapperlogin{
+       right:-163px;
+    }    
+}
+@media (max-width :320px){
+    .MobJobseekerDropdownwrapperlogin{
+       right:-113px;
+    }    
+}
+/* 
+@media (min-width :460px){
+    .MobJobseekerDropdownwrapper{
+        position: absolute;
+        margin-left: 75%;
+        padding-right: 5px;
+        padding-left: 5px;
+        padding-bottom: 0px;
+        border-radius: 8px;
+        background-color: white;
+        border: 1px solid rgb(202, 202, 202);
+        cursor: pointer;
+    }
+    
+}
+@media (min-width :560px){
+    .MobJobseekerDropdownwrapper{
+        position: absolute;
+        margin-left: 75%;
+        padding-right: 5px;
+        padding-left: 5px;
+        padding-bottom: 0px;
+        border-radius: 8px;
+        background-color: white;
+        border: 1px solid rgb(202, 202, 202);
+        cursor: pointer;
+    }
+    
+}
+@media (min-width :660px){
+    .MobJobseekerDropdownwrapper{
+        position: absolute;
+        margin-left: 75%;
+        padding-right: 5px;
+        padding-left: 5px;
+        padding-bottom: 0px;
+        border-radius: 8px;
+        background-color: white;
+        border: 1px solid rgb(202, 202, 202);
+        cursor: pointer;
+    }
+    
+} */
+
+     
+/* ....Admin.......Nave....... */
+.All{
+    margin-left: -5px;
+    font-size:small;
+    font-weight:bold;
+}
+.AllJobs{
+    font-weight:bold;
+    margin-left: -14px;
+    white-space: nowrap;
+    font-size:small;
+}
+.AllEmploy{
+    font-weight:bold;
+    margin-left: 13px;
+
+    font-size:small;
+}
+.AllJobseeker{
+    font-weight:bold;
+    font-size:small;
+
+    margin-left: 25px;
+
+}
+.AdminUser{
+width:10px;
+/* margin-left: 30px; */
+margin-left: 10%;
+
+
+}
+
+.Admindropdownwrapper {
+    position: absolute;
+    /* right : 1.5rem; */
+    left: 88.6%;
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-bottom: 0px;
+    border-radius: 8px;
+    background-color: white;
+    border: 1px solid rgb(202, 202, 202);
+    cursor: pointer;
+}
+
+.MobileIconeWrapper{
+    display: flex;
+    width: 30%;
+    margin-left: 10%;
+    z-index: 999;
+}
+.flashDriveHome{
+     width:45px;
+    border-radius:5px;
+    margin-top:-10px;
+}
+
+@media (max-width: 320px) {
+    .flashDriveHome{
+        position: absolute;
+        top: 69px;
+   }
+  }
+
+.Admindropdownwrapper::after {
+    content: "";
+    position: absolute;
+    top: -0.7rem;
+    right: 1rem;
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+    background-color: white;
+    border-left: 1px solid grey;
+    border-top: 1px solid grey;
+    z-index: 100;
+
+}
+
+@media(max-width:1200px){
+    .Admindropdownwrapper {
+        position: absolute;
+        left: 87%;
+        padding-right: 5px;
+        padding-left: 5px;
+        padding-bottom: 0px;
+        border-radius: 8px;
+        background-color: white;
+        border: 1px solid rgb(202, 202, 202);
+        cursor: pointer;
+    }
+} 
+@media(max-width:1000px){
+    .Admindropdownwrapper {
+        position: absolute;
+        left: 86%;
+        padding-right: 5px;
+        padding-left: 5px;
+        padding-bottom: 0px;
+        border-radius: 8px;
+        background-color: white;
+        border: 1px solid rgb(202, 202, 202);
+        cursor: pointer;
+    }
+} 
+
+/* @media(max-width:330px){
+    .Admindropdownwrapper {
+        position: absolute;
+        left: 85.2%;
+        padding-right: 5px;
+        padding-left: 5px;
+        padding-bottom: 0px;
+        border-radius: 8px;
+        background-color: white;
+        border: 1px solid rgb(202, 202, 202);
+        cursor: pointer;
+    }
+}
+@media(min-width:500px){
+    .Admindropdownwrapper {
+        position: absolute;
+        left: 73.6%;
+        padding-right: 5px;
+        padding-left: 5px;
+        padding-bottom: 0px;
+        border-radius: 8px;
+        background-color: white;
+        border: 1px solid rgb(202, 202, 202);
+        cursor: pointer;
+    }
+}
+    */
+
+
+/* ........................................................... */

@@ -1,0 +1,1667 @@
+.tableContainer {
+    width: 95%;
+    border-radius: 15px;
+    border-collapse: collapse;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    box-shadow: 6px 6px 12px 6px rgba(0, 0, 0, 0.4);
+    margin: auto;
+    /* height: 97%; */
+    margin-bottom: 20px;
+    margin-left: 30px;
+
+  }
+  
+  .headerRow {
+    background-color: rgb(40, 4, 99);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+  }
+  
+  .th, .td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  .descriptionRow {
+    background-color: rgb(40, 4, 99);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+  }
+  
+  .descriptionContent {
+    padding: 10px;
+    background-color: white;
+  }
+  
+/* -----------------Share button starts---------------- */
+.shareContainer{
+    position: absolute;
+    border: 2px solid rgb(12, 12, 12);
+    border-radius: 3%;
+    background-color: rgb(40, 4, 99);
+    /* left: 1090px; */
+    top: 62px;
+    right: 1px;
+    padding: 20px;
+    /* width: 20%;
+    height: 30%; */
+}
+.shareContainerMob{
+    position: absolute;
+    border: 2px solid rgb(12, 12, 12);
+    border-radius: 3%;
+    background-color: rgb(40, 4, 99);
+    /* left: 15px;
+    top: 109px;
+    width: 91%;
+    height: 30%; */
+    right: -8px;
+    top:42px;
+    padding-bottom: 13px;
+}
+.shareBtn {
+    display: flex;  
+    align-items: center; 
+    gap: 8px; 
+    cursor: pointer;
+    background-color: rgb(40, 4, 99);
+    height: 42px;
+    width: 95px;
+    color: white;
+    border-radius: 2px;
+    padding-right: 6px;
+
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 1.0rem; 
+    margin-right: 20px;
+  }
+
+  .shareBtnBlog {
+    display: flex;  
+    align-items: center; 
+    gap: 8px; 
+    cursor: pointer;
+    background-color: rgb(40, 4, 99);
+    height: 36px;
+    width: 80px;
+    color: white;
+    border-radius: 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 1.0rem; 
+    margin-right: 20px;
+  }
+
+  .shareBtnMobile{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    cursor: pointer;
+    background-color: rgb(40, 4, 99);
+    height: 29px;
+    width: 61px;
+    color: white;
+    border-radius: 2px;
+    /* padding-right: 6px; */
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 12px;
+  }
+
+.shareButtonsContainer{
+       display: flex;
+        gap: -46px;
+        /* justify-content: space-between; */
+        gap: 35px;
+        margin-left: 50px;
+        margin-top: 30px;
+        margin-right: 35px;
+}
+
+.copyLinkContainer{
+    display:flex;
+    margin-top: 21px;
+    background-color: white;
+    border-radius: 8px;
+    width:92%;
+    margin-left: 15px;
+    height:40px;
+    align-items: center;
+}
+
+.urlInput{
+    /* height:30px; */
+    width:100%;
+    margin-left: 7px;
+    height:30px;
+    /* background-color: red; */
+    /* border-radius: 25px; */
+    border:none;
+    margin-top: 2px;
+    
+}
+.copyButton{
+        background-color: rgb(40, 4, 99);
+        color: white;
+        border: none;
+        padding: 2px 2px 2px 2px;
+        cursor: pointer;
+        border-radius: 25px;
+        font-weight: 500;
+        font-size: 0.8rem; 
+        width:100px;
+        height:35px;
+        margin-right:7px;
+    }
+
+/* ----------------share button ends--------------------------- */
+
+/* ---------------Home Page starts------------- */
+.homePageCompanyLogo{
+    height:45px;
+    width:45px;
+    border-radius: 180%;
+    margin-left:-10px;
+}
+.selectContainer{
+    height: 30px;
+    width: 154px;
+    margin-left: -36px;
+    border-radius: 4px;
+
+}
+.selectContainerMobile{
+    height: 27px;
+    width: 134px;
+    margin-left: -35px;
+    border-radius: 4px;
+    margin-top: -4px;
+}
+
+/* ---------------Home Page ends------------- */
+
+/* ---------------Job Details starts------------- */
+.jobdetailBtnContainer{
+    /* background-color: blue; */
+    display: flex;
+    justify-content: space-between;
+
+}
+.jobdetailBackBtn{
+    background-color: rgb(40, 4, 99);
+    color: white;
+    border: none;
+    padding: 0px 13px 0px 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 1.0rem; 
+    margin-left: 20px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    gap:6px;
+}
+
+.jobdetailBackBtnMobile{
+    background-color: rgb(40, 4, 99);
+    color: white;
+    border: none;
+    /* padding: 10px 15px 10px 15px; */
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 12px;
+    width: 53px;
+    padding: 7px;
+}
+
+/* .jobdetailBackBtn:hover{
+    background-color: white;
+    color: rgb(40, 4, 99);
+    border: 2px solid  rgb(40, 4, 99);
+} */
+.jobdetailApplyBtn{
+    background-color: rgb(40, 4, 99);
+    color: white;
+    border: none;
+    padding: 4px 12px 4px 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 1.0rem;
+    margin-right: 20px;
+}
+/* .jobdetailApplyBtn:hover{
+    background-color: white;
+    color: rgb(40, 4, 99);
+    border: 2px solid  rgb(40, 4, 99);
+} */
+.jobDetailsHeading{
+    display: flex;
+    
+}
+.jobDetailContainer{
+    background-color: white;
+    margin-left: 80px;
+    border: 2px solid black;
+    border-radius: 10px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.75); */
+    width:89%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.jobDetailImage{
+    height:150px;
+    width:150px;
+    border-radius: 180%;
+    margin-left: 7%;
+    margin-top: 10px;
+}
+.jobDetailImageMobile{
+    height:45px;
+    width:45px;
+    border-radius: 180%;
+    margin-left:-10px;
+}
+.jobDetailsPosterDesc{
+    margin-left: 40px;
+    margin-top: -60px;
+}
+
+/* ---------------Job Details Ends------------- */
+
+/* ---------------------Blog Home page starts--------------- */
+
+.blogSearchContainer{
+    display: flex;
+    gap:2px;
+    width: 84%;
+    margin-right: 7px; 
+}
+.searchicon{
+    margin-top: 10px;
+}
+.blogInputboxsearch {
+    border-radius: 18px;
+    border: 2px solid rgb(40, 4, 99);
+    height: 29px;
+    width: 100%;
+    margin-top: 3px;
+    transition: width 0.9s ease-in-out;
+   
+
+}
+.blogInputboxsearch::placeholder{
+    font-size:10.5px;
+}
+
+
+
+
+/* ---------------------Blog Home page ends--------------- */
+
+/* ------------------Blog Read Page starts-------------------- */
+.readPageContainer{
+    background-color: white;
+    margin-left: 120px;
+    border: 2px solid black;
+    border-radius: 10px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.75); */
+    width:85%;
+    margin-bottom: 10px;
+    margin-top: 0px;
+}
+.ReadPageBtnTitleContainer{
+    display: flex;
+    justify-content: space-between;  
+    /* gap: 80px; */
+        /* justify-content: space-around; */
+    gap: 5px;
+}
+.readPageBackBtn{
+    background-color: rgb(40, 4, 99);
+    color: white;
+    border: none;
+    padding: 0px 13px 0px 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 1.0rem; 
+    margin-left: 20px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    gap:6px;
+}
+/* .readPageBackBtn:hover{
+    background-color: white;
+    color: rgb(40, 4, 99);
+    border: 2px solid  rgb(40, 4, 99);
+} */
+.blogReadTitlePosterDesc{
+    margin-top: -18px;
+}
+.mobileReadTopbtnsContainer{
+    display: flex;
+    margin-top: 12px;
+    justify-content: space-between;
+}
+.linkedinLogoDesktop{
+    height: 35px;
+    width: auto;
+    margin-top:10px; 
+    margin-right:5px;   
+}
+.linkedinLogoMobile{
+    height: 30px;
+    width: auto;
+    margin-top: 15px;
+    margin-right:0px;
+}
+
+
+/* ------------------Blog Read Page ends-------------------- */
+
+/* ------------------Blog Answer page starts------------------ */
+.blogHeading{
+    margin-left: 120px;
+}
+.blogButtonContainer{
+    margin-left: 120px;
+    /* background-color: red; */
+}
+.blogBackButton{
+    background-color: rgb(40, 4, 99);
+    color: white;
+    border: none;
+    padding: 10px 15px 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 1.0rem; 
+    margin-left: 120px; 
+}
+.blogBackButton:hover{
+background-color: white;
+    color: rgb(40, 4, 99);
+    border: 2px solid  rgb(40, 4, 99);
+}
+.answerTitle{
+    margin-left: 120px;
+    width: 70%;
+}
+.ansPostedDetails{
+    margin-left: 120px;
+    width: 70%;
+    text-align: start;  
+}
+.submittedAnsdiv{
+    background-color: #fff;
+    padding: 35px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1), 
+                0 -2px 10px rgba(0, 0, 0, 0.1);
+
+    margin-bottom: 15px;
+    width: 70%;
+    margin-left: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+.submittedAnsDetail{
+    font-size: 1.1rem;
+
+}
+.ansCommentSection{
+    width:75%;
+    margin-left: 120px;
+    border-radius: 10px;
+    margin-bottom: 100px;
+    margin-top: 50px;
+}
+.ansBtn{
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px 25px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    
+}
+.ansBtn:hover{
+    background-color: white;
+    color:  #28a745;
+    border: 2px solid #28a745 ;
+}
+
+/* ------------------Blog Answer page ends------------------ */
+.HomeNavConetenetWrapperAdmin{
+    display: flex;
+    /* margin-top: -47.5px; */
+    align-items: center;
+    position: sticky;
+    top:10px;
+    z-index: 100;
+    width:46%;
+    margin-left: 27%;
+    /* background-color: red; */
+}
+.HomeNavConetenetWrapperAdmin .JobLocationFilter{
+    color: black;
+
+}
+.HomeNavConetenetWrapperAdmin .HomesearchBothForNavWrapper{
+    border: solid 2px black;
+
+}
+.HomeNavConetenetWrapperAdmin .searchBothForNavWrapper{
+    border: solid 2px black;
+
+}
+.HomeNavConetenetWrapper{
+    display: flex;
+    margin-top: -47.5px;
+    align-items: center;
+    position: sticky;
+    top:10px;
+    z-index: 100;
+    width:40%;
+    margin-left: 27%;
+    /* background-color: red; */
+}
+.BlogNavConetenetWrapper{
+    display: flex;
+    margin-top: -47.5px;
+    align-items: center;
+    position: sticky;
+    top:10px;
+    z-index: 100;
+    width:43%;
+    margin-left: 25%;
+    /* background-color: aqua; */
+}
+.NavConetenetWrapper{
+    display: flex;
+    margin-top: -47.5px;
+    align-items: center;
+    position: sticky;
+    top:10px;
+    z-index: 100;
+    width:48%;
+    margin-left: 32%;
+    /* background-color: aqua; */
+}
+@media (max-width:1200px) {
+    .HomeNavConetenetWrapper{
+        width:47%;
+        margin-left: 30%;    
+    }
+    .BlogNavConetenetWrapper{
+        margin-left: 30%;
+    }
+    .jobdetailBackBtn{
+        margin-left: 80px;
+    }
+    .jobDetailContainer{
+           margin-left:100px;
+           margin-top: 20px;
+    }
+    .jobdetailBackBtn{
+        margin-left: 20px;
+    }
+    .jobDetailsPosterDesc{
+        margin-left: 20px;
+    }
+}
+@media (max-width:986px) {
+.NavConetenetWrapper{
+    width:53%;
+    margin-left: 34%;
+}
+.HomesearchBothForNavWrapper{
+    width:78%;
+}
+.HomeNavConetenetWrapper{
+    width:49%;
+    margin-left: 31%;
+}
+.BlogNavConetenetWrapper{
+    margin-left: 31%;
+    width:50%;
+
+}
+}
+@media (max-width:868px) {
+.NavConetenetWrapper{
+    width:48%;
+    /* margin-left: 35%; */
+
+}
+.HomeNavConetenetWrapper{
+    width:48%;
+}
+.jobdetailBackBtn{
+    margin-left: 80px;
+}
+}
+
+.LocationFilterWrapper{
+    z-index: 100;
+    width:130px;
+}
+.JobLocationFilter{
+    cursor: pointer;
+    font-weight: 600;
+    align-content: center;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    /* margin-left:15% */
+
+}
+.HomesearchBothForNavWrapper{
+    width:68%;
+    background-color: white;
+    border-radius: 3px;
+    position: sticky;
+    z-index: 100;  
+
+}
+.searchBothForNavWrapper{
+    width:68%;
+    background-color: white;
+    border-radius: 3px;
+    position: sticky;
+    z-index: 100;  
+
+}
+
+@media (max-width:900px){
+    .searchBothForNavWrapper{
+        width:84%;
+    }
+
+}
+
+.inputboxsearchNav{
+    padding: 10px;
+    width: 85%;
+    border : 1px solid rgb(204, 209, 211);
+    border: 0px white;
+    border-radius: 3px;
+    z-index: 100;
+} 
+.SearchIconNav{
+    /* color:rgb(40, 4, 99); */
+
+}
+/* .................................................. */
+.LocationFilterWrapper{
+
+}
+
+.disable{
+    margin-left: 10px;
+    color:white;
+    font-weight: 600;
+    padding: 4px 7px ;
+    align-content: center;
+    border: none;
+    border-radius: 3px;
+    background-color:rgb(226, 225, 225);
+    background:rgb(242, 244, 245);
+    
+}
+.locationActive{
+    margin-left: 10px;
+    cursor: pointer;
+    color:white;
+    font-weight: 600;
+    padding: 4px 7px ;
+    align-content: center;
+    border: none;
+    border-radius: 3px;
+    /* background-color: blue */
+    background-color: rgb(40, 4, 99);
+
+}
+
+/* .JobLocationFilter:hover{
+    cursor: pointer;
+    margin-left: 10px;
+    cursor: pointer;
+    color:white;
+    font-weight: 600;
+    padding: 4px 7px ;
+    align-content: center;
+    border: none;
+    border-radius: 3px;
+    background-color: rgb(40, 4, 99);
+    transition: all 0.2s;
+} */
+/* ...........................for Filter..................... */
+
+  
+.JobtitleFilterWrapper{
+    background:rgb(202, 202, 202);
+
+    margin-left: 3px;
+    margin-top: 20px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+            height: 105px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            text-align: justify;
+            margin-right: 10px;
+}
+.JobtitleFilterWrapper:hover{
+    scrollbar-color:  rgb(40, 4, 99) white ;
+}
+
+
+.JobtitleFilterWrapperMobile{
+background: rgb(202, 202, 202);
+    margin-left: 12px;
+    margin-top: 18px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    height: 105px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+    margin-right: 10px;
+}
+.JobtitleFilterWrapperMobile{
+    scrollbar-color:  rgb(40, 4, 99) white ;
+}
+
+
+.JobtitleFilter{
+    /* margin-left: 5px;
+    margin-top: 15px; */
+    border: none;
+
+    margin: 4px;
+    cursor: pointer;
+    color:black;
+    font-weight: 550;
+    font-size: xx-small;
+    padding: 4px 7px ;
+    align-content: center;
+    text-wrap: nowrap ;
+    background-color:white;
+    border-radius: 3px;
+
+}
+.JobtitleFilter:hover{
+    background-color: rgb(40, 4, 99);
+    /* background-color:blue; */
+    margin: 4px;
+    cursor: pointer;
+    color:white;
+    font-weight: 550;
+    font-size: xx-small;
+    padding: 4px 7px ;
+    align-content: center;
+    text-wrap: nowrap ;
+    border-radius: 3px;
+}
+
+.active{
+    background-color: rgb(40, 4, 99);
+    color:white;
+    margin: 4px;
+    cursor: pointer;
+    font-weight: 550;
+    font-size: xx-small;
+    padding: 4px 7px ;
+    align-content: center;
+    text-wrap: nowrap ;
+    border-radius: 3px;
+    border: none;
+
+}
+.TagHeading{
+    background:rgb(228, 230, 231);
+    margin: 4px;
+    cursor: pointer;
+    font-weight: 850;
+    font-size: x-small;
+    padding: 4px 7px ;
+    align-content: center;
+    text-wrap: nowrap ;
+    border-radius: 3px;
+    border: none;
+    color: black;
+}
+
+.JobtitleFilterWrapper::-webkit-scrollbar:vertical {
+    width: 12px;
+}
+
+.JobtitleFilterWrapper::-webkit-scrollbar:horizontal {
+    height: 12px;
+}
+
+.JobtitleFilterWrapper::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+.imageV{
+    height:100px;
+    width:100px;
+    border-radius: 180%;
+    margin-left: 2%;
+    margin-top: 10px;
+    /* background-color: aqua; */
+}
+
+.arrowWrapper{
+    display: inline;
+    margin-left: 4%;
+    margin-top: 2px;
+}
+.arrow {
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 2.3px;
+    /* margin-left: 0.5%; */
+  }  
+  .up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    position: absolute;
+}
+.down {
+    transform: rotate(90deg);
+    -webkit-transform: rotate(45deg);
+
+  }
+  .up:hover {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    /* background-color: blue; */
+    position: absolute;
+    margin-top: 0px;
+  }
+  .down:hover {
+    transform: rotate(90deg);
+    -webkit-transform: rotate(45deg);
+   
+  }
+  .arrow:hover{
+    border: solid grey;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 2.3px;
+  }
+/* .HeadingSort{
+    display: flex;
+    margin-left: 40px;
+    background-color: rgb(67, 146, 146);
+} */
+/* .AllradioWrapper{
+    background-color: brown;
+    height:80px;
+    margin-top: -20px;
+    width:100px
+} */
+.AllHeadingSortWrapper{
+    /* background-color: brown; */
+    /* width:1000px; */
+    height:80px;
+    display: flex;
+}
+.FilterHeading{
+    opacity: 0.6;
+    /* background-color: antiquewhite; */
+    width:200px;
+    display: flex;
+    height: 20px;
+}
+.JobSorting{
+    margin-left: 50px
+
+}
+.ExpSorting{
+    margin-left: 80px
+}
+.PackageSorting{
+    margin-left: 85px
+
+}
+.RadioWrapper{
+    /* background-color: rgb(0, 68, 255); */
+     width: 150px;
+     margin-left: -150px; 
+    margin-top: 35px; 
+}
+.dropdownWrapper{
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.inputtypeLeft{
+    width:50px;
+    border-right: none;
+    border-left: none;
+}
+.inputtypeRight{
+    width:50px;
+    border-right: none;
+}
+.dropdownleft{
+    border:2px solid;
+    border-right: none;
+
+}
+.dropdownright{
+    border:2px solid;
+}
+
+.navigationWrapper{
+    text-align:right;
+    margin:10px;
+
+}
+
+.navigationWrapperbtn{
+    text-align:right;
+    margin:10px;
+    display: flex;
+    gap: 5px;
+}
+.navigation{
+    background-color:rgb(214, 212, 212);
+    padding:3px;
+    padding-right:10px; 
+    border:none;
+}
+.navigationbtn{
+    background-color:rgb(214, 212, 212);
+    border:none;
+    height: 30px;
+    font-weight: 700;
+}
+.navigationbtnMob{
+    background-color:rgb(214, 212, 212);
+    border:none;
+    height: 30px;
+    font-weight: 700;
+}
+
+
+.seeMore{
+ color: blue;
+    cursor:pointer;
+
+}
+.Uiwarpper{
+
+    /* width:100%; */
+    margin-left: -2%;
+    /* background-color: aqua; */
+}
+
+.ul{
+    display: flex;
+    margin: 0px;
+    margin-left: -.2%;
+    /* width:99.5%; */
+
+}
+
+  .ul:nth-child(even) {
+    background:rgb(242, 244, 245)
+  }
+.li{
+    display: inline-block;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    align-content: center;
+    width : 8%;
+    border : 1px solid rgb(215, 223, 226);
+    text-align: center;
+    overflow-wrap:break-word;
+}
+.CompanyName{
+    width:12.5%;
+    overflow-wrap:break-word
+}
+.BlogCompanyName{
+    width:17%;
+    overflow-wrap:break-word
+}
+.Source{
+    width:6.5%;
+    overflow-wrap:break-word
+}
+.BlogSource{
+    width:12%;
+    overflow-wrap:break-word
+}
+.Jtitle{
+    width:12%;
+    overflow-wrap:break-word;
+}
+.BlogJtitle{
+    width:28%;
+    overflow-wrap:break-word;
+}
+.liDescription{
+    width : 17%;
+    overflow-wrap:break-word;
+    text-align: center;
+
+}
+.BlogDescription{
+    width : 47%;
+    /* overflow-wrap:break-word; */
+    /* text-align: center; */
+
+}
+.HliDescription{
+    width : 17%;
+    overflow-wrap:break-word;
+    text-align:center ;
+}
+.JobType{
+    width:7%;
+    overflow-wrap:break-word
+
+}
+
+.date{
+    width:11%;
+    overflow-wrap:break-word;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+.Blogdate{
+    width:18%;
+    overflow-wrap:break-word;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+.qualification{
+    width:9%;
+    overflow-wrap:break-word
+
+}
+
+.Package{
+    width:6%;
+    overflow-wrap:break-word
+
+}
+.experiance{
+    width:10%;
+    overflow-wrap:break-word
+
+}
+.Location{
+    width:9.5%;
+    overflow-wrap:break-word
+
+}
+.Skills{
+    width:20%;
+    overflow-wrap:break-word
+}
+.Apply{
+    width:92px
+}
+.BlogApply{
+    width:160px
+}
+.Status{
+    width:90px
+
+}
+.Applybutton{
+    border: 1px solid rgb(40, 4, 99);
+    background-color: rgb(40, 4, 99);
+    display: flex;
+    color: white;
+    /* font-weight: bold; */
+    width:70px;
+    padding-left: 15px;
+    /* padding-right: 1px; */
+    height: 25px;
+    align-items: center;
+    text-align: center;
+    margin-left: 6%;
+    cursor:pointer;
+}
+.applyRegisterButton{
+    border: 1px solid rgb(40, 4, 99);
+    background-color: rgb(40, 4, 99);
+    display: flex;
+    color: white;
+    /* font-weight: bold; */
+    width:70px;
+    padding: 12px;
+    /* padding-right: 1px; */
+    height: 25px;
+    align-items: center;
+    text-align: center;
+    margin-left: 6%;
+    cursor:pointer;
+}
+.BlogApplybutton{
+    border: 1px solid rgb(40, 4, 99);
+    background-color: rgb(40, 4, 99);
+    display: flex;
+    color: white;
+    /* font-weight: bold; */
+    width:65px;
+    padding-left: 15px;
+    /* padding-right: 1px; */
+    height: 25px;
+    align-items: center;
+    text-align: center;
+    margin-left: 29%;
+    cursor:pointer;
+}
+.AnswerApplybutton{
+    border: 1px solid rgb(40, 4, 99);
+    background-color: rgb(40, 4, 99);
+    display: flex;
+    color: white;
+    width:74px;
+    padding-left: 15px;
+    height: 25px;
+    align-items: center;
+    text-align: center;
+    margin-left: 27%;
+    cursor:pointer;
+}
+
+.Appliedbutton{
+    border: 1px solid green;
+    background-color:green;    
+    color: white;
+    /* font-weight: bold; */
+    width:75px;
+    height: 25px;    
+    /* margin-left: -5%; */
+    cursor:pointer;
+
+}
+.Loader{
+    width:75%;
+    margin-left: -15%;
+}
+
+/* ---------------help card----- */
+.helpPageContainer{
+    background-color: white;
+    margin-left: 120px;
+    border: 2px solid black;
+    border-radius: 10px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.75); */
+    width:85%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.helpTitle{
+    text-align: center;
+    font-size: 40px;
+    white-space: nowrap; /* Fixed the incorrect 'no' */
+    margin-top: 10px;
+    margin-right: 300px;
+}
+@media (max-width: 768px) {
+    .helpPageContainer{
+        margin-left: 10px;
+        width:95%;
+    }
+
+    .helpTitle{
+        text-align: center;
+    font-size: 24px;
+    white-space: normal;
+    margin-top: 10px;
+    margin-left: -24px;
+    margin-right: 0px;
+    }
+}
+.helpCard{
+   /* display: flex; */
+    /* background-color: aqua;    */
+    margin-left: 8px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    white-space:wrap;
+    /* height: 250px; */
+    width: 90%;
+    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    box-shadow: 2px 2px 2px 2px #999999;
+    padding-bottom: 7px;
+    padding:10px;
+}
+
+.contactTable{
+   width:30%;
+margin-bottom:20px;
+margin-left: -5px;
+}
+@media (max-width: 768px) {
+    .contactTable {
+        width: 100%;
+    }
+}
+
+
+/* ..............Job Details  Table */
+
+table {
+    /* font-family: arial, sans-serif; */
+    border-collapse: collapse;
+    width: 90%;
+    margin-left: 30px;
+    margin-top: 30px;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    /* background-color: #dddddd; */
+    background:rgb(242, 244, 245)
+
+  }
+/* .........................Mobile - Cards................ */
+.MobLocationFilterWrapperLogin{
+    position: absolute;
+    margin-top: -102px;
+    margin-left: 55%;
+    z-index: 100;
+    color: white;
+}
+@media (max-width:480px){
+    .MobLocationFilterWrapperLogin{
+        margin-left: 62%;
+    }
+    .blogHeading{
+        margin-left: 20px;
+    }
+    .blogButtonContainer{
+        margin-left: 20px;
+    }
+    .readPageBackBtn{
+        height: 35px;
+    }
+    }
+@media (max-width:430px){
+    .MobLocationFilterWrapperLogin{
+        margin-left: 65%;
+    }
+    }
+@media (max-width:390px){
+    .MobLocationFilterWrapperLogin{
+        margin-left: 67%;
+    }
+    }
+@media (max-width:360px){
+    .MobLocationFilterWrapperLogin{
+        margin-left: 70%;
+    }
+    }
+.MobLocationFilterWrapper{
+    position: absolute;
+    margin-top: -102px;
+    margin-left: 50%;
+    z-index: 100;
+    color: white;
+}
+@media (max-width:430px){
+.MobLocationFilterWrapper{
+    margin-left: 53%;
+}
+.jobdetailBackBtn{
+    margin-left: 20px;
+    height:36px;
+    padding-bottom: 25px;
+    padding-top: 8px;
+}
+}
+@media (max-width:360px){
+.MobLocationFilterWrapper{
+    margin-left: 55%;
+}
+}
+@media (max-width:350px){
+.MobLocationFilterWrapper{
+    margin-left: 56%;
+}
+.jobdetailBackBtn{
+    margin-left: 10px;
+    margin-top: -3px;
+}
+.blogHeading{
+    margin-left: 20px;
+}
+.blogButtonContainer{
+    margin-left: 20px;
+}
+
+}
+@media (max-width:307px){
+.MobLocationFilterWrapper{
+    margin-left: 57.5%;
+}
+
+}
+/* @media (max-width:297px){
+.MobLocationFilterWrapper{
+    margin-left: 60%;
+}
+} */
+.MobJobtitleFilter{
+    color: white;
+}
+.MobFilterJobTitleWrapper{
+    display: flex;
+    flex-direction: column;
+    /* background-color: aqua; */
+    margin-left: 5px;
+    width:32%;
+    text-wrap: nowrap;
+    overflow: hidden;
+}
+
+.searchBoth{
+    margin-left: 10%;
+    margin-top: 15px;
+    display: flex;
+    width:90%;
+    
+}
+.inputboxsearch {
+    display: inline-flex;
+    height: 35px;
+    margin-top: 10px;
+    margin-left: 1%;
+    width: 60%;
+    border-radius: 5px;
+    /* border: 1.5px solid rgb(11, 12, 12); */
+    border : 1px solid rgb(204, 209, 211);
+
+}
+
+.p{
+    font-weight: bold;
+    margin-top: 20px;
+    color: #3b3b3b;
+     /* opacity: 0.8; */
+}
+
+#JobCardWrapper {
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+    padding: 10px;
+    /* background-color: rgb(204, 103, 103); */
+    border-radius: 10px;
+    /* margin-left: 40px;     */
+    width:90%;
+    margin-top: -26px;
+}
+
+.JobCard {
+    /* display: flex; */
+    /* background-color: aqua;    */
+    margin-left: 8px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    white-space:wrap;
+    /* height: 250px; */
+    width: 100%;
+    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    box-shadow: 2px 2px 2px 2px #999999;
+    padding-bottom: 7px;
+    padding-top: 6px;
+}
+
+.JobTitleDateWrapper{
+    margin-left: 15px;
+    display: flex;
+    margin-top: -18px;
+}
+.jobTitle{
+    font-weight: 500;
+    /* font-size:medium; */
+    font-size: 18px;
+    display: inline;
+    text-decoration: underline;
+    width:90%;
+    overflow: hidden;
+    text-wrap: nowrap;
+    white-space: normal;
+}
+.QuestionjobTitle{
+    font-weight: 600;
+    font-size:22px;
+    display: inline;
+    /* text-decoration: underline; */
+    width:90%;
+    /* overflow: hidden; */
+    text-wrap: wrap;
+}
+.Date{
+    font-weight: 500;
+    font-size: x-small;
+    /* width:25%; */
+    width: 35%;
+    margin-top: 24px;
+    margin-right: -11px;
+}
+
+.readPageDate{
+    display: flex;
+
+width:100%;
+    justify-content:flex-end;
+    margin-left: -10px;
+}
+.companyNameLocationWrapper{
+    margin-left: 15px;
+}
+.JobPagecompanyNameLocationWrapper{
+    margin-left: 15px;
+    display: flex;
+    margin-top: -12px;
+    margin-bottom: -6px;
+}
+.blogNameLocationWrapper{
+    margin-left: 5px;
+    display: flex;
+    margin-top: -16px;
+    margin-bottom: -2px;
+}
+.blogCompanyName{
+    margin-top: 20px;
+    font-size: 17px;
+}
+.jobTitleCompanyName{
+margin-top: 11px;
+}
+.jobDetailTitleCompanyName{
+    margin-top: 11px; 
+    /* font-size: 20px; */
+}
+.logo{
+    width:25px;
+    height:20px;
+    margin-top: -50px;
+
+}
+
+.companyName{
+    margin-left: 5px;
+    font-weight: 400;
+    text-decoration: underline;  
+    font-size: medium;
+    width:100%;
+    
+}
+
+.jobLocation{
+    font-weight: 500;
+    font-size: small;
+    margin-left: 5px;
+    margin-top:4px;
+
+}
+.jobLocationImage{
+    width:20px;
+    height:20px;
+    margin-top: 6.5px;
+    margin-left: 15px;
+
+}
+.graduationImage{
+    width:20px;
+    height:20px;
+    /* margin-left: 2px; */
+    /* margin-top: 20px; */
+}
+
+.jobtypeAndDate{
+    font-size: small;
+    margin-left: 15px;
+    font-weight: 500;
+}
+.qualificationAndExperiance{
+    font-size: small;
+    margin-left: 5px;
+    /* font-weight: 500; */
+}
+.skillWrapper{
+    margin-left: 15px;
+
+}
+.skillsHeading{
+    font-weight: 600;
+    font-size: small;
+
+}
+.skills{    
+    font-weight: 400;
+    font-size: small;
+
+    
+}
+.jobDescriptionHeading{
+    margin-left: 15px;
+    font-weight: 600;
+    margin-top: 5px;
+}
+.jobDescription{
+    margin-top: -15px;
+    margin-left: 15px;
+    width:94%;
+    font-size: small;
+    font-weight: 400;
+    /* background-color: aqua; */
+}
+
+.ApplyPackage {
+    display: flex;
+    margin-left: 15px;
+    border: 1px solid rgb(40, 4, 99);
+    background-color: rgb(241,248,234);
+    width:90%;
+    border-radius: 10px; 
+    height: 50px;
+    margin-top: 8px;
+    /*
+    padding-bottom: 15px;
+     */
+}
+.ApplyPackageJobseeker{
+    display: flex;
+    border: 1px solid rgb(40, 4, 99);
+    background-color: rgb(241,248,234);
+    border-radius: 10px; 
+    height: 50px;
+    margin-top: 8px;
+    justify-content: space-between;
+}
+.homeApplyPackage{
+    display: flex;
+    margin-left: 1px;
+    border: 1px solid rgb(40, 4, 99);
+    background-color: rgb(241,248,234);
+    border-radius: 10px; 
+    height: 50px;
+    margin-top: 8px;
+    justify-content: space-between;
+}
+.applyDrivePackage {
+    display: flex;
+    margin-left: 15px;
+    border: 1px solid rgb(40, 4, 99);
+    background-color: rgb(241,248,234);
+    width:90%;
+    border-radius: 10px; 
+    height: 50px;
+    margin-top: 8px;
+    justify-content: space-between;
+    /*
+    padding-bottom: 15px;
+     */
+}
+
+.ApplyDriveMobile {
+    border: 1px solid rgb(40, 4, 99);
+    background-color: rgb(40, 4, 99);
+    display: flex;
+    color: white;
+    font-weight: bold;
+    width:70px;
+    height: 35px;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    margin-right: 4%;
+    margin-top: 9px;
+    border-radius: 5px;
+    padding-left: 15px;
+}
+.salaryRange{
+    font-weight: bold;
+    margin-left: 30px;
+    margin-top: 13px;
+    font-size: large;
+}
+.salaryRangeJobseeker{
+    font-weight: bold;
+    margin-top: 13px;
+    font-size: large;
+}
+.ApplyMobile {
+    border: 1px solid rgb(40, 4, 99);
+    background-color: rgb(40, 4, 99);
+    display: flex;
+    color: white;
+    font-weight: bold;
+    width:70px;
+    height: 35px;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    margin-left: 40%;
+    margin-top: 9px;
+    border-radius: 5px;
+    padding-left: 15px;
+}
+.ApplyMobileJobseeker{
+    border: 1px solid rgb(40, 4, 99);
+    background-color: rgb(40, 4, 99);
+    display: flex;
+    color: white;
+    font-weight: bold;
+    height: 35px;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    margin-top: 9px;
+    border-radius: 5px;
+    padding-left: 15px;
+}
+.homeApplyMobileBtn{
+    border: 1px solid rgb(40, 4, 99);
+    background-color: rgb(40, 4, 99);
+    display: flex;
+    color: white;
+    font-weight: bold;
+    width:70px;
+    height: 35px;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    margin-top: 9px;
+    border-radius: 5px;
+    padding-left: 15px;
+    margin-right:2%;
+}
+
+.MobileAppliedButton{
+    border: 1px solid green;
+    border-radius: 5px;
+    background-color:green;  
+    display: flex;
+    color: white;
+    font-weight: bold;
+    width:80px;
+    height: 28px;    
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    margin-left: 38%;
+    margin-top: 12px;
+}
+
+.showLess{
+    color:rgb(148, 112, 216)
+}
+
+.tableDesWrapper{
+    word-wrap: break-word;
+       white-space: normal;
+       overflow: hidden;
+       box-sizing: border-box;
+}
+
+

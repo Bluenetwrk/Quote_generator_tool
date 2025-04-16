@@ -1,0 +1,331 @@
+.navigationWrapper{
+    text-align:right;
+    margin:10px;
+
+}
+.navigation{
+    background-color:rgb(214, 212, 212);
+    padding:3px;
+    padding-right:10px; 
+    border:none;
+}
+
+.arrowWrapper{
+    display: inline;
+}
+.arrow {
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 2.3px;
+    /* margin-left: 0.5%; */
+  }  
+  .up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    position: absolute;
+}
+.down {
+    transform: rotate(90deg);
+    -webkit-transform: rotate(45deg);
+
+  }
+  .up:hover {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    /* background-color: blue; */
+    position: absolute;
+    margin-top: 0px;
+  }
+  .down:hover {
+    transform: rotate(90deg);
+    -webkit-transform: rotate(45deg);
+   
+  }
+  .arrow:hover{
+    border: solid grey;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 2.3px;
+  }
+
+.Uiwarpper {
+    margin-left: -40px;
+}
+.h3{
+    /* color: blue; */
+    margin-left: 4%;
+
+}
+.ul {
+    display: flex;
+    margin: 0px;
+}
+.ul:nth-child(1){
+    background-color: rgb(40, 4, 99);    
+color:white;
+
+}
+
+.li {
+    display: inline-block;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    width: 14%;
+    /* border: 1px solid rgb(9, 247, 247); */
+    border : 1px solid rgb(208, 210, 211);
+
+    text-align: center;
+    overflow-wrap:break-word
+
+}
+
+.liDescription {
+    width: 18%;
+    overflow-wrap:break-word;
+    text-align: center;
+}
+
+.Jtitle {
+    width: 17%;
+    overflow-wrap:break-word;
+   
+}
+.JtitleR {
+    width: 17%;
+    overflow-wrap:break-word;
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.Package {
+    width: 9%;
+    overflow-wrap:break-word
+
+}
+.Pdate{
+    width:15%;
+    overflow-wrap:break-word
+
+}
+.experiance {
+    width: 15%;
+    overflow-wrap:break-word
+
+}
+
+.Location {
+    width: 9%;
+    overflow-wrap:break-word
+
+}
+
+.JobType {
+    width: 9%;
+    overflow-wrap:break-word
+
+}
+
+.Qualif {
+    width: 12%;
+    overflow-wrap:break-word;
+}
+.Skills{
+    width:14%
+}
+.DeleteAction{
+    /* overflow-wrap:break-word; */
+    width:10%
+
+
+}
+
+.DeleteButton {
+    /* background-color: rgb(40, 4, 99); */
+    background-color: red;
+    border:1px solid red;
+    color: white;
+    width:75%;
+    height: 25px;
+    font-weight: bold;
+    cursor:pointer
+}
+.Status{
+    width:13%;
+}
+
+/* .....Mobile View... */
+
+#JobCardWrapper {
+    padding: 10px;
+    border-radius: 10px;
+    width: 85%;
+}
+
+.JobCard {
+    /* display: flex; */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 8px;
+    /* height: 250px; */
+    width: 100%;
+    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    box-shadow: 2px 2px 2px 2px #999999;
+    padding-bottom: 6px;
+}
+
+
+.JobTitleDateWrapper{
+    margin-left: 15px;
+    display: flex;
+    margin-top: -10px;
+}
+.jobTitle{
+    font-weight: 500;
+    font-size:medium;
+    display: inline;
+    text-decoration: underline;
+    width:90%;
+    overflow: hidden;
+    text-wrap: nowrap;
+}
+.Date{
+    font-size: x-small;
+    width:25%;
+    font-weight: 500;
+
+}
+.companyNameLocationWrapper{
+    margin-left: 15px;
+    margin-top: -6px;
+}
+.logo{
+    width:25px;
+    height:20px;
+    margin-top: -6px;
+}
+
+.companyName{
+    margin-left: 5px;
+    font-weight: 400;
+    text-decoration: underline;  
+    font-size: medium;
+    width:100%;
+    margin-top: -5px;
+    position: absolute;
+}
+
+.jobLocation{
+    font-weight: 500;
+    font-size: small;
+    margin-left: 5px;
+    margin-top:4px;
+
+}
+.jobLocationImage{
+    width:20px;
+    height:20px;
+    margin-top: 6.5px;
+    margin-left: 15px;
+
+}
+.graduationImage{
+    width:20px;
+    height:20px;
+    /* margin-left: 2px; */
+    /* margin-top: 20px; */
+}
+
+.jobtypeAndDate{
+    font-size: small;
+    margin-left: 15px;
+    font-weight: 500;
+}
+.qualificationAndExperiance{
+    font-size: small;
+    margin-left: 5px;
+    /* font-weight: 500; */
+}
+.skillWrapper{
+    margin-left: 15px;
+
+}
+.skillsHeading{
+    font-weight: 600;
+    font-size: small;
+
+}
+.skills{    
+    font-weight: 400;
+    font-size: small;
+
+    
+}
+.jobDescriptionHeading{
+    margin-left: 15px;
+    font-weight: 600;
+    margin-top: -8px;
+}
+.jobDescription{
+    margin-top: -12px;
+    margin-left: 15px;
+    width:94%;
+    font-size: small;
+    font-weight: 400;
+}
+
+.ApplyPackage {
+    display: flex;
+    margin-top:8px;
+    margin-left: 18px;
+    background-color: rgb(241,248,234);
+    /* background-color: rgb(225, 209, 250); */
+    border: 1px solid rgb(40, 4, 99);
+    height: 50px;
+    width:75%;
+    padding-bottom: 15px;
+    border-radius: 10px;
+}
+
+
+
+
+.MobileDelete {
+    border: 1px solid red;
+    background-color: red;
+    display: flex;
+    color: white;
+    font-weight: bold;
+    width:33%;
+    /* padding-left: 10px; */
+    height: 29px;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    margin-left: 30%;
+    margin-top: 20px;
+    padding-left: 8%;
+    border-radius: 5px;
+
+}
+.MobileResult{
+    margin-left: 19px;
+    margin-top: 10px;
+font-size: medium;
+margin-left: 15px;
+    font-weight: 600;
+    margin-top: 5px;
+
+
+}
+.MobileStatus{
+
+    margin-left: 18px;
+    margin-top: -15px;
+    font-size: small;
+    font-weight: 400;
+
+}

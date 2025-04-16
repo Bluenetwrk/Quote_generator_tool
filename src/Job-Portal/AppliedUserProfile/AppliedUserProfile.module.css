@@ -1,0 +1,549 @@
+/* ---------------------Employer Home page starts--------------- */
+
+.blogSearchContainer{
+    display: flex;
+    gap:2px;
+    width: 84%;
+    margin-right: 7px; 
+}
+.searchicon{
+    margin-top: 10px;
+}
+.blogInputboxsearch {
+    border-radius: 18px;
+    border: 2px solid rgb(40, 4, 99);
+    height: 29px;
+    width: 100%;
+    margin-top: 3px;
+    transition: width 0.9s ease-in-out;
+}
+.blogInputboxsearch::placeholder{
+    font-size:10.5px;
+}
+
+
+/* ---------------------Employer Home page ends--------------- */
+
+.HomeNavConetenetWrapper{
+    display: flex;
+    margin-top: -47.5px;
+    align-items: center;
+    position: sticky;
+    top:10px;
+    z-index: 100;
+    width:40%;
+    margin-left: 25%;
+    /* background-color: aqua; */
+}
+
+.HomeLocationFilterWrapper{
+    z-index: 100;
+    width: 140px;
+    /* background-color: aqua; */
+}
+
+@media  (min-width:1500px) {
+    .HomeNavConetenetWrapper{
+    margin-left: 26%;
+    width:46%;
+    }
+}
+
+@media  (max-width:1050px) {
+    .HomeNavConetenetWrapper{
+        margin-left: 30%;
+    }
+
+    .HomeLocationFilterWrapper{
+        width: 110px;
+    }    
+        
+}
+@media  (max-width:910px) {
+    .HomeNavConetenetWrapper{
+        margin-left: 32%;
+        /* background-color: blue; */
+    }
+}
+.NavConetenetWrapper{
+    display: flex;
+    margin-top: -47.5px;
+    align-items: center;
+    position: sticky;
+    top:10px;
+    z-index: 100;
+    width:8%;
+    margin-left: 28%;
+    /* background-color: red; */
+}
+.LocationFilterWrapper{
+    z-index: 100;
+    width: 140px;
+    /* background-color: aqua; */
+}
+
+
+.JobLocationFilter{
+    /* margin-left: 40px; */
+    cursor: pointer;
+    font-weight: 600;
+    align-content: center;
+    border: none;
+    border-radius: 3px;
+    color: white
+}
+
+.searchBothForNavWrapper{
+    width:71%;
+    background-color: white;
+    border-radius: 3px;
+    position: sticky;
+    z-index: 100;  
+}
+.inputboxsearchNav{
+    padding: 10px;
+    width: 81%;
+    border : 1px solid rgb(204, 209, 211);
+    border: 0px white;
+    border-radius: 3px;
+    z-index: 100;
+
+} 
+@media  (max-width:1100px) {
+    .NavConetenetWrapper{
+        width:43%;
+    }
+}
+@media  (max-width:950px) {
+    .NavConetenetWrapper{
+        width:45%;
+    }
+}
+@media  (max-width:912px) {
+    .NavConetenetWrapper{
+        width:47%;
+    }
+}
+@media  (max-width:878px) {
+    .NavConetenetWrapper{
+        width:49%;
+    }
+}
+
+.navigationWrapper{
+    text-align:right;
+    margin:10px;
+
+}
+.navigation{
+    background-color:rgb(214, 212, 212);
+    padding:3px;
+    padding-right:10px; 
+    border:none;
+}
+
+
+.GoBackButton{
+    background-color: rgb(40, 4, 99);
+    color: white;
+    /* font-size:medium; */
+    font-weight: bold;
+    height: 40px;
+    border:1px solid rgb(40, 4, 99);
+    margin-left: 6%;
+    margin-top: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.disable{
+    margin-left: 10px;
+    color:white;
+    font-weight: 600;
+    padding: 4px 7px ;
+    align-content: center;
+    border: none;
+    border-radius: 3px;
+    background-color:rgb(226, 225, 225);
+    background:rgb(242, 244, 245);
+
+    
+}
+.locationActive{
+    margin-left: 10px;
+    cursor: pointer;
+    color:white;
+    font-weight: 600;
+    padding: 4px 7px ;
+    align-content: center;
+    border: none;
+    border-radius: 3px;
+    background-color: rgb(40, 4, 99);
+
+    /* background-color: blue */
+}
+
+/* .JobLocationFilter:hover{
+    cursor: pointer;
+    margin-left: 10px;
+    cursor: pointer;
+    color:white;
+    font-weight: 600;
+    padding: 4px 7px ;
+    align-content: center;
+    border: none;
+    border-radius: 3px;
+    background-color: rgb(40, 4, 99);
+    transition: all 0.2s;
+} */
+/* ...........................for Filter..................... */
+.JobtitleFilterWrapper{
+    /* background-color: rgb(40, 4, 99); */
+    background:rgb(202, 202, 202);
+
+    margin-left: 3px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+    margin-right: 10px;
+    margin-top: 20px;
+
+}
+.JobtitleFilterWrapper:hover{
+    scrollbar-color:  rgb(40, 4, 99) white ;
+
+}
+
+.JobtitleFilter{
+    /* margin-left: 5px;
+    margin-top: 15px; */
+    margin: 4px;
+    cursor: pointer;
+    color:black;
+
+    font-weight: 550;
+    font-size: xx-small;
+    padding: 4px 7px ;
+    align-content: center;
+    text-wrap: nowrap ;
+    background-color:white;
+    border-radius: 3px;
+    border: none;
+}
+.JobtitleFilter:hover{    
+    background-color: rgb(40, 4, 99);
+
+    margin: 4px;
+    cursor: pointer;
+    color:white;
+    font-weight: 550;
+    font-size: xx-small;
+    padding: 4px 7px ;
+    align-content: center;
+    text-wrap: nowrap ;
+    border-radius: 3px;
+}
+.TagHeading{
+    /* background:rgb(242, 244, 245); */
+    background:rgb(228, 230, 231);
+
+
+    color:black;
+    margin: 4px;
+    cursor: pointer;
+    font-weight: 850;
+    font-size: x-small;
+    padding: 4px 7px ;
+    align-content: center;
+    text-wrap: nowrap ;
+    border-radius: 3px;
+    border: none;
+}
+.active{
+    background-color: rgb(40, 4, 99);
+    border: none;
+    color:white;
+    margin: 4px;
+    cursor: pointer;
+    font-weight: 550;
+    font-size: xx-small;
+    padding: 4px 7px ;
+    align-content: center;
+    text-wrap: nowrap ;
+    border-radius: 3px;
+}
+    /* margin-top: 100px; */
+    .arrow {
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        display: inline-block;
+        padding: 2.3px;
+        /* margin-left: 0.5%; */
+      }  
+      .up {
+        transform: rotate(-135deg);
+        -webkit-transform: rotate(-135deg);
+        position: absolute;
+        margin-top: 1px;
+      }
+      .down {
+        transform: rotate(90deg);
+        -webkit-transform: rotate(45deg);
+        margin-top: 8px;
+        position: absolute;
+
+        
+      }
+      .up:hover {
+        transform: rotate(-135deg);
+        -webkit-transform: rotate(-135deg);
+        margin-top: 1px;
+        position: absolute;
+      }
+      .down:hover {
+        transform: rotate(90deg);
+        -webkit-transform: rotate(45deg);
+        margin-top: 8px;
+        position: absolute;
+       
+      }
+      .arrow:hover{
+        border: solid grey;
+        border-width: 0 2px 2px 0;
+        display: inline-block;
+        padding: 2.3px;
+      }
+
+.navigationWrapper{
+    /* text-align:right; */
+    margin:10px;
+     /* color:rgb(58, 57, 57); */
+}
+.navigation{
+    background-color:rgb(214, 212, 212);
+    padding:3px;
+    padding-left:10px;
+    padding-right:10px;
+    border:none
+    
+}
+
+
+
+.AllUiWrapper{
+    margin-left: -34px;
+    /* margin-top: 2%; */
+    width:99%
+}
+
+
+.ul{
+    display: flex;
+    margin: 0px;
+    /* background-color: red; */
+    width:100%;
+
+
+}
+.ul:nth-child(odd) {
+    background:rgb(242, 244, 245);
+  }
+  .ul:nth-child(1) {
+    color:white;
+  }
+
+.li{
+    display: block;
+    /* border: 1px solid aqua; */
+    border : 1px solid rgb(215, 223, 226);
+
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    padding-right: 0.3%;
+    padding-left: 0.3%;
+    text-align: center;
+}
+.Nli{
+    display: block;
+    color:red
+}
+
+.name {
+    width:14%;
+    display: block;
+    
+}
+.onclick{
+    text-decoration: underline;
+    color: blue;
+    /* cursor: pointer; */
+}
+.namelink{
+    display: block;
+    cursor: pointer;
+}
+.age{
+  width:  6%
+}
+.Qualification{
+  width:  6%
+}
+.Experiance{
+   width: 10%
+}
+.Skills{
+    width:23%
+}
+.currentCTC{
+   width: 9%
+}
+.ExpectedSalary{
+   width: 9%
+}
+.checkProfile{
+   width: 7%
+}
+.NoticePeriod{
+   width: 12%
+}
+.Status{
+    width: 100px
+}
+.LastActive{
+    width:10%
+}
+/* ........................Home (without Login */
+.nameHome{
+    width:7%;
+}
+.getContact{
+    border: 1px solid rgb(40, 4, 99);
+    background-color: rgb(40, 4, 99);
+    /* display: flex; */
+    color: white;
+    font-weight: bold;
+    height: 25px;
+    align-items: center;
+    cursor:pointer;
+}
+.getContactMob{
+    border: 1px solid rgb(40, 4, 99);
+    background-color: rgb(40, 4, 99);
+    display: flex;
+    color: white;
+    font-weight: 500;
+    cursor:pointer;
+}
+/* .ViewProfile{
+    border: 1px solid rgb(40, 4, 99);
+    background-color: rgb(40, 4, 99);
+    color: white;
+    font-weight: bold;
+    height: 20px;
+} */
+
+/* .....For Mobile....... */
+
+.MobLocationFilterWrapper{
+    display: flex;
+    flex-direction: column;
+    /* background-color: red; */
+    padding-left: 5px;
+    width:28%;
+    text-wrap: nowrap;
+    /* background-color: red; */
+
+}
+.MobFilterJobTitleWrapper{
+    display: flex;
+    flex-direction: column;
+    /* background-color: aqua; */
+    margin-left: 5px;
+    width:32%;
+    text-wrap: nowrap;
+    overflow: hidden;
+}
+
+
+.searchBoth {
+    margin-left: 15%;
+    display: flex;
+}
+.inputboxsearch {
+    display: inline-flex;
+    height: 35px;
+    margin-top: 10px;
+    margin-left: 1%;
+    width: 60%;
+    border-radius: 5px;
+    /* border: 1.5px solid rgb(11, 12, 12); */
+    border : 1px solid rgb(204, 209, 211);
+
+}
+.p {
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#JobCardWrapper {
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+    padding: 10px;
+    /* background-color: rgb(204, 103, 103); */
+    border-radius: 10px;
+    /* margin-left: 40px;     */
+    width: 90%;
+
+}
+
+.JobCard {
+    /* display: flex; */
+    /* background-color: aqua;    */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 8px;
+    /* height: 250px; */
+    width: 100%;
+    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    box-shadow: 2px 2px 2px 2px #999999;
+    padding-bottom: 6px;
+}
+.LeftTable{
+    margin-left: 7px;
+    margin-top: 20px;
+    overflow:hidden;
+text-wrap: nowrap;
+    /* width:35%; */
+    width: 52%;
+}
+.MobileimageView{
+    height:35px;
+    width:40px;
+    margin-left: 5%;
+    margin-top: 15px;
+}
+.RightTable{
+    margin-top: 20px;
+    margin-left: 5px;
+    width:60%;
+overflow:hidden;
+text-wrap: nowrap;
+}
+.span{
+    font-weight: 500;
+    font-size: small;
+
+}
+.Down{
+    margin-left: 10px;
+    overflow-wrap: break-word;
+
+
+}
