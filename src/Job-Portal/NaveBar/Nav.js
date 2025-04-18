@@ -210,7 +210,8 @@ function Nav(props) {
                   class=" fa fa-search" onClick={() => {ChangeSideNaveBar();props.setSearchClick((currentValue)=>!currentValue)}} ></i>
                  </div>
                 <div className={Styles.ITwalkinWrapper}>
-                   <img className={Styles.IwalkinLogologo} src={Itwalkinlogo} />
+                   {/*<h2 style={{color:"white"}}>Quote Generator Tool</h2> */}
+                   <h2 style={{color:"white"}}>Quote Generator Tool</h2>
                 </div>
                   <div><NavLink to="/alljobs" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>All Jobs </NavLink>
                   </div>
@@ -357,10 +358,14 @@ function Nav(props) {
                     </div>
                    </div>
                    <div className={Styles.ITwalkinWrapper}>
-                      <img className={Styles.IwalkinLogologo} src={Itwalkinlogo} />
+                      {/*<h2 style={{color:"white"}}>Quote Generator Tool</h2> */}
+                      <h2 style={{color:"white", width:"120%"}}>Quote Generator Tool</h2>
                    </div>
                    <div>
                       <NavLink to="/PostJobs" className={Styles.PostJobLink} style={navLinkStyles}>Post a Job</NavLink>
+                   </div>
+                   <div>
+                      <NavLink to="/Seller-Home" className={Styles.PostJobLink} style={navLinkStyles}>Seller Home</NavLink>
                    </div>
                    {screenSize.width > 850 && 
                    <div ref={dropdownRef} style={{ position: "relative" }}>
@@ -562,11 +567,14 @@ function Nav(props) {
                       </div>
                       <div>
                           <div className={Styles.ITwalkinWrapper}>
-                           <img className={Styles.IwalkinLogologo} src={Itwalkinlogo} />
+                          <h2 style={{color:"white"}}>Quote Generator Tool</h2>
                           </div> 
                       </div>
                       <div>
                       <NavLink to="/" className={Styles.HomeJobs} style={navLinkStyles}><i style={{ marginLeft: 0, marginRight: "5px" }} class="fa-solid fa-house"></i>Home</NavLink>   
+                      </div>
+                      <div>
+                      <NavLink to="/buyershome" className={Styles.buyerHomeJobs} style={navLinkStyles}><i style={{ marginLeft: 0, marginRight: "5px", }} class="fa-solid fa-house"></i>Buyer Home</NavLink>   
                       </div>
 
                       <div ref={dropdownRef} style={{ position: "relative" }}>
@@ -938,7 +946,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                         </div>
                       </div>
                       <div>
-                        <img className={Styles.MobIwalkinLogologo} src={Itwalkinlogo} />
+                        <div style={{color:"white",marginLeft:"10px",fontWeight:"600"}}>Quote Generator Tool</div>
                       </div>
                        <div ref={dropdownRef} style={{ position: "relative" }}>
                          <div style={{ display: "flex", marginTop: "11px"}}>
