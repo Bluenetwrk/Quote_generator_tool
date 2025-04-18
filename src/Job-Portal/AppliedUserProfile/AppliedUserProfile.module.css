@@ -1,5 +1,37 @@
 /* ---------------------Employer Home page starts--------------- */
-
+.Applybutton{
+    border: 1px solid rgb(40, 4, 99);
+    background-color: rgb(40, 4, 99);
+    display: flex;
+    color: white;
+    /* font-weight: bold; */
+    width:80%;
+    padding-left: 15px;
+    /* padding-right: 1px; */
+    height: 25px;
+    align-items: center;
+    text-align: center;
+    margin-left: 6%;
+    cursor:pointer;
+}
+.ApplybuttonMobile{
+    border: 1px solid rgb(40, 4, 99);
+    background-color: rgb(40, 4, 99);
+    display: flex
+;
+    color: white;
+    /* font-weight: bold; */
+    width: 36%;
+    padding-left: 15px;
+    /* padding-right: 1px; */
+    height: 25px;
+    align-items: center;
+    text-align: center;
+    margin-left: 3%;
+    cursor: pointer;
+    margin-top: 14px;
+    margin-bottom: 6px;
+}
 .blogSearchContainer{
     display: flex;
     gap:2px;
