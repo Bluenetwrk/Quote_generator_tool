@@ -53,6 +53,7 @@ function SidebarNav(props) {
     }
   }, [location.pathname]); 
   let EmployeeAuth = localStorage.getItem("EmpLog")
+  let studentAuth = localStorage.getItem("StudLog")
 
 // const [query, setQuery] = useState("");
 // const [suggestions, setSuggestions] = useState([]);
@@ -147,7 +148,7 @@ function SidebarNav(props) {
                                                                                                                                                                              
                                                                                                                                                                              else{
                                                                                                                                                                               props.search(e)
-                                                                                                                                                                              console.log("s-screen else entered")   
+                                                                                                                                                console.log("s-screen else entered")   
                                                                                                                                                                              } }} />
            
             <i style={{marginLeft:"2px",fontSize:"16px",marginTop:"6px"}} class="fa fa-search" onClick={() => { props.searchIcon(props.searchKey);props.setShowSideNaveProps();props.setShowMobileSearchIcon(true)}}></i>
@@ -189,8 +190,14 @@ function SidebarNav(props) {
 
 
         <p onClick={()=>{navigate("/"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Home </p>
-        <p onClick={()=>{navigate("/buyershome"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}> Buyer Home </p>
-    
+        {EmployeeAuth?
+        <p onClick={()=>{navigate("/Seller-Home"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}> Seller Home </p>
+        :
+         !studentAuth&&(
+          <p onClick={()=>{navigate("/buyershome"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}> Buyer Home </p>
+         )
+        }
+        
        {EmployeeAuth&&(
         <p onClick={()=>{navigate("/Post-Help-Questions"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Post Help Questions </p>
        )
