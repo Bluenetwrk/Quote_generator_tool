@@ -210,8 +210,8 @@ function Nav(props) {
                   class=" fa fa-search" onClick={() => {ChangeSideNaveBar();props.setSearchClick((currentValue)=>!currentValue)}} ></i>
                  </div>
                 <div className={Styles.ITwalkinWrapper}>
-                   {/*<h2 style={{color:"white"}}> GetQoute </h2> */}
-                   <h2 style={{color:"white"}}> GetQoute </h2>
+                   {/*<h2 style={{color:"white"}}>  Get Quote </h2> */}
+                   <h2 style={{color:"white"}}>  Get Quote </h2>
                 </div>
                   <div><NavLink to="/alljobs" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>All Jobs </NavLink>
                   </div>
@@ -358,8 +358,8 @@ function Nav(props) {
                     </div>
                    </div>
                    <div className={Styles.ITwalkinWrapper}>
-                      {/*<h2 style={{color:"white"}}> GetQoute </h2> */}
-                      <h2 style={{color:"white", width:"120%"}}> GetQoute </h2>
+                      {/*<h2 style={{color:"white"}}>  Get Quote </h2> */}
+                      <h2 style={{color:"white", width:"120%"}}>  Get Quote </h2>
                    </div>
                    <div>
                       <NavLink to="/PostJobs" className={Styles.PostJobLink} style={navLinkStyles}>Post a Job</NavLink>
@@ -567,7 +567,7 @@ function Nav(props) {
                       </div>
                       <div>
                           <div className={Styles.ITwalkinWrapper}>
-                          <h2 style={{color:"white"}}> GetQoute </h2>
+                          <h2 style={{color:"white"}}>  Get Quote </h2>
                           </div> 
                       </div>
                       <div>
@@ -946,7 +946,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                         </div>
                       </div>
                       <div>
-                        <div style={{color:"white",marginLeft:"10px",fontWeight:"600"}}> GetQoute </div>
+                        <div style={{color:"white",marginLeft:"10px",fontWeight:"600"}}>  Get Quote </div>
                       </div>
                        <div ref={dropdownRef} style={{ position: "relative" }}>
                          <div style={{ display: "flex", marginTop: "11px"}}>
