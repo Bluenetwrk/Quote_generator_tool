@@ -75,7 +75,7 @@ function Home({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjo
   useEffect(() => {
     let EmployeeAuth = localStorage.getItem("EmpLog")
     if (EmployeeAuth) {
-      navigate("/Search-Candidate")
+      navigate("/Seller-Home")
     }
   }, [])
 
