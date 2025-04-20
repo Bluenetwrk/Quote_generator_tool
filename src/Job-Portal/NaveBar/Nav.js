@@ -364,9 +364,9 @@ function Nav(props) {
                    <div>
                       <NavLink to="/PostJobs" className={Styles.PostJobLink} style={navLinkStyles}>Post a Job</NavLink>
                    </div>
-                   <div>
+                   {/* <div>
                       <NavLink to="/Seller-Home" className={Styles.PostJobLink} style={navLinkStyles}>Seller Home</NavLink>
-                   </div>
+                   </div> */}
                    {screenSize.width > 850 && 
                    <div ref={dropdownRef} style={{ position: "relative" }}>
                             
@@ -454,7 +454,7 @@ function Nav(props) {
                  <NavLink to="/PostDrives" className={Styles.PostDriveLink} style={navLinkStyles}>Post Walkin Drive</NavLink>
                  </div>
                  <div> 
-                  <NavLink to="/Search-Candidate" className={Styles.SearchCandidates} style={navLinkStyles}>Employer Home</NavLink>
+                  <NavLink to="/Seller-Home" className={Styles.SearchCandidates} style={navLinkStyles}>Seller Home</NavLink>
                   </div>
                  <div>
                     <img className={`${Styles.Icon} ${Styles.EmpProfileIcon}`} src={loginuser} ref={imgRef} onClick={() => setShowprofile((prev) => !prev)} />       
@@ -570,11 +570,11 @@ function Nav(props) {
                           <h2 style={{color:"white"}}>  Get Quote </h2>
                           </div> 
                       </div>
+                      {/* <div> */}
+                      {/* <NavLink to="/" className={Styles.HomeJobs} style={navLinkStyles}><i style={{ marginLeft: 0, marginRight: "5px" }} class="fa-solid fa-house"></i>Home</NavLink>    */}
+                      {/* </div> */}
                       <div>
-                      <NavLink to="/" className={Styles.HomeJobs} style={navLinkStyles}><i style={{ marginLeft: 0, marginRight: "5px" }} class="fa-solid fa-house"></i>Home</NavLink>   
-                      </div>
-                      <div>
-                      <NavLink to="/buyershome" className={Styles.buyerHomeJobs} style={navLinkStyles}><i style={{ marginLeft: 0, marginRight: "5px", }} class="fa-solid fa-house"></i>Buyer Home</NavLink>   
+                      <NavLink to="/" className={Styles.buyerHomeJobs} style={navLinkStyles}><i style={{ marginLeft: 0, marginRight: "5px", }} class="fa-solid fa-house"></i>Buyer Home</NavLink>   
                       </div>
 
                       <div ref={dropdownRef} style={{ position: "relative" }}>

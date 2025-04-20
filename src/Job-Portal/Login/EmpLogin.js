@@ -74,7 +74,7 @@ function EmpLogin(props) {
             if (result.status == "success") {
               localStorage.setItem("EmpLog", JSON.stringify(btoa(token)))
               localStorage.setItem("EmpIdG", JSON.stringify(GuserId))
-              navigate("/Search-Candidate", { state: { gserid: GuserId } })
+              navigate("/Seller-Home", { state: { gserid: GuserId } })
             }
           }).catch((err) => {
             alert("server issue occured")
@@ -176,7 +176,7 @@ function EmpLogin(props) {
             alert("incorrect OTP")
           }
           if (result.token) {
-            navigate("/Search-Candidate")
+            navigate("/Seller-Home")
             localStorage.setItem("EmpLog", JSON.stringify(result.token))
             let empId = result.id
             localStorage.setItem("EmpIdG", JSON.stringify(empId))
@@ -259,7 +259,7 @@ function EmpLogin(props) {
           if (result.status == "success") {
             localStorage.setItem("EmpLog", JSON.stringify(btoa(token)))
             localStorage.setItem("EmpIdG", JSON.stringify(GuserId))
-            navigate("/Search-Candidate", { state: { gserid: GuserId } })
+            navigate("/Seller-Home", { state: { gserid: GuserId } })
           }
 				
 					}).catch((err) => {

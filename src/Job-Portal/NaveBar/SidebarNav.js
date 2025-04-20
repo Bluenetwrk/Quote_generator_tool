@@ -189,7 +189,7 @@ function SidebarNav(props) {
 
 
 
-        <p onClick={()=>{navigate("/"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Home </p>
+        {/* <p onClick={()=>{navigate("/"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Home </p> */}
         {EmployeeAuth?
         <p onClick={()=>{navigate("/Seller-Home"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}> Seller Home </p>
         :

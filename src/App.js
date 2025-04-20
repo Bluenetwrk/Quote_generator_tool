@@ -980,7 +980,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
           <Routes>
 
             <Route path="/" element={
-              <Home 
+              <BuyersHome 
               selectedlocationOption={selectedlocationOption}
               showMobileSearchIcon={showMobileSearchIcon} setShowMobileSearchIcon={setShowMobileSearchIcon}
               ShowSideNave={ShowSideNave} setShowSideNave={setShowSideNave}
