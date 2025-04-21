@@ -70,6 +70,7 @@ import DriveDetails from "./Job-Portal/Jobs/DriveDetails";
 import location from "./Job-Portal/img/icons8-location-20.png"
 import BuyersHome from "./Job-Portal/Jobs/BuyersHome";
 import SellerHome from "./Job-Portal/AppliedUserProfile/SellerHome";
+import SellerViewDetails from "./Job-Portal/Jobs/BuyerDetails";
 axios.defaults.baseURL = "https://itwalkin-backend-testrelease-2-0-1-0824-ns0g.onrender.com" // Render Test
 
 function App() {
@@ -1110,6 +1111,32 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
           setCandidate={setCandidate}
                />} />
                 <Route path="Seller-Home" element={<SellerHome url={axios.defaults.baseURL}
+         showMobileSearchIcon={showMobileSearchIcon} setShowMobileSearchIcon={setShowMobileSearchIcon}
+         ShowSideNave={ShowSideNave} setShowSideNave={setShowSideNave}
+         searchClick={searchClick} setSearchClick={setSearchClick}     
+          nopageFilter={nopageFilter} setNoPageFilter={setNoPageFilter} 
+          searchKey={searchKey} setsearchKey={setsearchKey}
+          Filtereredjobs={Filtereredjobs} setFiltereredjobs={setFiltereredjobs}
+          Result={Result} setResult={setResult}
+          Filterjobs={Filterjobs} setFilterjobs={setFilterjobs}
+          jobs={jobs} setJobs={setJobs}
+          count={count} setCount={setCount}
+          Active={Active} setActive={setActive}
+          jobTagsIds={jobTagsIds} setJobTagsIds={setJobTagsIds}
+          PageLoader={PageLoader} setPageLoader={setPageLoader}
+          totalCount={totalCount} settotalCount={settotalCount}
+          searchs={searchs}
+          getjobs={getjobs}
+          gettotalcount={gettotalcount}
+          searchIcon={searchIcon}
+          FilCandidate={FilCandidate}
+          setFilCandidate={setFilCandidate}
+          getAllJobSeekers={getAllJobSeekers}
+          Candidate={Candidate}
+          setCandidate={setCandidate}
+               />} />
+
+<Route path="Seller-view-details" element={<SellerViewDetails url={axios.defaults.baseURL}
          showMobileSearchIcon={showMobileSearchIcon} setShowMobileSearchIcon={setShowMobileSearchIcon}
          ShowSideNave={ShowSideNave} setShowSideNave={setShowSideNave}
          searchClick={searchClick} setSearchClick={setSearchClick}     

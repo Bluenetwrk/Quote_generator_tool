@@ -732,8 +732,9 @@ return(
                                 year: "numeric",
                               }
                             )} */}
-                             {/* <button className={styles.Applybutton} >View Details</button> */}
-                          </li>
+                            <button className={styles.Applybutton} onClick={() => { navigate("/Seller-view-details") }}>View Details</button>
+
+                                           </li>
 
                         </ul>
                       </>
