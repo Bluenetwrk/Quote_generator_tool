@@ -682,7 +682,7 @@ function SellerViewDetails({nopageFilter,setNoPageFilter,searchKey, setsearchKey
                     return ( */}
 
                       <ul className={styles.ul} >
-                         <li className={`${styles.li} ${styles.Jtitle}`} onClick={() => navigate(`/Jobdetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{}</li>
+                         <li className={`${styles.li} ${styles.Jtitle}`} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{}</li>
                         <li className={`${styles.li} ${styles.Source}`} ></li>
 
 
