@@ -578,7 +578,7 @@ function SellerViewDetails({nopageFilter,setNoPageFilter,searchKey, setsearchKey
       }
 
       {screenSize.width > 850 ?
-        <>
+        <> 
          
 
          <h2 style={{marginLeft:"10px", fontWeight:"800", marginTop:"56px", marginBottom:"-45px"}}>View Details </h2>
