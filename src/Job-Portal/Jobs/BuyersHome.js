@@ -46,8 +46,8 @@ function BuyersHome({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filter
   ,searchClick,setSearchClick,ShowSideNave,setShowSideNave,showMobileSearchIcon,setShowMobileSearchIcon,selectedlocationOption
 }) {
 
-  // const [selectedOption, setSelectedOption] = useState(options[0]);
-  // const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(options[0]);
+  const [isOpen, setIsOpen] = useState(false);
  
 
   // const [isReadMore, setIsReadMore] = useState(true)
@@ -1199,7 +1199,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
   
   <div style={{marginLeft:"8px"}}>
           <h2>TermsAndConditions</h2>
-          <textarea onChange={(event)=>updateterms(event)} style={{width:"300px",height:"100px", borderRadius:"10px"}}></textarea>
+          <textarea onChange={(event)=>updateTerms(event)} style={{width:"300px",height:"100px", borderRadius:"10px"}}></textarea>
         </div>
 
   <button
