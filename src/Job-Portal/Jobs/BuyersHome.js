@@ -42,24 +42,24 @@ const responsive = {
 
 function BuyersHome({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjobs, setFiltereredjobs
   ,Result,setResult,Filterjobs, setFilterjobs,jobs, setJobs,count,setCount, Active,setActive,
-  PageLoader,setPageLoader,totalCount,settotalCount,search,getjobs,gettotalcount,searchIcon
+  PageLoader,setPageLoader,totalCount,settotalCount,search,searchIcon
   ,searchClick,setSearchClick,ShowSideNave,setShowSideNave,showMobileSearchIcon,setShowMobileSearchIcon,selectedlocationOption
 }) {
 
-  const [selectedOption, setSelectedOption] = useState(options[0]);
-  const [isOpen, setIsOpen] = useState(false);
+  // const [selectedOption, setSelectedOption] = useState(options[0]);
+  // const [isOpen, setIsOpen] = useState(false);
  
 
-  const [isReadMore, setIsReadMore] = useState(true)
-  const [showJobs, setshowJobs] = useState(false)
-  const [showExperiance, setshowExperiance] = useState(false)
-  const [showPackage, setshowPackage] = useState(false)
+  // const [isReadMore, setIsReadMore] = useState(true)
+  // const [showJobs, setshowJobs] = useState(false)
+  // const [showExperiance, setshowExperiance] = useState(false)
+  // const [showPackage, setshowPackage] = useState(false)
 
-  const [NotFound, setNotFound] = useState("")
+  // const [NotFound, setNotFound] = useState("")
   // const [Active, setActive] = useState([])
   const screenSize = useScreenSize();
 
-  let JobLocationTags = ["Bangalore"]
+  // let JobLocationTags = ["Bangalore"]
 
   let navigate = useNavigate()
 
@@ -70,14 +70,14 @@ function BuyersHome({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filter
     if (EmployeeAuth) {
       navigate("/Search-Candidate")
     }
-  }, [])
+  }, [navigate])
 
   useEffect(() => {
     let studentAuth = localStorage.getItem("StudLog")
     if (studentAuth) {
       navigate("/alljobs")
     }
-  }, [])
+  }, [navigate])
 
   // const [totalCount, settotalCount] = useState()
   // let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpageHome"))

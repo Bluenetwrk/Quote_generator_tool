@@ -1021,8 +1021,6 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
               PageLoader={PageLoader} setPageLoader={setPageLoader}
               totalCount={totalCount} settotalCount={settotalCount}
               search={search}
-              getjobs={getjobs}
-              gettotalcount={gettotalcount}
               searchIcon={searchIcon}
               />
             } />
