@@ -550,9 +550,9 @@ function BuyersHome({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filter
     selectedTag.current=tag
   }
 
-  useEffect(()=>{
-       console.log("location",selectedOption)
-  },[selectedlocationOption])
+  // useEffect(()=>{
+  //      console.log("location",selectedOption)
+  // },[selectedlocationOption])
  
 const initialRows = Array.from({ length: 10 }, () => "");
 
@@ -622,19 +622,23 @@ const initialRows = Array.from({ length: 10 }, () => "");
     setTotal([...emptyRows]);
     setComments([...emptyRows]);
 
-    console.log("Submitted Data:", result);
+    // console.log("Submitted Data:", result);
   };
 
 
 
   // -----------------------table --------funtion---- starts-------------
   
+  const unitOptions = ['kg', 'ltr', 'm', 'cm', 'box', 'piece'];
+
+
     const initialData = Array.from({ length: 10 }, () => ({
       description: '',
       referenceLink: '',
+      unit: '',
       quantity: '',
-      unitPrice: '',
-      total: '',
+      // unitPrice: '',
+      // total: '',
       commentToSeller: '',
     }));
   
@@ -642,16 +646,18 @@ const initialRows = Array.from({ length: 10 }, () => "");
     const [hoveredAddArea, setHoveredAddArea] = useState(null);
     const [selectedCell, setSelectedCell] = useState(null);
     const [showDeleteOption, setShowDeleteOption] = useState(null);
-    
+    const [unitDropdownIndex, setUnitDropdownIndex] = useState(null);
+    // const dropdownRef = useRef(null);
   
     const handleAddRow = (index) => {
       const newRows = [...rows];
       newRows.splice(index + 1, 0, {
         description: '',
         referenceLink: '',
+        unit: '',
         quantity: '',
-        unitPrice: '',
-        total: '',
+        // unitPrice: '',
+        // total: '',
         commentToSeller: '',
       });
       setRows(newRows);
@@ -686,6 +692,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
       if (!e.target.closest('td')) {
         setSelectedCell(null);
         setShowDeleteOption(null);
+        setUnitDropdownIndex(null);
       }
     };
   
@@ -695,18 +702,32 @@ const initialRows = Array.from({ length: 10 }, () => "");
     }, []);
   
     const handleSubmits = () => {
-      const dataToSave = rows.map((row, index) => ({
+      const tableData = rows.map((row, index) => ({
         sno: index + 1,
         ...row,
       }));
-      console.log('Saved Data:', dataToSave);
+
+      const AllData={
+        tableData:tableData,
+        terms:terms
+      }
+      console.log('Saved Data:', AllData );
       setRows(initialData); // clear
     };
-
-   const[terms,setTerms]=useState("")
-   const updateterms=(event)=>{
-     setTerms(event.target.value)
-   }
+  
+    const [terms, setTerms] = useState("");
+    const updateTerms = (event) => {
+      setTerms(event.target.value);
+    };
+  
+    const handleUnitSelect = (rowIndex, unit) => {
+      const current = rows[rowIndex].unit;
+      const numberPart = current.match(/\d+/)?.[0] || "";
+      const updatedRows = [...rows];
+      updatedRows[rowIndex].unit = numberPart + unit;
+      setRows(updatedRows);
+      setUnitDropdownIndex(null);
+    };
 
   //  useEffect(()=>{
   //   console.log("terms",terms)
@@ -814,144 +835,165 @@ const initialRows = Array.from({ length: 10 }, () => "");
             } */}
             
             <div className={styles.Uiwarpper} style={{ marginTop: "20px", marginLeft: "15px", marginRight: "20px" }}>
-
-
-
-  <div className={styles.ul} style={{marginTop:"-30px"}} >
-      <table style={{ borderCollapse: 'collapse', width: '100%' }}>
-        <thead>
-          <tr>
-            <th style={{ width: '1px' }}></th>
-            <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor:"rgb(40,4,99)",color:"white" }}>SL.No</th>
-            <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor:"rgb(40,4,99)",color:"white" }}>Description</th>
-            <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor:"rgb(40,4,99)",color:"white" }}>Reference Link to Amazon/Flipkart</th>
-            <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor:"rgb(40,4,99)",color:"white" }}>Quantity</th>
-            <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor:"rgb(40,4,99)",color:"white" }}>Unit Price</th>
-            <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor:"rgb(40,4,99)",color:"white" }}>Total Price</th>
-            <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor:"rgb(40,4,99)",color:"white" }}>Comment to Seller</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row, rowIndex) => (
-            <tr key={rowIndex} onMouseLeave={() => setHoveredAddArea(null)}>
-              <td
-                style={{
-                  width: '1px',
-                  position: 'relative',
-                  background: hoveredAddArea === rowIndex ? '#f0f0f0' : '#fafafa',
-                  cursor: 'pointer',
-                }}
-                onMouseEnter={() => setHoveredAddArea(rowIndex)}
-                onMouseLeave={() => setHoveredAddArea(null)}
-              >
-                {hoveredAddArea === rowIndex && (
-                  <div
-                    onClick={() => handleAddRow(rowIndex)}
-                    style={{
-                      position: 'absolute',
-                      top: '50%',
-                      left: '50%',
-                      transform: 'translate(-50%, -50%)',
-                      fontSize: '14px',
-                      fontWeight: 'bold',
-                      color: 'black',
-                      userSelect: 'none',
-                    }}
-                  >
-                    +
-                  </div>
-                )}
-              </td>
-
-              {/* Auto S.No */}
-              <td style={{ border: '1px solid #ccc', padding: '8px' }}>{rowIndex + 1}</td>
-
-              {['description', 'referenceLink', 'quantity', 'unitPrice', 'total', 'commentToSeller'].map((fieldName, colIndex) => (
-  <td
-    key={colIndex}
-    style={{ position: 'relative', border: '1px solid #ccc', padding: '0px' }}
-    onClick={() => handleCellClick(rowIndex, colIndex)}
-  >
-    <textarea
-      value={row[fieldName]}
-      onChange={(e) => {
-        let value = e.target.value;
-        if (fieldName === 'quantity') {
-          value = value.replace(/\D/g, ''); // Only digits allowed
-        }
-        handleInputChange(value, rowIndex, fieldName);
-      }}
-      onInput={(e) => {
-        e.target.style.height = "auto";
-        e.target.style.height = `${e.target.scrollHeight}px`;
-      }}
-      disabled={fieldName === 'unitPrice' || fieldName === 'total'}
-      style={{
-        width: '97%',
-        border: 'none',
-        outline: 'none',
-        resize: 'none',
-        fontFamily: 'inherit',
-        fontSize: 'inherit',
-        overflow: 'hidden',
-        overflowWrap: 'break-word',
-        whiteSpace: 'pre-wrap',
-        backgroundColor: fieldName === 'unitPrice' || fieldName === 'total' ? '#f2f2f2' : 'inherit',
-        color: fieldName === 'unitPrice' || fieldName === 'total' ? '#555' : 'inherit',
-        cursor: fieldName === 'unitPrice' || fieldName === 'total' ? 'not-allowed' : 'text',
-      }}
-    />
- 
-
-
-                  {/* Arrow dropdown icon */}
-                  {selectedCell?.row === rowIndex && selectedCell?.col === colIndex && (
+      <div className={styles.ul} style={{ marginTop: "-30px" }}>
+        <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+          <thead>
+            <tr>
+              <th style={{ width: '1px' }}></th>
+              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white" }}>SL.No</th>
+              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white" }}>Description</th>
+              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white" }}>Reference Link to Amazon/Flipkart</th>
+              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white" }}>Unit</th>
+              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white" }}>Quantity</th>
+              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white" }}>Comment to Seller</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row, rowIndex) => (
+              <tr key={rowIndex} onMouseLeave={() => setHoveredAddArea(null)}>
+                <td
+                  style={{
+                    width: '1px',
+                    position: 'relative',
+                    background: hoveredAddArea === rowIndex ? '#f0f0f0' : '#fafafa',
+                    cursor: 'pointer',
+                  }}
+                  onMouseEnter={() => setHoveredAddArea(rowIndex)}
+                  onMouseLeave={() => setHoveredAddArea(null)}
+                >
+                  {hoveredAddArea === rowIndex && (
                     <div
+                      onClick={() => handleAddRow(rowIndex)}
                       style={{
                         position: 'absolute',
-                        top: '5px',
-                        right: '5px',
-                        fontSize: '16px',
-                        fontWeight: 'bold',
-                        cursor: 'pointer',
-                      }}
-                      onClick={(e) => handleArrowClick(rowIndex, colIndex, e)}
-                    >
-                      ▼
-                    </div>
-                  )}
-
-                  {/* Delete Option */}
-                  {showDeleteOption === `${rowIndex}-${colIndex}` && (
-                    <div
-                      onClick={() => handleDeleteRows(rowIndex)}
-                      style={{
-                        position: 'absolute',
-                        top: '25px',
-                        right: '5px',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
                         fontSize: '14px',
-                        background: '#f44336',
-                        color: '#fff',
-                        padding: '5px',
-                        borderRadius: '5px',
-                        cursor: 'pointer',
-                        zIndex: 1,
+                        fontWeight: 'bold',
+                        color: 'black',
+                        userSelect: 'none',
                       }}
                     >
-                      Delete Row
+                      +
                     </div>
                   )}
                 </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-      <div style={{marginTop:"10px", marginBottom:"10px", marginLeft:"23px",marginRight:"0px", display:"flex", justifyContent:"space-between"}}>
+                <td style={{ border: '1px solid #ccc', padding: '8px' }}>{rowIndex + 1}</td>
+                {['description', 'referenceLink', 'unit', 'quantity', 'commentToSeller'].map((fieldName, colIndex) => (
+                  <td
+                    key={colIndex}
+                    style={{ position: 'relative', border: '1px solid #ccc', padding: '0px' }}
+                    onClick={() => handleCellClick(rowIndex, colIndex)}
+                  >
+                    <textarea
+                      value={row[fieldName]}
+                      onChange={(e) => {
+                        let value = e.target.value;
+                        if (fieldName === 'quantity') value = value.replace(/\D/g, '');
+                        if (fieldName === 'unit') {
+                          // Only allow digits (0-9) to be typed
+                          value = value.replace(/[^\d]/g, '');
+                        
+                          // Show dropdown only when there's a number
+                          if (/\d+$/.test(value)) setUnitDropdownIndex(rowIndex);
+                          else setUnitDropdownIndex(null);
+                        }
+                        
+                        else if (fieldName === 'unit') setUnitDropdownIndex(null);
+                        handleInputChange(value, rowIndex, fieldName);
+                      }}
+                      onInput={(e) => {
+                        e.target.style.height = "auto";
+                        e.target.style.height = `${e.target.scrollHeight}px`;
+                      }}
+                      disabled={fieldName === 'unitPrice' || fieldName === 'total'}
+                      style={{
+                        width: '97%',
+                        border: 'none',
+                        outline: 'none',
+                        resize: 'none',
+                        fontFamily: 'inherit',
+                        fontSize: 'inherit',
+                        overflow: 'hidden',
+                        overflowWrap: 'break-word',
+                        whiteSpace: 'pre-wrap',
+                        backgroundColor: fieldName === 'unitPrice' || fieldName === 'total' ? '#f2f2f2' : 'inherit',
+                        color: fieldName === 'unitPrice' || fieldName === 'total' ? '#555' : 'inherit',
+                        cursor: fieldName === 'unitPrice' || fieldName === 'total' ? 'not-allowed' : 'text',
+                      }}
+                    />
+                    {selectedCell?.row === rowIndex && selectedCell?.col === colIndex && (
+                      <div
+                        style={{
+                          position: 'absolute',
+                          top: '5px',
+                          right: '5px',
+                          fontSize: '16px',
+                          fontWeight: 'bold',
+                          cursor: 'pointer',
+                        }}
+                        onClick={(e) => handleArrowClick(rowIndex, colIndex, e)}
+                      >
+                        ▼
+                      </div>
+                    )}
+                    {showDeleteOption === `${rowIndex}-${colIndex}` && (
+                      <div
+                        onClick={() => handleDeleteRows(rowIndex)}
+                        style={{
+                          position: 'absolute',
+                          top: '25px',
+                          right: '5px',
+                          fontSize: '14px',
+                          background: '#f44336',
+                          color: '#fff',
+                          padding: '5px',
+                          borderRadius: '5px',
+                          cursor: 'pointer',
+                          zIndex: 999,
+                        }}
+                      >
+                        Delete Row
+                      </div>
+                    )}
+                    {fieldName === 'unit' && unitDropdownIndex === rowIndex && (
+                      <div
+                        ref={dropdownRef}
+                        style={{
+                          position: 'absolute',
+                          top: '100%',
+                          left: '0',
+                          backgroundColor: 'white',
+                          border: '1px solid #ccc',
+                          zIndex: 10,
+                          maxHeight: '100px',
+                          overflowY: 'auto',
+                          width: '100%',
+                        }}
+                      >
+                        {unitOptions.map((unit, i) => (
+                          <div
+                            key={i}
+                            onClick={() => handleUnitSelect(rowIndex, unit)}
+                            style={{ padding: '6px', cursor: 'pointer' }}
+                          >
+                            {unit}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div style={{ marginTop: "10px", marginBottom: "10px", marginLeft: "23px", marginRight: "0px", display: "flex", justifyContent: "space-between" }}>
         <div>
-          <h2>TermsAndConditions</h2>
-          <textarea onChange={(event)=>updateterms(event)} style={{width:"630px",height:"109px", borderRadius:"10px"}}></textarea>
+          <h2>Terms And Conditions</h2>
+          <textarea onChange={(event) => updateTerms(event)} style={{ width: "630px", height: "109px", borderRadius: "10px" }}></textarea>
         </div>
         <button
           onClick={handleSubmits}
@@ -962,18 +1004,15 @@ const initialRows = Array.from({ length: 10 }, () => "");
             border: 'none',
             borderRadius: '5px',
             cursor: 'pointer',
-            height:'42px',
-            marginTop: '16px',
-            // marginright: '-150px;'
+            height: '42px',
+            marginTop: '16px'
           }}
         >
           Submit
         </button>
       </div>
-  
+    </div>
  
-</div>
-
           </div>
 
           <div style={{ display: "flex", justifyContent: "space-between" }}>
