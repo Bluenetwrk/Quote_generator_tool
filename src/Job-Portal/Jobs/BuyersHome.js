@@ -140,11 +140,10 @@ function BuyersHome({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filter
   }, [currentPage, recordsPerPage])
 
 
-
-  async function applyforJob(id) {
-    navigate("/JobSeekerLogin", { state: { Jid: id } })
+  // async function applyforJob(id) {
+  //   navigate("/JobSeekerLogin", { state: { Jid: id } })
    
-  }
+  // }
   async function applyforOtherJob(Link) {
     
     window.open(`${Link}`)
@@ -270,8 +269,8 @@ function BuyersHome({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filter
 
   }
 
-
   
+
   const [jobLocation, setjobLocation] = useState("AllL")
   const [jobTitle, setjobTitle] = useState("")
   
@@ -700,6 +699,14 @@ const initialRows = Array.from({ length: 10 }, () => "");
       document.addEventListener('click', handleOutsideClick);
       return () => document.removeEventListener('click', handleOutsideClick);
     }, []);
+
+    let studentAuth = localStorage.getItem("StudLog")
+    const applyforJob=()=>{
+        if(studentAuth)
+          handleSubmits()
+        else
+         navigate("/JobSeekerLogin")
+    }
   
     const handleSubmits = () => {
       const tableData = rows.map((row, index) => ({
@@ -888,17 +895,18 @@ const initialRows = Array.from({ length: 10 }, () => "");
                   >
                     <textarea
                       value={row[fieldName]}
+                      readOnly={fieldName === 'unit'} // Make it read-only if it's the unit field
+  onClick={() => {
+    if (fieldName === 'unit') {
+      setUnitDropdownIndex(rowIndex); // Show dropdown
+    } else {
+      setUnitDropdownIndex(null); // Hide for other fields
+    }
+  }}
                       onChange={(e) => {
                         let value = e.target.value;
                         if (fieldName === 'quantity') value = value.replace(/\D/g, '');
-                        if (fieldName === 'unit') {
-                          // Only allow digits (0-9) to be typed
-                          value = value.replace(/[^\d]/g, '');
                         
-                          // Show dropdown only when there's a number
-                          if (/\d+$/.test(value)) setUnitDropdownIndex(rowIndex);
-                          else setUnitDropdownIndex(null);
-                        }
                         
                         else if (fieldName === 'unit') setUnitDropdownIndex(null);
                         handleInputChange(value, rowIndex, fieldName);
@@ -996,7 +1004,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
           <textarea onChange={(event) => updateTerms(event)} style={{ width: "630px", height: "109px", borderRadius: "10px" }}></textarea>
         </div>
         <button
-          onClick={handleSubmits}
+          onClick={applyforJob}
           style={{
             padding: '10px 20px',
             backgroundColor: 'rgb(40,4,99)',
@@ -1091,7 +1099,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
 
          
           
-          
+     
           <div class={styles.homeMobileNextPrevBtn} style={{ diplay:"flex",flexDirection:"column",marginTop:"15px"}}>
           <div style={{ marginBottom: "5px", marginTop: "0", marginLeft: "10px" }}>
             Show  <select onChange={(e) => { handleRecordchange(e) }}>
@@ -1203,7 +1211,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
         </div>
 
   <button
-    onClick={handleSubmits}
+    onClick={applyforJob}
     style={{
       backgroundColor: '#17a2b8',
       color: 'white',
