@@ -210,7 +210,7 @@ function BuyersHome({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filter
     setJobs(newjobSort)
   }
 
-
+  
   function SdescendingOrder() {
     let newJobs = [...jobs]
   
@@ -362,6 +362,7 @@ function BuyersHome({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filter
   const [jobTagsIds, setJobTagsIds] = useState([])
 
 
+
   useEffect(() => {
     if (jobTagsIds.length > 0) {
       getTagId();
@@ -400,7 +401,7 @@ function BuyersHome({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filter
       changeTags()
     }
   },[Active])
-
+  
 
   async function filterByJobTitle(key) {
 
@@ -718,8 +719,16 @@ const initialRows = Array.from({ length: 10 }, () => "");
         tableData:tableData,
         terms:terms
       }
+      localStorage.setItem("draftApplicationData", JSON.stringify(AllData));
       console.log('Saved Data:', AllData );
-      setRows(initialData); // clear
+       // clear
+
+      if(studentAuth){
+        handleSubmits()
+        setRows(initialData);
+      }
+      else
+       navigate("/JobSeekerLogin")
     };
   
     const [terms, setTerms] = useState("");
@@ -1001,10 +1010,10 @@ const initialRows = Array.from({ length: 10 }, () => "");
       <div style={{ marginTop: "10px", marginBottom: "10px", marginLeft: "23px", marginRight: "0px", display: "flex", justifyContent: "space-between" }}>
         <div>
           <h2>Terms And Conditions</h2>
-          <textarea onChange={(event) => updateTerms(event)} style={{ width: "630px", height: "109px", borderRadius: "10px" }}></textarea>
+          <textarea value={terms} onChange={(event) => updateTerms(event)} style={{ width: "630px", height: "109px", borderRadius: "10px" }}></textarea>
         </div>
         <button
-          onClick={applyforJob}
+          onClick={handleSubmits}
           style={{
             padding: '10px 20px',
             backgroundColor: 'rgb(40,4,99)',
@@ -1211,7 +1220,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
         </div>
 
   <button
-    onClick={applyforJob}
+    onClick={handleSubmits}
     style={{
       backgroundColor: '#17a2b8',
       color: 'white',

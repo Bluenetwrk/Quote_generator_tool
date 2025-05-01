@@ -539,6 +539,132 @@ const selectedTag=useRef("")
     selectedTag.current=tag
   }
 
+    // -----------------------table --------funtion---- starts-------------
+    
+    const unitOptions = ['kg', 'ltr', 'm', 'cm', 'box', 'piece'];
+  
+  
+      const initialData = Array.from({ length: 10 }, () => ({
+        description: '',
+        referenceLink: '',
+        unit: '',
+        quantity: '',
+        // unitPrice: '',
+        // total: '',
+        commentToSeller: '',
+      }));
+    
+      const [rows, setRows] = useState(initialData);
+      const [hoveredAddArea, setHoveredAddArea] = useState(null);
+      const [selectedCell, setSelectedCell] = useState(null);
+      const [showDeleteOption, setShowDeleteOption] = useState(null);
+      const [unitDropdownIndex, setUnitDropdownIndex] = useState(null);
+      // const dropdownRef = useRef(null);
+    
+      const handleAddRow = (index) => {
+        const newRows = [...rows];
+        newRows.splice(index + 1, 0, {
+          description: '',
+          referenceLink: '',
+          unit: '',
+          quantity: '',
+          // unitPrice: '',
+          // total: '',
+          commentToSeller: '',
+        });
+        setRows(newRows);
+      };
+    
+      const handleDeleteRows = (index) => {
+        if (rows.length <= 1) return;
+        const newRows = [...rows];
+        newRows.splice(index, 1);
+        setRows(newRows);
+        setShowDeleteOption(null);
+      };
+    
+      const handleInputChange = (value, rowIndex, fieldName) => {
+        const updatedRows = [...rows];
+        updatedRows[rowIndex][fieldName] = value;
+        setRows(updatedRows);
+      };
+    
+      const handleCellClick = (rowIndex, colIndex) => {
+        setSelectedCell({ row: rowIndex, col: colIndex });
+        setShowDeleteOption(null);
+      };
+    
+      const handleArrowClick = (rowIndex, colIndex, e) => {
+        e.stopPropagation();
+        const key = `${rowIndex}-${colIndex}`;
+        setShowDeleteOption(showDeleteOption === key ? null : key);
+      };
+    
+      const handleOutsideClick = (e) => {
+        if (!e.target.closest('td')) {
+          setSelectedCell(null);
+          setShowDeleteOption(null);
+          setUnitDropdownIndex(null);
+        }
+      };
+    
+      useEffect(() => {
+        document.addEventListener('click', handleOutsideClick);
+        return () => document.removeEventListener('click', handleOutsideClick);
+      }, []);
+  
+      let studentAuth = localStorage.getItem("StudLog")
+      // const applyforJob=()=>{
+      //     if(studentAuth)
+      //       handleSubmits()
+      //     else
+      //      navigate("/JobSeekerLogin")
+      // }
+    
+      const handleSubmits = () => {
+        const tableData = rows.map((row, index) => ({
+          sno: index + 1,
+          ...row,
+        }));
+  
+        const AllData={
+          tableData:tableData,
+          terms:terms
+        }
+        // console.log('Saved Data:', AllData );
+        setRows(initialData); // clear
+        setTerms("")
+      };
+    
+      const [terms, setTerms] = useState("");
+      const updateTerms = (event) => {
+        setTerms(event.target.value);
+      };
+    
+      const handleUnitSelect = (rowIndex, unit) => {
+        const current = rows[rowIndex].unit;
+        const numberPart = current.match(/\d+/)?.[0] || "";
+        const updatedRows = [...rows];
+        updatedRows[rowIndex].unit = numberPart + unit;
+        setRows(updatedRows);
+        setUnitDropdownIndex(null);
+      };
+
+      useEffect(() => {
+        const draftData = localStorage.getItem("draftApplicationData");
+        if (draftData) {
+          const parsedData = JSON.parse(draftData);
+          // console.log(parsedData.terms)
+          if (parsedData.tableData) setRows(parsedData.tableData);
+          if (parsedData.terms) setTerms(parsedData.terms);
+          localStorage.removeItem("draftApplicationData"); // Clean up after restore
+        }
+      
+        document.addEventListener('click', handleOutsideClick);
+        return () => document.removeEventListener('click', handleOutsideClick);
+      }, []);
+      
+
   return (
     <>
 
@@ -722,196 +848,191 @@ const selectedTag=useRef("")
           </div>
 
           <div className={styles.Uiwarpper}>
-          
-            <ul className={styles.ul} style={{ color: 'white', fontWeight: "bold" }}>
-
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Jtitle}`}>Job Title</li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Source}`}>Source</li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.CompanyName}`}>Company Name</li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.JobType}`}>JobType</li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.date}`}>Posted Date
-                <p className={styles.arrowWrapper} >
-                  <i onClick={sortbyNewjobs} className={`${styles.arrow} ${styles.up}`}> </i>
-                  <i onClick={sortbyOldjobs} className={`${styles.arrow} ${styles.down}`}></i>
-                </p >
-              </li>
-
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Location}`}>Location</li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Package}`} >CTC
-                <p className={styles.arrowWrapper}>
-                  <i onClick={SdescendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
-                  <i onClick={SascendingOrder} className={`${styles.arrow} ${styles.down}`}></i>
-                </p>
-              </li>
-
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.experiance}`}>Experience
-                <p className={styles.arrowWrapper}>
-                  <i onClick={EdescendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
-                  <i onClick={EascendingOrder} className={`${styles.arrow} ${styles.down}`}></i>
-                </p>
-              </li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.qualification}`}>Qualification</li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Skills}`}>Skills Required</li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Status}`}>Status</li>
-
-            </ul> 
-            {PageLoader ?
+            {/* {PageLoader ?
               <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "49%", marginTop: "50px" }} />
               : ""
-            }
-             {
-              !nopageFilter ?
-                records.length > 0 ?
-                  records.map((items, i) => {
-                    return (                    
-
-                      <ul className={styles.ul} key={i}>
-
-<li className={`${styles.li} ${styles.Jtitle}`} onClick={() => navigate(`/Jobdetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})} 
-style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.charAt(0).toUpperCase()+items.jobTitle.substring(1)}</li>
-                          <li className={`${styles.li} ${styles.Source}`} >Itwalkin</li>
-                        {
-                          !items.Source ?
-
-                            <li style={{ cursor: "pointer", textDecoration: "underline" }} className={`${styles.li} ${styles.CompanyName}`}
-                              onClick={() => { navigate(`/CheckEmpHalfProfile/${btoa(items.empId)}`) }}  >
-                              
-                              {items.companyName}</li>
-                            :
-                            <a style={{ cursor: "pointer", textDecoration: "underline" }} className={`${styles.li} ${styles.CompanyName}`} href={items.SourceLink} target="_blank" >
-                              {items.Source}
-                            </a>
-                        }
-                     
-                        <li className={`${styles.li} ${styles.JobType}`}>{items.jobtype}</li>
-
-
-                        <li className={`${styles.li} ${styles.date}`}>
-                          {new Date(items.createdAt).toLocaleString(
-                            "en-US",
-                            {
-                              month: "short",
-                              day: "2-digit",
-                              year: "numeric",
-                            }
-                          )}
-                        </li>
-                        <li className={`${styles.li} ${styles.Location}`}>
-                          {/* {items.jobLocation[0].toUpperCase() + items.jobLocation.slice(1)} */}
-                          {items?.jobLocation[0]?.toUpperCase() + items.jobLocation.slice(1)}
-                        
-                          </li>
-                        <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange==="" ? "Not Disclosed":items.salaryRange+"L" }</li>
-                        <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Y</li>
-                        <li className={`${styles.li} ${styles.qualification}`}>{items.qualification}</li>
-                        <li className={`${styles.li} ${styles.Skills}`}>{items.skills}</li>
-
-                        <li className={`${styles.li} ${styles.Status}`}>
-
-                          {
-                            items.jobSeekerId.find((jobseeker) => {
-                              return (
-                                jobseeker.jobSeekerId == jobSeekerId
-                              )
-                            })
-                              ?
-                              <button className={styles.Appliedbutton} title='HR will get in touch with you, Once they will check Your Profile' > Applied <span style={{ fontSize: '15px' }}>&#10004;</span></button>
-                              :
-                              items.SourceLink ?
-                                <button title='This will redirect to the source company webpage' className={styles.Applybutton} onClick={() => {
-                                  applyforOtherJob(items.SourceLink)
-                                }}>Apply</button>
-                                :
-
-                                <button className={styles.Applybutton} onClick={() => { applyforJob(items._id) }}>Apply
-                                  <span className={styles.Loader} >{Loader && items._id == clickedJobId ?
-                                    <TailSpin color="white" height={20} />
-                                    : ""}</span></button>
-                          }
-                        </li>
-                      </ul>
-                    )
-                  })
-
-                  
-                  : <p style={{ marginLeft: "47%", color: "red" }}>No Record Found</p>
-                  :
-                  jobs.length > 0 ?
-                  jobs.map((items, i) => {
-                    return (
-
-                      <ul className={styles.ul} key={i}>
-
-             <li className={`${styles.li} ${styles.Jtitle}`} onClick={() => navigate(`/Jobdetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})} 
-            //  style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.toUpperCase()}</li>
-            style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items?.jobTitle?.toUpperCase()}</li>
+            } */}
             
-                       <li className={`${styles.li} ${styles.Source}`} >Itwalkin</li>
-
-
-                        {
-                          !items.Source ?
-
-                            <li style={{ cursor: "pointer", textDecoration: "underline" }} className={`${styles.li} ${styles.CompanyName}`}
-                              onClick={() => { navigate(`/CheckEmpHalfProfile/${btoa(items.empId)}`) }}  >
-                              
-                              {items.companyName}</li>
-                            :
-                            <a style={{ cursor: "pointer", textDecoration: "underline" }} className={`${styles.li} ${styles.CompanyName}`} href={items.SourceLink} target="_blank" >
-                              
-                              {items.Source}
-
-                            </a>
-
-}
-
-                        <li className={`${styles.li} ${styles.JobType}`}>{items.jobtype}</li>
-
-                        <li className={`${styles.li} ${styles.date}`}>
-                          {new Date(items.createdAt).toLocaleString(
-                            "en-US",
-                            {
-                              month: "short",
-                              day: "2-digit",
-                              year: "numeric",
-                            }
-                          )}
-                        </li>
-                        {/* <li className={`${styles.li} ${styles.Location}`}>{items.jobLocation[0].toUpperCase() + items.jobLocation.slice(1)}</li> */}
-                        <li className={`${styles.li} ${styles.Location}`}>{items?.jobLocation[0]?.toUpperCase() + items.jobLocation.slice(1)}</li>
-                    
-                        <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange==="" ? "Not Disclosed":items.salaryRange+"L" }</li>
-                        <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Y</li>
-                        <li className={`${styles.li} ${styles.qualification}`}>{items.qualification}</li>
-                        <li className={`${styles.li} ${styles.Skills}`}>{items.skills}</li>
-
-                        <li className={`${styles.li} ${styles.Status}`}>
-
-                          {items.jobSeekerId.find((jobseeker) => {
-                            return (
-                              jobseeker.jobSeekerId == jobSeekerId
-                            )
-                          }) ?
-                          <button className={styles.Appliedbutton} title='HR will get in touch with you, Once they will check Your Profile' > Applied <span style={{ fontSize: '15px' }}>&#10004;</span></button>
-                          
-                          :
-                          items.SourceLink ?
-                          <button title='this will take to Source page' className={styles.Applybutton} onClick={() => {
-                            applyforOtherJob(items.SourceLink)
-                          }}>Apply</button>
-                          :
-                              
-                              <button className={styles.Applybutton} onClick={() => { applyforJob(items._id) }}>Apply
-                                <span className={styles.Loader} >{Loader && items._id == clickedJobId ?
-                                  <TailSpin color="white" height={20} />
-                                  : ""}</span></button>
-                          }
-                        </li>
-                      </ul>
-                    )
-                  })
-                  : <p style={{ marginLeft: "47%", color: "red" }}>No Record Found</p>
-            }
+            <div className={styles.Uiwarpper} style={{ marginTop: "20px", marginLeft: "15px", marginRight: "20px" }}>
+      <div className={styles.ul} style={{ marginTop: "-30px" }}>
+        <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+          <thead>
+            <tr>
+              <th style={{ width: '1px' }}></th>
+              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white", width:"40px" }}>SL.No</th>
+              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"200px" }}>Description</th>
+              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"200px" }}>Reference Link to Amazon/Flipkart</th>
+              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"44px" }}>Unit</th>
+              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"34px" }}>Quantity</th>
+              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"140px" }}>Comment to Seller</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row, rowIndex) => (
+              <tr key={rowIndex} onMouseLeave={() => setHoveredAddArea(null)}>
+                <td
+                  style={{
+                    width: '1px',
+                    position: 'relative',
+                    background: hoveredAddArea === rowIndex ? '#f0f0f0' : '#fafafa',
+                    cursor: 'pointer',
+                  }}
+                  onMouseEnter={() => setHoveredAddArea(rowIndex)}
+                  onMouseLeave={() => setHoveredAddArea(null)}
+                >
+                  {hoveredAddArea === rowIndex && (
+                    <div
+                      onClick={() => handleAddRow(rowIndex)}
+                      style={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        fontSize: '14px',
+                        fontWeight: 'bold',
+                        color: 'black',
+                        userSelect: 'none',
+                      }}
+                    >
+                      +
+                    </div>
+                  )}
+                </td>
+                <td style={{ border: '1px solid #ccc', padding: '8px' }}>{rowIndex + 1}</td>
+                {['description', 'referenceLink', 'unit', 'quantity', 'commentToSeller'].map((fieldName, colIndex) => (
+                  <td
+                    key={colIndex}
+                    style={{ position: 'relative', border: '1px solid #ccc', padding: '0px' }}
+                    onClick={() => handleCellClick(rowIndex, colIndex)}
+                  >
+                    <textarea
+                      value={row[fieldName]}
+                      readOnly={fieldName === 'unit'} // Make it read-only if it's the unit field
+  onClick={() => {
+    if (fieldName === 'unit') {
+      setUnitDropdownIndex(rowIndex); // Show dropdown
+    } else {
+      setUnitDropdownIndex(null); // Hide for other fields
+    }
+  }}
+                      onChange={(e) => {
+                        let value = e.target.value;
+                        if (fieldName === 'quantity') value = value.replace(/\D/g, '');
+                        
+                        
+                        else if (fieldName === 'unit') setUnitDropdownIndex(null);
+                        handleInputChange(value, rowIndex, fieldName);
+                      }}
+                      onInput={(e) => {
+                        e.target.style.height = "auto";
+                        e.target.style.height = `${e.target.scrollHeight}px`;
+                      }}
+                      disabled={fieldName === 'unitPrice' || fieldName === 'total'}
+                      style={{
+                        width: '97%',
+                        border: 'none',
+                        outline: 'none',
+                        resize: 'none',
+                        fontFamily: 'inherit',
+                        fontSize: 'inherit',
+                        overflow: 'hidden',
+                        overflowWrap: 'break-word',
+                        whiteSpace: 'pre-wrap',
+                        backgroundColor: fieldName === 'unitPrice' || fieldName === 'total' ? '#f2f2f2' : 'inherit',
+                        color: fieldName === 'unitPrice' || fieldName === 'total' ? '#555' : 'inherit',
+                        cursor: fieldName === 'unitPrice' || fieldName === 'total' ? 'not-allowed' : 'text',
+                      }}
+                    />
+                    {selectedCell?.row === rowIndex && selectedCell?.col === colIndex && (
+                      <div
+                        style={{
+                          position: 'absolute',
+                          top: '5px',
+                          right: '5px',
+                          fontSize: '16px',
+                          fontWeight: 'bold',
+                          cursor: 'pointer',
+                        }}
+                        onClick={(e) => handleArrowClick(rowIndex, colIndex, e)}
+                      >
+                        ▼
+                      </div>
+                    )}
+                    {showDeleteOption === `${rowIndex}-${colIndex}` && (
+                      <div
+                        onClick={() => handleDeleteRows(rowIndex)}
+                        style={{
+                          position: 'absolute',
+                          top: '25px',
+                          right: '5px',
+                          fontSize: '14px',
+                          background: '#f44336',
+                          color: '#fff',
+                          padding: '5px',
+                          borderRadius: '5px',
+                          cursor: 'pointer',
+                          zIndex: 999,
+                        }}
+                      >
+                        Delete Row
+                      </div>
+                    )}
+                    {fieldName === 'unit' && unitDropdownIndex === rowIndex && (
+                      <div
+                        ref={dropdownRef}
+                        style={{
+                          position: 'absolute',
+                          top: '100%',
+                          left: '0',
+                          backgroundColor: 'white',
+                          border: '1px solid #ccc',
+                          zIndex: 10,
+                          maxHeight: '100px',
+                          overflowY: 'auto',
+                          width: '100%',
+                        }}
+                      >
+                        {unitOptions.map((unit, i) => (
+                          <div
+                            key={i}
+                            onClick={() => handleUnitSelect(rowIndex, unit)}
+                            style={{ padding: '6px', cursor: 'pointer' }}
+                          >
+                            {unit}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div style={{ marginTop: "10px", marginBottom: "10px", marginLeft: "23px", marginRight: "0px", display: "flex", justifyContent: "space-between" }}>
+        <div>
+          <h2>Terms And Conditions</h2>
+          <textarea value={terms} onChange={(event) => updateTerms(event)} style={{ width: "630px", height: "109px", borderRadius: "10px" }}></textarea>
+        </div>
+        <button
+          onClick={handleSubmits}
+          style={{
+            padding: '10px 20px',
+            backgroundColor: 'rgb(40,4,99)',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            height: '42px',
+            marginTop: '16px'
+          }}
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+ 
           </div>
 
           <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -1653,11 +1774,11 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                             :
                             // job .isApproved?
                             job.SourceLink ?
-                              <button style={{marginRight: "13px"}} className={styles.ApplyMobileJobseeker} onClick={() => {
-                                applyforOtherJob(job.SourceLink)
-                              }}>Apply</button>
+                              <button style={{marginRight: "13px"}} className={styles.ApplyMobileJobseeker} onClick={
+                                handleSubmits
+                              }>Apply</button>
                               :
-                              <button style={{marginRight: "13px"}} className={styles.ApplyMobileJobseeker} onClick={() => { applyforJob(job._id) }}>Apply
+                              <button style={{marginRight: "13px"}} className={styles.ApplyMobileJobseeker} onClick={ handleSubmits}>Apply
                                 <span className={styles.Loader} >{Loader && job._id == clickedJobId ?
                                   <TailSpin color="white" height={20} />
                                   : ""}</span></button>
