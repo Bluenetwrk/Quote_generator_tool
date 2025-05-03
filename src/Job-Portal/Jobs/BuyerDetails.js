@@ -547,7 +547,17 @@ function SellerViewDetails({nopageFilter,setNoPageFilter,searchKey, setsearchKey
     selectedTag.current=tag
   }
 
+const[submitClicked, setSubmitClicked]=useState(false)
+// const[editClicked, setEditClicked]=useState(false)
 
+const handleSubmits=()=>{
+  console.log("set exectuted")
+  setSubmitClicked(true)
+}
+
+const handleEdit=()=>{
+   setSubmitClicked(false)
+}
 
   return (
     <>
@@ -640,6 +650,11 @@ function SellerViewDetails({nopageFilter,setNoPageFilter,searchKey, setsearchKey
               <option selected={jobsPerPageValue==100} value={100}>100</option>
             </select>  jobs per page
           </div>
+
+          <div style={{ display:"flex", gap:"12px", marginBottom: "15px", marginTop: "20px", marginLeft: "15px" }}>
+               <button className={styles.companyBtn}>Company 1</button>
+               <button className={styles.companyBtn}>Company 2</button>
+          </div>
          
           <div className={styles.Uiwarpper}>
             <ul className={styles.ul} style={{ color: 'white', fontWeight: "bold" }}>
@@ -720,62 +735,81 @@ function SellerViewDetails({nopageFilter,setNoPageFilter,searchKey, setsearchKey
             // } */}
           </div>
 
-          <div style={{marginTop:"10px", marginBottom:"10px", marginLeft:"23px",marginRight:"0px", display:"flex", justifyContent:"space-between"}}>
+      <div style={{marginTop:"10px", marginBottom:"10px", marginLeft:"23px",marginRight:"0px", display:"flex", justifyContent:"space-between"}}>
         <div>
           <h2>TermsAndConditions</h2>
-          <textarea  style={{width:"630px",height:"109px", borderRadius:"10px"}}></textarea>
-        </div>
-
+          <textarea  style={{width:"430px",height:"80px", borderRadius:"10px"}}></textarea>
+        </div> 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '300px', margin: '20px' }}>
       <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '10px' }}>
-        <h3 style={{ margin: 0, width: '60px' }}>Total</h3>
+        <h3 style={{ margin: 0, width: '100%' }}>Total</h3>
         <input type="text" style={{ flex: 1, padding: '6px' }} disabled />
       </div>
       <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '10px' }}>
-        <h3 style={{ margin: 0, width: '60px' }}>Discount</h3>
+        <h3 style={{ margin: 0, width: '100%' }}>Discount</h3>
         <input type="text" style={{ flex: 1, padding: '6px' }} />
       </div>
       <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '10px' }}>
-        <h3 style={{ margin: 0, width: '60px' }}> Grand Total</h3>
+        <h3 style={{ margin: 0, width: '100%' }}> Grand Total</h3>
         <input type="text" style={{ flex: 1, padding: '6px' }} disabled />
       </div>
-    </div>
-        
+      </div>  
       </div>
+
+      
         
-        <div style={{display:"flex",flexDirection:"row-reverse"}}>
+        <div style={{display:"flex",flexDirection:"row-reverse", marginLeft:"20px", marginTop:"-25px" }}>
             <div style={{display:"flex",gap:"5px", marginRight:"100px"}}>
             <button
         //   onClick={handleSubmits}
           style={{
             padding: '10px 20px',
-            backgroundColor: 'rgb(40,4,99)',
+            backgroundColor: submitClicked ? 'grey' : 'rgb(40,4,99)',
             color: 'white',
             border: 'none',
             borderRadius: '5px',
             cursor: 'pointer',
-            height:'42px',
+            height:'32px',
             marginTop: '16px',
             // marginright: '-150px;'
           }}
+          disabled={submitClicked}
         >
          Save
         </button>
         <button
-        //   onClick={handleSubmits}
+          onClick={handleSubmits}
           style={{
             padding: '10px 20px',
-            backgroundColor: 'rgb(40,4,99)',
+            backgroundColor: submitClicked ? 'grey' : 'rgb(40,4,99)',
             color: 'white',
             border: 'none',
             borderRadius: '5px',
             cursor: 'pointer',
-            height:'42px',
+            height:'32px',
             marginTop: '16px',
             // marginright: '-150px;'
           }}
+          disabled={submitClicked}
         >
           Submit
+        </button>
+        <button
+          onClick={handleEdit}
+        style={{
+          padding: '10px 20px',
+          backgroundColor: submitClicked ? 'rgb(40,4,99)' : 'grey',
+          color: 'white',
+          border: 'none',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          height: '32px',
+          marginTop: '16px',
+          // marginRight: '-150px' // Note: CSS properties are camelCased in React
+        }}
+        disabled={!submitClicked}
+      >
+          Edit
         </button>
             </div>
         </div>
