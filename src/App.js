@@ -71,6 +71,7 @@ import location from "./Job-Portal/img/icons8-location-20.png"
 import BuyersHome from "./Job-Portal/Jobs/BuyersHome";
 import SellerHome from "./Job-Portal/AppliedUserProfile/SellerHome";
 import SellerViewDetails from "./Job-Portal/Jobs/BuyerDetails";
+import SellerResponse from "./Job-Portal/PostJobs/SellerResponse";
 axios.defaults.baseURL = "https://itwalkin-backend-testrelease-2-0-1-0824-ns0g.onrender.com" // Render Test
 
 function App() {
@@ -1164,6 +1165,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
 
             {/* ..........Jobseeker Private component i,e can not search in URL......... */}
             <Route element={<StudPrivate />}>
+              <Route path="/seller-response" element={<SellerResponse url={axios.defaults.baseURL}/>} ></Route>
               <Route path="/alljobs" element={<Jobs url={axios.defaults.baseURL} 
                showMobileSearchIcon={showMobileSearchIcon} setShowMobileSearchIcon={setShowMobileSearchIcon}
                ShowSideNave={ShowSideNave} setShowSideNave={setShowSideNave}
