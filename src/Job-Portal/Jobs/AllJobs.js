@@ -862,8 +862,9 @@ const selectedTag=useRef("")
               <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white", width:"40px" }}>SL.No</th>
               <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"200px" }}>Description</th>
               <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"200px" }}>Reference Link to Amazon/Flipkart</th>
-              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"44px" }}>Unit</th>
               <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"34px" }}>Quantity</th>
+              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"44px" }}>Unit</th>
+
               <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"140px" }}>Comment to Seller</th>
             </tr>
           </thead>
@@ -899,7 +900,7 @@ const selectedTag=useRef("")
                   )}
                 </td>
                 <td style={{ border: '1px solid #ccc', padding: '8px' }}>{rowIndex + 1}</td>
-                {['description', 'referenceLink', 'unit', 'quantity', 'commentToSeller'].map((fieldName, colIndex) => (
+                {['description', 'referenceLink',  'quantity','unit', 'commentToSeller'].map((fieldName, colIndex) => (
                   <td
                     key={colIndex}
                     style={{ position: 'relative', border: '1px solid #ccc', padding: '0px' }}

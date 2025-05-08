@@ -16,6 +16,7 @@
     "firebase": "^10.13.2",
     "html-react-parser": "^5.1.18",
     "jodit-react": "^4.1.2",
+    "jspdf": "^3.0.1",
     "jwt-decode": "^4.0.0",
     "nodemon": "^3.0.1",
     "react": "^18.2.0",
@@ -35,13 +36,11 @@
     "yocto-queue": "^1.2.0"
   },
   "scripts": {
-    
     "start": "set NODE_OPTIONS=--max-old-space-size=4096 && react-scripts start",
     "build": "set NODE_OPTIONS=--max-old-space-size=4096 && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
- 
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -65,4 +64,3 @@
     "react-scripts": "^5.0.1"
   }
 }
-

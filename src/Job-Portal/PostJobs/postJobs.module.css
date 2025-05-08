@@ -1,3 +1,55 @@
+/* SellerResponse.css */
+
+.sellerContainer {
+    display: flex;
+    flex-direction: column;
+    /* gap: 20px; */
+    padding: 20px;
+    margin-right: 600px;
+
+  }
+  
+  .sellerRow {
+    display: flex;
+    flex-wrap: wrap;
+    /* align-items: flex-start; */
+    gap: 20px;
+    /* border: 1px solid #ddd; */
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .sellerBox {
+    border: 2px solid black;
+    padding: 10px 20px;
+    text-align: center;
+    min-width: 120px;
+    cursor: pointer;
+    margin: 10px 0;
+    flex: 1;
+  }
+  
+  .sellerResponse {
+    font-size: 14px;
+    line-height: 1.4;
+    flex: 2;
+    min-width: 200px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .sellerRow {
+      flex-direction: column;
+      gap: 15px;
+    }
+  
+    .sellerBox,
+    .sellerResponse {
+      /* width: 100%; */
+      text-align: left;
+    }
+  }
+  
+
 .driveDateContainer{
     margin-top: 10px;
     font-weight: 800;

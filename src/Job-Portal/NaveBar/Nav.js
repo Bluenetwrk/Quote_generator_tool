@@ -213,8 +213,13 @@ function Nav(props) {
                    {/*<h2 style={{color:"white"}}>  Get Quote </h2> */}
                    <h2 style={{color:"white"}}>  Get Quote </h2>
                 </div>
-                  <div><NavLink to="/alljobs" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>All Jobs </NavLink>
+                  <div style={{display:"flex"}}>
+                  <div><NavLink to="/alljobs" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>Buyer Home </NavLink>
                   </div>
+                  <div><NavLink to="/seller-response" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>Seller response</NavLink>
+                  </div>
+                  </div>
+                 
                   <div ref={dropdownRef} style={{ position: "relative" }}>
                             
                             <div style={{ display: "flex", marginTop: "-5px" }}>
