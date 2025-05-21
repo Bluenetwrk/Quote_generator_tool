@@ -833,7 +833,8 @@ const initialRows = Array.from({ length: 10 }, () => "");
               </button>
             </div>
           </div>
-          <div style={{ marginBottom: "5px", marginTop: "0", marginLeft: "10px" }}>
+          <div style={{ marginBottom: "5px", display:"flex", marginTop: "0", marginLeft: "10px", justifyContent:"space-between" }}>
+            <div>
             Show  <select onChange={(e) => { handleRecordchange(e) }}>
     
               
@@ -842,6 +843,11 @@ const initialRows = Array.from({ length: 10 }, () => "");
               <option selected={jobsPerPageValue==50} value={50}>50</option>
               <option selected={jobsPerPageValue==100} value={100}>100</option>
             </select>  jobs per page
+            </div>
+            <button style={{ marginRight: "40px" }} className={styles.jobdetailBackBtn}>
+  🛒 Add to Cart
+</button>
+
           </div>
          
           <div className={styles.Uiwarpper}>
@@ -1013,7 +1019,14 @@ const initialRows = Array.from({ length: 10 }, () => "");
           <h2>Terms And Conditions</h2>
           <textarea value={terms} onChange={(event) => updateTerms(event)} style={{ width: "630px", height: "109px", borderRadius: "10px" }}></textarea>
         </div>
-        <button
+
+        <div style={{display:"flex", alignItems:"center"}}>
+        <button style={{ marginRight: "40px" }} className={styles.jobdetailBackBtn}>
+  🛒 Add to Cart
+</button>
+
+        <button style={{marginRight:"40px"}} class={styles.jobdetailBackBtn} >Buy</button>
+        {/* <button
           onClick={handleSubmits}
           style={{
             padding: '10px 20px',
@@ -1027,7 +1040,8 @@ const initialRows = Array.from({ length: 10 }, () => "");
           }}
         >
           Submit
-        </button>
+        </button> */}
+        </div>
       </div>
     </div>
  
