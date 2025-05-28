@@ -135,7 +135,6 @@ function Nav(props) {
     setStuopen(false);
   };
 
-
   const [ShowBigSideNave, setShowBigSideNave] = useState(false)
 
   function ChangeSideNaveBar() {
@@ -189,7 +188,6 @@ function Nav(props) {
           };
         }, []);
 
-
   return (
     <>
 
@@ -217,6 +215,8 @@ function Nav(props) {
                   <div><NavLink to="/alljobs" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>Buyer Home </NavLink>
                   </div>
                   <div><NavLink to="/seller-response" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>Seller response</NavLink>
+                  </div>
+                  <div><NavLink to="/quote-response" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>Quote response</NavLink>
                   </div>
                   </div>
                  
@@ -708,11 +708,9 @@ function Nav(props) {
                     <Modal isOpen={open} onClose={() => { handleClose() }} />
                   </>
 
-
                 </>
 
           :    //OR  mobile Nave
-
 
           //  ............................................Jobseeker Login...Mobile view............................................   
           StudentAuth ?
@@ -1107,3 +1105,4 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
   )
 }
 export default Nav;
+

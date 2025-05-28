@@ -1,0 +1,86 @@
+.quotes-container {
+  padding: 24px;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.buyer-request {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px 14px;
+  border-radius: 4px 4px 0 0;
+  margin-right: 12px;
+  font-weight: bold;
+  cursor: default;
+}
+
+.quote-tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.quote-tab {
+  padding: 10px 16px;
+  border: none;
+  background-color: transparent;
+  border-bottom: 3px solid transparent;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.quote-tab.active {
+  border-bottom: 3px solid #4b0082;
+  color: #4b0082;
+  font-weight: bold;
+}
+
+.quote-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  margin-bottom: 30px;
+}
+
+.quote-table th, .quote-table td {
+  border: 1px solid #ccc;
+  padding: 12px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.quote-table th {
+  background-color: #f1f1f1;
+}
+
+.quote-table td a {
+  color: #4b0082;
+  text-decoration: none;
+}
+
+.submit-section {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.submit-button {
+  padding: 12px 24px;
+  background-color: #4b0082;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #360062;
+}
+
+
