@@ -218,6 +218,8 @@ function Nav(props) {
                   </div>
                   <div><NavLink to="/seller-response" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>Seller response</NavLink>
                   </div>
+                  <div><NavLink to="/quote-response" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>Quote response</NavLink>
+                  </div>
                   </div>
                  
                   <div ref={dropdownRef} style={{ position: "relative" }}>

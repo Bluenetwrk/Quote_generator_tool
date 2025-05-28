@@ -1,3 +1,33 @@
+.topBar{
+    margin-left:20px;
+}
+.buyerRequest{
+    margin-left:20px;
+}
+.quoteScrollWrapper::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Firefox */
+  .quoteScrollWrapper {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+.quotebtn {
+    padding: 10px 20px;
+    background-color: rgb(40, 4, 99);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 30px;
+    margin-top: 16px;
+    margin-left: 20px;
+}
+.quoteTabs{
+    margin-left:100px;
+}
 .companyBtn{
     border: 2px solid black;
     padding: 5px;
