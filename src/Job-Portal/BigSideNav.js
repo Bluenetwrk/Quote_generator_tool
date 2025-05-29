@@ -145,7 +145,7 @@ function SidebarNav(props) {
       <div style={{ marginTop:"-15px"}}>
          <div style={{display:"flex",marginTop:"10px",marginRight:"6px"}} >
             {/* <input className={Styles.blogInputboxsearch}  type="text" value={query} placeholder='Search for a Job / Skills / Location / Experiance' onChange={handleInputChange} /> */}
-            <input className={Styles.blogInputboxsearch}  type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { 
+            <input className={Styles.blogInputboxsearch}  type="text" placeholder='Search here...' onChange={(e) => { 
                                                                                                                                  if(empHome)
                                                                                                                                     props.searchs(e)
                                                                                                                                  else if(location.pathname==="/Blogs"){
@@ -209,8 +209,8 @@ function SidebarNav(props) {
 
         {/* <p onClick={()=>{navigate("/")}} className={`${Styles.p} `}>Home </p> */}
         <p onClick={()=>{navigate("/Blogs"); update("Blogs")}} className={`${Styles.textBigSodeBar} ${value==="Blogs"?Styles.active:""}`}>Blogs</p>
-        <p onClick={()=>{navigate("/AllCareerJobs"); update("AllCareerJobs")}} className={`${Styles.textBigSodeBar} ${value==="AllCareerJobs"?Styles.active:""}`}>ITwalkin Career</p>
-        <p onClick={()=>{navigate("/Walkin-Drives"); update("AllWalkinDrive")}} className={`${Styles.textBigSodeBar} ${value==="AllWalkinDrive"?Styles.active:""} `}>Walkin Drives</p>
+        {/* <p onClick={()=>{navigate("/AllCareerJobs"); update("AllCareerJobs")}} className={`${Styles.textBigSodeBar} ${value==="AllCareerJobs"?Styles.active:""}`}>ITwalkin Career</p> */}
+        {/* <p onClick={()=>{navigate("/Walkin-Drives"); update("AllWalkinDrive")}} className={`${Styles.textBigSodeBar} ${value==="AllWalkinDrive"?Styles.active:""} `}>Walkin Drives</p> */}
         <p onClick={()=>{navigate("/support/help"); update("AllHelps")}} className={`${Styles.textBigSodeBar} ${value==="AllHelps"?Styles.active:""} `}>Help/Support</p>
         <p onClick={()=>{navigate("/AboutUs"); update("AboutUs")}} className={`${Styles.textBigSodeBar} ${value==="AboutUs"?Styles.active:""} `}>About Us</p>
         <p onClick={()=>{navigate("/Services"); update("Services")}} className={`${Styles.textBigSodeBar} ${value==="Services"?Styles.active:""}`}>Our Services</p>

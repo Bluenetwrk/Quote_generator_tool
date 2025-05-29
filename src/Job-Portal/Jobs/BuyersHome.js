@@ -709,27 +709,58 @@ const initialRows = Array.from({ length: 10 }, () => "");
          navigate("/JobSeekerLogin")
     }
   
+    // const handleSubmits = () => {
+    //   const tableData = rows.map((row, index) => ({
+    //     sno: index + 1,
+    //     ...row,
+    //   }));
+
+    //   const AllData={
+    //     tableData:tableData,
+    //     terms:terms
+    //   }
+    //   localStorage.setItem("draftApplicationData", JSON.stringify(AllData));
+    //   console.log('Saved Data:', AllData.tableData.length );
+    //   console.log('Saved Data:', AllData );
+    //    // clear
+
+    //   if(studentAuth){
+    //     handleSubmits()
+    //     setRows(initialData);
+    //   }
+    //   else
+    //    navigate("/JobSeekerLogin")
+    // };
+
     const handleSubmits = () => {
-      const tableData = rows.map((row, index) => ({
+      // Filter out empty rows
+      const filteredRows = rows.filter(row => {
+        // Replace with your own logic to detect an "empty" row
+        return Object.values(row).some(value => value !== "" && value !== null && value !== undefined);
+      });
+    
+      const tableData = filteredRows.map((row, index) => ({
         sno: index + 1,
         ...row,
       }));
-
-      const AllData={
-        tableData:tableData,
-        terms:terms
-      }
+    
+      const AllData = {
+        tableData: tableData,
+        terms: terms
+      };
+    
       localStorage.setItem("draftApplicationData", JSON.stringify(AllData));
-      console.log('Saved Data:', AllData );
-       // clear
-
-      if(studentAuth){
-        handleSubmits()
+      console.log('Saved Data Length:', AllData.tableData.length);
+      console.log('Saved Data:', AllData);
+    
+      if (studentAuth) {
+        handleSubmits(); // ⚠️ Recursive call - this will cause infinite loop!
         setRows(initialData);
+      } else {
+        navigate("/JobSeekerLogin");
       }
-      else
-       navigate("/JobSeekerLogin")
     };
+    
   
     const [terms, setTerms] = useState("");
     const updateTerms = (event) => {
@@ -749,6 +780,15 @@ const initialRows = Array.from({ length: 10 }, () => "");
   //   console.log("terms",terms)
   //  },[terms])
   //-----------------tabel function ends------------------------
+
+  const [enableBtn, setEnableBtn] = useState(false);
+
+  useEffect(() => {
+    const isAnyRowFilled = rows.some(row =>
+      Object.values(row).some(value => value !== "" && value !== null && value !== undefined)
+    );
+    setEnableBtn(isAnyRowFilled);
+  }, [rows]);
   return (
     <>
       {screenSize.width > 850 ?
@@ -807,16 +847,16 @@ const initialRows = Array.from({ length: 10 }, () => "");
           </div>
 
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            {nopageFilter ?
-              // <p style={{ fontWeight: 400, marginLeft: "10px" }}>Displaying <span style={{ color: "blue" }}>
+            {/* {nopageFilter ? */}
+              {/* // <p style={{ fontWeight: 400, marginLeft: "10px" }}>Displaying <span style={{ color: "blue" }}>
               //   {uniqueList.length} </span>Jobs with following matching tags:
-              //   <span style={{ color: "blue" }}>{Active.toString()}</span></p>
-              <p style={{ fontWeight: 400, marginLeft: "10px" }}>Displaying <span style={{ color: "blue" }}>
+              //   <span style={{ color: "blue" }}>{Active.toString()}</span></p> */}
+              {/* <p style={{ fontWeight: 400, marginLeft: "10px" }}>Displaying <span style={{ color: "blue" }}>
                 {jobs.length} </span>Jobs with following matching tags:
                 <span style={{ color: "blue" }}>{Active.toString()}</span></p>
               :
               <p style={{ fontWeight: 400, marginLeft: "10px" }}>showing {firstIndex + 1} to {lastIndex} latest jobs</p>
-            }
+            } */}
             <div className={styles.navigationWrapper}>
               <button disabled={currentPage === 1} style={{ display: "inline", margin: "5px" }} className={styles.navigation} onClick={firstPage}>
                 <i class='fas fa-step-backward' ></i>
@@ -833,7 +873,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
               </button>
             </div>
           </div>
-          <div style={{ marginBottom: "5px", display:"flex", marginTop: "0", marginLeft: "10px", justifyContent:"space-between" }}>
+          <div style={{ marginBottom: "5px", display:"flex", marginTop: "0", marginLeft: "10px", justifyContent:"space-between", alignItems:"center" }}>
             <div>
             Show  <select onChange={(e) => { handleRecordchange(e) }}>
     
@@ -842,12 +882,12 @@ const initialRows = Array.from({ length: 10 }, () => "");
               <option selected={jobsPerPageValue==25} value={25}>25</option>
               <option selected={jobsPerPageValue==50} value={50}>50</option>
               <option selected={jobsPerPageValue==100} value={100}>100</option>
-            </select>  jobs per page
+            </select> rows per pages
             </div>
-            <button style={{ marginRight: "40px" }} className={styles.jobdetailBackBtn}>
-  🛒 Add to Cart
-</button>
-
+            <div style={{display:"flex"}}>
+            <button style={{ marginRight: "1px", backgroundColor: enableBtn ? "#280463" : "#ccc", }} disabled={!enableBtn} className={styles.jobdetailBackBtn}> 🛒 Add to Cart</button>
+            <button style={{marginRight:"40px",  backgroundColor: enableBtn ? "#280463" : "#ccc",}} disabled={!enableBtn} onClick={handleSubmits} class={styles.jobdetailBackBtn} >Buy</button>
+            </div> 
           </div>
          
           <div className={styles.Uiwarpper}>
@@ -1021,11 +1061,9 @@ const initialRows = Array.from({ length: 10 }, () => "");
         </div>
 
         <div style={{display:"flex", alignItems:"center"}}>
-        <button style={{ marginRight: "40px" }} className={styles.jobdetailBackBtn}>
-  🛒 Add to Cart
-</button>
+        <button style={{ marginRight: "1px",backgroundColor: enableBtn ? "#280463" : "#ccc", }} disabled={!enableBtn} className={styles.jobdetailBackBtn}>🛒 Add to Cart</button>
 
-        <button style={{marginRight:"40px"}} class={styles.jobdetailBackBtn} >Buy</button>
+        <button style={{marginRight:"40px",backgroundColor: enableBtn ? "#280463" : "#ccc",}} disabled={!enableBtn} onClick={handleSubmits} class={styles.jobdetailBackBtn} >Buy</button>
         {/* <button
           onClick={handleSubmits}
           style={{
@@ -1058,7 +1096,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
               <option selected={jobsPerPageValue==25} value={25}>25</option>
               <option selected={jobsPerPageValue==50} value={50}>50</option>
               <option selected={jobsPerPageValue==100} value={100}>100</option>
-              </select>  jobs per page
+              </select>  rows per page
             </div>
 
             <div className={styles.navigationWrapper}>

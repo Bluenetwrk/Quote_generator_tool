@@ -366,9 +366,9 @@ function Nav(props) {
                       {/*<h2 style={{color:"white"}}>  Get Quote </h2> */}
                       <h2 style={{color:"white", width:"120%"}}>  Get Quote </h2>
                    </div>
-                   <div>
+                   {/* <div>
                       <NavLink to="/PostJobs" className={Styles.PostJobLink} style={navLinkStyles}>Post a Job</NavLink>
-                   </div>
+                   </div> */}
                    {/* <div>
                       <NavLink to="/Seller-Home" className={Styles.PostJobLink} style={navLinkStyles}>Seller Home</NavLink>
                    </div> */}
@@ -455,9 +455,9 @@ function Nav(props) {
                  <div>
                   <NavLink to="/Post-Help-Questions" className={Styles.PostHelpLink} style={navLinkStyles}>Post Help Questions</NavLink>
                  </div>
-                 <div>
+                 {/* <div>
                  <NavLink to="/PostDrives" className={Styles.PostDriveLink} style={navLinkStyles}>Post Walkin Drive</NavLink>
-                 </div>
+                 </div> */}
                  <div> 
                   <NavLink to="/Seller-Home" className={Styles.SearchCandidates} style={navLinkStyles}>Seller Home</NavLink>
                   </div>
@@ -507,7 +507,7 @@ function Nav(props) {
 
                       <NavLink to="/AboutUs" className={`${Styles.Aboutlink}`} style={navLinkStyles} >About Us</NavLink>
                       <NavLink to="/Services" className={Styles.link} style={navLinkStyles}>Services</NavLink>
-                      <NavLink to="/BIAddmin@PostJob" className={Styles.link} style={navLinkStyles}> Post Job</NavLink>
+                      {/* <NavLink to="/BIAddmin@PostJob" className={Styles.link} style={navLinkStyles}> Post Job</NavLink> */}
                       <NavLink to="/BIAddmin@AdminCareerPostJobs" className={Styles.link} style={navLinkStyles}>Career Job Post</NavLink>
                       <NavLink to="/Blogs" className={Styles.link} style={navLinkStyles}>Blogs</NavLink>
         {/* <p onClick={()=>{navigate("/Blogs")}} className={`${Styles.textinMobileSodeBar} `}>Blogs </p> */}
@@ -660,9 +660,9 @@ function Nav(props) {
                           </div>
                     </div>
                     <div className={Styles.fullnavewrapperRS}>
-                      <div>
+                      {/* <div>
                       <NavLink to="/Search-Candidate-Home" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Employer </NavLink>
-                      </div>
+                      </div> */}
                       <div>
                          <p className={` ${Styles.openAccount}`} onClick={handleOpenAccont} ref={Reg} >Open an Account</p>
                          {
@@ -680,8 +680,8 @@ function Nav(props) {
                     <div className={Styles.Alldownwrapper} >
 
                       <div style={{  }} className={Styles.dropdownwrapperHome} ref={menuRef} >
-                        <p onClick={() => { handleEmpOpen(); handleStuClose() }}>Employer Login</p>
-                        <p onClick={() => { handleStuOpen(); handleClose() }}>Job Seeker Login</p>
+                        <p onClick={() => { handleEmpOpen(); handleStuClose() }}>Seller Login</p>
+                        <p onClick={() => { handleStuOpen(); handleClose() }}>Buyer Login</p>
                       </div>
                     </div>
 
@@ -858,9 +858,9 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                    <div>
                      <img style={{width:"80%"}}  className={Styles.MobIwalkinLogologo} src={Itwalkinlogo} />
                     </div>
-                    <div>
+                    {/* <div>
                     <NavLink to="/PostJobs" style={{marginLeft:"-24%"}}className={`${Styles.Moblink} ${Styles.PostJob}`} >Post a Job</NavLink>
-                    </div>
+                    </div> */}
                   </div>
 
                   <div className={Styles.empFullnavewrapperRSMobile}>
@@ -1033,8 +1033,8 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                          <img className={`${Styles.MobloginLogo} `} src={logIn} ref={imgRef} onClick={() =>    setShowprofile((prev) => !prev)} />
                          {showprofile ?
                            <div className={Styles.MobHomeDropdownwrapper} ref={menuRef} >
-                             <p onClick={() => { navigate("/EmployeeLogin") }}>Employer Login </p>
-                             <p onClick={() => { navigate("/JobSeekerLogin") }}>Job Seeker Login</p>
+                             <p onClick={() => { navigate("/EmployeeLogin") }}>Seller Login </p>
+                             <p onClick={() => { navigate("/JobSeekerLogin") }}>Buyer Login</p>
                            </div>
                            : ""}
                        </div>           
