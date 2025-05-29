@@ -10,6 +10,9 @@ import {jobTags} from '../Tags'
 
 function AllHelps({ Active, getjobs, setJobs, setActive, count, setCount,nopageFilter,setNoPageFilter
 }) {
+  
+  const [currentPage, setCurrentPage] = useState(1)
+  const [recordsPerPage, setrecordsPerPage] = useState(10)
   const [Contact, setContact] = useState([]);
   const screenSize = useScreenSize();
   const[jobsPerPageValue,setJobsPerPageValue]=useState(10);
@@ -23,8 +26,6 @@ function AllHelps({ Active, getjobs, setJobs, setActive, count, setCount,nopageF
   const navigate = useNavigate();
 //  let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpageSearchHome"))
 
-  const [currentPage, setCurrentPage] = useState(1)
-  const [recordsPerPage, setrecordsPerPage] = useState(10)
 
 
   function handleRecordchange(e) {
@@ -69,23 +70,23 @@ function AllHelps({ Active, getjobs, setJobs, setActive, count, setCount,nopageF
   const helpData = [
     { 
       id: 1, 
-      question: "How to Register as an Employer?", 
+      question: "How to Register as an Seller?", 
       source: "ITWalkin", 
       companyName: "ITWalkin", 
       postedby: "ITWalkin", 
       postedDate: "20-03-2025", 
       view: "View",
-      details: "1. To register as an employer, follow these steps:\n2. Click on the 'Open an Account' menu in the navigation bar.\n3. A submenu will appear—select 'Employer Registration' from the list.\n4. The Employer Registration Form will open in a new window.\n5. Fill in all the required details in the given fields.\n6. Choose to register using either Microsoft or Google.\n7. Once completed, your registration will be successful."
+      details: "1. To register as an seller, follow these steps:\n2. Click on the 'Open an Account' menu in the navigation bar.\n3. A submenu will appear—select 'Seller Registration' from the list.\n4. The Seller Registration Form will open in a new window.\n5. Fill in all the required details in the given fields.\n6. Choose to register using either Microsoft or Google.\n7. Once completed, your registration will be successful."
   },
   { 
     id: 2, 
-    question: "How to Register as a Jobseeker?", 
+    question: "How to Register as a Buyer?", 
     source: "ITWalkin", 
     companyName: "ITWalkin", 
     postedby: "ITWalkin", 
     postedDate: "20-03-2025", 
     view: "View",
-    details: "1. To register as a Jobseeker, follow these steps:\n2. Click on the 'Open an Account' menu in the navigation bar.\n3. A submenu will appear—select 'Jobseeker Registration' from the list.\n4. The jobseeker Registration Form will open in a new window.\n5. Fill in all the required details in the given fields.\n6. Choose to register using either Microsoft or Google.\n7. Once completed, your registration will be successful."
+    details: "1. To register as a Buyer, follow these steps:\n2. Click on the 'Open an Account' menu in the navigation bar.\n3. A submenu will appear—select 'Buyer Registration' from the list.\n4. The Buyer Registration Form will open in a new window.\n5. Fill in all the required details in the given fields.\n6. Choose to register using either Microsoft or Google.\n7. Once completed, your registration will be successful."
 },
      ];
 
