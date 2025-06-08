@@ -772,7 +772,6 @@ const initialRows = Array.from({ length: 10 }, () => "");
     const handleSubmits = () => {
       // Filter out empty rows
       const filteredRows = rows.filter(row => {
-        // Replace with your own logic to detect an "empty" row
         return Object.values(row).some(value => value !== "" && value !== null && value !== undefined);
       });
     
@@ -787,15 +786,8 @@ const initialRows = Array.from({ length: 10 }, () => "");
       };
     
       localStorage.setItem("draftApplicationData", JSON.stringify(AllData));
-      console.log('Saved Data Length:', AllData.tableData.length);
-      console.log('Saved Data:', AllData);
-    
-      if (studentAuth) {
-        handleSubmits(); // ⚠️ Recursive call - this will cause infinite loop!
-        setRows(initialData);
-      } else {
         navigate("/JobSeekerLogin");
-      }
+
     };
     
   

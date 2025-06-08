@@ -663,15 +663,27 @@ const selectedTag=useRef("")
           sno: index + 1,
           ...row,
         }));
-  
-        const AllData={
-          tableData:tableData,
-          terms:terms
-        }
+      
+        const AllData = {
+          tableData: tableData,
+          terms: terms
+        };
+      
         // console.log('Saved Data:', AllData );
-        // setRows(initialData); // clear
-        setTerms("")
+      
+        // Reset terms and set 10 empty rows
+        const emptyRows = Array.from({ length: 10 }, () => ({
+          description: "",
+          referenceLink: "",
+          unit: "",
+          quantity: "",
+          commentToSeller: "",
+        }));
+      
+        setRows(emptyRows); // reset with 10 empty rows
+        setTerms("");       // clear terms
       };
+      
     
       const [terms, setTerms] = useState("");
       const updateTerms = (event) => {
