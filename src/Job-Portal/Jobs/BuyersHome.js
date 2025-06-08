@@ -632,17 +632,53 @@ const initialRows = Array.from({ length: 10 }, () => "");
   const unitOptions = ['kg', 'ltr', 'm', 'cm', 'box', 'piece'];
 
 
-    const initialData = Array.from({ length: 10 }, () => ({
-      description: '',
-      referenceLink: '',
-      unit: '',
-      quantity: '',
-      // unitPrice: '',
-      // total: '',
-      commentToSeller: '',
-    }));
+  const [rows, setRows] = useState([]);
   
-    const [rows, setRows] = useState(initialData);
+  useEffect(() => {
+    // If rows is empty, create initial rows
+    if (rows.length === 0) {
+      const initialRows = Array.from({ length: jobsPerPageValue }, () => ({
+        description: "",
+        referenceLink: "",
+        unit: "",
+        quantity: "",
+        commentToSeller: "",
+      }));
+      setRows(initialRows);
+    }
+  }, []); // Run once on mount
+
+  // Update rows length when jobsPerPageValue changes, preserving existing data
+  useEffect(() => {
+    setRows((prevRows) => {
+      const currentLength = prevRows.length;
+      if (jobsPerPageValue > currentLength) {
+        // Add empty rows to extend the array
+        const extraRows = Array.from({ length: jobsPerPageValue - currentLength }, () => ({
+          description: "",
+          referenceLink: "",
+          unit: "",
+          quantity: "",
+          commentToSeller: "",
+        }));
+        return [...prevRows, ...extraRows];
+      } else if (jobsPerPageValue < currentLength) {
+        // Trim rows if jobsPerPageValue is less
+        return prevRows.slice(0, jobsPerPageValue);
+      }
+      return prevRows; // same length, no change
+    });
+  }, [jobsPerPageValue]);
+
+  // Handle input changes and update state immutably
+  const handleInputChange = (value, rowIndex, field) => {
+    setRows((prevRows) => {
+      const newRows = [...prevRows];
+      newRows[rowIndex] = { ...newRows[rowIndex], [field]: value };
+      return newRows;
+    });
+  };
+  
     const [hoveredAddArea, setHoveredAddArea] = useState(null);
     const [selectedCell, setSelectedCell] = useState(null);
     const [showDeleteOption, setShowDeleteOption] = useState(null);
@@ -671,22 +707,23 @@ const initialRows = Array.from({ length: 10 }, () => "");
       setShowDeleteOption(null);
     };
   
-    const handleInputChange = (value, rowIndex, fieldName) => {
-      const updatedRows = [...rows];
-      updatedRows[rowIndex][fieldName] = value;
-      setRows(updatedRows);
-    };
+    // const handleInputChange = (value, rowIndex, fieldName) => {
+    //   const updatedRows = [...rows];
+    //   updatedRows[rowIndex][fieldName] = value;
+    //   setRows(updatedRows);
+    // };
   
     const handleCellClick = (rowIndex, colIndex) => {
       setSelectedCell({ row: rowIndex, col: colIndex });
       setShowDeleteOption(null);
     };
   
-    const handleArrowClick = (rowIndex, colIndex, e) => {
+    function handleArrowClick(rowIndex, colIndex, e) {
       e.stopPropagation();
-      const key = `${rowIndex}-${colIndex}`;
-      setShowDeleteOption(showDeleteOption === key ? null : key);
-    };
+      const key = colIndex === -1 ? `${rowIndex}-sno` : `${rowIndex}-${colIndex}`;
+      setShowDeleteOption((prev) => (prev === key ? null : key));
+    }
+    
   
     const handleOutsideClick = (e) => {
       if (!e.target.closest('td')) {
@@ -912,146 +949,203 @@ const initialRows = Array.from({ length: 10 }, () => "");
             </tr>
           </thead>
           <tbody>
-            {rows.map((row, rowIndex) => (
-              <tr key={rowIndex} onMouseLeave={() => setHoveredAddArea(null)}>
-                <td
-                  style={{
-                    width: '1px',
-                    position: 'relative',
-                    background: hoveredAddArea === rowIndex ? '#f0f0f0' : '#fafafa',
-                    cursor: 'pointer',
-                  }}
-                  onMouseEnter={() => setHoveredAddArea(rowIndex)}
-                  onMouseLeave={() => setHoveredAddArea(null)}
+  {rows.map((row, rowIndex) => (
+    <tr key={rowIndex} onMouseLeave={() => setHoveredAddArea(null)}>
+      {/* Add Row Button Cell */}
+      <td
+        style={{
+          width: '1px',
+          position: 'relative',
+          background: hoveredAddArea === rowIndex ? '#f0f0f0' : '#fafafa',
+          cursor: 'pointer',
+        }}
+        onMouseEnter={() => setHoveredAddArea(rowIndex)}
+        onMouseLeave={() => setHoveredAddArea(null)}
+      >
+        {hoveredAddArea === rowIndex && (
+          <div
+            onClick={() => handleAddRow(rowIndex)}
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              fontSize: '14px',
+              fontWeight: 'bold',
+              color: 'black',
+              userSelect: 'none',
+            }}
+          >
+            +
+          </div>
+        )}
+      </td>
+
+      {/* S.No Cell with Delete Option */}
+      <td
+        style={{ border: '1px solid #ccc', padding: '8px', position: 'relative', cursor: 'pointer' }}
+        onClick={() => handleCellClick(rowIndex, -1)} // Using -1 as colIndex for S.No
+      >
+        {rowIndex + 1}
+
+        {/* Arrow icon for S.No cell */}
+        {selectedCell?.row === rowIndex && selectedCell?.col === -1 && (
+          <div
+            style={{
+              position: 'absolute',
+              top: '5px',
+              right: '5px',
+              fontSize: '16px',
+              fontWeight: 'bold',
+              cursor: 'pointer',
+              userSelect: 'none',
+            }}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleArrowClick(rowIndex, -1, e); // Pass -1 as colIndex for S.No
+            }}
+          >
+            ▼
+          </div>
+        )}
+
+        {/* Delete Row option for S.No cell */}
+        {showDeleteOption === `${rowIndex}-sno` && (
+          <div
+            onClick={() => handleDeleteRows(rowIndex)}
+            style={{
+              position: 'absolute',
+              top: '25px',
+              right: '5px',
+              fontSize: '14px',
+              background: '#f44336',
+              color: '#fff',
+              padding: '5px',
+              borderRadius: '5px',
+              cursor: 'pointer',
+              zIndex: 999,
+              userSelect: 'none',
+            }}
+          >
+            Delete Row
+          </div>
+        )}
+      </td>
+
+      {/* Other editable cells */}
+      {['description', 'referenceLink', 'quantity', 'unit', 'commentToSeller'].map((fieldName, colIndex) => (
+        <td
+          key={colIndex}
+          style={{ position: 'relative', border: '1px solid #ccc', padding: '0px' }}
+          onClick={() => handleCellClick(rowIndex, colIndex)}
+        >
+          <textarea
+            value={row[fieldName]}
+            readOnly={fieldName === 'unit'}
+            onClick={() => {
+              if (fieldName === 'unit') {
+                setUnitDropdownIndex(rowIndex);
+              } else {
+                setUnitDropdownIndex(null);
+              }
+            }}
+            onChange={(e) => {
+              let value = e.target.value;
+              if (fieldName === 'quantity') value = value.replace(/\D/g, '');
+              else if (fieldName === 'unit') setUnitDropdownIndex(null);
+              handleInputChange(value, rowIndex, fieldName);
+            }}
+            onInput={(e) => {
+              e.target.style.height = "auto";
+              e.target.style.height = `${e.target.scrollHeight}px`;
+            }}
+            disabled={fieldName === 'unitPrice' || fieldName === 'total'}
+            style={{
+              width: '97%',
+              border: 'none',
+              outline: 'none',
+              resize: 'none',
+              fontFamily: 'inherit',
+              fontSize: 'inherit',
+              overflow: 'hidden',
+              overflowWrap: 'break-word',
+              whiteSpace: 'pre-wrap',
+              backgroundColor: fieldName === 'unitPrice' || fieldName === 'total' ? '#f2f2f2' : 'inherit',
+              color: fieldName === 'unitPrice' || fieldName === 'total' ? '#555' : 'inherit',
+              cursor: fieldName === 'unitPrice' || fieldName === 'total' ? 'not-allowed' : 'text',
+            }}
+          />
+          {/* Arrow icon for editable cells */}
+          {selectedCell?.row === rowIndex && selectedCell?.col === colIndex && (
+            <div
+              style={{
+                position: 'absolute',
+                top: '5px',
+                right: '5px',
+                fontSize: '16px',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                userSelect: 'none',
+              }}
+              onClick={(e) => handleArrowClick(rowIndex, colIndex, e)}
+            >
+              ▼
+            </div>
+          )}
+          {/* Delete Row option for editable cells */}
+          {showDeleteOption === `${rowIndex}-${colIndex}` && (
+            <div
+              onClick={() => handleDeleteRows(rowIndex)}
+              style={{
+                position: 'absolute',
+                top: '25px',
+                right: '5px',
+                fontSize: '14px',
+                background: '#f44336',
+                color: '#fff',
+                padding: '5px',
+                borderRadius: '5px',
+                cursor: 'pointer',
+                zIndex: 999,
+                userSelect: 'none',
+              }}
+            >
+              Delete Row
+            </div>
+          )}
+          {/* Unit dropdown */}
+          {fieldName === 'unit' && unitDropdownIndex === rowIndex && (
+            <div
+              ref={dropdownRef}
+              style={{
+                position: 'absolute',
+                top: '100%',
+                left: '0',
+                backgroundColor: 'white',
+                border: '1px solid #ccc',
+                zIndex: 10,
+                maxHeight: '100px',
+                overflowY: 'auto',
+                width: '100%',
+              }}
+            >
+              {unitOptions.map((unit, i) => (
+                <div
+                  key={i}
+                  onClick={() => handleUnitSelect(rowIndex, unit)}
+                  style={{ padding: '6px', cursor: 'pointer' }}
                 >
-                  {hoveredAddArea === rowIndex && (
-                    <div
-                      onClick={() => handleAddRow(rowIndex)}
-                      style={{
-                        position: 'absolute',
-                        top: '50%',
-                        left: '50%',
-                        transform: 'translate(-50%, -50%)',
-                        fontSize: '14px',
-                        fontWeight: 'bold',
-                        color: 'black',
-                        userSelect: 'none',
-                      }}
-                    >
-                      +
-                    </div>
-                  )}
-                </td>
-                <td style={{ border: '1px solid #ccc', padding: '8px' }}>{rowIndex + 1}</td>
-                {['description', 'referenceLink',  'quantity','unit', 'commentToSeller'].map((fieldName, colIndex) => (
-                  <td
-                    key={colIndex}
-                    style={{ position: 'relative', border: '1px solid #ccc', padding: '0px' }}
-                    onClick={() => handleCellClick(rowIndex, colIndex)}
-                  >
-                    <textarea
-                      value={row[fieldName]}
-                      readOnly={fieldName === 'unit'} // Make it read-only if it's the unit field
-  onClick={() => {
-    if (fieldName === 'unit') {
-      setUnitDropdownIndex(rowIndex); // Show dropdown
-    } else {
-      setUnitDropdownIndex(null); // Hide for other fields
-    }
-  }}
-                      onChange={(e) => {
-                        let value = e.target.value;
-                        if (fieldName === 'quantity') value = value.replace(/\D/g, '');
-                        
-                        
-                        else if (fieldName === 'unit') setUnitDropdownIndex(null);
-                        handleInputChange(value, rowIndex, fieldName);
-                      }}
-                      onInput={(e) => {
-                        e.target.style.height = "auto";
-                        e.target.style.height = `${e.target.scrollHeight}px`;
-                      }}
-                      disabled={fieldName === 'unitPrice' || fieldName === 'total'}
-                      style={{
-                        width: '97%',
-                        border: 'none',
-                        outline: 'none',
-                        resize: 'none',
-                        fontFamily: 'inherit',
-                        fontSize: 'inherit',
-                        overflow: 'hidden',
-                        overflowWrap: 'break-word',
-                        whiteSpace: 'pre-wrap',
-                        backgroundColor: fieldName === 'unitPrice' || fieldName === 'total' ? '#f2f2f2' : 'inherit',
-                        color: fieldName === 'unitPrice' || fieldName === 'total' ? '#555' : 'inherit',
-                        cursor: fieldName === 'unitPrice' || fieldName === 'total' ? 'not-allowed' : 'text',
-                      }}
-                    />
-                    {selectedCell?.row === rowIndex && selectedCell?.col === colIndex && (
-                      <div
-                        style={{
-                          position: 'absolute',
-                          top: '5px',
-                          right: '5px',
-                          fontSize: '16px',
-                          fontWeight: 'bold',
-                          cursor: 'pointer',
-                        }}
-                        onClick={(e) => handleArrowClick(rowIndex, colIndex, e)}
-                      >
-                        ▼
-                      </div>
-                    )}
-                    {showDeleteOption === `${rowIndex}-${colIndex}` && (
-                      <div
-                        onClick={() => handleDeleteRows(rowIndex)}
-                        style={{
-                          position: 'absolute',
-                          top: '25px',
-                          right: '5px',
-                          fontSize: '14px',
-                          background: '#f44336',
-                          color: '#fff',
-                          padding: '5px',
-                          borderRadius: '5px',
-                          cursor: 'pointer',
-                          zIndex: 999,
-                        }}
-                      >
-                        Delete Row
-                      </div>
-                    )}
-                    {fieldName === 'unit' && unitDropdownIndex === rowIndex && (
-                      <div
-                        ref={dropdownRef}
-                        style={{
-                          position: 'absolute',
-                          top: '100%',
-                          left: '0',
-                          backgroundColor: 'white',
-                          border: '1px solid #ccc',
-                          zIndex: 10,
-                          maxHeight: '100px',
-                          overflowY: 'auto',
-                          width: '100%',
-                        }}
-                      >
-                        {unitOptions.map((unit, i) => (
-                          <div
-                            key={i}
-                            onClick={() => handleUnitSelect(rowIndex, unit)}
-                            style={{ padding: '6px', cursor: 'pointer' }}
-                          >
-                            {unit}
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
+                  {unit}
+                </div>
+              ))}
+            </div>
+          )}
+        </td>
+      ))}
+    </tr>
+  ))}
+</tbody>
+
         </table>
       </div>
       <div style={{ marginTop: "10px", marginBottom: "10px", marginLeft: "23px", marginRight: "0px", display: "flex", justifyContent: "space-between" }}>
