@@ -789,6 +789,28 @@ const initialRows = Array.from({ length: 10 }, () => "");
         navigate("/JobSeekerLogin");
 
     };
+
+
+    const handleCart = () => {
+      // Filter out empty rows
+      const filteredRows = rows.filter(row => {
+        return Object.values(row).some(value => value !== "" && value !== null && value !== undefined);
+      });
+    
+      const tableData = filteredRows.map((row, index) => ({
+        sno: index + 1,
+        ...row,
+      }));
+    
+      const AllData = {
+        tableData: tableData,
+        terms: terms
+      };
+    
+      localStorage.setItem("draftApplicationData", JSON.stringify(AllData));
+        navigate("/MissingCart");
+
+    };
     
   
     const [terms, setTerms] = useState("");
@@ -914,7 +936,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
             </select> rows per pages
             </div>
             <div style={{display:"flex"}}>
-            <button style={{ marginRight: "1px", backgroundColor: enableBtn ? "#280463" : "#ccc", }} disabled={!enableBtn} className={styles.jobdetailBackBtn}> 🛒 Add to Cart</button>
+            <button onClick={handleCart} style={{ marginRight: "1px", backgroundColor: enableBtn ? "#280463" : "#ccc", }} disabled={!enableBtn} className={styles.jobdetailBackBtn}> 🛒 Add to Cart</button>
             <button style={{marginRight:"40px",  backgroundColor: enableBtn ? "#280463" : "#ccc",}} disabled={!enableBtn} onClick={handleSubmits} class={styles.jobdetailBackBtn} >Buy</button>
             </div> 
           </div>
@@ -1147,7 +1169,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
         </div>
 
         <div style={{display:"flex", alignItems:"center"}}>
-        <button style={{ marginRight: "1px",backgroundColor: enableBtn ? "#280463" : "#ccc", }} disabled={!enableBtn} className={styles.jobdetailBackBtn}>🛒 Add to Cart</button>
+        <button onClick={handleCart} style={{ marginRight: "1px",backgroundColor: enableBtn ? "#280463" : "#ccc", }} disabled={!enableBtn} className={styles.jobdetailBackBtn}>🛒 Add to Cart</button>
 
         <button style={{marginRight:"40px",backgroundColor: enableBtn ? "#280463" : "#ccc",}} disabled={!enableBtn} onClick={handleSubmits} class={styles.jobdetailBackBtn} >Buy</button>
         {/* <button

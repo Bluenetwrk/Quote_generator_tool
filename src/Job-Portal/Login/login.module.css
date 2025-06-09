@@ -1,3 +1,35 @@
+.container {
+    text-align: center;
+    padding: 40px 20px;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    max-width: 400px;
+    margin: auto;
+    border-radius: 10px;
+  }
+  
+  .image {
+    width: 360px;
+    height: 360px; 
+    margin-bottom: 20px;
+    object-fit: contain;
+  }
+  
+  
+  .heading {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .subtext {
+    font-size: 15px;
+    margin-bottom: 25px;
+    color: #666;
+  }
+  
+ 
+
 
 .Loginpage{
     /* color:grey; */
