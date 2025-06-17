@@ -865,7 +865,7 @@ const selectedTag=useRef("")
                 <span style={{ color: "blue" }}>{Active.toString()}</span></p>
     
               :
-              <p style={{ fontWeight: 400, marginLeft: "10px" }}>showing {firstIndex + 1} to {lastIndex} latest jobs</p>
+              <p style={{ fontWeight: 400, marginLeft: "10px" }}>showing {firstIndex + 1} to {lastIndex}  Purchase Requirements</p>
             }
             <div className={styles.navigationWrapper}>
               <button disabled={currentPage === 1} style={{ display: "inline", margin: "5px" }} className={styles.navigation} onClick={firstPage}>
@@ -893,7 +893,7 @@ const selectedTag=useRef("")
               <option selected={jobsPerPageValue==25} value={25}>25</option>
               <option selected={jobsPerPageValue==50} value={50}>50</option>
               <option selected={jobsPerPageValue==100} value={100}>100</option>
-            </select>  jobs per page
+            </select>  rows per page
           </div>
 
           <div className={styles.Uiwarpper}>

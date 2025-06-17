@@ -280,8 +280,9 @@ function Nav(props) {
                                         display: "flex",
                                         alignItems: "center",
                                         padding: "10px",
-                                        cursor: "pointer",
+                                        cursor: option.value === "bangalore" ? "pointer" : "default",
                                         borderRadius: "10px",
+                                        color: option.value !== "bangalore" ? "gray" : "black",
                                       }}
                                     >
                                       <img
@@ -310,7 +311,7 @@ function Nav(props) {
   <div className={Styles.JobSeekerdropdownwrapper} ref={menuRef} >
     <p className={Styles.text} ref={menuRef} onClick={myprofile}>My profile</p>
 
-    <p className={Styles.text} ref={menuRef} onClick={MyJobApplied}>Jobs Applied</p>
+    <p className={Styles.text} ref={menuRef} onClick={MyJobApplied}>My quotes</p>
     <p className={Styles.text} ref={menuRef} onClick={AskQuestion}>Ask Question</p>
     <p className={Styles.text} ref={menuRef} onClick={StudlogOut}>Logout</p>
 
@@ -433,8 +434,9 @@ function Nav(props) {
                                         display: "flex",
                                         alignItems: "center",
                                         padding: "10px",
-                                        cursor: "pointer",
+                                        cursor: option.value === "bangalore" ? "pointer" : "default",
                                         borderRadius: "10px",
+                                        color: option.value !== "bangalore" ? "gray" : "black",
                                       }}
                                     >
                                       <img
@@ -467,7 +469,7 @@ function Nav(props) {
                         <div className={Styles.Alldownwrapper} >
                           <div className={Styles.Empdropdownwrapper} ref={menuRef} >
                             <p className={Styles.text} ref={menuRef} onClick={EmployeeProfile} >My profile</p>
-                            <p className={Styles.text} ref={menuRef} onClick={mypostedjob}>My posted Jobs</p>
+                            <p className={Styles.text} ref={menuRef} onClick={mypostedjob}>My Submitted Quotes</p>
                             <p className={Styles.text} ref={menuRef} onClick={mypostedArticle}>posted Articles</p>
                             <p className={Styles.text} ref={menuRef} onClick={PostBlogs}>Write Article</p>
                             <p className={Styles.text} ref={menuRef} onClick={logutEmp}>Logout</p>
@@ -642,8 +644,10 @@ function Nav(props) {
                                         display: "flex",
                                         alignItems: "center",
                                         padding: "10px",
-                                        cursor: "pointer",
+                                        cursor: option.value === "bangalore" ? "pointer" : "default",
                                         borderRadius: "10px",
+                                        color: option.value !== "bangalore" ? "gray" : "black",
+
                                       }}
                                     >
                                       <img
@@ -668,8 +672,8 @@ function Nav(props) {
                          {
                            ShowRegister?
                            <div className={Styles.dropdownwrapperHomeRegistration} ref={newReg} >
-                           <p onClick={()=>{navigate("/New-Registration");setShowRegister(false)}}>Employer Registration</p>
-                           <p onClick={()=>{navigate("/Jobseeker-New-Registration");setShowRegister(false)}}>JobSeeker Registration</p>
+                           <p onClick={()=>{navigate("/New-Registration");setShowRegister(false)}}>Seller Registration</p>
+                           <p onClick={()=>{navigate("/Jobseeker-New-Registration");setShowRegister(false)}}>Buyer Registration</p>
                            </div>
                            :""
                          }
@@ -734,7 +738,7 @@ function Nav(props) {
                   <div className={Styles.Alldownwrapper} >
                   <div className={Styles.MobJobseekerDropdownwrapperlogin} ref={menuRef} >
                     <p className={Styles.text} ref={menuRef} onClick={myprofile}>My profile</p>
-                    <p className={Styles.text} ref={menuRef} onClick={MyJobApplied}>Jobs Applied</p>
+                    <p className={Styles.text} ref={menuRef} onClick={MyJobApplied}>My quotes</p>
                     <p className={Styles.text} ref={menuRef} onClick={AskQuestion}>Ask Question</p>
 
                     <p className={Styles.text} ref={menuRef} onClick={StudlogOut}>Logout</p>
@@ -869,7 +873,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                       {showprofile ?
                      <div  className={Styles.EmpMobDropdownwrapperMobile} ref={menuRef} >
                     <p className={Styles.text} ref={menuRef} onClick={EmployeeProfile} >My profile</p>
-                    <NavLink to="/postedjobs" className={`${Styles.text} `} > Posted jobs</NavLink>
+                    <NavLink to="/postedjobs" className={`${Styles.text} `} >My Submitted Quotes</NavLink>
                     <p className={Styles.text} ref={menuRef} onClick={logutEmp}>Logout</p>
                     </div>
                      : ""}
@@ -1003,8 +1007,9 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                                         display: "flex",
                                         alignItems: "center",
                                         padding: "10px",
-                                        cursor: "pointer",
+                                        cursor: option.value === "bangalore" ? "pointer" : "default",
                                         borderRadius: "10px",
+                                        color: option.value !== "bangalore" ? "gray" : "black",
                                       }}
                                     >
                                       <img

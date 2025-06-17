@@ -267,7 +267,7 @@ const Modal = ({ isOpen, onClose, children }) => {
                 <>
 
       <div className={styles.BothsignUpWrapperModel}>
-        <p className={styles.Loginpage}>Employer Login </p>
+        <p className={styles.Loginpage}>Seller Login </p>
 
 
         {/* <input maxLength="10" className={styles.inputs} type="number" placeholder='enter phone Number'
