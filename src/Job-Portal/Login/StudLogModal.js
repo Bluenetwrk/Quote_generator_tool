@@ -284,7 +284,7 @@ const Modal = ({ isStuOpen, onClose, children, msalInstance }) => {
 				<>
 
 					<div className={styles.BothsignUpWrapperModel}>
-						<p className={styles.Loginpage}> Job Seeker Login  </p>
+						<p className={styles.Loginpage}> Buyer Login  </p>
 
 						{/* <input maxLength="10" className={styles.inputs} type="number" placeholder='enter phone Number'
             value={PhoneNumber} autoComplete="on" onChange={(e) => { setPhoneNumber(e.target.value) }} />
