@@ -299,7 +299,7 @@ function EmpLogin(props) {
       {/* <div id={styles.inputWrapper}> */}
       {/* <div style={{ marginTop: "10px", marginLeft: "37%" }}> */}
       <div className={styles.BothsignUpWrapper}>
-        <p className={styles.Loginpage}>Employer Login page </p>
+        <p className={styles.Loginpage}>Seller Login page </p>
 
         {/* 
         <input maxLength="10" className={styles.inputs} type="number" placeholder='enter phone Number'

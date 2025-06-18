@@ -469,7 +469,7 @@ function Nav(props) {
                         <div className={Styles.Alldownwrapper} >
                           <div className={Styles.Empdropdownwrapper} ref={menuRef} >
                             <p className={Styles.text} ref={menuRef} onClick={EmployeeProfile} >My profile</p>
-                            <p className={Styles.text} ref={menuRef} onClick={mypostedjob}>My Submitted Quotes</p>
+                            <p className={Styles.text} ref={menuRef} onClick={mypostedjob}>MY Posted Purchases</p>
                             <p className={Styles.text} ref={menuRef} onClick={mypostedArticle}>posted Articles</p>
                             <p className={Styles.text} ref={menuRef} onClick={PostBlogs}>Write Article</p>
                             <p className={Styles.text} ref={menuRef} onClick={logutEmp}>Logout</p>
@@ -873,7 +873,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                       {showprofile ?
                      <div  className={Styles.EmpMobDropdownwrapperMobile} ref={menuRef} >
                     <p className={Styles.text} ref={menuRef} onClick={EmployeeProfile} >My profile</p>
-                    <NavLink to="/postedjobs" className={`${Styles.text} `} >My Submitted Quotes</NavLink>
+                    <NavLink to="/postedjobs" className={`${Styles.text} `} >MY Posted Purchases</NavLink>
                     <p className={Styles.text} ref={menuRef} onClick={logutEmp}>Logout</p>
                     </div>
                      : ""}
