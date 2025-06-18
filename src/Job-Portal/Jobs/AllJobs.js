@@ -699,13 +699,19 @@ const selectedTag=useRef("")
         setUnitDropdownIndex(null);
       };
 
+       const [hTitle, sethTitle] = useState("");
+          const updatehTitle = (event) => {
+            sethTitle(event.target.value);
+          };
+
       useEffect(() => {
         const draftData = localStorage.getItem("draftApplicationData");
         if (draftData) {
           const parsedData = JSON.parse(draftData);
-          // console.log(parsedData.terms)
+          console.log(parsedData)
           if (parsedData.tableData) setRows(parsedData.tableData);
           if (parsedData.terms) setTerms(parsedData.terms);
+          if (parsedData.hTitle) sethTitle(parsedData.hTitle);
           localStorage.removeItem("draftApplicationData"); // Clean up after restore
         }
       
@@ -901,7 +907,10 @@ const selectedTag=useRef("")
               <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "49%", marginTop: "50px" }} />
               : ""
             } */}
-            
+            <div style={{display:"flex", marginLeft:"4%", gap:"4px", alignItems:"center"}}>
+          <h2>Title : </h2>
+          <input value={hTitle} onChange={(event) => updatehTitle(event)} style={{ width: "500px", height: "20px" }}></input>
+        </div>
             <div className={styles.Uiwarpper} style={{ marginTop: "20px", marginLeft: "15px", marginRight: "20px" }}>
       <div className={styles.ul} style={{ marginTop: "-30px" }}>
         <table style={{ borderCollapse: 'collapse', width: '100%' }}>
@@ -909,6 +918,7 @@ const selectedTag=useRef("")
             <tr>
               <th style={{ width: '1px' }}></th>
               <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white", width:"40px" }}>SL.No</th>
+              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"200px" }}>Title</th>
               <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"200px" }}>Description</th>
               <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"200px" }}>Reference Link to Amazon/Flipkart</th>
               <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"34px" }}>Quantity</th>
@@ -1002,7 +1012,7 @@ const selectedTag=useRef("")
       </td>
 
       {/* Other editable cells */}
-      {['description', 'referenceLink', 'quantity', 'unit', 'commentToSeller'].map((fieldName, colIndex) => (
+      {['title','description', 'referenceLink', 'quantity', 'unit', 'commentToSeller'].map((fieldName, colIndex) => (
         <td
           key={colIndex}
           style={{ position: 'relative', border: '1px solid #ccc', padding: '0px' }}

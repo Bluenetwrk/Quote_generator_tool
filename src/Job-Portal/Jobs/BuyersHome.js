@@ -638,6 +638,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
     // If rows is empty, create initial rows
     if (rows.length === 0) {
       const initialRows = Array.from({ length: jobsPerPageValue }, () => ({
+        title:"",
         description: "",
         referenceLink: "",
         unit: "",
@@ -655,6 +656,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
       if (jobsPerPageValue > currentLength) {
         // Add empty rows to extend the array
         const extraRows = Array.from({ length: jobsPerPageValue - currentLength }, () => ({
+          title: "",
           description: "",
           referenceLink: "",
           unit: "",
@@ -688,6 +690,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
     const handleAddRow = (index) => {
       const newRows = [...rows];
       newRows.splice(index + 1, 0, {
+        title: '',
         description: '',
         referenceLink: '',
         unit: '',
@@ -782,7 +785,8 @@ const initialRows = Array.from({ length: 10 }, () => "");
     
       const AllData = {
         tableData: tableData,
-        terms: terms
+        terms: terms,
+        hTitle:hTitle
       };
     
       localStorage.setItem("draftApplicationData", JSON.stringify(AllData));
@@ -804,7 +808,8 @@ const initialRows = Array.from({ length: 10 }, () => "");
     
       const AllData = {
         tableData: tableData,
-        terms: terms
+        terms: terms,
+        hTitle:hTitle
       };
     
       localStorage.setItem("draftApplicationData", JSON.stringify(AllData));
@@ -817,6 +822,12 @@ const initialRows = Array.from({ length: 10 }, () => "");
     const updateTerms = (event) => {
       setTerms(event.target.value);
     };
+
+    const [hTitle, sethTitle] = useState("");
+    const updatehTitle = (event) => {
+      sethTitle(event.target.value);
+    };
+  
   
     const handleUnitSelect = (rowIndex, unit) => {
       const current = rows[rowIndex].unit;
@@ -946,7 +957,10 @@ const initialRows = Array.from({ length: 10 }, () => "");
               <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "49%", marginTop: "50px" }} />
               : ""
             } */}
-            
+        <div style={{display:"flex", marginLeft:"4%", gap:"4px", alignItems:"center"}}>
+          <h2>Title : </h2>
+          <input value={hTitle} onChange={(event) => updatehTitle(event)} style={{ width: "500px", height: "20px" }}></input>
+        </div>
             <div className={styles.Uiwarpper} style={{ marginTop: "20px", marginLeft: "15px", marginRight: "20px" }}>
       <div className={styles.ul} style={{ marginTop: "-30px" }}>
         <table style={{ borderCollapse: 'collapse', width: '100%' }}>
@@ -954,7 +968,9 @@ const initialRows = Array.from({ length: 10 }, () => "");
             <tr>
               <th style={{ width: '1px' }}></th>
               <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white", width:"40px" }}>SL.No</th>
+              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"200px" }}>Title</th>
               <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"200px" }}>Description</th>
+
               <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"200px" }}>Reference Link to Amazon/Flipkart</th>
 
               <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"34px" }}>Quantity</th>
@@ -1047,7 +1063,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
       </td>
 
       {/* Other editable cells */}
-      {['description', 'referenceLink', 'quantity', 'unit', 'commentToSeller'].map((fieldName, colIndex) => (
+      {['title', 'description', 'referenceLink', 'quantity', 'unit', 'commentToSeller'].map((fieldName, colIndex) => (
         <td
           key={colIndex}
           style={{ position: 'relative', border: '1px solid #ccc', padding: '0px' }}
