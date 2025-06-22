@@ -1,37 +1,5 @@
 /* ---------------------Employer Home page starts--------------- */
-.Applybutton{
-    border: 1px solid rgb(40, 4, 99);
-    background-color: rgb(40, 4, 99);
-    display: flex;
-    color: white;
-    /* font-weight: bold; */
-    width:80%;
-    padding-left: 15px;
-    /* padding-right: 1px; */
-    height: 25px;
-    align-items: center;
-    text-align: center;
-    margin-left: 6%;
-    cursor:pointer;
-}
-.ApplybuttonMobile{
-    border: 1px solid rgb(40, 4, 99);
-    background-color: rgb(40, 4, 99);
-    display: flex
-;
-    color: white;
-    /* font-weight: bold; */
-    width: 36%;
-    padding-left: 15px;
-    /* padding-right: 1px; */
-    height: 25px;
-    align-items: center;
-    text-align: center;
-    margin-left: 3%;
-    cursor: pointer;
-    margin-top: 14px;
-    margin-bottom: 6px;
-}
+
 .blogSearchContainer{
     display: flex;
     gap:2px;
@@ -267,7 +235,7 @@
     border-radius: 3px;
     border: none;
 }
-.JobtitleFilter:hover{    
+/* .JobtitleFilter:hover{    
     background-color: rgb(40, 4, 99);
 
     margin: 4px;
@@ -279,7 +247,7 @@
     align-content: center;
     text-wrap: nowrap ;
     border-radius: 3px;
-}
+} */
 .TagHeading{
     /* background:rgb(242, 244, 245); */
     background:rgb(228, 230, 231);

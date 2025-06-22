@@ -9,7 +9,7 @@
   }
   
   .image {
-    width: 360px;
+    width: 90%;
     height: 360px; 
     margin-bottom: 20px;
     object-fit: contain;
@@ -199,3 +199,15 @@
     text-decoration: none;
 }
 
+.addToCartLoginMenu {
+    display: flex;
+    gap: 10px;
+  }
+  
+  @media (max-width: 376px) {
+    .addToCartLoginMenu {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+  

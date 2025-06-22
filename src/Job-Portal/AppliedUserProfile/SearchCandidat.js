@@ -618,7 +618,7 @@ return(
 
       {screenSize.width > 850 ?
         <>
-         
+          <h2 style={{marginLeft:"10px", fontWeight:"800", marginTop:"54px", marginBottom:"-47px"}}> Seller Home </h2>
             <div className={styles.JobtitleFilterWrapper} style={{marginTop:"55px"}}>
                    <buton className={Active.length===0?styles.active:styles.JobtitleFilter} onClick={() => 
                 { getAllJobSeekers() }}>All</buton>
@@ -680,42 +680,24 @@ return(
 
           <div className={styles.AllUiWrapper}>
             <ul className={styles.ul} >
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.name}`}><b> Jobseeker Name</b>
+              <li style={{width:"6%", backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.name}`}><b> SL.No</b>
               </li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.NoticePeriod}`}><b>Notice Period</b>
+              <li style={{width:"18%", backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.NoticePeriod}`}><b>company Name</b>
                 <p style={{ display: "inline", marginLeft: "4%" }}>
                   <i onClick={NoticeAscendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
                   <i onClick={NoticeDescendingOrder} className={`${styles.arrow} ${styles.down}`}></i>
                 </p>
               </li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.age}`}> <b>Age</b>
-                <p style={{ display: "inline", marginLeft: "7%" }}>
-                  <i onClick={AgeAscendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
-                  <i onClick={AgeDescendingOrder} className={`${styles.arrow} ${styles.down}`}></i>
-                </p>
-              </li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Qualification}`}>  <b>Qualif</b>
-              </li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Experiance}`}><b>Experience</b>
-                <p style={{ display: "inline", marginLeft: "1%" }}>
-                  <i onClick={ExpAscendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
-                  <i onClick={ExpDescendingOrder} className={`${styles.arrow} ${styles.down}`}></i>
-                </p>
-              </li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Skills}`}> <b>Skills</b> </li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.currentCTC}`}> <b>Curr. CTC</b>
+
+              <li style={{width:"51%", backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Skills}`}> <b>Requirment Title</b> </li>
+              <li style={{width:"18%", backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.currentCTC}`}> <b>Posted on</b>
                 <p style={{ display: "inline", marginLeft: "2%" }}>
                   <i onClick={CurrCTCAscendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
                   <i onClick={CurrCTCDescendingOrder} className={`${styles.arrow} ${styles.down}`}></i>
                 </p>
               </li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.ExpectedSalary}`}><b>Exp. CTC</b>
-                <p style={{ display: "inline", marginLeft: "2%" }}>
-                  <i onClick={ExpCTCAscendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
-                  <i onClick={ExpCTCDescendingOrder} className={`${styles.arrow} ${styles.down}`}></i>
-                </p>
-              </li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.LastActive}`}><b>Last Active</b>
+        
+              <li style={{width:"10%", backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.LastActive}`}><b>View</b>
                 <p style={{ display: "inline", marginLeft: "1%" }}>
                   <i onClick={LastActAscendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
                   <i onClick={LastActDescendingOrder} className={`${styles.arrow} ${styles.down}`}></i>
@@ -725,53 +707,39 @@ return(
 
             </ul>
            
-            {
+            {/* {
              
                 Candidate.length > 0 ?
                   Candidate.map((Applieduser, i) => {
-                    return (
+                    return ( */}
                       <>
  
-                        <ul className={styles.ul} key={i}>
-                          <li className={`${styles.li} ${styles.name} ${styles.onclick}`} onClick={() => { CheckProfile(btoa(Applieduser._id)) }} >
-                            {Applieduser.name ? <a className={styles.namelink} title="Click to check the Contact Details">
-                              {Applieduser.name}</a> : <li className={styles.Nli}>N/A</li>} </li>
+                        <ul className={styles.ul} >
+                          <li style={{width:"6%"}} className={`${styles.li} ${styles.name} ${styles.onclick}`}  >
+                            {} </li>
 
-                          <li className={`${styles.li} ${styles.NoticePeriod}`}> {Applieduser.NoticePeriod ?
-                            Applieduser.NoticePeriod : <li className={styles.Nli}>N/A</li>} </li>
-                          <li className={`${styles.li} ${styles.age}`}> {Applieduser.age ?
-                            Applieduser.age : <li className={styles.Nli}>N/A</li>} </li>
-                          <li className={`${styles.li} ${styles.Qualification}`}> {Applieduser.Qualification ?
-                            Applieduser.Qualification : <li className={styles.Nli}>N/A</li>} </li>
-                          <li className={`${styles.li} ${styles.Experiance}`}> {Applieduser.Experiance ?
-                            Applieduser.Experiance : <li className={styles.Nli}>N/A</li>} </li>
-                          <li className={`${styles.li} ${styles.Skills}`}> {Applieduser.Skills ?
-                            Applieduser.Skills : <li className={styles.Nli}>N/A</li>} </li>
-                          <li className={`${styles.li} ${styles.currentCTC}`}> {Applieduser.currentCTC ?
-                            Applieduser.currentCTC : <li className={styles.Nli}>N/A</li>} </li>
-                          <li className={`${styles.li} ${styles.ExpectedSalary}`}> {Applieduser.ExpectedSalary ?
-                            Applieduser.ExpectedSalary : <li className={styles.Nli}>N/A</li>} </li>
+                          <li style={{width:"18%"}} className={`${styles.li} ${styles.NoticePeriod}`}> {} </li>
+                          <li style={{width:"51%"}} className={`${styles.li} ${styles.Skills}`}> {} </li>
+                          <li style={{width:"18%"}} className={`${styles.li} ${styles.currentCTC}`}> {} </li>
+                         
 
-                          <li className={`${styles.li} ${styles.LastActive}`}>
-                            {new Date(Applieduser.updatedAt).toLocaleString(
+                          <li style={{width:"10%"}} className={`${styles.li} ${styles.LastActive}`}>
+                            {/* {new Date(Applieduser.updatedAt).toLocaleString(
                               "en-US",
                               {
                                 month: "short",
                                 day: "2-digit",
                                 year: "numeric",
                               }
-                            )}
-                          </li>
+                            )} */}
+                            <button className={styles.Applybutton} onClick={() => { navigate("/Seller-view-details") }}>View Details</button>
+
+                                           </li>
 
                         </ul>
                       </>
 
-                    )
-                  })
-                  :
-                  <p style={{ marginLeft: "45%", color: "red" }}>No Record found</p>
-
-            }
+            
             <div>
             </div>
           </div >
@@ -825,6 +793,8 @@ return(
             <h4 style={{ marginLeft: "19%", marginTop: "10px" }}> {Candidate.length} matching Result Found  </h4>
             : ""
           } */}
+          <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Seller Home</h2>
+
            <div className={styles.JobtitleFilterWrapper}>
                    <buton className={Active.length===0?styles.active:styles.JobtitleFilter} onClick={() => 
                 { getAllJobSeekers() }}>All</buton>
@@ -851,587 +821,54 @@ return(
               </div>
 
 
-{/* <Carousel
-            swipeable={true}
-            draggable={false}
-            responsive={responsive}
-            autoPlay={false}
-            autoPlaySpeed={4000} //defalult is 3 sec
-            keyBoardControl={true}
-            dotListClass="custom-dot-list-style"
-            itemClass="carousel-item-padding-40-px"
-            containerClass="carousel-container"
-            // showDots={true}
-            infinite={true}
-            // className='cardWrapper'
-            removeArrowOnDeviceType={["tablet", "mobile", "desktop"]}
-          > */}
-
-{/* <div style={{ display: "flex" }}>
-              
-
-              <div className={styles.MobFilterJobTitleWrapper}>
-                <label><input className={styles.MobJobtitleFilter} type="radio" name="filter" onClick={() => { getAllJobSeekers() }} />All</label>
-                {
-                  jobTags.map((tags, i) => {
-                    return (
-                      <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                        tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                        className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                        tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                        styles.TagHeading: styles.MobJobtitleFilter} 
-                    
-                        type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                   
-                      )
-                  }).slice(0, 4)
-                }
-              </div>
-
-              <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(4, 9)
-                }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(9, 14)
-                }
-              </div>
-            </div> */}
-
-            {/* ....up to here is 1st div i.e button in 1st display and now from down here is 2nd div..i.e 2nd display..................................... */}
-            {/* <div style={{ display: "flex" }}>
-              <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(14, 19)
-                }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(19, 24)
-                }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(24, 29)
-                }
-              </div> */}
-            {/* </div> */}
-            {/* ....from down here is 3rd div..i.e 3rd display..................................... */}
-            {/* <div style={{ display: "flex" }}>
-              <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(29, 34)
-                }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(34, 39)
-                }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(39, 44)
-                }
-              </div>
-            </div> */}
-            {/* .................from down here is 4th div..i.e 4th display....................... */}
-            {/* <div style={{ display: "flex" }}>
-              <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(44, 49)
-                }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(49,54)
-                }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(54, 59)
-                }
-              </div>
-            </div> */}
-            {/* .................from down here is 5th div..i.e 5th display....................... */}
-
-            {/* <div style={{ display: "flex" }}>              
-
-              <div className={styles.MobFilterJobTitleWrapper}>
-                {
-                  jobTags.map((tags, i) => {
-                    return (
-                      <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                        tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                        className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                        tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                        styles.TagHeading: styles.MobJobtitleFilter} 
-                        type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                   
-                      )
-                  }).slice(59, 64)
-                }
-              </div>
-
-              <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(64, 69)
-                }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(69, 74)
-                }
-              </div> */}
-            {/* </div> */}
-
-            {/* ....ufrom down here is 6th div..i.e 6th display..................................... */}
-            {/* <div style={{ display: "flex" }}>
-              <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(74, 79)
-                }
-              </div> */}
-              {/* <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(79, 84)
-                }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  ) */}
-                {/* }).slice(84, 89)
-                }
-              </div>
-            </div> */}
-            {/* ....from down here is 7th div..i.e 7th display..................................... */}
-            {/* <div style={{ display: "flex" }}>
-              <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(89, 94)
-                }
-              </div> */}
-              {/* <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(94, 99)
-                }
-              </div> */}
-              {/* <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(99, 104)
-                }
-              </div>
-            </div> */}
-            {/* .................from down here is 8th div..i.e 8th display....................... */}
-            {/* <div style={{ display: "flex" }}>
-              <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(104, 109)
-                }
-              </div> */}
-              {/*  */}
-              {/* <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(114, 119)
-                }
-              </div>
-            </div> */}
-            {/* .................from down here is 9th div..i.e 9th display....................... */}
-
-            {/* <div style={{ display: "flex" }}>
-              
-              <div className={styles.MobFilterJobTitleWrapper}>
-                {
-                  jobTags.map((tags, i) => {
-                    return (
-                      <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                        tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                        className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                        tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                        styles.TagHeading: styles.MobJobtitleFilter} 
-                        type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                                         )
-                  }).slice(119, 124)
-                }
-              </div> */}
-
-              {/* <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(109,114)
-                } */}
-              {/* </div>tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(124, 129)
-                }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(129, 134)
-                }
-              </div> */}
-            {/* </div> */}
-
-            {/* ....from down here is 10th div..i.e 10th display..................................... */}
-            {/* <div style={{ display: "flex" }}>
-              <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(134, 139)
-                }
-              </div> */}
-              {/* <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(139, 144)
-                }
-              </div> */}
-              {/* <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(144, 149)
-                }
-              </div>
-            </div> */}
-            {/* ....from down here is 11th div..i.e 11th display..................................... */}
-            {/* <div style={{ display: "flex" }}>
-              <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(149, 154)
-                }
-              </div> */}
-              {/* <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(154, 159)
-                }
-              </div> */}
-              {/* <div className={styles.MobFilterJobTitleWrapper}>
-                {jobTags.map((tags, i) => {
-                  return (
-                    <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                      styles.TagHeading: styles.MobJobtitleFilter} 
-                      type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
-                 
-                  )
-                }).slice(159, 164)
-                }
-              </div>
-            </div> 
-
-           
-          </Carousel> */}
 
           <div id={styles.JobCardWrapper} >
 
-            {Candidate.length>0?
+            {/* {Candidate.length>0?
             Candidate.map((job, i) => {
-              return (
+              return ( */}
                 <>
-                  <div className={styles.JobCard} key={i}>
+                  <div className={styles.JobCard} >
                     <div style={{ display: "flex" }}>
 
                       <div className={styles.LeftTable}>
-                        <span className={styles.span}>Jobseeker Name :  </span> <br></br>
-                        <span className={styles.span}><u>Last Active :  </u></span> <br></br>
-                        <span className={styles.span}>Age :</span><br></br>
-                        <span className={styles.span}> Notice Period :</span><br></br>
-                        <span className={styles.span}>Qualification :</span><br></br>
-                        <span className={styles.span}>Experience : </span><br></br>
-                        <span className={styles.span}> Current CTC :</span><br></br>
-                        <span className={styles.span}>Expected CTC : </span><br></br>
+                        <span className={styles.span}>SL No :  </span> <br></br>
+                        <span className={styles.span}>Company :</span><br></br>
+                        <span className={styles.span}>Requirement Title :</span><br></br>
+                        <span className={styles.span}>posted on :</span><br></br>
                       </div>
 
                       <div className={styles.RightTable}>
-                        <span className={styles.span}><span style={{ color: "blue", textDecoration: "underline" }} onClick={() => { CheckProfile(btoa(job._id)) }} >{job.name}</span></span><br></br>
-                        <span className={styles.span}> <u>{new Date(job.updatedAt).toLocaleString(
+                          
+                        <span className={styles.span}> <span style={{ color: "red" }}>Not Available</span></span><br></br>
+                        <span className={styles.span}> <span style={{ color: "red" }}>Not Available</span></span><br></br>
+                        {/* <span className={styles.span}> {job.Qualification ? <span style={{ color: "blue" }}>{job.Qualification} </span> : <span style={{ color: "red" }}>Not updated</span>}</span><br></br> */}
+                        {/* <span className={styles.span}> {job.Experiance ? <span style={{ color: "blue" }}>{job.Experiance} </span> : <span style={{ color: "red" }}>Not updated</span>}   </span><br></br>
+                        <span className={styles.span}>{job.currentCTC ? <span style={{ color: "blue" }}>{job.currentCTC} </span> : <span style={{ color: "red" }}>Not updated</span>} </span><br></br> */}
+                        <span className={styles.span}><span style={{ color: "red" }}>Not Available</span></span><br></br>
+                        <span className={styles.span}> 
+                            NotAvailable
+                            {/* <u>{new Date(job.updatedAt).toLocaleString(
                           "en-US",
                           {
                             month: "short",
                             day: "2-digit",
                             year: "numeric",
                           }
-                        )}</u></span><br></br>
-                        <span className={styles.span}>{job.age ? <span style={{ color: "blue" }}>{job.age} </span> : <span style={{ color: "red" }}>Not updated</span>}</span><br></br>
-                        <span className={styles.span}> {job.NoticePeriod ? <span style={{ color: "blue" }}>{job.NoticePeriod} </span> : <span style={{ color: "red" }}>Not updated</span>}</span><br></br>
-                        <span className={styles.span}> {job.Qualification ? <span style={{ color: "blue" }}>{job.Qualification} </span> : <span style={{ color: "red" }}>Not updated</span>}</span><br></br>
-                        <span className={styles.span}> {job.Experiance ? <span style={{ color: "blue" }}>{job.Experiance} </span> : <span style={{ color: "red" }}>Not updated</span>}   </span><br></br>
-                        <span className={styles.span}>{job.currentCTC ? <span style={{ color: "blue" }}>{job.currentCTC} </span> : <span style={{ color: "red" }}>Not updated</span>} </span><br></br>
-                        <span className={styles.span}> {job.ExpectedSalary ? <span style={{ color: "blue" }}>{job.ExpectedSalary} </span> : <span style={{ color: "red" }}>Not updated</span>}</span><br></br>
+                        )}</u> */}
+                        </span><br></br>
                       </div>
-                      <img className={styles.MobileimageView} src={job.image ? job.image : profileDp} />
+                      {/* <img className={styles.MobileimageView} src={job.image ? job.image : profileDp} /> */}
 
                     </div>
+                    <button className={styles.ApplybuttonMobile} >View Details</button>
 
-                    <div className={styles.Down}>
+                    {/* <div className={styles.Down}>
                       <span className={styles.span}> Skills : {job.Skills ? <span style={{ color: "blue" }}>{job.Skills} </span> : <span style={{ color: "red" }}>Not updated</span>}</span><br></br>
-                    </div>
+                    </div> */}
                   </div>
                 </>
-              )
-            })
-            :
-            <p style={{ marginLeft: "37%", color: "red" }}>No Record found</p>
-          }
+              
 
           </div>
           <div style={{marginTop:"10px"}}>
@@ -1446,4 +883,4 @@ return(
   )
 }
 
-export default SearchCandidate
+export default SearchCandidate;

@@ -307,7 +307,7 @@ const [Loader, setLoader] = useState(false)
 
 
               <>
-              <button className={styles.jobdetailBackBtn} style={{marginTop:"22px",marginLeft:"10px"}} 
+              <button className={styles.jobdetailBackBtn} style={{marginTop:"22px",marginLeft:"10px", paddingTop:"16px", paddingBottom:"15px"}} 
             onClick={() => {
                if (window.history.length > 1) {
                   navigate(-1);
@@ -318,10 +318,10 @@ const [Loader, setLoader] = useState(false)
                  Back
           </button>
                 <div className={styles.JobCard} >
-                <div className={styles.JobTitleDateWrapper} style={{display:"flex",gap:"25px"}}>
+                <div className={styles.JobTitleDateWrapper} style={{display:"flex",flexDirection:"column"}}>
         {/* <p className={styles.jobTitle} >{jobs.jobTitle}</p> */}
         <p className={styles.jobTitle} >{jobs?.jobTitle?.charAt(0).toUpperCase()+jobs?.jobTitle?.substring(1)}</p>
-        <p className={styles.Date} style={{marginRight:"-17px"}}>{new Date(jobs.createdAt).toLocaleString(
+        <p style={{marginTop:"-11px"}} className={styles.Date} style={{marginRight:"-17px"}}>{new Date(jobs.createdAt).toLocaleString(
           "en-US",
           {
             month: "short",

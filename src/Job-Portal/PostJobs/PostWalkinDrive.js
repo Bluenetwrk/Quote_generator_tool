@@ -13,6 +13,7 @@ import socketIO from 'socket.io-client';
 import CreatableSelect from "react-select"
 import useScreenSize from '../SizeHook';
 import {jobTags} from "../Tags"
+import CustomTextEditor from '../Editor/CustomTextEditor'
 
 // import CreatableSelect  from 'react-select/creatable';
 
@@ -227,6 +228,88 @@ if(key==='Full Time' ||key=== 'Contract' || key==='Internship' || key==='Part Ti
 
 const [selectedDate, setSelectedDate] = useState("");
 const [selectedTime, setSelectedTime] = useState("");
+
+
+  const venueInputRef = useRef(null);
+  const[venue, setVenue]=useState("");
+    // useEffect(() => {
+    //   if (venueInputRef.current && !venueInputRef.current.autocomplete) {
+    //     const autocomplete = new window.google.maps.places.Autocomplete(venueInputRef.current, {
+    //       fields: ["formatted_address", "geometry", "address_components", "place_id", "name"],
+    //     });
+    
+    //     autocomplete.addListener("place_changed", () => {
+    //       const place = autocomplete.getPlace();
+    //       if (place && place.formatted_address) {
+    //         const displayValue =
+    //           place.name && place.name !== place.formatted_address
+    //             ? `${place.name}, ${place.formatted_address}`
+    //             : place.formatted_address;
+    
+    //         setVenue(displayValue);
+    //       }
+    //     });
+    
+    //     venueInputRef.current.autocomplete = autocomplete; // attach instance
+    //   }
+    // }, []);
+
+    useEffect(() => {
+      const interval = setInterval(() => {
+        if (
+          window.google &&
+          window.google.maps &&
+          window.google.maps.places &&
+          venueInputRef.current &&
+          !venueInputRef.current.autocomplete
+        ) {
+          const autocomplete = new window.google.maps.places.Autocomplete(venueInputRef.current, {
+            fields: ["formatted_address", "geometry", "address_components", "place_id", "name"],
+          });
+    
+          autocomplete.addListener("place_changed", () => {
+            const place = autocomplete.getPlace();
+            if (place && place.formatted_address) {
+              const displayValue =
+                place.name && place.name !== place.formatted_address
+                  ? `${place.name}, ${place.formatted_address}`
+                  : place.formatted_address;
+    
+              setVenue(displayValue);
+            }
+          });
+    
+          venueInputRef.current.autocomplete = autocomplete;
+          clearInterval(interval); // stop checking once loaded
+        }
+      }, 300); // check every 300ms
+    
+      return () => clearInterval(interval);
+    }, []);
+    
+    const [showTooltip, setShowTooltip] = useState(false);
+    
+      const toggleTooltip = () => {
+        setShowTooltip((prev) => !prev);
+      };
+    
+      const tooltipRef = useRef(null);
+    
+      useEffect(() => {
+          const handleClickOutside = (event) => {
+            if (
+              tooltipRef.current && !tooltipRef.current.contains(event.target)
+            ) {
+              setShowTooltip(false);
+            }
+           
+          };
+      
+          document.addEventListener("mousedown", handleClickOutside);
+          return () => document.removeEventListener("mousedown", handleClickOutside);
+        }, []);
+    
+
     return (
         <>
 
@@ -235,108 +318,149 @@ const [selectedTime, setSelectedTime] = useState("");
                     return (
                         items.isApproved ?
 
-                            <div key={i}>
-                               <h2  class={Style.helpHeading} >Post Walkin Drive</h2> 
-                               
-                                <div className={Style.postJobPageWrapper} >
-                                    <div className={Style.postJobWrapper}>
-                                        <p className={successMessage === "Success! job successfully posted" ?
+                            <div key={i} style={{display:"flex", justifyContent:"center"}}>
+                                <div className={Style.dirveContainer}>
+                               <h2  >Post Walkin Drive</h2> 
+                               {/* <div className={Style.dirveContainer}> */}
+
+                               <p className={successMessage === "Success! job successfully posted" ?
                                             Style.successmessage : Style.errormessage}>{successMessage} </p>
-                                        {/* <p className={Style.errormessage}>{errorMessage} </p> */}
-                                        <h4 className={Style.jobHeadline}  >Job title**</h4>
-                                        <input maxLength="100" className={Style.inputbox} type="text" value={jobtitle} onChange={(e) => { handlejobtitle(e) }} />
-                                        
-                                        <p className={Style.jobHeadline}>Company Name** &nbsp;<span className={Style.hint}>(Update Company Name from your Profile)</span></p>
-                                        <input maxLength="30" className={Style.inputbox} type="text" value={companyName} disabled />
+                               <div className={Style.dirvefirstRow}>
+                                  <div className={Style.dirvesubContainer}>
+                                    <h4 className={Style.heading}>Job title**</h4>
+                                    <input className={Style.driveinput} style={{width:"360px"}}maxLength="100"  type="text" value={jobtitle} onChange={(e) => { handlejobtitle(e) }} />          
+                                  </div>
+                                 <div className={Style.dirvesubContainer}>
+                                   <h4 className={Style.heading}>Company Name**</h4>
+                                   <input className={Style.driveinput}style={{width:"290px"}} maxLength="100" type="text" value={companyName} disabled />
+                                 </div>
+                               </div> 
 
+                                <div>
+                                   <h4 className={Style.jobHeadline}>Job Description**</h4>      
+                                    {/* <JoditEditor  ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}} /> */}
+                                 {/* <CustomTextEditor ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}}/> */}
+                                 <CustomTextEditor
+ ref={editor} className={Style.inputbox} 
+        value={jobDescription}
+        onChange={setJobDescription}
+      />
+                                </div>
 
-                                        <h4 className={Style.jobHeadline}>Job Description**</h4>
-                                        
-<JoditEditor  ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}} />
+                               <div style={{display:"flex",flexDirection:"column"}}>
+                               <h4 style={{alignContent:"start"}}>Job Tags <span className={Style.hint}>(Select multiple Tags to reach the best Matching Candidates)</span></h4>
+                               <div className={Style.driveJobtitleFilterWrapper}>
+                                   {
+                                     jobTags.map((tags, i) => {
+                                 return (            
+                                    <button disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
+                                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
+                                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
+                                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
+                                      Style.TagHeading: 
+                                      //  Active === tags.value ? 
+                                      Tags.findIndex(  (present)=>{
+                                        return(
+                                          present===tags.value
+                                        )
+                                            }) >=0?
+                                       Style.active : Style.JobtitleFilter} 
+                                       onClick={ () => {  handleTags(tags.value) }}
+                                       >{tags.value} </button>
+                                  
+                                      )
+                                    })
+                                  }
+                                </div> 
+                              </div>
+                              <div class={Style.driveRadioRow}>
+                                   <div>
+                                     <h4 className={Style.jobHeadline}>Job Type</h4>
+                                     <div style={{ marginTop: "-10px" }}>
+                                     <label><input name="Job-Type" type="radio" checked={jobtype === "Full Time" || Tags.filter} value="Full Time" onChange={(e) => { setJobtype(e.target.value); handleRadioTags(e.target.value) }} />Full Time  </label>
+                                     <label><input name="Job-Type" type="radio" checked={jobtype === "Part Time"} value="Part Time" onChange={(e) => { setJobtype(e.target.value); handleRadioTags(e.target.value) }} />Part Time  </label>
+                                     <label><input name="Job-Type" type="radio" checked={jobtype === "Internship"} value="Internship" onChange={(e) => { setJobtype(e.target.value); handleRadioTags(e.target.value) }} />Internship </label>
+                                     <label><input name="Job-Type" type="radio" checked={jobtype === "Contract"} value="Contract" onChange={(e) => { setJobtype(e.target.value); handleRadioTags(e.target.value) }} />Contract   </label>
+                                     </div>
+                                    </div>    
+                                    <div style={{marginRight:"150px"}}>
+                                      <div style={{position:"relative"}}>
+                                     <h4 className={Style.jobHeadline}>Job Location**</h4>
+                                     <div
+    ref={tooltipRef} // ⬅ attach ref to parent of both icon and tooltip
+    className={Style.driveAlerti}
+    onClick={toggleTooltip}
+  >
+    i
+    {showTooltip && (
+      <div
+        className={Style.driveIdesc}
+      >
+        Job Location: Bangalore Only. Kindly ensure that all applications align with this specified location.
+      </div>
+    )}
+  </div>
+</div>
+    
 
-
-                                        <p className={Style.jobHeadline}>Job Tags <span className={Style.hint}>(Select multiple Tags to reach the best Matching Candidates)</span></p>
-
-<div className={Style.JobtitleFilterWrapper}>
-                       {
-              jobTags.map((tags, i) => {
-                return (
-                                   
-                  <button disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                    tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                    className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                    tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
-                    Style.TagHeading: 
-                    //  Active === tags.value ? 
-                    Tags.findIndex(  (present)=>{
-                      return(
-                        present===tags.value
-                      )
-                          }) >=0?
-                     Style.active : Style.JobtitleFilter} 
-                     onClick={ () => {  handleTags(tags.value) }}
-                     >{tags.value} </button>
-                
-                  )
-              })
-            }
-          </div>
-
-
-                                        <h4 className={Style.jobHeadline}>Job Type</h4>
-
-                                        <label><input name="Job-Type" type="radio" checked={jobtype === "Full Time" || Tags.filter} value="Full Time" onChange={(e) => { setJobtype(e.target.value); handleRadioTags(e.target.value) }} />Full Time  </label>
-                                        <label><input name="Job-Type" type="radio" checked={jobtype === "Part Time"} value="Part Time" onChange={(e) => { setJobtype(e.target.value); handleRadioTags(e.target.value) }} />Part Time  </label>
-                                        <label><input name="Job-Type" type="radio" checked={jobtype === "Internship"} value="Internship" onChange={(e) => { setJobtype(e.target.value); handleRadioTags(e.target.value) }} />Internship </label>
-                                        <label><input name="Job-Type" type="radio" checked={jobtype === "Contract"} value="Contract" onChange={(e) => { setJobtype(e.target.value); handleRadioTags(e.target.value) }} />Contract   </label>
-
-                                        <h4 className={Style.jobHeadline}>Job Location**</h4>
                                         <div style={{ marginTop: "-10px" }}>
                                             <label><input name="Location" type="radio" checked={joblocation === "Bangalore"} value="Bangalore" onChange={(e) => { setJobLocation(e.target.value); setotherJobLocation(false) }} />Bangalore </label>
-                                            {/* <label><input name="Location" type="radio" checked={joblocation === "Hyderabad"} value="Hyderabad" onChange={(e) => { setJobLocation(e.target.value); setotherJobLocation(false) }}  />Hyderabad </label>
-                                            <label><input name="Location" type="radio" checked={joblocation === "Chennai"} value="Chennai" onChange={(e) => { setJobLocation(e.target.value); setotherJobLocation(false) }} disabled />Chennai </label>
-                                            <label><input name="Location" type="radio" checked={joblocation === "Mumbai"} value="Mumbai" onChange={(e) => { setJobLocation(e.target.value); setotherJobLocation(false) }} disabled />Mumbai </label>
-                                            <label><input name="Location" type="radio" checked={joblocation === "Delhi"} value="Delhi" onChange={(e) => { setJobLocation(e.target.value); setotherJobLocation(false) }} disabled />Delhi </label> */}
-                                            {/* <label><input name="Location" type="radio" value="others" onClick={(e) => { setotherJobLocation((prev) => !prev); setJobLocation("") }} />others </label> */}
-                                        </div>
-                                        {
-                                            otherJobLocation ?
-                                                <input maxLength="10" className={Style.Otherinputbox} type="text" value={joblocation} onChange={(e) => { setJobLocation(e.target.value) }} />
-                                                :
-                                                ""
-                                        }
+                                      </div>
 
-                                        <h4 className={Style.jobHeadline}>Qualification Needed**</h4>
+                                      
 
-                                        <div style={{ marginTop: "-10px" }}>
-                                            <label><input name="Qualification" type="radio" checked={qualification === "B.E/CSE"} value="B.E/CSE" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />B.E(CSE) </label>
-                                            <label><input name="Qualification" type="radio" checked={qualification === "B.E/Civil"} value="B.E/Civil" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />B.E(Civil) </label>
-                                            <label><input name="Qualification" type="radio" checked={qualification === "B.E/Mech"} value="B.E/Mech" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />B.E(Mech) </label>
-                                            <label><input name="Qualification" type="radio" checked={qualification === "B.E/ECE"} value="B.E/ECE" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />B.E(ECE) </label>
-                                            <label><input name="Qualification" type="radio" checked={qualification === "B.E/IT"} value="B.E/IT" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />B.E(IT) </label>
-                                            <label><input name="Qualification" type="radio" value="others" onClick={(e) => { setOthers((prev) => !prev); setQualification("") }} />others </label>
-                                        </div>
-                                        {
-                                            others ?
-                                                <input className={Style.Otherinputbox} type="text" value={qualification} onChange={(e) => { setQualification(e.target.value) }} />
+                                  </div> 
 
-                                                : ""
+                                 
+                              </div>
+                              <div>     
+                                  <h4 className={Style.jobHeadline}>Qualification Needed**</h4>
+                                       <div style={{ marginTop: "-10px" }}>
+                                           <label><input name="Qualification" type="radio" checked={qualification === "B.E/CSE"} value="B.E/CSE" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />B.E(CSE) </label>
+                                           <label><input name="Qualification" type="radio" checked={qualification === "B.E/Civil"} value="B.E/Civil" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />B.E(Civil) </label>
+                                           <label><input name="Qualification" type="radio" checked={qualification === "B.E/Mech"} value="B.E/Mech" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />B.E(Mech) </label>
+                                           <label><input name="Qualification" type="radio" checked={qualification === "B.E/ECE"} value="B.E/ECE" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />B.E(ECE) </label>
+                                           <label><input name="Qualification" type="radio" checked={qualification === "B.E/IT"} value="B.E/IT" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />B.E(IT) </label>
+                                           
+                                           <label><input name="Qualification" type="radio" value="others" onClick={(e) => { setOthers((prev) => !prev); setQualification("") }} />others </label>
+                                       </div>
+                                       {
+                                           others ?
+                                               <input className={Style.Otherinputbox} type="text" value={qualification} onChange={(e) => { setQualification(e.target.value) }} />
+                                       
+                                               : ""
+                                       
+                                       }
+                                  </div>
+                              
 
-                                        }
+                              <div className={Style.driveThirdRow}>
+                                <div className={Style.dirvesubContainer} >
+                                    <h4 className={Style.heading}>Salary Per Annum in Lakhs** &nbsp;<span className={Style.hint}>(e.g 5 or 10)</span></h4>
+                                    <input className={Style.driveinput} style={{width:"32px"}} maxLength="3" type="number" value={salaryRange} onChange={(e) => { handleSalary(e); handleRadioTags(e.target.value) }} />
+                                </div>
+                                <div className={Style.dirvesubContainer}>
+                                    <h4 className={Style.heading} >Experience Needed** &nbsp;<span className={Style.hint}>(e.g 5 or 10)</span></h4>
+                                    <input className={Style.driveinput}style={{width:"32px"}} maxLength="3" type="number" value={experiance} onChange={(e) => { handleExperiance(e); handleExpButton(e.target.value) }} />
 
-                                        <h4 className={Style.jobHeadline}>Salary Per Annum in Lakhs** &nbsp;<span className={Style.hint}>(e.g 5 or 10)</span></h4>
-                                        <input maxLength="3" className={Style.inputbox} type="number" value={salaryRange} onChange={(e) => { handleSalary(e); handleRadioTags(e.target.value) }} />
+                                </div>
+                              </div>
+                              
+                            <div className={Style.driveFourthRow}>
+                                <div className={Style.dirvesubContainer}>
+                                <h4 className={Style.heading}>Skills Needed**</h4>
+                                        <input className={Style.driveinput} style={{width:"220px"}}   maxLength="100" value={skills} type="text" onChange={(e)=>{setSkills(e.target.value)}} disabled />
 
-                                        <h4 className={Style.jobHeadline}>Experience Needed** &nbsp;<span className={Style.hint}>(e.g 5 or 10)</span></h4>
-                                        <input maxLength="3" className={Style.inputbox} type="number" value={experiance} onChange={(e) => { handleExperiance(e); handleExpButton(e.target.value) }} />
-                                        
-                                        <h4 className={Style.jobHeadline}>Skills Needed**</h4>
-                                        <input maxLength="100" value={skills} className={Style.inputbox} type="text" onChange={(e)=>{setSkills(e.target.value)}} disabled />
-
-                                        <h4 className={Style.jobHeadline}>Apply Link**</h4>
-                                        <input maxLength="100" value={applyLink} className={Style.inputbox} type="text" onChange={(e)=>{setApplyLink(e.target.value)}} />
+                                </div>
+                                <div className={Style.dirvesubContainer}>
+                                <h4 className={Style.heading} >Apply Link**</h4>
+                                        <input className={Style.driveinput} style={{width:"220px"}} maxLength="100" value={applyLink} type="text" onChange={(e)=>{setApplyLink(e.target.value)}} />
                                          
-                                        <div class={Style.driveDateContainer}>
+                                </div>
+                            </div>
+                              
+                            <div  class={Style.driveDateContainer1}>
+                                <div>
                                           <label>Select Drive Date: </label>
                                           <input 
                                             className={Style.DriveDate}
@@ -344,7 +468,20 @@ const [selectedTime, setSelectedTime] = useState("");
                                             value={selectedDate} 
                                             onChange={(e) => setSelectedDate(e.target.value)} 
                                           />
-                                        </div>
+                                          </div>
+                                           <div style={{display:"flex", flexDirection:"column", gap:"2px",marginRight:"124px" }}> 
+                                          <label>Venue: </label>
+                                          <input
+                                            type="text"
+                                            ref={venueInputRef}
+                                            value={venue}
+                                            onChange={(e) => setVenue(e.target.value)}
+                                            className={Style.driveinput}
+                                            style={{ width: "110%", zIndex:"99"}}
+                                            placeholder="Search Venue"
+                                          />
+                                          </div> 
+                            </div>
 
                                         <div class={Style.driveDateContainer}>
                                          <label>Select Time: </label>
@@ -356,19 +493,21 @@ const [selectedTime, setSelectedTime] = useState("");
                                          />
                                          
                                        </div>
-
+                                       <div>
 <p><input type="checkbox" onChange={()=>{setconcent((prev)=>!prev)}}/>
     I have read the terms and conditions of ITwalkin.com and I agree to all the 
      <span style={{color:"blue", cursor:"pointer"}} onClick={()=>(window.open("/TermsAndCondition"))}> terms and conditons</span> before posting the jobs </p>
 
+     </div>
+     {Logo ? <p ><span style={{ color: "blue" }}>Note** :</span> Logo will also be posted with the Job</p> : ""}
+<div style={{display:"flex", justifyContent:"center" }}>
+<button style={{width:"130px",}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Submit</button>
+</div>
+                            {/* </div> */}
 
-                                        {Logo ? <p ><span style={{ color: "blue" }}>Note** :</span> Logo will also be posted with the Job</p> : ""}
-
-                                        <button disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Post Walkin Drive</button>
-                                    </div >
-                                </div >
+                               </div> 
                             </div>
-                            : <p style={{ color: "red", fontStyle: "italic", marginLeft: "20px" }}>Your account is in under verification process, Once your account gets verified, then you will be able to post a Job</p>
+                            : <p style={{ color: "red", fontStyle: "italic", marginLeft: "20px" }}>Your account is being verified.Once your account gets verified,then you will be able to post a Walkin Drive</p>
 
                     )
 

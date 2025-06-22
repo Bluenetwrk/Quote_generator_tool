@@ -7,8 +7,12 @@ import { Link, useNavigate, NavLink, useLocation } from "react-router-dom";
 function SidebarNav(props) {
   const[show,setShow]=useState(false)
   let navigate = useNavigate()
+  function Linkedin(e){
+    window.open("https://www.linkedin.com/company/104886917/admin/dashboard/", '_blank');  
+  }
   const [empHome, setEmpHome] = useState(false);
   const location = useLocation(); 
+  
   // const[pathName,setPathName]=useState(location.pathname)
   // console.log("pathnameees",pathName)
 
@@ -21,10 +25,15 @@ function SidebarNav(props) {
       setEmpHome(false); 
     }
 
+    
+
     const inputField = document.querySelector(`.${Styles.blogInputboxsearch}`);
     if (inputField) {
       inputField.value = ""; 
       props.setShowMobileSearchIcon(true)
+
+
+      
 
     //   if(empHome){
     //     // props.searchs("")
@@ -53,7 +62,6 @@ function SidebarNav(props) {
     }
   }, [location.pathname]); 
   let EmployeeAuth = localStorage.getItem("EmpLog")
-  let studentAuth = localStorage.getItem("StudLog")
 
 // const [query, setQuery] = useState("");
 // const [suggestions, setSuggestions] = useState([]);
@@ -114,9 +122,14 @@ function SidebarNav(props) {
 //  };
 
 
-
-
-
+let StudentAuth = localStorage.getItem("StudLog")
+const resumeRedirect=()=>{
+  if(StudentAuth)
+    navigate("/resumes")
+else{
+  navigate("/JobSeekerLogin")
+}
+}
   return (
   <>
   
@@ -126,7 +139,7 @@ function SidebarNav(props) {
       <div style={{display:"flex",marginTop:"10px",marginRight:"6px"}} >
             {/* <input style={{height:"18px",width:"84%",marginLeft:"2px"}}className={Styles.blogInputboxsearch}  type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { props.search(e) }} /> */}
             {/* <input style={{height:"18px",width:"84%",marginLeft:"2px"}}className={Styles.blogInputboxsearch} value={query}  type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={handleInputChange} /> */}
-            <input style={{height:"18px",width:"84%",marginLeft:"2px"}}className={Styles.blogInputboxsearch}  type="text" placeholder='Search here.... ' onChange={(e) => {  
+            <input style={{height:"18px",width:"84%",marginLeft:"2px"}}className={Styles.blogInputboxsearch}  type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => {  
                                                                                                                                                                             if(empHome)
                                                                                                                                                                                 props.searchs(e)
                                                                                                                                                                              else if(location.pathname==="/Blogs"){
@@ -148,8 +161,8 @@ function SidebarNav(props) {
                                                                                                                                                                              
                                                                                                                                                                              else{
                                                                                                                                                                               props.search(e)
-                                                                                                                                                console.log("s-screen else entered")   
-                                                                                                                                                                             } }} />
+                                                                                                                                                                              console.log("s-screen else entered")   
+                                                                                                                                             } }} />
            
             <i style={{marginLeft:"2px",fontSize:"16px",marginTop:"6px"}} class="fa fa-search" onClick={() => { props.searchIcon(props.searchKey);props.setShowSideNaveProps();props.setShowMobileSearchIcon(true)}}></i>
           </div>
@@ -189,17 +202,16 @@ function SidebarNav(props) {
 
 
 
-        {/* <p onClick={()=>{navigate("/"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Home </p> */}
-        {EmployeeAuth?
-        <p onClick={()=>{navigate("/Seller-Home"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}> Seller Home </p>
-        :
-         !studentAuth&&(
-          <p onClick={()=>{navigate("/buyershome"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}> Buyer Home </p>
-         )
-        }
-        
+        <p onClick={()=>{navigate("/"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Home </p>
        {EmployeeAuth&&(
         <p onClick={()=>{navigate("/Post-Help-Questions"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Post Help Questions </p>
+        
+       )
+
+       }
+           {EmployeeAuth&&(
+        <p onClick={()=>{navigate("/PostDrives"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Post Walkin Drive </p>
+        
        )
 
        }
@@ -215,19 +227,27 @@ function SidebarNav(props) {
        {
         show?
         <div style={{marginLeft:"10px"}}>
-<p onClick={() => { navigate("/New-Registration");props.setShowSideNaveProps(false);setShow(false); window.scrollTo({top:0}) }} className={`${Styles.textinMobileSodeBar} `}>Employer Registration </p>
-<p onClick={() => { navigate("/Jobseeker-New-Registration");props.setShowSideNaveProps(false);setShow(false); window.scrollTo({top:0}) }}className={`${Styles.textinMobileSodeBar} `} >Job Seeker Registration</p>
+<p onClick={() => { navigate("/New-Registration");props.setShowSideNaveProps(false);setShow(false); window.scrollTo({top:0}) }} className={`${Styles.textinMobileSodeBar} `}>Seller Registration </p>
+<p onClick={() => { navigate("/Jobseeker-New-Registration");props.setShowSideNaveProps(false);setShow(false); window.scrollTo({top:0}) }}className={`${Styles.textinMobileSodeBar} `} >Buyer Registration</p>
         </div>
         :""
        }
         <p onClick={()=>{navigate("/Blogs"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Blogs </p>
-        {/* <p onClick={()=>{navigate("/AllCareerJobs"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>ITwalkin Career</p> */}
-        {/* <p onClick={()=>{navigate("/Walkin-Drives"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Walkin Drive</p> */}
+        {!EmployeeAuth&&
+        <>
+        <p onClick={()=>{navigate("/AllCareerJobs"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>ITwalkin Career</p>
+        <p onClick={()=>{resumeRedirect(); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>AI Resume Builder</p>
+        <p onClick={()=>{navigate("/Walkin-Drives"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Walkin Drive</p>
+        </>
+        }
+        <p onClick={()=>{navigate("/fraud-form"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Report Fraud</p>
         <p onClick={()=>{navigate("/AboutUs"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>About Us</p>
         <p onClick={()=>{navigate("/Services"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Our Services</p>
         <p onClick={()=>{navigate("/Contact"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Contact Us</p>
        
         <p onClick={()=>{navigate("/TermsAndCondition"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Terms & Conditions</p>
+        <i onClick={()=>{Linkedin(); }} className={`${Styles.textBigSodeBar}  fa-brands fa-linkedin`} style={{ fontSize: "xx-large" }} ></i>
+         <p className={`${Styles.textinMobileSodeBar} `} style={{marginBottom:"100px"}}>Release Version : v1.0</p>
         </div>
       </div>
       </>

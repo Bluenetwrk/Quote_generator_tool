@@ -124,6 +124,11 @@ function AskQuestion(props) {
 let question =true
         let jobTitle = jobtitle.toLowerCase()
         let jobLocation = joblocation.toLowerCase()
+        
+        if(jobTitle===""){ 
+            setErrorMessage("please fill all the fields")
+            return
+        }
         // await axios.post("/QuestionRoute/questionPost/", {
             await axios.post("/BlogRoutes/blogpost/", {
 
@@ -238,7 +243,7 @@ let question =true
         <>
 
 
-
+            <h2 style={{marginLeft:"150px", fontWeight:"800", marginTop:"6px", marginBottom:"-15px"}}>Ask Questions </h2>
                             <div>
                                 <button className={Style.searchButton} onClick={() => {
                                     navigate(-1)
@@ -252,19 +257,25 @@ let question =true
                                         <p className={successMessage === "Success! successfully posted" ?
                                             Style.successmessage : Style.errormessage}>{successMessage} </p>
                                         {/* <p className={Style.errormessage}>{errorMessage} </p> */}
-                                        <h4 className={Style.jobHeadline}  >Ask Question**
-                                        <span className={Style.hint}> 
-                                            ( this  will be forwarded to the employers/consultants)</span></h4>
+                                        {errorMessage!==""&&
+                                        <p className={Style.errormessage}>{errorMessage} </p>
+                                       }
+                                        <div style={{display:"flex", alignItems:"center", gap:"90px", marginBottom:"14px"}}>
+                                           <h4 className={Style.jobHeadline}  >Ask Question**</h4>
+                                           <div className={Style.hint}> 
+                                            ( This  will be forwarded to the employers/consultants)
+                                            </div>
+                                        </div>
                                         <input maxLength="200" className={Style.inputbox} type="text" value={jobtitle} onChange={(e) => { handlejobtitle(e) }} />
 
                                         <p className={Style.jobHeadline}>Blog Tags  
-                                            <span className={Style.hint}> (select the matching tag for ur question)</span></p>
+                                            <span className={Style.hint}> (Select the matching tag for your question)</span></p>
 
                                         <div className={Style.JobtitleFilterWrapper}>
                                             {
                                                 jobTags.map((tags, i) => {
                                                     return (
-
+                                                          
                                                         <button disabled={tags.value === "TECHNOLOGIES" || tags.value === "EDUCATION" || tags.value === "COLLEGE TYPE" || tags.value === "NOTICE PERIOD" || tags.value === "SALARY" ||
                                                             tags.value === "EXPERIENCE" || tags.value === "Job Type" || tags.value === "INDUSTRY" || tags.value === "TOOLS/PROTOCOLS" || tags.value === "ROLE" || tags.value === "COMPANY TYPE"}
                                                             className={tags.value === "TECHNOLOGIES" || tags.value === "EDUCATION" || tags.value === "COLLEGE TYPE" || tags.value === "NOTICE PERIOD" || tags.value === "SALARY" ||
@@ -282,18 +293,23 @@ let question =true
 
                                                     )
                                                 })
+                                                
                                             }
                                         </div>
+                                        
 
                                         <p><input type="checkbox" onChange={() => { setconcent((prev) => !prev) }} />
                                             I have read the terms and conditions of ITwalkin.com and I agree to all the
-                                            <span style={{ color: "blue", cursor: "pointer" }} onClick={() => (window.open("/TermsAndCondition"))}> terms and conditons</span> before posting the jobs </p>
+                                            <span style={{ color: "blue", cursor: "pointer" }} onClick={() => (window.open("/TermsAndCondition"))}> terms and conditons</span> before posting my question </p>
 
 
                                         {/* {Logo ? <p ><span style={{ color: "blue" }}>Note** :</span> Logo will also be posted with the Job</p> : ""} */}
-
-                                        <button disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Submit</button>
+                                        
                                     </div >
+                                    <div className={Style.submitDeleteBtn}>   
+                                        <button style={{width:"200px", marginLeft:"-4%px"}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Submit</button>
+                                        {/* <button style={{width:"200px",backgroundColor:"red"}} disabled={concent} className={Style.disableButton} >Delete</button> */}
+                                        </div>
                                 </div >
                             </div>
              

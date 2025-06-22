@@ -27,7 +27,7 @@ function AppledJobs(props) {
   const screenSize = useScreenSize();
   const [Filtereredjobs, setFiltereredjobs] = useState([])
   const [nopageFilter, setNoPageFilter] = useState(false)
-
+  const [transferRecords, setTransferRecords] = useState("CarrerAppliedJobs")
 
 
   let jobSeekerId = JSON.parse(localStorage.getItem("StudId"))
@@ -341,7 +341,7 @@ function AppledJobs(props) {
                           }).slice(0, 1)
                         }
 
-                        <span style={{ color: "blue", cursor: "pointer" }} onClick={() => { navigate(`/Jobdetails/${btoa(items._id)}`) }} >...see more</span>
+                        <span style={{ color: "blue", cursor: "pointer" }} onClick={() => navigate(`/Jobdetails/${btoa(items._id)}?index=${i}`, {state: {transferRecords, },})} >...see more</span>
 
                       </li>
                       <li className={`${styles.li} ${styles.Pdate}`}>
@@ -432,7 +432,7 @@ function AppledJobs(props) {
                           window.scrollTo({
                             top: 0
                           })
-                          navigate(`/Jobdetails/${btoa(job._id)}`)
+                          navigate(`/Jobdetails/${btoa(job._id)}?index=${i}`, {state: {transferRecords, },})
                         }} >{job.jobTitle.toUpperCase()} </p>
                         <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
                           "en-US",

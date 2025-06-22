@@ -88,7 +88,7 @@ const Modal = ({ isOpen, onClose, children }) => {
 			  if (result.status == "success") {
 				localStorage.setItem("EmpLog", JSON.stringify(btoa(token)))
 				localStorage.setItem("EmpIdG", JSON.stringify(GuserId))
-				navigate("/Seller-Home", { state: { gserid: GuserId } })
+				navigate("/Search-Candidate", { state: { gserid: GuserId } })
 				onClose()
 			  }
 			}).catch((err) => {
@@ -118,7 +118,7 @@ const Modal = ({ isOpen, onClose, children }) => {
 	  // let studentAuth = localStorage.getItem("StudLog")
 	  let EmployeeAuth = localStorage.getItem("EmpLog")
 	  if (EmployeeAuth) {
-		navigate("/Seller-Home")
+		navigate("/Search-Candidate")
 	  }
 	}, [])
   
@@ -191,7 +191,7 @@ const Modal = ({ isOpen, onClose, children }) => {
 			  alert("incorrect OTP")
 			}
 			if (result.token) {
-			  navigate("/Seller-Home")
+			  navigate("/Search-Candidate")
 			  localStorage.setItem("EmpLog", JSON.stringify(result.token))
 			  let empId = result.id
 			  localStorage.setItem("EmpIdG", JSON.stringify(empId))
@@ -224,7 +224,7 @@ const Modal = ({ isOpen, onClose, children }) => {
 				  if (result.status == "success") {
 					localStorage.setItem("EmpLog", JSON.stringify(btoa(token)))
 					localStorage.setItem("EmpIdG", JSON.stringify(GuserId))
-					navigate("/Seller-Home", { state: { gserid: GuserId } })
+					navigate("/Search-Candidate", { state: { gserid: GuserId } })
 					onClose()
 				  }
 

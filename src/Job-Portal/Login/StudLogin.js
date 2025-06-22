@@ -190,33 +190,33 @@ useEffect(() => {
   }
 
   function microsoftLogin() {
-    instance.loginPopup(loginRequest)
-      .then(async response => {
-        // console.log(response)
-        let name = response.account.name
-        let email = response.account.username
-        let isApproved = false
+		instance.loginPopup(loginRequest)
+			.then(async response => {
+				// console.log(response)
+				let name = response.account.name
+				let email = response.account.username
+				let isApproved = false
 
-        await axios.post("/StudentProfile/Glogin", { ipAddress, email, name, isApproved, })
-          .then((response) => {
-            let result = response.data
+				await axios.post("/StudentProfile/Glogin", { ipAddress, email, name, isApproved, })
+					.then((response) => {
+						let result = response.data
             console.log(result)
-            let token = result.token
-            let Id = result.id
-            if (result.status == "success") {
-              localStorage.setItem("StudLog", JSON.stringify(btoa(token)))
-              navigate("/alljobs", { state: { name: result.name } })
-              localStorage.setItem("StudId", JSON.stringify(Id))
-            }
-          }).catch((err) => {
-            alert("server issue occured")
-          })
-      })
-      .catch(error => {
-        // console.log("Login error", error);
-        // alert("some thing went wrong")
-      });
-  }
+						let token = result.token
+						let Id = result.id
+						if (result.status == "success") {
+							localStorage.setItem("StudLog", JSON.stringify(btoa(token)))
+							navigate("/alljobs", { state: { name: result.name } })
+							localStorage.setItem("StudId", JSON.stringify(Id))
+						}
+					}).catch((err) => {
+						alert("server issue occured")
+					})
+			})
+			.catch(error => {
+				// console.log("Login error", error);
+				// alert("some thing went wrong")
+			});
+	}
   return (
     <>
     {/* <div className={styles.LoginpageWapper}> */}
@@ -253,7 +253,7 @@ useEffect(() => {
 
               <p style={{ color: "blue", textDecoration: "underline", cursor: "pointer" }} onClick={() => { setshowotp(false); setPhoneNumber(""); setotp("") }}>Want to change the number?</p>
 
-              
+
             </>
             :
             PhoneNumber.length==10?
@@ -302,7 +302,7 @@ useEffect(() => {
         </div>
       </div> */}
 
-      
+
       </div>
 
       {screenSize.width > 750 ?

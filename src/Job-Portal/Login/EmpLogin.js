@@ -74,7 +74,7 @@ function EmpLogin(props) {
             if (result.status == "success") {
               localStorage.setItem("EmpLog", JSON.stringify(btoa(token)))
               localStorage.setItem("EmpIdG", JSON.stringify(GuserId))
-              navigate("/Seller-Home", { state: { gserid: GuserId } })
+              navigate("/Search-Candidate", { state: { gserid: GuserId } })
             }
           }).catch((err) => {
             alert("server issue occured")
@@ -176,7 +176,7 @@ function EmpLogin(props) {
             alert("incorrect OTP")
           }
           if (result.token) {
-            navigate("/Seller-Home")
+            navigate("/Search-Candidate")
             localStorage.setItem("EmpLog", JSON.stringify(result.token))
             let empId = result.id
             localStorage.setItem("EmpIdG", JSON.stringify(empId))
@@ -259,7 +259,7 @@ function EmpLogin(props) {
           if (result.status == "success") {
             localStorage.setItem("EmpLog", JSON.stringify(btoa(token)))
             localStorage.setItem("EmpIdG", JSON.stringify(GuserId))
-            navigate("/Seller-Home", { state: { gserid: GuserId } })
+            navigate("/Search-Candidate", { state: { gserid: GuserId } })
           }
 				
 					}).catch((err) => {
@@ -299,7 +299,7 @@ function EmpLogin(props) {
       {/* <div id={styles.inputWrapper}> */}
       {/* <div style={{ marginTop: "10px", marginLeft: "37%" }}> */}
       <div className={styles.BothsignUpWrapper}>
-        <p className={styles.Loginpage}>Seller Login page </p>
+        <p className={styles.Loginpage}> Seller Login page </p>
 
         {/* 
         <input maxLength="10" className={styles.inputs} type="number" placeholder='enter phone Number'

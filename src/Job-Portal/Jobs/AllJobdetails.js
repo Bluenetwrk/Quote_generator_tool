@@ -31,7 +31,7 @@ function Jobdetails() {
 const screenSize = useScreenSize();
 const [Loader, setLoader] = useState(false)
 const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
-
+const [PageLoader, setPageLoader] = useState(false)
   const [clickedJobId, setclickedJobId] = useState() //for single job loader
   let jobSeekerId = JSON.parse(localStorage.getItem("StudId"))
   let empId = JSON.parse(localStorage.getItem("EmpIdG"))
@@ -47,7 +47,8 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
   let indexing = parseInt(urlParams.get("index"), 10);
   const [index, setIndex]=useState(indexing)
   let lastIndex=useRef(0)
-  const userTags = location.state?.selectedTag;
+  const userTags = location.state?.selectedTag?location.state.selectedTag:"";
+ const transferRecords=location.state?.transferRecords?location.state.transferRecords:"";
   const allJobs=useRef([])
   // console.log("ut",userTags)
   let studentAuth = localStorage.getItem("StudLog")
@@ -101,15 +102,73 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
             let sortedate = result.sort((a, b) => {
              return new Date(b.createdAt) - new Date(a.createdAt);
             });
-            lastIndex.current=sortedate.length;  
+            lastIndex.current=sortedate.length;  
             allJobs.current=sortedate 
             // allTagJobs.current=sortedate;
             // console.log("tags-",allJobs,"lastIndex",lastIndex)
           })
       } 
+
+      async function getMyAppliedjobs() {
+        let userid = JSON.parse(localStorage.getItem("StudId"))
+        const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
+        setTimeout(async () => {
+    
+          await axios.get(`/jobpost/getMyAppliedjobs/${jobSeekerId}`, { headers })
+            .then((res) => {
+              let result = (res.data)
+              let sortedate = result.sort(function (a, b) {
+                return new Date(b.createdAt) - new Date(a.createdAt);
+              });
+              lastIndex.current=sortedate.length;  
+              allJobs.current=sortedate 
+            }).catch((err) => {
+              alert("backend arror occured")
+            })
+        }, 1000)
+      }
+
+      async function getMyPostedjobs() {
+        let userid = JSON.parse(localStorage.getItem("EmpIdG"))
+        const headers = { authorization: userid +" "+ atob(JSON.parse(localStorage.getItem("EmpLog"))) };
+        setTimeout(async () => {
+          await axios.get(`/jobpost/getPostedjobs/${empId}`, {headers})
+            .then((res) => {
+              let result = (res.data)
+              let sortedate = result.sort(function (a, b) {
+                return new Date(b.createdAt) - new Date(a.createdAt);
+              });
+              lastIndex.current=sortedate.length;  
+              allJobs.current=sortedate 
+            }).catch((err) => {
+              alert("back error occured")
+            })
+        }, 1000)
+    
+      }
+    
+      async function getMyCarrerAppliedjobs() {
+        let userid = JSON.parse(localStorage.getItem("StudId"))
+        const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
+        setTimeout(async () => {
+    
+          await axios.get(`/Careerjobpost/getMyAppliedjobs/${jobSeekerId}`, { headers })
+            .then((res) => {
+              let result = (res.data)
+              let sortedate = result.sort(function (a, b) {
+                return new Date(b.createdAt) - new Date(a.createdAt);
+              });
+              lastIndex.current=sortedate.length;  
+              allJobs.current=sortedate 
+            }).catch((err) => {
+              alert("backend arror occured")
+            })
+        }, 1000)
+      }
       
       useEffect(()=>{
           // console.log(userTags)
+        if(transferRecords===""){  
           if(userTags.current===""||userTags.current===undefined){
             if(studentAuth)
               getAllJobseekersjobs()
@@ -120,7 +179,17 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
           else{ 
            getTagValue() 
          } 
-        },[])   
+      }
+      else{
+        // console.log("executing else")
+        if(transferRecords==="AppliedJobs")
+         getMyAppliedjobs()
+        else if(transferRecords==="PostedJobs")
+          getMyPostedjobs()
+        else if(transferRecords==="CarrerAppliedJobs")
+          getMyCarrerAppliedjobs()        
+      }
+  },[])   
 
 
         const incIndex=()=>{
@@ -135,6 +204,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
           }
    
           async function getNextPrevJobs() {
+            setPageLoader(true)
               window.scrollTo({
                 top:0,
                 // behavior:"smooth"
@@ -148,6 +218,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
                   setJobs(result)
                   setjobdescription(result.jobDescription)
                   setjobSeekerId(result.jobSeekerId)
+                  setPageLoader(false)
                 })
             }
 
@@ -343,17 +414,18 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
                     navigate('/'); 
                   }
              }}>
-                 Back
+                <div style={{fontSize:"12px", fontWeight:"800px"}}>Back</div>
           </button>
           <div style={{display:"flex",justifyContent:"space-between"}}>
-          <button className={styles.jobdetailBackBtn}
+          <button className={styles.jobdetailBackBtn} style={{padding: "0px 5px 0px 8px"}}
             onClick={descIndex}>
-               <i class='fas fa-caret-square-left' style={{fontSize:"small", color: "white",marginLeft:"2px", marginLeft:"-2px" }}></i>    Prev
+               <i class='fas fa-caret-square-left' style={{fontSize:"9px", color: "white",marginLeft:"2px", marginLeft:"-2px" }}></i>  
+               <div style={{fontSize:"12px", fontWeight:"800px"}}>Prev</div>
           </button>
           <h2 style={{display:"flex",alignItems:"center",margin:"1px",marginTop:"14px"}}>{index+1}</h2>
-          <button className={styles.jobdetailBackBtn} style={{padding:"10px",marginLeft:"2px",zIndex:"99"}}
+          <button className={styles.jobdetailBackBtn} style={{padding: "0px 5px 0px 8px",marginLeft:"2px",zIndex:"99"}}
             onClick={incIndex} >
-             Next  <i class='fas fa-caret-square-right' style={{fontSize:"small", color: "white",marginLeft:"0px", marginLeft:"-2px" }}></i>    
+            <div style={{fontSize:"12px", fontWeight:"800px"}}>Next</div> <i class='fas fa-caret-square-right' style={{fontSize:"9px", color: "white",marginLeft:"0px", marginLeft:"-2px" }}></i>    
           </button>
           </div>
           {/* <div className={styles.navigationWrapperbtn}>
@@ -367,19 +439,20 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
             </div> */}
           </div>
               
-              
+
 
 
 
            <div style={{display:"flex",position:"relative"}}>
-           <button class={styles.jobdetailApplyBtn} style={{marginRight:"9px",display:"flex", gap:"5px",width:"80px",alignItems:"center"}}onClick={updateClickStatus}>
+           <button class={styles.jobdetailApplyBtn} style={{marginRight:"9px",display:"flex", gap:"5px",width:"65px",alignItems:"center", fontSize:"12px"}}onClick={updateClickStatus}>
            <i className="fa-solid fa-share" style={{ fontSize: "small", cursor: "pointer", marginLeft:"-8px" }}></i>
-           <p style={{ margin: "0px",fontWeight:"400" }}>Share</p>
+           <div style={{fontSize:"12px", fontWeight:"800px"}}>Share</div>
             </button>
-           <button class={styles.jobdetailApplyBtn} onClick={()=>applyforJobasjobseeker(jobs._id,jobs.SourceLink)}>Apply</button>
+           <button class={styles.jobdetailApplyBtn} onClick={()=>applyforJobasjobseeker(jobs._id,jobs.SourceLink)}>
+           <div style={{fontSize:"12px", fontWeight:"800px"}}>Apply</div></button>
            {shareClicked && (
         <div ref={shareRef} class={styles.shareContainer}>
-          <h1 style={{textAlign:"center",color:"white"}}>Share</h1>
+          <div style={{fontSize:"22px", fontWeight:"600", color:"white", textAlign:"center" }}>Share</div>
 
           <div class={styles.shareButtonsContainer}>
             <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
@@ -395,12 +468,16 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
               </a>
           </div>
 
-          <div className={styles.copyLinkContainer}>
-            <input type="text" value={url} readOnly className={styles.urlInput} />
-            <button onClick={copyToClipboard} className={styles.copyButton}>
+          <div className={styles.copyLinkContainer} style={{display:"flex", flexDirection:"column"}}>
+            <div style={{wordBreak:"break-word", padding:"3px"}}>{url}</div>
+            {/* <textarea type="text" value={url} readOnly className={styles.urlInput} /> */}
+           
+          </div>
+          <div style={{display:"flex", justifyContent:"center"}}>
+          <button onClick={copyToClipboard} className={styles.copyButton}>
               {copied ? "Copied!" : "Copy Link"}
             </button>
-          </div>
+            </div>
 
           <div onClick={() => setShareClicked(false)} className={styles.closeButton} style={{position:"absolute", top:"8px", right:"13px",fontSize:"20px", color:"white", cursor:"pointer"}}>X</div>
         </div>
@@ -408,8 +485,14 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
            </div>
         </div>
 
-        
-
+         {PageLoader ?
+                    <>
+                    <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "46%", marginTop: "50px", textAlign:"center" }} />
+                    <h3 style={{color:"red", textAlign:"center"}}>Loading......</h3>
+                    </>
+                    : 
+          
+         <> 
         <div class={styles.jobDetailsHeading}>
              <div class={styles.jobDetailsImage}>
             {/* <img className={styles.imageV} src={jobs.Logo?jobs.Logo : profileDp}/> */}
@@ -430,11 +513,11 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
                     year: "numeric",
                   }
                 )}</span> &nbsp; |
-  &nbsp; <span>Experience : {jobs.experiance}</span> &nbsp;|  
-  &nbsp; <span>Location : {jobs.jobLocation}</span>&nbsp; |  
+  &nbsp; <span>Experience : {jobs.experiance}Yrs</span> &nbsp;|  
+  &nbsp;<span>Location : {jobs.jobLocation ? jobs.jobLocation.charAt(0).toUpperCase() + jobs.jobLocation.substring(1) : ''} &nbsp;|</span>
   &nbsp; <span>Job Type : {jobs.jobtype}</span>&nbsp; |  
   &nbsp; <span>Qualification : {jobs.qualification}</span>&nbsp; |  
-  &nbsp; <span>Salary : {jobs.salaryRange}</span> 
+  &nbsp; <span>Salary :{jobs.salaryRange==="Not disclosed" ? "Not Disclosed":jobs.salaryRange+"LPA" }</span> 
   
   
 <p>Skills : {jobs.skills} </p>
@@ -455,6 +538,8 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
 
   </tr>
   </table>
+  </> 
+  }
   </div>
   <img style={{height:"30px",marginLeft:"50%",marginBottom:"50px"}}  onClick={()=>{goUp()}} src={Up}/> 
   
@@ -504,11 +589,15 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
           </div>
 
           <div className={styles.copyLinkContainer} style={{marginTop:"16px"}}>
-            <input type="text" value={url} readOnly className={styles.urlInput} />
-            <button onClick={copyToClipboard} className={styles.copyButton}>
+          <div style={{wordBreak:"break-word", padding:"3px"}}>{url}</div>
+            {/* <input type="text" value={url} readOnly className={styles.urlInput} /> */}
+            
+          </div>
+          <div style={{display:"flex", justifyContent:"center"}}>
+          <button onClick={copyToClipboard} className={styles.copyButton}>
               {copied ? "Copied!" : "Copy Link"}
             </button>
-          </div>
+          </div>   
 
           <div onClick={() => setShareClicked(false)} className={styles.closeButton} style={{position:"absolute", top:"8px", right:"13px",fontSize:"20px", color:"white", cursor:"pointer"}}>X</div>
         </div>
@@ -549,9 +638,14 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
             year: "numeric",
           }
         )} </p> */}
-                <div className={styles.JobTitleDateWrapper} style={{marginTop: "-20px"}}>
+        {PageLoader ?<>
+                    <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "37%", marginTop: "50px" }} />
+                    <h3 style={{color:"red",textAlign:"center"}}>Loading......</h3>
+                    </>: 
+                  <>
+                <div className={styles.JobTitleDateWrapper} style={{marginTop: "-10px", display:"flex", flexDirection:"column"}}>
         <p style={{ width:"100%" ,whiteSpace:"normal", marginRight: "5px" }}className={styles.jobTitle} >{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</p>
-        <p className={styles.Date}>{new Date(jobs.createdAt).toLocaleString(
+        <p style={{marginTop:"-6px"}} className={styles.Date}>{new Date(jobs.createdAt).toLocaleString(
           "en-US",
           {
             month: "short",
@@ -577,11 +671,14 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
 
         </div>
         <  img className={styles.jobLocationImage} src={location}  /> 
-        <span className={styles.jobLocation}>{jobs.jobLocation}</span>                        
+        <span className={styles.jobLocation}>
+  {jobs.jobLocation ? jobs.jobLocation.charAt(0).toUpperCase() + jobs.jobLocation.substring(1) : ''}
+</span>
+
         <span className={styles.qualificationAndExperiance}>
         <  img className={styles.graduationImage} src={graduation}  /> 
 
-          {jobs.qualification},   {jobs.experiance}Y Exp, {jobs.jobtype}
+          {jobs.qualification},   {jobs.experiance}Yrs , {jobs.jobtype}
         {/* <span className={styles.jobtypeAndDate}> {job.jobtype}</span> */}
         </span><br></br> 
         <span className={styles.jobtypeAndDate}>Source</span> :
@@ -598,7 +695,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
 
             
             <div className={styles.ApplyPackage}>
-            <p className={styles.salaryRange}><span>&#8377;</span>{jobs.salaryRange}L</p>        
+            <p className={styles.salaryRange}><span>&#8377;</span>{jobs.salaryRange}LPA</p>        
 
 
             {
@@ -635,8 +732,8 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
           applyforJobasjobseeker(jobs._id,jobs.SourceLink)}>Apply</button>
           :
       <button className={styles.ApplyMobile} onClick={() => { navigate("/JobSeekerLogin") }}><b>Apply</b></button>
+   
       
-
 
 }
                   </div>
@@ -647,6 +744,8 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
             }
             
                </p>
+               </>
+          }
                 </div>
               </>
 

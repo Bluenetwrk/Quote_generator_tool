@@ -62,7 +62,14 @@ let navigate = useNavigate()
             })
     }
 
+ const[saveComent, setSaveComment]=useState("")   
+const comment=(e)=>{
+   setSaveComment(e.target.value)
+}
 
+const onSubmit=()=>{
+    setSaveComment("")
+}
 
     return (
         <>
@@ -85,7 +92,7 @@ profileData.map((item, i) => {
 
 
            {screenSize.width>850?
-           
+           <>
 <div className={styles.uiwrapper}>
             <ul className={styles.ul}>
                 <li className={styles.li}><b>Name </b></li>
@@ -100,6 +107,7 @@ profileData.map((item, i) => {
                 <li className={styles.li}><b>Qualification</b></li>
                 <li className={styles.li}><b>Skills</b></li>
                 <li className={styles.li}><b>Experience</b></li>
+                <li className={styles.li}><b>HRs/Employer FeedBack</b></li>
 
             </ul>
             {PageLoader?
@@ -124,12 +132,25 @@ profileData.map((item, i) => {
                        <li className={` ${styles.Hli}`}>{item.Qualification?item.Qualification:<li className={styles.Nli}>Not Updated</li>}</li>
                        <li className={` ${styles.Hli}`}>{item.Skills?item.Skills:<li className={styles.Nli}>Not Updated</li>}</li>
                        <li className={` ${styles.Hli}`}>{item.Experiance?item.Experiance:<li className={styles.Nli}>Not Updated</li>}</li>
+                       <li className={` ${styles.Hli}`}>{item.Experiance?item.Experiance:<li className={styles.Nli}>No FeedBack</li>}</li>
                         </ul>
                     )
                 })
 
             }
+            
             </div>
+            <div style={{marginLeft:"70px", marginBottom:"20px"}}>
+                <h2>Comment</h2>
+                <div style={{display:"flex"}}>
+                   <textarea onChange={(e)=>comment(e)} value={saveComent} style={{width:"30%",height:"80px"}}></textarea>
+                   <div style={{display:"flex", alignItems:"end",}}>
+                     <button onClick={onSubmit} className={styles.jobdetailBackBtn} style={{padding: "0px 5px 0px 8px"}} >Submit</button>
+                    </div>
+                </div>
+            </div>
+
+            </>
             :
             <>
             <div id={styles.JobCardWrapper} >
@@ -167,9 +188,17 @@ profileData.map((item, i) => {
 
                   <div className={styles.Down}>
                   <span className={styles.span}> Skills : {job.Skills?<span style={{ color: "blue" }}>{job.Skills} </span>:<span style={{color:"red"}}>Not updated</span>}</span><br></br>
+                  <span className={styles.span}> HRs/Employer FeedBack : {job.Skills?<span style={{ color: "blue" }}>{job.Skills} </span>:<span style={{color:"red"}}>No FeedBack</span>}</span><br></br>
                   </div>
 
       </div>
+      <div style={{marginLeft:"16px", marginBottom:"20px"}}>
+                <h2>Comment</h2>
+                   <textarea onChange={(e)=>comment(e)} value={saveComent} style={{width:"99%",height:"80px"}}></textarea>
+                   <div>
+                     <button onClick={onSubmit} className={styles.jobdetailBackBtn} style={{padding: "0px 5px 0px 8px", marginLeft:"2px"}} >Submit</button>
+                    </div>
+            </div>
     </>
   )
 })}

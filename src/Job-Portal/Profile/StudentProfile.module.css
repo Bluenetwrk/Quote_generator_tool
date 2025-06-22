@@ -1,3 +1,77 @@
+.jobdetailBackBtn{
+    background-color: rgb(40, 4, 99);
+    color: white;
+    border: none;
+    padding: 0px 10px 0px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 1.0rem; 
+    margin-left: 20px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    gap:6px;  
+}
+.validateBtn{
+    background-color: rgb(40, 4, 99);
+    color: white;
+    border: none;
+    /* padding: 10px 15px 10px 15px; */
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 12px;
+    width: 60px;
+    padding: 7px;
+    margin-top: 10px;
+}
+
+.validateBtnMobile{
+    background-color: rgb(40, 4, 99);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 12px;
+    width: 160px;
+    margin-top: 10px;
+    height: 25px;
+}
+
+.imgBgv{
+   display:flex;
+   justify-content:space-between;
+   margin-right:400px;
+}
+.puff-loader {
+    margin-top: 20px;
+    margin-right: 300px;
+  }
+
+
+
+@media(max-width:475px){
+    .imgBgv{
+        margin-right:20px;
+     }
+}
+.jobdetailBackBtnMobile{
+    background-color: rgb(40, 4, 99);
+    color: white;
+    border: none;
+    /* padding: 10px 15px 10px 15px; */
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 12px;
+    width: 53px;
+    padding: 7px;
+    margin-top: 10px;
+}
+
 
 .NavConetenetWrapper{
     display: flex;
@@ -59,6 +133,45 @@ margin-top: -30px;
      border-radius: 25px;
      cursor: pointer;
 }
+
+.updateProfileStd{
+    /* background-color: rgb(40, 4, 99); */
+    background:rgb(242, 244, 245);
+     padding:12px;
+     border: 1px solid ;
+     color:rgb(40, 4, 99);;
+     font-weight: 600;
+     border-radius: 25px;
+     cursor: pointer;
+}
+
+
+.updatebgvContainer{
+   display:flex;
+   gap:5px;
+   align-items:center;
+   flex-wrap:wrap;
+}
+
+
+@media(max-width:475px){
+    .updatebgvContainer{
+        margin-left: 106px;
+     }
+}
+
+@media(max-width:376px){
+    .updatebgvContainer{
+        margin-left: 60px;
+     }
+}
+
+@media(max-width:320px){
+    .updatebgvContainer{
+        margin-left: 16px;
+     }
+}
+
 
 .updateProfile:hover{
     background:rgb(242, 244, 245);
@@ -181,6 +294,8 @@ margin-top: -30px;
     cursor: pointer;
 
 }
+
+
 
 #JobCardWrapper {
     /* display: flex; */

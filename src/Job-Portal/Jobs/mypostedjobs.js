@@ -57,7 +57,7 @@ function JoppostedByEmp(props) {
           setmyjobsforFilter(sortedate)
     setPageLoader(false)
           if (res.data.length == 0) {
-            setNoJobFound("You have not posted any job")
+            setNoJobFound("Loading....")
           }
 
         }).catch((err) => {
@@ -87,7 +87,7 @@ function JoppostedByEmp(props) {
       confirmButtonText: 'delete!'
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`/jobpost/deleteProduct/${deleteid}`, {headers})
+        axios.delete(`/jobpost/deleteJob/${deleteid}`, {headers})
           .then((res) => {
             getjobs()
           })
@@ -239,6 +239,7 @@ function JoppostedByEmp(props) {
   const records = myjobs.slice(firstIndex, lastIndex)//0,5
   const npage = Math.ceil(myjobs.length / recordsPerPage) // last page
   const number = [...Array(npage + 1).keys()].slice(1)
+  const [transferRecords, setTransferRecords] = useState("PostedJobs")
 
   function firstPage(id){
     setCurrentPage(1)
@@ -359,9 +360,11 @@ function handleRecordchange(e){
 
           </ul>
           {PageLoader ?
-            <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "49%", marginTop: "50px" }} />
-            : ""
-          }
+           <> <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "49%", marginTop: "50px" }} />
+              <div style={{display:"flex",justifyContent:"center", color:"red"}}>
+              <h3>Loading...</h3>
+              </div>
+            </>: <>
           {
             records.length > 0 ?
 
@@ -376,8 +379,7 @@ function handleRecordchange(e){
                       {items.companyName}
                       </li>
 
-                    <li className={`${styles.li} ${styles.Jtitle}`} style={{ color: "blue", cursor:"pointer" }} onClick={() =>
-                       { navigate(`/Jobdetails/${btoa(items._id)}`) }}>{items.jobTitle.toUpperCase()}</li>
+                    <li className={`${styles.li} ${styles.Jtitle}`} style={{ color: "blue", cursor:"pointer" }} onClick={() => navigate(`/Jobdetails/${btoa(items._id)}?index=${i}`, {state: {transferRecords, },})}>{items.jobTitle.toUpperCase()}</li>
                     {/* <li className={`${styles.li} ${styles.liDescription}`}> 
                     {items.jobDescription? HTMLReactParser(items.jobDescription.toString()) :""}
                       <span style={{ color: "blue", cursor:"pointer" }} onClick={() => { navigate(`/Jobdetails/${btoa(items._id)}`) }} >...see more</span>
@@ -414,7 +416,9 @@ function handleRecordchange(e){
                 )
               })
               // :""
-              : <p style={{ marginLeft: "44%", color: "red" }}>You have not posted any jobs yet</p>
+              : <p style={{ marginLeft: "44%", color: "red" }}>No Record Found</p>
+          }
+          </>
           }
         </div>
         
@@ -478,7 +482,7 @@ myjobs.map((job, i) => {
   window.scrollTo({
     top:0
   })
-  navigate(`/Jobdetails/${btoa(job._id)}`)}} >{job.jobTitle.toUpperCase()} </p>                      
+  navigate(`/Jobdetails/${btoa(job._id)}?index=${i}`, {state: {transferRecords, },})}} >{job.jobTitle.toUpperCase()} </p>                      
         <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
           "en-US",
           {

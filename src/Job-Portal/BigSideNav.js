@@ -135,17 +135,18 @@ function SidebarNav(props) {
 //    setQuery(tag);
 //    setSuggestions([]); 
 //  };
+let EmployeeAuth = localStorage.getItem("EmpLog")
 
 
   return (
   <>
   
-      <div  ref ={props.refrence} >
+      <div  ref ={props.refrence}  >
       {/* <p style={{marginLeft:"80%"}} onClick={()=>{props.setShowSideNaveProps((prev)=>!prev)}}> &#10005;</p> */}
       <div style={{ marginTop:"-15px"}}>
          <div style={{display:"flex",marginTop:"10px",marginRight:"6px"}} >
             {/* <input className={Styles.blogInputboxsearch}  type="text" value={query} placeholder='Search for a Job / Skills / Location / Experiance' onChange={handleInputChange} /> */}
-            <input className={Styles.blogInputboxsearch}  type="text" placeholder='Search here...' onChange={(e) => { 
+            <input className={Styles.blogInputboxsearch}  type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { 
                                                                                                                                  if(empHome)
                                                                                                                                     props.searchs(e)
                                                                                                                                  else if(location.pathname==="/Blogs"){
@@ -209,22 +210,29 @@ function SidebarNav(props) {
 
         {/* <p onClick={()=>{navigate("/")}} className={`${Styles.p} `}>Home </p> */}
         <p onClick={()=>{navigate("/Blogs"); update("Blogs")}} className={`${Styles.textBigSodeBar} ${value==="Blogs"?Styles.active:""}`}>Blogs</p>
-        {/* <p onClick={()=>{navigate("/AllCareerJobs"); update("AllCareerJobs")}} className={`${Styles.textBigSodeBar} ${value==="AllCareerJobs"?Styles.active:""}`}>ITwalkin Career</p> */}
-        {/* <p onClick={()=>{navigate("/Walkin-Drives"); update("AllWalkinDrive")}} className={`${Styles.textBigSodeBar} ${value==="AllWalkinDrive"?Styles.active:""} `}>Walkin Drives</p> */}
+       {!EmployeeAuth&&
+       <>
+        <p onClick={()=>{navigate("/AllCareerJobs"); update("AllCareerJobs")}} className={`${Styles.textBigSodeBar} ${value==="AllCareerJobs"?Styles.active:""}`}>ITwalkin Career</p>   
+        <p onClick={()=>{navigate("/Walkin-Drives"); update("AllWalkinDrive")}} className={`${Styles.textBigSodeBar} ${value==="AllWalkinDrive"?Styles.active:""} `}>Walkin Drives</p>
+        </>
+       }
         <p onClick={()=>{navigate("/support/help"); update("AllHelps")}} className={`${Styles.textBigSodeBar} ${value==="AllHelps"?Styles.active:""} `}>Help/Support</p>
         <p onClick={()=>{navigate("/AboutUs"); update("AboutUs")}} className={`${Styles.textBigSodeBar} ${value==="AboutUs"?Styles.active:""} `}>About Us</p>
         <p onClick={()=>{navigate("/Services"); update("Services")}} className={`${Styles.textBigSodeBar} ${value==="Services"?Styles.active:""}`}>Our Services</p>
         <p onClick={()=>{navigate("/Contact"); update("Contact")}} className={`${Styles.textBigSodeBar} ${value==="Contact"?Styles.active:""}`}>Contact Us</p>
         <p onClick={()=>{navigate("/TermsAndCondition"); update("TermsAndCondition")}} className={`${Styles.textBigSodeBar} ${value==="TermsAndCondition"?Styles.active:""}`}>Terms & Conditions</p>
-        
-        <div className={Styles.brands}>
-        <p onClick={()=>{navigate("/Release Version :v1.0"); update("Release Version :v1.0")}} className={`${Styles.textBigSodeBar} ${value==="Release Version :v1.0"?Styles.active:""}`}>Release Version : v1.0</p>
+        <i onClick={()=>{Linkedin(); }} className={`${Styles.textBigSodeBar}  fa-brands fa-linkedin`} style={{ fontSize: "xx-large" }} ></i>
+         <p  className={`${Styles.textBigSodeBar} `} style={{ marginBottom: "120px", marginTop: "0px" }}>Release Version : v1.0</p> 
+        <div></div>
+        {/* <div className={Styles.brands}> */}
+
         {/* <a> <i className='fa-brands fa-facebook-square' style={{fontSize:"xx-Large" , marginBottom:"30px", marginTop:"10px"}}></i> </a>
               <a> <i className='fa-brands fa-instagram-square' style={{fontSize:"xx-Large", marginBottom:"30px"}}></i> </a><br></br>
               <a> <i className='fa-brands fa-twitter-square' style={{fontSize:"xx-Large", marginBottom:"45px", marginTop:"10px"}}></i> </a> */}
               {/* <i className="fa-brands fa-linkedin-square" style={{fontSize:"xx-Large", marginBottom:"30px"}} onClick={Linkedin} ></i><br></br> */}
-              <i className="fa-brands fa-linkedin" style={{ fontSize: "xx-large", marginBottom: "30px" }}  onClick={Linkedin}></i>
-        </div>
+              {/* <i className={`${Styles.textBigSodeBar} fa-brands fa-linkedin`} style={{ fontSize: "xx-large", marginBottom: "30px" }}  onClick={Linkedin}></i> */}
+             {/* <p style={{marginTop:"-10px", marginLeft:"15px"}}>Version 3.0</p>
+        </div> */}
         </div>
       </div>
       </>

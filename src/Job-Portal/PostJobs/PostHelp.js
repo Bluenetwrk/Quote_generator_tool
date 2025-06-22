@@ -13,6 +13,7 @@ import socketIO from 'socket.io-client';
 import CreatableSelect from "react-select"
 import useScreenSize from '../SizeHook';
 import {jobTags} from "../Tags"
+import CustomTextEditor from '../Editor/CustomTextEditor'
 
 // import CreatableSelect  from 'react-select/creatable';
 
@@ -132,7 +133,7 @@ function PostHelp(props) {
                         items.isApproved ?
 
                             <div key={i}>
-                                  <h2  class={Style.helpHeading} >Post Help Questions</h2>   
+                                  <h2 style={{marginLeft:"10%"}}  class={Style.helpHeading} >Post Help Questions</h2>   
                                 <div className={Style.postJobPageWrapper} >
                                     <div className={Style.postJobWrapper} style={{marginBottom:"-220px"}}>
                                         <p className={successMessage === "Success! job successfully posted" ?
@@ -144,7 +145,12 @@ function PostHelp(props) {
  <div style={{marginTop:"20px",display:"flex",flexDirection:"column"}}>  
     <h4 style={{marginLeft:"7PX"}}>Help Descriptions</h4> 
     <div className={`screen3`}>                                 
-   <JoditEditor  ref={editor} className={Style.inputbox} value={helpDescription.toString()} onChange={(e)=>{setHelpDescription(e)}} />
+   {/* <JoditEditor  ref={editor} className={Style.inputbox} value={helpDescription.toString()} onChange={(e)=>{setHelpDescription(e)}} /> */}
+   <CustomTextEditor
+ ref={editor} className={Style.inputbox} 
+        value={helpDescription}
+        onChange={setHelpDescription}
+      />
    </div>
 </div>  
 <p><input type="checkbox" onChange={()=>{setconcent((prev)=>!prev)}}/>
@@ -153,8 +159,9 @@ function PostHelp(props) {
 
 
                                         {Logo ? <p ><span style={{ color: "blue" }}>Note** :</span> Logo will also be posted with the Job</p> : ""}
-
-                                        <button disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postHelp}>Post Help</button>
+                                        <div style={{display:"flex", justifyContent:"center"}}>      
+                                        <button style={{width:"25%"}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postHelp}>Submit</button>
+                                        </div>
                                     </div >
                                 </div >
                             </div>

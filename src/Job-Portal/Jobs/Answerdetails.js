@@ -17,6 +17,7 @@ import HTMLReactParser from 'html-react-parser'
 import StProfile from "../Profile/StudentProfile"
 import EMpProfile from "../Profile/EmployeeProfile"
 import JoditEditor from 'jodit-react'
+import CustomTextEditor from '../Editor/CustomTextEditor';
 // import HTMLReactParser from 'html-react-parser'
 
 
@@ -87,7 +88,7 @@ function changeComments(e){
 
 async function handleComment(){
   if(!userid){
-    alert("you must login to comment on question")
+    alert("Sign in to join the discussion and comment on this question.")
     return false
   }
   if(!comments.comment){
@@ -143,6 +144,24 @@ async function deletComment(id){
   function deleteComment(){
 
   }
+
+  const [resumeAlert, setresumeAlert]=useState(false)
+  const [deletedid, setDeletedid]=useState("")
+            const alertRef = useRef(null);
+            useEffect(() => {
+              const handleClickOutside = (event) => {
+                // If clicked outside alert box and it's open
+                if (alertRef.current && !alertRef.current.contains(event.target)) {
+                  setresumeAlert(false); // close the alert
+                }
+              };
+            
+              document.addEventListener('mousedown', handleClickOutside);
+            
+              return () => {
+                document.removeEventListener('mousedown', handleClickOutside);
+              };
+            }, []);
   
   return (
     <>
@@ -177,28 +196,101 @@ async function deletComment(id){
   
 </div>
 
-{ jobs.comments?
-      jobs.comments.map((com)=>{
-        return(
-          <>
-          {/* <p> {com.name} : {com.comment}</p> */}
-          <p class={styles.submittedAnsdiv} style={{textAlign:"center",}}> 
-             {/* {com.comment} */}
-             <div class={styles.submittedAnsDetail}>
-             {HTMLReactParser(com.comment.toString())} 
-             </div>
-             <div class={styles.submittedAnsBy}>
-             ({com.name}) 
-             </div> 
-             {userid===com.id?<button onClick={()=>{deletComment(com.id)}} >delete</button>
-          :""
-          } </p>
+{jobs.comments &&
+  jobs.comments.map((com) => {
+    return (
+      <div key={com.id}>
+        <p className={styles.submittedAnsdiv}>
+          <div className={styles.submittedAnsDetail}>
+            {HTMLReactParser(com.comment.toString())}
+          </div>
+          <div className={styles.submittedAnsBy}>({com.name})</div>
 
-</>
-        )
-      })
-      :""
-    }
+          {userid === com.id && (
+            <div style={{ position: "relative" }}>
+              <button
+                onClick={() => {
+                  setresumeAlert(true);
+                  setDeletedid(com.id); // Store this comment ID
+                }}
+              >
+                Delete
+              </button>
+
+              {/* Show alert only if this is the comment selected for deletion */}
+              {resumeAlert && deletedid === com.id && (
+                <div
+                ref={alertRef}
+                  style={{
+                    width: "250px",
+                    padding: "20px",
+                    backgroundColor: "rgb(40,4,99)",
+                    color: "white",
+                    fontSize: "12px",
+                    borderRadius: "5px",
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(50%, -60%)",
+                    zIndex: 9999,
+                    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+                    textAlign: "center",
+                  }}
+                >
+                  Are you sure you want to delete this answer?
+                  <div
+                    style={{
+                      marginTop: "15px",
+                      display: "flex",
+                      justifyContent: "center",
+                      gap: "5px",
+                    }}
+                  >
+                    <button
+                      onClick={() => {
+                        deletComment(deletedid);
+                        setresumeAlert(false);
+                        setDeletedid(null);
+                      }}
+                      style={{
+                        padding: "8px 16px",
+                        backgroundColor: "#4CAF50",
+                        color: "white",
+                        border: "none",
+                        borderRadius: "5px",
+                        fontSize: "12px",
+                        cursor: "pointer",
+                      }}
+                    >
+                      OK
+                    </button>
+                    <button
+                      onClick={() => {
+                        setresumeAlert(false);
+                        setDeletedid(null);
+                      }}
+                      style={{
+                        padding: "8px 16px",
+                        backgroundColor: "#4CAF50",
+                        color: "white",
+                        border: "none",
+                        borderRadius: "5px",
+                        fontSize: "12px",
+                        cursor: "pointer",
+                      }}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </p>
+      </div>
+    );
+  })}
+
 
 
 <div class={styles.ansCommentSection}>   
@@ -212,13 +304,19 @@ async function deletComment(id){
       }).length<1?<>
       {/* <input placeholder='Answer' maxLength={300} style={{height:"30px", marginLeft:"6px", width:"90%"}} type='text' 
       value={comments.comment} onChange={(e)=>{changeComments(e)}} /> */}
-<JoditEditor  ref={editor}   onChange={(e)=>{changeComments(e)}} />
+{/* <JoditEditor  ref={editor}   onChange={(e)=>{changeComments(e)}} /> */}
+<CustomTextEditor
+ ref={editor}
+ value={comments.comment} 
+        onChange={changeComments}
+      />
 
        <button class={styles.ansBtn} onClick={handleComment} style={{height:"30px", marginLeft:"6px"}}>Answer</button> 
        </>
        :""
       :""
 } 
+
 </div>
           </>
           :
@@ -239,29 +337,96 @@ async function deletComment(id){
           }
         )} </p></div>
      
-    {
-     jobs.comments?
-      jobs.comments.map((com)=>{
-        return(
-  <table style={{marginLeft:"6px", marginTop:"0px", width:"98.8%"}}>
-          <tr >
-    <td colSpan={2} > 
-          <p> {com.name} : 
-          {/* {com.comment} */}
-          {HTMLReactParser(com.comment.toString())}  
+     {jobs.comments &&
+  jobs.comments.map((com) => {
+    return (
+      <table key={com.id} style={{ marginLeft: "6px", marginTop: "0px", width: "98.8%" }}>
+        <tbody>
+          <tr>
+            <td colSpan={2}>
+              <p>
+                {com.name} : {HTMLReactParser(com.comment.toString())}
+              </p>
 
-          </p>
-{userid===com.id?
-          <button onClick={()=>{deletComment(com.id)}} >delete</button>
-          :""
-          }
-          </td>
+              {userid === com.id && (
+                <>
+                  <button
+                    onClick={() => {
+                      setDeletedid(com.id);
+                      setresumeAlert(true);
+                    }}
+                  >
+                    Delete
+                  </button>
+
+                  {resumeAlert && deletedid === com.id && (
+                    <div
+                      ref={alertRef}
+                      style={{
+                        width: "200px",
+                        padding: "20px",
+                        backgroundColor: "rgb(40,4,99)",
+                        color: "white",
+                        fontSize: "12px",
+                        borderRadius: "5px",
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        zIndex: 9999,
+                        boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+                        textAlign: "center",
+                      }}
+                    >
+                      Are you sure you want to delete this comment?
+                      <div style={{ marginTop: "15px", display: "flex", justifyContent: "center", gap: "5px" }}>
+                        <button
+                          onClick={() => {
+                            deletComment(deletedid);
+                            setDeletedid(false);
+                            setDeletedid(null);
+                          }}
+                          style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#4CAF50",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "5px",
+                            fontSize: "12px",
+                            cursor: "pointer",
+                          }}
+                        >
+                          OK
+                        </button>
+                        <button
+                          onClick={() => {
+                            setresumeAlert(false);
+                            setDeletedid(null);
+                          }}
+                          style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#4CAF50",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "5px",
+                            fontSize: "12px",
+                            cursor: "pointer",
+                          }}
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </>
+              )}
+            </td>
           </tr>
-          </table>
-        )
-      })
-      :""
-     }
+        </tbody>
+      </table>
+    );
+  })}
+
 
 
 {  
@@ -272,8 +437,12 @@ async function deletComment(id){
         )
       }).length<1?<>
              
-<JoditEditor  ref={editor}   onChange={(e)=>{changeComments(e)}} />
-
+{/* <JoditEditor  ref={editor}   onChange={(e)=>{changeComments(e)}} /> */}
+<CustomTextEditor
+ ref={editor}
+ value={comments.comment} 
+        onChange={changeComments}
+      />
 
        <button onClick={handleComment} style={{height:"30px", marginLeft:"6px"}} class={styles.ansBtn}>Comment</button> 
        </>

@@ -265,8 +265,8 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
 
   }
 
-
   
+
   const [jobLocation, setjobLocation] = useState("AllL")
   const [jobTitle, setjobTitle] = useState("")
   
@@ -612,7 +612,7 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
 
 
 
-
+  
   return (
     <>
       {screenSize.width > 850 ?
@@ -895,8 +895,9 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
                       </ul>          
                     )
                   })
-                : <p style={{ marginLeft: "47%", color: "red" }}>No Record Found</p>
-            }
+                  : <p style={{ marginLeft: "47%", color: "red" }}>No Walkin Drives</p>
+                  }
+                  
           </div>
 
           <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -1187,7 +1188,7 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
                     </>
                   )
                 })
-                : <p style={{ marginLeft: "35%", color: "red" }}>No Record Found</p>
+                : <p style={{ marginLeft: "35%", color: "red" }}>Loading......</p>
 
             }
 

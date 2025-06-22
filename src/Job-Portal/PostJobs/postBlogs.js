@@ -13,6 +13,7 @@ import socketIO from 'socket.io-client';
 import CreatableSelect from "react-select"
 import useScreenSize from '../SizeHook';
 import {jobTags} from "../Tags"
+import CustomTextEditor from '../Editor/CustomTextEditor'
 
 // import CreatableSelect  from 'react-select/creatable';
 
@@ -55,7 +56,9 @@ function PostBlogs(props) {
     const [skills, setSkills] = useState("")
     const [name, setName] = useState("")
     const [concent, setconcent] = useState(true)
+    const [profileConcent,setProfileConcent] = useState(false)
     
+
 
     // function handleChange(tag) {
     //     setTag(tag)
@@ -282,7 +285,7 @@ if(key==='Full Time' ||key=== 'Contract' || key==='Internship' || key==='Part Ti
                                         <input maxLength="30" className={Style.inputbox} type="text" value={companyName} disabled /> */}
 
 
-                                        <h4 className={Style.jobHeadline}>Bolg**</h4>
+                                        <h4 className={Style.jobHeadline}>Blog**</h4>
                                         {/* <input maxLength="100" className={Style.inputbox} type="text" value={jobDescription} onChange={(e) => { setJobDescription(e.target.value) }} /> */}
                                         {/* <Editor
                                             toolbarClassName="toolbarClassName"
@@ -293,7 +296,7 @@ if(key==='Full Time' ||key=== 'Contract' || key==='Internship' || key==='Part Ti
                                             onChange={(e) => { setJobDescription(e.blocks) }}
                                         /> */}
 <JoditEditor  ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}} />
-
+{/* <CustomTextEditor  ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}}></CustomTextEditor> */}
                                         <p className={Style.jobHeadline}>Blog Tags <span className={Style.hint}>(Select multiple Tags to reach the best Matching Blogs)</span></p>
 
 <div className={Style.JobtitleFilterWrapper}>
@@ -389,11 +392,19 @@ if(key==='Full Time' ||key=== 'Contract' || key==='Internship' || key==='Part Ti
     I have read the terms and conditions of ITwalkin.com and I agree to all the 
      <span style={{color:"blue", cursor:"pointer"}} onClick={()=>(window.open("/TermsAndCondition"))}> terms and conditons</span> before posting the jobs </p> 
 
+     <p><input type="checkbox" onChange={()=>{setProfileConcent((prev)=>!prev)}}/>
+     Show my company and designation</p>
+    
+
+     
+
 
                                         {/* {Logo ? <p ><span style={{ color: "blue" }}>Note** :</span> Logo will also be posted with the Job</p> : ""} */}
 
-                                        <button disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Post Blog</button>
-                                    </div >
+                                         </div >
+                                         <div style={{display:"flex",justifyContent:"center"}}>
+                                         <button style={{width:"200px",marginLeft:"-64px"}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Post Blog</button>
+                                         </div>
                                 </div >
                             </div>
                             : <p style={{ color: "red", fontStyle: "italic", marginLeft: "20px" }}>Your account is in under verification process, Once your account gets verified, then you will be able to write a Blog</p>

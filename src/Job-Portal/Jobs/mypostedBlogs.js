@@ -35,7 +35,7 @@ function BlogpostedByEmp(props) {
 
   const [Filtereredjobs, setFiltereredjobs] = useState([])
   const [nopageFilter, setNoPageFilter]=useState(false)
-
+  const [transferRecords, setTransferRecords] = useState("postedBlogs")
   const [isReadMore, setIsReadMore] = useState(true)
   const navigate = useNavigate()
 
@@ -49,14 +49,16 @@ function BlogpostedByEmp(props) {
       await axios.get(`/BlogRoutes/getPostedjobs/${empId}`, {headers})
         .then((res) => {
           let result = (res.data)
+          console.log("setmyjobs",result)
           let sortedate = result.sort(function (a, b) {
             return new Date(b.createdAt) - new Date(a.createdAt);
           });
           setMyjobs(sortedate)
           setmyjobsforFilter(sortedate)
-    setPageLoader(false)
+          setPageLoader(false)
+ 
           if (res.data.length == 0) {
-            setNoJobFound("You have not posted any job")
+            setNoJobFound("Loading...")
           }
 
         }).catch((err) => {
@@ -265,7 +267,7 @@ function handleRecordchange(e){
   setrecordsPerPage(recordsperpage)  
   setCurrentPage(1)
 }
-
+console.log("dhdgsgdg",records)
 
   return (
     <>
@@ -299,7 +301,7 @@ function handleRecordchange(e){
             {        nopageFilter?
     <p style={{fontWeight:400, marginLeft:"10px"}}>Displaying <span style={{color:"blue"}}>{Filtereredjobs}</span> from All Jobs</p>
     :
-    <p style={{fontWeight:400, marginLeft:"10px"}}>showing {firstIndex+1} to {lastIndex} latest jobs</p>
+    <p style={{fontWeight:400, marginLeft:"10px"}}>showing {firstIndex+1} to {lastIndex} latest articles</p>
     }
 <div className={styles.navigationWrapper}>
   <button disabled={currentPage === 1} style={{display:"inline", margin:"5px"}} className={styles.navigation} onClick={firstPage}>
@@ -323,7 +325,7 @@ function handleRecordchange(e){
               <option selected = {lastIndex === 25} value={25}>25</option>
               <option selected = {lastIndex === 50} value={50}>50</option>
               <option selected = {lastIndex === 100} value={100}>100</option>
-            </select>  jobs per page
+            </select>  Articles per page
             </div>
       
    <div className={styles.Uiwarpper}>
@@ -359,8 +361,8 @@ function handleRecordchange(e){
           </ul>
           {PageLoader ?
             <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "49%", marginTop: "50px" }} />
-            : ""
-          }
+           :""
+          } 
           {
             records.length > 0 ?
 
@@ -368,14 +370,13 @@ function handleRecordchange(e){
                 return (
 
                   <ul className={styles.ul} key={i}>
-
+     
                     {/* <li className={styles.li}>
                      
                       {items.companyName}
                       </li> */}
 
-                    <li className={`${styles.li} ${styles.BJtitle}`} style={{ color: "blue", cursor:"pointer" }} onClick={() =>
-                       { navigate(`/Blogdetails/${btoa(items._id)}`) }}>{items.jobTitle.toUpperCase()}</li>
+                    <li className={`${styles.li} ${styles.BJtitle}`} style={{ color: "blue", cursor:"pointer" }} onClick={() => navigate(`/Blogdetails/${btoa(items._id)}?index=${i}`, {state: {transferRecords, },})}>{items.jobTitle.toUpperCase()}</li>
                    
                     <li className={`${styles.li} ${styles.BPdate}`}>
                       {new Date(items.createdAt).toLocaleString(
@@ -409,7 +410,8 @@ function handleRecordchange(e){
                 )
               })
               // :""
-              : <p style={{ marginLeft: "44%", color: "red" }}>You have not posted any jobs yet</p>
+              : <p style={{ marginLeft: "44%", color: "red" }}>Loading...</p>
+          
           }
         </div>
         
@@ -420,7 +422,7 @@ function handleRecordchange(e){
               <option selected = {lastIndex === 25} value={25}>25</option>
               <option selected = {lastIndex === 50} value={50}>50</option>
               <option selected = {lastIndex === 100} value={100}>100</option>
-            </select>  jobs per page
+            </select>  Articles per page
             </div>
 
           <div className={styles.navigationWrapper}>
@@ -446,12 +448,12 @@ function handleRecordchange(e){
       :
       <> 
 
-<p style={{marginLeft:"45%"}}>My Posted Jobs</p>
-<button className={styles.searchButton} onClick={() => {
+<p style={{marginLeft:"45%"}}>My Posted Articles</p>
+{/* <button className={styles.searchButton} onClick={() => {
           navigate("/Search-Candidate")
-        }}>Search Candidate</button>
+        }}>Search Candidate</button> */}
 
-<p style={{ marginLeft: "4%", color: "blue", fontWeight:"bold" }}> Total {myjobs.length} jobs</p>
+<p style={{ marginLeft: "4%", color: "blue", fontWeight:"bold" }}> Total {myjobs.length} Articles</p>
         <div className={styles.searchBoth}>
           <p className={styles.p}>Search </p>
           <input className={styles.inputboxsearch} type="text" placeholder='search for a posted job' onChange={(e) => { search(e) }} />
@@ -470,10 +472,11 @@ myjobs.map((job, i) => {
                         
                         <div className={styles.JobTitleDateWrapper}>
         <p className={styles.jobTitle} onClick={() => {
-  window.scrollTo({
-    top:0
-  })
-  navigate(`/Blogdetails/${btoa(job._id)}`)}} >{job.jobTitle.toUpperCase()} </p>                      
+  window.scrollTo({ top: 0 });
+  navigate(`/Blogdetails/${btoa(job._id)}?index=${i}`, {
+    state: { transferRecords },
+  });
+}}>{job.jobTitle.toUpperCase()} </p>                      
         <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
           "en-US",
           {

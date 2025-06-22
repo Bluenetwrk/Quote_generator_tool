@@ -276,9 +276,12 @@ window.addEventListener('keypress', function(event){
                    onChange={handleChange}     
                  />
                   </div> */}
-                    <button className={Style.button} onClick={updateJob}>Update</button>
+                   
 
                 </div >
+                <div style={{display:"flex",justifyContent:"center"}}>
+                <button style={{width:"200px",marginLeft:"-64px"}} className={Style.button} onClick={updateJob}>Update</button>
+                </div>
             </div >
 
             {screenSize.width > 750 ?
