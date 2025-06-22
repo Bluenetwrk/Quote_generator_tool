@@ -14,6 +14,7 @@ import Arrowimage from '../img/icons8-arrow-left-48.png'
 import validator from "validator";
 import Footer from '../Footer/Footer';
 import JoditEditor from 'jodit-react'
+import CustomTextEditor from '../Editor/CustomTextEditor';
 
 
 function EmployeeUpdateProfile(props) {
@@ -403,13 +404,13 @@ const [immage, setimmage] = useState()
             </label>
 
             <div className={styles.inputName}>
-              <h4>Type of Organisation :  <span style={{color:"blue"}}>{TypeofOrganisation}</span></h4>
+              <h4>Type of Organisation:</h4>
               {/* <input className={styles.input} value={TypeofOrganisation} onChange={(e) => { setTypeofOrganisation(e.target.value) }} type="text" /> */}
            
             <select className={styles.input } style={{height:"35px"}}onChange={(e)=>{setTypeofOrganisation(e.target.value)}}>
-            {TypeofOrganisation? <option style={{color:"blue"}} >{TypeofOrganisation}</option>
+            {/* {TypeofOrganisation? <option style={{color:"blue"}} >{TypeofOrganisation}</option>
             :<option value="" >Select Company type</option>
-            }
+            } */}
               <option value="Pvt.Ltd.">Pvt. Ltd.</option>
               <option value="Firm">Firm</option>
               <option value="Consultancy">Consultancy</option> 
@@ -434,7 +435,7 @@ const [immage, setimmage] = useState()
             </label>
             <label className={styles.inputName}>
               <h4>Company CIN Number:</h4>
-              <input maxLength="22" className={styles.input} value={CompanyCIN} onChange={(e) => {handleChangeCompanyCIN(e)} } type="text" />
+              <input maxLength="21" className={styles.input} value={CompanyCIN} onChange={(e) => {handleChangeCompanyCIN(e)} } type="text" />
             </label>
 
             <label className={styles.inputName}>
@@ -484,7 +485,7 @@ const [immage, setimmage] = useState()
 
             <label className={styles.inputName}>
               <h4>Secondary user name : <span style={{fontWeight:800, fontSize:"medium"}} 
-            title='(secondary user will be able to post a job search candidates)'><i class="fa-solid fa-circle-info"></i></span></h4>
+            title='(The secondary user can post jobs and find candidates.)'><i class="fa-solid fa-circle-info"></i></span></h4>
               <input maxLength="90" className={styles.input} value={Secondaryusername} onChange={(e) => {handleSecondaryusername(e) }} type="text" />
             </label>
 
@@ -503,8 +504,16 @@ const [immage, setimmage] = useState()
               <input maxLength="90" className={styles.input} value={Secondaryusercontactnumber} onChange={(e) => {handleSecondaryusercontactnumber(e) }} type="text" />
             </label>
             <div className={styles.Editor}>
-            <h4>About Company:</h4>
-<JoditEditor  ref={editor}  value={AboutCompany.toString()} onChange={(e)=>{setAboutCompany(e)}} />
+            <h4 style={{marginTop:"38px", marginBottom:"10px"}}>About Company:</h4>
+{/* <JoditEditor  ref={editor}  value={AboutCompany.toString()} onChange={(e)=>{setAboutCompany(e)}} /> */}
+<div style={{marginLeft:"12px"}}>
+<CustomTextEditor
+ ref={editor} 
+        value={AboutCompany.toString()}
+        onChange={setAboutCompany}
+      />
+      </div>
+             
 </div>
 
 <div style={{ display:"flex", margin:"10px 20px"}}>
@@ -584,7 +593,7 @@ const [immage, setimmage] = useState()
 
             <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Secondary user name : <span style={{fontWeight:800, fontSize:"medium"}} 
-            title='(secondary user will be able to post a job search candidates)'><i class="fa-solid fa-circle-info"></i></span></h4>
+            title='(The secondary user can post jobs and find candidates.)'><i class="fa-solid fa-circle-info"></i></span></h4>
               <input maxLength="90" className={styles.Mobileinput} value={Secondaryusername} onChange={(e) => {handleSecondaryusername(e) }} type="text" />
             </label>
 
@@ -604,11 +613,11 @@ const [immage, setimmage] = useState()
             </label>
            
             <div className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>Type of Organisation :  <span style={{color:"blue"}}>{TypeofOrganisation}</span></h4>          
+              <h4 className={styles.MobileName}>Type of Organisation :</h4>          
             <select className={styles.Mobileinput } style={{height:"35px"}}onChange={(e)=>{setTypeofOrganisation(e.target.value)}}>
-            {TypeofOrganisation? <option style={{color:"blue"}} >{TypeofOrganisation}</option>
+            {/* {TypeofOrganisation? <option style={{color:"blue"}} >{TypeofOrganisation}</option>
             :<option value="" >Select Company type</option>
-            }
+            } */}
               <option value="Pvt.Ltd.">Pvt. Ltd.</option>
               <option value="Firm">Firm</option>
               <option value="Consultancy">Consultancy</option> 

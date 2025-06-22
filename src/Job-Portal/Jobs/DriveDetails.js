@@ -420,10 +420,10 @@ year: "numeric",
 <span className={styles.skillsHeading}>Job Type: </span><span className={styles.skills}>{driveItem.jobType}</span><br></br>
 </div>
 <div className={styles.skillWrapper}>
-<span className={styles.skillsHeading}>Drive Time: </span><span className={styles.skills}>{driveItem.driveDate}</span><br></br>
+<span className={styles.skillsHeading}>Drive Time: </span><span className={styles.skills}>{driveItem.driveTime}</span><br></br>
 </div>
 <div className={styles.skillWrapper}>
-<span className={styles.skillsHeading}>Drive Date: </span><span className={styles.skills}>{driveItem.driveTime}</span><br></br>
+<span className={styles.skillsHeading}>Drive Date: </span><span className={styles.skills}>{driveItem.driveDate}</span><br></br>
 </div>
 
 <div className={styles.skillWrapper}>

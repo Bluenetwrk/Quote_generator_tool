@@ -13,6 +13,7 @@ import JoditEditor from 'jodit-react'
 
 
 import Style from "./postJobs.module.css"
+import CustomTextEditor from '../Editor/CustomTextEditor';
 
 function UpdatePostedJobs() {
   const screenSize = useScreenSize();
@@ -128,7 +129,7 @@ function UpdatePostedJobs() {
             // setQualification("")
             // setExperiance("")
             // setSkills("")
-            setSuccessMessage("Success!  successfully updated")
+            setSuccessMessage("Job Listing Updated Successfully")
         }
         
     }).catch((err)=>{
@@ -201,8 +202,12 @@ window.addEventListener('keypress', function(event){
          className={Style.inputbox}
          onChange={(e)=>{ setJobDescription(e.blocks) }}
       /> */}
-<JoditEditor  ref={editor} className={Style.inputbox} value={jobDescription?jobDescription.toString():""} onChange={(e)=>{setJobDescription(e)}} />
-
+{/* <JoditEditor  ref={editor} className={Style.inputbox} value={jobDescription?jobDescription.toString():""} onChange={(e)=>{setJobDescription(e)}} /> */}
+<CustomTextEditor
+ ref={editor} className={Style.inputbox} 
+        value={jobDescription?jobDescription.toString():""}
+        onChange={setJobDescription}
+      />
 
 <h4 className={Style.jobHeadline}>Job Tags (Select multiple Tags to reach the best Matching Jobs)</h4>
 
@@ -296,9 +301,13 @@ window.addEventListener('keypress', function(event){
                    onChange={handleChange}     
                  />
                   </div> */}
-                    <button className={Style.button} onClick={updateJob}>Update</button>
-
+                    {/* <button className={Style.button} onClick={updateJob}>Update</button> */}
                 </div >
+
+                <div style={{display:"flex", justifyContent:"center"}}>
+                   <button style={{width:"210px"}} className={Style.button} onClick={updateJob}>Update</button>
+                </div>
+                
             </div >
 
             {screenSize.width > 750 ?

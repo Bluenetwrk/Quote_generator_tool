@@ -21,6 +21,8 @@ import { useGoogleLogin } from '@react-oauth/google';
 
 import JoditEditor from 'jodit-react'
 import Style from "../PostJobs/postJobs.module.css"
+import CustomTextEditor from '../Editor/CustomTextEditor';
+import CustomAlert from '../Alert/customAlert';
 
 function EmployeeUpdateProfile(props) {
   const editor=useRef(null)
@@ -83,12 +85,14 @@ const [immage, setimmage] = useState()
       }, []);
   
   function NoEmailAlert(){
-      alert("primary email field must be filled")
+    alert("primary email field must be filled")
   }
   
  function InvalidEmailAlert(){
   alert("Invalid Primary email id")
  }
+
+ const [alertVisible, setAlertVisible] = useState(false);
 
   const login= useGoogleLogin({
     
@@ -124,7 +128,8 @@ const [immage, setimmage] = useState()
             let GuserId = result.id
             // console.log(result)
             if (result.action == "registered") {
-              alert("Registered Successfully")
+              // alert("Registered Successfully")
+              setAlertVisible(true)
               }else if(result.action == "login"){
                 alert("Primary email id is already registered please try different email id")
 
@@ -356,6 +361,7 @@ const [immage, setimmage] = useState()
     //   name, email, phoneNumber, Aadhar, panCard,CompanyName,CompanyContact, CompanyGSTIN, CompanyWebsite, CompanyAddress,
     //   CompanyEmail, TypeofOrganisation 
     // )
+  console.log("dd",PrimeryuserDesignation)
     await axios.post(`/EmpProfile/NewEmployeeRegistration`, { PrimeryuserDesignation, Secondaryusername, Secondaryuseremailid,
       Secondaryusercontactnumber,  name, email, phoneNumber, Aadhar, panCard, CompanyName, CompanyContact, CompanyGSTIN,
       CompanyWebsite,CompanyAddress,CompanyEmail, TypeofOrganisation,CompanyCIN, secondaryuserDesignation,AboutCompany},{headers})
@@ -384,7 +390,8 @@ const [immage, setimmage] = useState()
     // console.log("Response :", response);
     if (response.ok) {
       const data = await response.json();
-      alert(` You will receive an invitation email from microsoft to your primary email address: ${email} `)
+      // alert(` You will receive an invitation email from microsoft to your primary email address: ${email} `)
+      alert(`You will receive an invitation email from Microsoft at your registered email address shortly.`)
       setname("")
 setemail("")
 setphoneNumber("")
@@ -467,11 +474,82 @@ const helpData = [
   const handleCountryChange = (event) => {
     setSelectedCountry(event.target.value);
     console.log("selected value",selectedCountry)
+ 
   };
   
 
-  return (
+  // ---------------------place api-----------------------
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    const loadScript = (url, callback) => {
+      const existingScript = document.getElementById("googleMaps");
+      if (!existingScript) {
+        const script = document.createElement("script");
+        script.src = url;
+        script.id = "googleMaps";
+        script.async = true;
+        script.defer = true;
+        script.onload = callback;
+        document.body.appendChild(script);
+      } else {
+        callback();
+      }
+    };
+
+    const initAutocomplete = () => {
+      if (!window.google) return;
+
+      const autocomplete = new window.google.maps.places.Autocomplete(
+        inputRef.current,
+        {
+          // Allows all place types: address, establishment, cities, regions
+          types: [], // Empty array means no restriction
+          fields: ["formatted_address", "geometry", "name", "place_id"],
+        }
+      );
+
+      autocomplete.addListener("place_changed", () => {
+        const place = autocomplete.getPlace();
+        console.log("Selected Place:", place);
+      
+        const address = place.formatted_address;
+        setCompanyAddress(address);
+      
+        console.log("Company :", address, CompanyAddress); // ✅ shows correct value
+      
+        if (!place.geometry) {
+          alert("No details available for: " + place.name);
+          return;
+        }
+  
+
+        // You can access: place.name, place.formatted_address, place.geometry.location, etc.
+      });
+    };
+
+    loadScript(
+      `https://maps.googleapis.com/maps/api/js?key=AIzaSyBJ1-4QU6vh2XuUhENkFLY1YRX5barmKZk&libraries=places`,
+      initAutocomplete
+    );
+  }, []);
+  useEffect(() => {
+    console.log("Updated Company Address:", CompanyAddress);
+  }, [CompanyAddress]);
+
+
+  // useEffect(()=>{
+  //    console.log("about updated",AboutCompany)
+  // },[AboutCompany])
+
+ return (
     <>
+            <CustomAlert
+        show={alertVisible}
+        title="Registration successful!"
+        message="Start posting jobs and hiring top talent now"
+        onClose={() => setAlertVisible(false)}
+      />
 
       {/* <div className={styles.EntireFullWrapper}>
 
@@ -545,13 +623,13 @@ const helpData = [
             </label>
 
             <div className={styles.inputName}>
-              <h4>Type of Organisation :  <span style={{color:"blue"}}>{TypeofOrganisation}</span></h4>
+              <h4>Type of Organisation : </h4>
               {/* <input className={styles.input} value={TypeofOrganisation} onChange={(e) => { setTypeofOrganisation(e.target.value) }} type="text" /> */}
            
             <select className={styles.input } style={{height:"35px"}}onChange={(e)=>{setTypeofOrganisation(e.target.value)}}>
-            {TypeofOrganisation? <option style={{color:"blue"}} >{TypeofOrganisation}</option>
+            {/* {TypeofOrganisation? <option style={{color:"blue"}} >{TypeofOrganisation}</option>
             :<option value="" >Select Company type</option>
-            }
+            } */}
               <option value="Pvt.Ltd.">Pvt. Ltd.</option>
               <option value="Firm">Firm</option>
               <option value="Consultancy">Consultancy</option> 
@@ -561,7 +639,7 @@ const helpData = [
 
             <label className={styles.inputName}>
               <h4>Company Email id:</h4>
-              <input maxLength="25" className={styles.input} value={CompanyEmail} onChange={(e) => { handleCompanyEmail(e) }} type="text" /><br></br>
+              <input className={styles.input} value={CompanyEmail} onChange={(e) => { handleCompanyEmail(e) }} type="text" /><br></br>
               <span style={{color:"red", marginLeft:"5%"}}>{compemailError}</span>
             </label>
 
@@ -591,7 +669,7 @@ const helpData = [
 
             <label className={styles.inputName}>
               <h4>Company Address:</h4>
-              <input maxLength="200" className={styles.input} value={CompanyAddress} onChange={(e) => { handleCompanyAddress(e) }} type="text" />
+              <input  ref={inputRef} maxLength="200" className={styles.input} value={CompanyAddress} onChange={(e) => { handleCompanyAddress(e) }} type="text" />
             </label>
 
             <label className={styles.inputName}>
@@ -602,7 +680,7 @@ const helpData = [
 
             <label className={styles.inputName}>
               <h4>Primary User Email Id:</h4>
-              <input maxLength="25" className={styles.input} value={email}  onChange={(e) => { handlesetemail(e) }} type="text" />
+              <input className={styles.input} value={email}  onChange={(e) => { handlesetemail(e) }} type="text" />
              <br></br> <span style={{color:"red", marginLeft:"5%"}}>{emailError}</span>           
             </label>
             
@@ -660,7 +738,9 @@ const helpData = [
 <div className={styles.EmpEditor}>
             <h4>About Company:</h4>
             <div className={`screen1 ${styles.screen1}`} style={{ marginTop: "-10px", marginLeft: "11px", width: "103%" }}>
-    <JoditEditor ref={editor} value={AboutCompany.toString()} onChange={(e) => setAboutCompany(e)} />
+    {/* <JoditEditor ref={editor} value={AboutCompany.toString()} onChange={(e) => setAboutCompany(e)} /> */}
+    <CustomTextEditor ref={editor} className={Style.inputbox} value={AboutCompany} onChange={setAboutCompany}/>
+
 </div>
 
 </div>
@@ -673,7 +753,7 @@ const helpData = [
             {/* 
 
             <button className={styles.cancel} onClick={() => { navigate(-1) }} >cancel</button> */}
-<div className={STyles.signUpWrapper} style={{marginLeft:"20px", marginBottom:"20px"}} onClick={(e) => { saveMicrosoft(e) }} >
+        <div className={STyles.signUpWrapper} style={{marginLeft:"20px", marginBottom:"20px"}} onClick={(e) => { saveMicrosoft(e) }} >
           <div className={STyles.both}>
             <img className={STyles.google} src={ MicosoftImage}/> 
             <p className={STyles.signUpwrap} >Register with Microsoft</p>
@@ -726,7 +806,7 @@ const helpData = [
           
             <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Company Email id:</h4>
-              <input maxLength="25" className={styles.Mobileinput} value={CompanyEmail} onChange={(e) => { handleCompanyEmail(e) }} type="text" />
+              <input className={styles.Mobileinput} value={CompanyEmail} onChange={(e) => { handleCompanyEmail(e) }} type="text" />
            <br></br>
            <span style={{color:"red", marginLeft:"5%"}}>{emailError}</span>
             </label>
@@ -739,7 +819,7 @@ const helpData = [
               
             <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Company Address:</h4>
-              <input maxLength="90" className={styles.Mobileinput} value={CompanyAddress} onChange={(e) => {handleCompanyAddress(e) }} type="text" />
+              <input ref={inputRef} maxLength="90" className={styles.Mobileinput} value={CompanyAddress} onChange={(e) => {handleCompanyAddress(e) }} type="text" />
             </label>
 
             <label className={styles.MobileinputName}>
@@ -750,7 +830,7 @@ const helpData = [
 
             <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Primary User Email Id:</h4>
-              <input maxLength="25" className={styles.Mobileinput} value={email}  onChange={(e) => { setemail(e.target.value) }} type="text" />
+              <input className={styles.Mobileinput} value={email}  onChange={(e) => { setemail(e.target.value) }} type="text" />
             </label>
             
             <label className={styles.MobileinputName}>
@@ -836,11 +916,11 @@ const helpData = [
             </label>
             */}
             <div className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>Type of Organisation :  <span style={{color:"blue"}}>{TypeofOrganisation}</span></h4>          
+              <h4 className={styles.MobileName}>Type of Organisation: </h4>          
             <select className={styles.Mobileinput } style={{height:"35px"}}onChange={(e)=>{setTypeofOrganisation(e.target.value)}}>
-            {TypeofOrganisation? <option style={{color:"blue"}} >{TypeofOrganisation}</option>
+            {/* {TypeofOrganisation? <option style={{color:"blue"}} >{TypeofOrganisation}</option>
             :<option value="" >Select Company type</option>
-            }
+            } */}
               <option value="Pvt.Ltd.">Pvt. Ltd.</option>
               <option value="Firm">Firm</option>
               <option value="Consultancy">Consultancy</option> 
@@ -849,10 +929,11 @@ const helpData = [
             </select>  
             </div>
             
-<div className={styles.Editor}>
+<div className={styles.Editor} style={{marginLeft:"7px", marginTop:"-10px"}}>
             <h4>About Company:</h4>
             <div className={`screen2 ${styles.screen2}`}>
-<JoditEditor  ref={editor}  value={AboutCompany.toString()} onChange={(e)=>{setAboutCompany(e)}} />
+{/* <JoditEditor  ref={editor}  value={AboutCompany.toString()} onChange={(e)=>{setAboutCompany(e)}} /> */}
+<CustomTextEditor ref={editor}  value={AboutCompany.toString()} onChange={(e)=>{setAboutCompany(e)}} ></CustomTextEditor>
 </div>
 </div>
 

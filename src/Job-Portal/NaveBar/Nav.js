@@ -96,6 +96,10 @@ function Nav(props) {
   function MyJobApplied() {
     navigate("/My-Applied-Jobs")
   }
+  
+  function MyDrivesApplied() {
+    navigate("/My-Applied-Drives")
+  }
   function AskQuestion() {
     navigate("/AskQuestion")
   }
@@ -106,6 +110,11 @@ function Nav(props) {
   function mypostedjob() {
     navigate("/postedjobs")
   }
+
+  function myposteddrive() {
+    navigate("/posteddrives")
+  }
+
   function mypostedArticle() {
     navigate("/posted-Blogs")
   }
@@ -134,6 +143,7 @@ function Nav(props) {
   const handleStuClose = () => {
     setStuopen(false);
   };
+
 
   const [ShowBigSideNave, setShowBigSideNave] = useState(false)
 
@@ -167,10 +177,14 @@ function Nav(props) {
       navigate("/Walkin-Drives")
    }
   
+   const reDirecttoFraud=()=>{
+    // setValue("AllWalkinDrive")
+    navigate("/fraud-form")
+ }
 
     const [isOpen, setIsOpen] = useState(false);
     const handleSelect = (option) => {
-      props.setSelectedlocationOption(option);
+      // props.setSelectedlocationOption(option);
       setIsOpen(false);
     };
     const dropdownRef = useRef(null);
@@ -187,8 +201,35 @@ function Nav(props) {
             document.removeEventListener("mousedown", handleClickOutside);
           };
         }, []);
+        // let StudentAuth = localStorage.getItem("StudLog")
+        // let EmployeeAuth = localStorage.getItem("EmpLog")
+          const bgvCheck=()=>{
+             if(StudentAuth){
+              navigate("/My-Applied-Jobs")
+             }
+             else{
+              navigate("/JobSeekerLogin")
+             }
+          }
 
-  return (
+          const [resumeAlert, setresumeAlert]=useState(false)
+          const alertRef = useRef(null);
+          useEffect(() => {
+            const handleClickOutside = (event) => {
+              // If clicked outside alert box and it's open
+              if (alertRef.current && !alertRef.current.contains(event.target)) {
+                setresumeAlert(false); // close the alert
+              }
+            };
+          
+            document.addEventListener('mousedown', handleClickOutside);
+          
+            return () => {
+              document.removeEventListener('mousedown', handleClickOutside);
+            };
+          }, []);
+
+        return (
     <>
 
       {
@@ -207,19 +248,18 @@ function Nav(props) {
                   <i style={{color:"white", fontSize:"18px",visibility:props.searchClick?"hidden":"visible"}}
                   class=" fa fa-search" onClick={() => {ChangeSideNaveBar();props.setSearchClick((currentValue)=>!currentValue)}} ></i>
                  </div>
-                <div className={Styles.ITwalkinWrapper}>
-                   {/*<h2 style={{color:"white"}}>  Get Quote </h2> */}
-                   <h2 style={{color:"white"}}>  Get Quote </h2>
-                </div>
-                  <div style={{display:"flex"}}>
-                  <div><NavLink to="/alljobs" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>Buyer Home </NavLink>
+                 <div>
+                        <div style={{color:"white",marginLeft:"10px",fontWeight:"600", fontSize:"22px"}}>  Get Quote </div>
+                      </div>
+                <div style={{display:"flex"}}>
+                  <div><NavLink to="/alljobs" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>Buyer Home</NavLink>
                   </div>
                   <div><NavLink to="/seller-response" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>Seller response</NavLink>
                   </div>
                   <div><NavLink to="/quote-response" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>Quote response</NavLink>
                   </div>
                   </div>
-                 
+                  <div><NavLink to="/resumes" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>AI Resume Builder </NavLink></div>
                   <div ref={dropdownRef} style={{ position: "relative" }}>
                             
                             <div style={{ display: "flex", marginTop: "-5px" }}>
@@ -280,9 +320,9 @@ function Nav(props) {
                                         display: "flex",
                                         alignItems: "center",
                                         padding: "10px",
-                                        cursor: option.value === "bangalore" ? "pointer" : "default",
+                                        cursor: option.value === "Bangalore" ? "pointer" : "default",
                                         borderRadius: "10px",
-                                        color: option.value !== "bangalore" ? "gray" : "black",
+                                        color: option.value !== "Bangalore" ? "gray" : "black",
                                       }}
                                     >
                                       <img
@@ -302,6 +342,9 @@ function Nav(props) {
 
                 <div className={Styles.fullnavewrapperRS} >
                 <div>
+                      <NavLink to="/My-Applied-Jobs" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Background check</NavLink>
+                      </div>
+                <div>
                 <img className={`${Styles.Icon} ${Styles.JobSeekerprofileIcon
 
 }`} src={loginuser} ref={imgRef} onClick={() => setShowprofile((prev) => !prev)} />
@@ -311,7 +354,8 @@ function Nav(props) {
   <div className={Styles.JobSeekerdropdownwrapper} ref={menuRef} >
     <p className={Styles.text} ref={menuRef} onClick={myprofile}>My profile</p>
 
-    <p className={Styles.text} ref={menuRef} onClick={MyJobApplied}>My quotes</p>
+    <p className={Styles.text} ref={menuRef} onClick={MyJobApplied}>Jobs Applied</p>
+    <p className={Styles.text} ref={menuRef} onClick={MyDrivesApplied}>Registered <br></br>Walkin Drives</p>
     <p className={Styles.text} ref={menuRef} onClick={AskQuestion}>Ask Question</p>
     <p className={Styles.text} ref={menuRef} onClick={StudlogOut}>Logout</p>
 
@@ -320,7 +364,7 @@ function Nav(props) {
 : ""}      
                 </div>
                 <div>
-                {props.sortedFilteredDriveJobs.length >= 1 && (
+                {props.flashVisible && (
                        <div className={Styles.blast}>
                          <img
                            onClick={reDirecttoDrive}
@@ -331,6 +375,19 @@ function Nav(props) {
                        </div>
                      )}
                 </div>
+                <div>
+                      {
+                       <div className={Styles.blast}>
+                         <img
+                           onClick={reDirecttoFraud}
+                           src="/report-fraud.png"
+                           alt="Walk-in Drive"
+                           ref={driveImgRef}
+                           style={{ width: "60px", borderRadius: "5px", marginTop: "-10px" }}
+                         />
+                       </div>
+                     }
+                      </div>
                 </div>
               </div> 
               <div className="BigNavWrapper" style={{
@@ -363,16 +420,12 @@ function Nav(props) {
                    <BigSidebarNav  jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setSearchClick={props.setSearchClick} searchs={props.searchs} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar}/> 
                     </div>
                    </div>
-                   <div className={Styles.ITwalkinWrapper}>
-                      {/*<h2 style={{color:"white"}}>  Get Quote </h2> */}
-                      <h2 style={{color:"white", width:"120%"}}>  Get Quote </h2>
-                   </div>
-                   {/* <div>
+                   <div>
+                        <div style={{color:"white",marginLeft:"10px",fontWeight:"600",fontSize:"22px"}}>  Get Quote </div>
+                      </div>
+                   <div>
                       <NavLink to="/PostJobs" className={Styles.PostJobLink} style={navLinkStyles}>Post a Job</NavLink>
-                   </div> */}
-                   {/* <div>
-                      <NavLink to="/Seller-Home" className={Styles.PostJobLink} style={navLinkStyles}>Seller Home</NavLink>
-                   </div> */}
+                   </div>
                    {screenSize.width > 850 && 
                    <div ref={dropdownRef} style={{ position: "relative" }}>
                             
@@ -434,9 +487,9 @@ function Nav(props) {
                                         display: "flex",
                                         alignItems: "center",
                                         padding: "10px",
-                                        cursor: option.value === "bangalore" ? "pointer" : "default",
+                                        cursor: option.value === "Bangalore" ? "pointer" : "default",
                                         borderRadius: "10px",
-                                        color: option.value !== "bangalore" ? "gray" : "black",
+                                        color: option.value !== "Bangalore" ? "gray" : "black",
                                       }}
                                     >
                                       <img
@@ -457,11 +510,11 @@ function Nav(props) {
                  <div>
                   <NavLink to="/Post-Help-Questions" className={Styles.PostHelpLink} style={navLinkStyles}>Post Help Questions</NavLink>
                  </div>
-                 {/* <div>
+                 <div>
                  <NavLink to="/PostDrives" className={Styles.PostDriveLink} style={navLinkStyles}>Post Walkin Drive</NavLink>
-                 </div> */}
+                 </div>
                  <div> 
-                  <NavLink to="/Seller-Home" className={Styles.SearchCandidates} style={navLinkStyles}>Seller Home</NavLink>
+                  <NavLink to="/Search-Candidate" className={Styles.SearchCandidates} style={navLinkStyles}>Employer Home</NavLink>
                   </div>
                  <div>
                     <img className={`${Styles.Icon} ${Styles.EmpProfileIcon}`} src={loginuser} ref={imgRef} onClick={() => setShowprofile((prev) => !prev)} />       
@@ -469,8 +522,9 @@ function Nav(props) {
                         <div className={Styles.Alldownwrapper} >
                           <div className={Styles.Empdropdownwrapper} ref={menuRef} >
                             <p className={Styles.text} ref={menuRef} onClick={EmployeeProfile} >My profile</p>
-                            <p className={Styles.text} ref={menuRef} onClick={mypostedjob}>MY Posted Purchases</p>
-                            <p className={Styles.text} ref={menuRef} onClick={mypostedArticle}>posted Articles</p>
+                            <p className={Styles.text} ref={menuRef} onClick={mypostedjob}>My posted Jobs</p>
+                            <p className={Styles.text} ref={menuRef} onClick={myposteddrive}>My posted Drives</p>
+                            <p className={Styles.text} ref={menuRef} onClick={mypostedArticle}>Posted Articles</p>
                             <p className={Styles.text} ref={menuRef} onClick={PostBlogs}>Write Article</p>
                             <p className={Styles.text} ref={menuRef} onClick={logutEmp}>Logout</p>
                           </div>
@@ -478,7 +532,7 @@ function Nav(props) {
                         : ""}
                  </div> 
                  <div>
-                 {props.sortedFilteredDriveJobs.length >= 1 && (
+                 {props.flashVisible && (
                        <div className={Styles.blast}>
                          <img
                            onClick={reDirecttoDrive}
@@ -489,7 +543,20 @@ function Nav(props) {
                          />
                        </div>
                      )}
-                 </div>           
+                 </div> 
+                 <div>
+                      {
+                       <div className={Styles.blast}>
+                         <img
+                           onClick={reDirecttoFraud}
+                           src="/report-fraud.png"
+                           alt="Walk-in Drive"
+                           ref={driveImgRef}
+                           style={{ width: "60px", borderRadius: "5px", marginTop: "-10px" }}
+                         />
+                       </div>
+                     }
+                      </div>          
                 </div>
                          
              </div>
@@ -505,11 +572,11 @@ function Nav(props) {
                     </div>
                     <div className={Styles.linkWrapper}>
                       {/* <NavLink to="/BIAddmin@Profile" className={Styles.link} style={navLinkStyles}>All </NavLink> */}
-                      <NavLink to="/" className={Styles.HomeJobs} style={navLinkStyles}><i style={{ marginLeft: 0, marginRight: "5px" }} class="fa-solid fa-house"></i>Home</NavLink>
+                      <NavLink to="/" className={Styles.HomeJobs} style={navLinkStyles}><i style={{ marginLeft: 0, marginRight: "5px" }} class="fa-solid fa-house"></i>Buyer Home</NavLink>
 
                       <NavLink to="/AboutUs" className={`${Styles.Aboutlink}`} style={navLinkStyles} >About Us</NavLink>
                       <NavLink to="/Services" className={Styles.link} style={navLinkStyles}>Services</NavLink>
-                      {/* <NavLink to="/BIAddmin@PostJob" className={Styles.link} style={navLinkStyles}> Post Job</NavLink> */}
+                      <NavLink to="/BIAddmin@PostJob" className={Styles.link} style={navLinkStyles}> Post Job</NavLink>
                       <NavLink to="/BIAddmin@AdminCareerPostJobs" className={Styles.link} style={navLinkStyles}>Career Job Post</NavLink>
                       <NavLink to="/Blogs" className={Styles.link} style={navLinkStyles}>Blogs</NavLink>
         {/* <p onClick={()=>{navigate("/Blogs")}} className={`${Styles.textinMobileSodeBar} `}>Blogs </p> */}
@@ -540,9 +607,9 @@ function Nav(props) {
                     <div className={Styles.Supfullnavewrapper}>
                       <div className={Styles.linkWrapper} style={{ marginLeft: "1%" }}>
 
-                        {/* <NavLink to="/BIAddmin@AllJobs" style={navLinkStyles} className={Styles.linkSuperAdmin}>All Jobs </NavLink> */}
+                        {/* <NavLink to="/BIAddmin@AllJobs" style={navLinkStyles} className={Styles.linkSuperAdmin}>Buyer Home </NavLink> */}
                         <NavLink to="BIAddmin@AllEmployees" className={Styles.linkSuperAdmin} style={navLinkStyles}>All Employers</NavLink>
-                        <NavLink to="BIAddmin@AllJobSeekers" className={Styles.linkSuperAdmin} style={navLinkStyles}>All Jobseekers</NavLink>
+                        <NavLink to="BIAddmin@AllJobSeekers" className={Styles.linkSuperAdmin} style={navLinkStyles}>Buyer Homeeekers</NavLink>
                         <NavLink to="BIAddmin@AdminUpdate" className={Styles.linkSuperAdmin} style={navLinkStyles}> UpdateWebsite</NavLink>
                         <NavLink to="BIAddmin@AllIds" className={Styles.linkSuperAdmin} style={navLinkStyles}> All Email Id's</NavLink>
                         <NavLink to="BIAddAdminAccess" className={Styles.linkSuperAdmin} style={navLinkStyles}> Admin Access</NavLink>
@@ -573,16 +640,73 @@ function Nav(props) {
                            </div>
                       </div>
                       <div>
-                          <div className={Styles.ITwalkinWrapper}>
-                          <h2 style={{color:"white"}}>  Get Quote </h2>
-                          </div> 
-                      </div>
-                      {/* <div> */}
-                      {/* <NavLink to="/" className={Styles.HomeJobs} style={navLinkStyles}><i style={{ marginLeft: 0, marginRight: "5px" }} class="fa-solid fa-house"></i>Home</NavLink>    */}
-                      {/* </div> */}
                       <div>
-                      <NavLink to="/" className={Styles.buyerHomeJobs} style={navLinkStyles}><i style={{ marginLeft: 0, marginRight: "5px", }} class="fa-solid fa-house"></i>Buyer Home</NavLink>   
+                        <div style={{color:"white",marginLeft:"10px",fontWeight:"600", fontSize:"22px"}}>  Get Quote </div>
                       </div>
+                      </div>
+                      <div>
+                      <NavLink to="/" className={Styles.HomeJobs} style={navLinkStyles}><i style={{ marginLeft: 0, marginRight: "5px" }}></i>Buyer Home</NavLink>   
+                      </div>
+                      <div ref={alertRef} style={{position:"relative"}}>
+                        <div onClick={()=>setresumeAlert((prev)=>prev=!prev)} className={Styles.AllJobJobSeeker} style={{cursor:"pointer"}}>AI Resume Builder </div>
+                         {resumeAlert&&
+                         <>
+                            <div
+        style={{
+          width: '300px',
+          padding: '20px',
+          backgroundColor: 'rgb(40,4,99)',
+          color: 'white',
+          fontSize: '12px',
+          borderRadius: '5px',
+          position: 'fixed',
+          top: '17%',
+          left: '32%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 9999,
+          boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+          textAlign: 'center',
+        }}
+        
+        > 
+        
+        Login as a Jobseeker to explore opportunities and create a strong resume!
+          <div  style={{ marginTop: '15px', display:"flex", justifyContent:"center", gap:"5px" }}>
+            <button
+              onClick={() => {navigate("/JobSeekerLogin"); setresumeAlert(false)}}
+              style={{
+                padding: '8px 16px',
+                backgroundColor: '#4CAF50',
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                fontSize: '12px',
+                cursor: 'pointer',
+              }}
+            >
+              Ok
+            </button>
+            <button
+              onClick={()=> setresumeAlert(false)}
+              style={{
+                padding: '8px 16px',
+                backgroundColor: '#4CAF50',
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                fontSize: '12px',
+                cursor: 'pointer',
+              }}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+                         </>
+
+                         }
+                        </div>
+            
 
                       <div ref={dropdownRef} style={{ position: "relative" }}>
                             
@@ -644,10 +768,9 @@ function Nav(props) {
                                         display: "flex",
                                         alignItems: "center",
                                         padding: "10px",
-                                        cursor: option.value === "bangalore" ? "pointer" : "default",
+                                        cursor: option.value === "Bangalore" ? "pointer" : "default",
                                         borderRadius: "10px",
-                                        color: option.value !== "bangalore" ? "gray" : "black",
-
+                                        color: option.value !== "Bangalore" ? "gray" : "black",
                                       }}
                                     >
                                       <img
@@ -664,9 +787,15 @@ function Nav(props) {
                           </div>
                     </div>
                     <div className={Styles.fullnavewrapperRS}>
-                      {/* <div>
-                      <NavLink to="/Search-Candidate-Home" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Employer </NavLink>
+                    {/* <div>
+                      <NavLink to="/fraud-form" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Fraud </NavLink>
                       </div> */}
+                      <div>
+                      <NavLink to="/JobSeekerLogin" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Background check</NavLink>
+                      </div>
+                      <div>
+                      <NavLink to="/Search-Candidate-Home" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Employer </NavLink>
+                      </div>
                       <div>
                          <p className={` ${Styles.openAccount}`} onClick={handleOpenAccont} ref={Reg} >Open an Account</p>
                          {
@@ -692,7 +821,7 @@ function Nav(props) {
                     : ""}
                       </div>
                       <div>
-                      {props.sortedFilteredDriveJobs.length >= 1 && (
+                      {props.flashVisible && (
                        <div className={Styles.blast}>
                          <img
                            onClick={reDirecttoDrive}
@@ -704,6 +833,19 @@ function Nav(props) {
                        </div>
                      )}
                       </div>
+                      <div>
+                      {
+                       <div className={Styles.blast}>
+                         <img
+                           onClick={reDirecttoFraud}
+                           src="/report-fraud.png"
+                           alt="Walk-in Drive"
+                           ref={driveImgRef}
+                           style={{ width: "60px", borderRadius: "5px", marginTop: "-10px" }}
+                         />
+                       </div>
+                     }
+                      </div>
                     </div>                                     
                   </div>
                   
@@ -712,15 +854,17 @@ function Nav(props) {
                     <Modal isOpen={open} onClose={() => { handleClose() }} />
                   </>
 
+
                 </>
 
           :    //OR  mobile Nave
+
 
           //  ............................................Jobseeker Login...Mobile view............................................   
           StudentAuth ?
             <>
               <div className={Styles.fullnavewrapper}>
-                <div className={Styles.fullnavewrapperLSMobile}>
+                <div className={Styles.fullnavewrapperLSMobile} style={{marginRight:"0px"}}>
                   <div>
                     <div style={{display:"flex"}}>
                     <i style={{ fontSize: "Large", color: "white", zIndex: "1000",  }}
@@ -733,12 +877,16 @@ function Nav(props) {
                   
                 <div className={Styles.ITwalkinWrapper} style={{marginTop:"13px", width:"96px", position:"relative"}}> 
  
-                  <img className={Styles.MobIwalkinLogologo} src={Itwalkinlogo}  />
+                  {/* <img className={Styles.MobIwalkinLogologo} src={Itwalkinlogo}  /> */}
+                  <div style={{display:"flex", alignItems:"center"}}>
+                  <h2 style={{color:"white", textAlign:"center", marginTop:"-2px", marginLeft:"6px"}}>Get <br></br>Quote</h2>
+                  </div>
                   {showprofile ?
                   <div className={Styles.Alldownwrapper} >
                   <div className={Styles.MobJobseekerDropdownwrapperlogin} ref={menuRef} >
                     <p className={Styles.text} ref={menuRef} onClick={myprofile}>My profile</p>
-                    <p className={Styles.text} ref={menuRef} onClick={MyJobApplied}>My quotes</p>
+                    <p className={Styles.text} ref={menuRef} onClick={MyJobApplied}>Jobs Applied</p>
+                    <p className={Styles.text} ref={menuRef} onClick={MyDrivesApplied}>Registered <br></br>Walkin Drives</p>
                     <p className={Styles.text} ref={menuRef} onClick={AskQuestion}>Ask Question</p>
 
                     <p className={Styles.text} ref={menuRef} onClick={StudlogOut}>Logout</p>
@@ -752,7 +900,7 @@ function Nav(props) {
                  
                 <div className={Styles.fullnavewrapperRSMobile} style={{marginRight:"11px"}}>
                  <div>
-                  <NavLink to="/alljobs" className={`${Styles.Moblink} ${Styles.AlllJobs}`} >All Jobs </NavLink>
+                  <NavLink to="/alljobs" className={`${Styles.Moblink} ${Styles.AlllJobs}`} >Buyer Home </NavLink>
                   </div>
                 <div>
                   
@@ -760,7 +908,7 @@ function Nav(props) {
 
                 </div>
                 <div>
-                {props.sortedFilteredDriveJobs.length >= 1 && (
+                {props.flashVisible && (
                        <div className={Styles.blast} style={{cursor:"pointer"}}>
                          <img
                            onClick={reDirecttoDrive}
@@ -796,8 +944,8 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
               
                 <div className={Styles.linkWrapper}>
 
-                  <NavLink to="/alljobs" className={`${Styles.Moblink} ${Styles.AlllJobs}`} >All Jobs </NavLink>
-                  {props.sortedFilteredDriveJobs.length >= 1 && (
+                  <NavLink to="/alljobs" className={`${Styles.Moblink} ${Styles.AlllJobs}`} >Buyer Home </NavLink>
+                  {props.flashVisible && (
                        <div className={Styles.blast} style={{cursor:"pointer",marginLeft:"21%"}}>
                          <img
                            onClick={reDirecttoDrive}
@@ -859,12 +1007,13 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                         
                   </div>
                   
-                   <div>
-                     <img style={{width:"80%"}}  className={Styles.MobIwalkinLogologo} src={Itwalkinlogo} />
+                  <div style={{display:"flex", alignItems:"center"}}>
+                        <div style={{color:"white",marginLeft:"10px",fontWeight:"600", fontSize:"16px"}}>  Get Quote </div>
+                      
+                    <div>
+                    <NavLink to="/PostJobs" className={`${Styles.Moblink} ${Styles.PostJob}`} >Post a Job</NavLink>
                     </div>
-                    {/* <div>
-                    <NavLink to="/PostJobs" style={{marginLeft:"-24%"}}className={`${Styles.Moblink} ${Styles.PostJob}`} >Post a Job</NavLink>
-                    </div> */}
+                    </div>
                   </div>
 
                   <div className={Styles.empFullnavewrapperRSMobile}>
@@ -873,13 +1022,16 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                       {showprofile ?
                      <div  className={Styles.EmpMobDropdownwrapperMobile} ref={menuRef} >
                     <p className={Styles.text} ref={menuRef} onClick={EmployeeProfile} >My profile</p>
-                    <NavLink to="/postedjobs" className={`${Styles.text} `} >MY Posted Purchases</NavLink>
+                    <NavLink to="/postedjobs" className={`${Styles.text} `} > Posted jobs</NavLink>
+                    <p className={Styles.text} ref={menuRef} onClick={myposteddrive}>Posted Drives</p>
+                    <p className={Styles.text} ref={menuRef} onClick={mypostedArticle}>Posted Articles</p>
+                    <p className={Styles.text} ref={menuRef} onClick={PostBlogs}>Write Article</p>
                     <p className={Styles.text} ref={menuRef} onClick={logutEmp}>Logout</p>
                     </div>
                      : ""}
                     </div>
                     <div>
-                    {props.sortedFilteredDriveJobs.length >= 1 && (
+                    {props.flashVisible && (
                        <div className={Styles.blast} style={{cursor:"pointer",marginLeft:"21%"}}>
                          <img
                            onClick={reDirecttoDrive}
@@ -909,12 +1061,9 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                   <div className={Styles.fullnavewrapper}>
                     {/* <div className={Styles.logoWrapper}> */}
                     {/* <NavLink to="/" > <img className={Styles.Moblogo} src={logo} /> </NavLink> */}
-                    <div className={Styles.ITwalkinWrapper}>
-                      {/* <p className={Styles.ITwalkin}>ITwalkin</p>
-                      <p className={Styles.onlyforITjobs}>Only for IT jobs</p> */}
-                        <img className={Styles.MobIwalkinLogologo} src={Itwalkinlogo} />
-
-                    </div>
+                    <div>
+                        <div style={{color:"white",marginLeft:"10px",fontWeight:"600"}}>  Get Quote </div>
+                      </div>
                     {/* </div> */}
                     <div className={Styles.linkWrapper}>
                       <NavLink to="/BIAddmin@Profile" className={`${Styles.link} ${Styles.All}`} style={navLinkStyles}>All </NavLink>
@@ -953,7 +1102,10 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                         </div>
                       </div>
                       <div>
-                        <div style={{color:"white",marginLeft:"10px",fontWeight:"600"}}>  Get Quote </div>
+                        {/* <img className={Styles.MobIwalkinLogologo} src={Itwalkinlogo} /> */}
+                        <div>
+                        <div style={{color:"white",marginLeft:"10px",fontWeight:"600", fontSize:"16px"}}>  Get Quote </div>
+                      </div>
                       </div>
                        <div ref={dropdownRef} style={{ position: "relative" }}>
                          <div style={{ display: "flex", marginTop: "11px"}}>
@@ -1007,9 +1159,9 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                                         display: "flex",
                                         alignItems: "center",
                                         padding: "10px",
-                                        cursor: option.value === "bangalore" ? "pointer" : "default",
+                                        cursor: option.value === "Bangalore" ? "pointer" : "default",
                                         borderRadius: "10px",
-                                        color: option.value !== "bangalore" ? "gray" : "black",
+                                        color: option.value !== "Bangalore" ? "gray" : "black",
                                       }}
                                     >
                                       <img
@@ -1028,7 +1180,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
 
                     <div className={Styles.fullnavewrapperLSMobile}>
                       <div>
-                          {props.sortedFilteredDriveJobs.length >= 1 && (
+                          {props.flashVisible && (
                          <div className={Styles.blast} style={{cursor:"pointer"}}>
                           <img onClick={reDirecttoDrive} src="/drive.png" alt="Walk-in Drive" ref={driveImgRef} class={Styles.flashDriveHome}/>
                          </div>
@@ -1058,7 +1210,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                       
                         <img className={Styles.MobIwalkinLogologo} src={Itwalkinlogo} />
                        
-                         {props.sortedFilteredDriveJobs.length >= 1 && (
+                         {props.flashVisible && (
                        <div className={Styles.blast} style={{cursor:"pointer", marginLeft:"69%" }}>
                          <img
                            onClick={reDirecttoDrive}
@@ -1079,8 +1231,8 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                       <img className={`${Styles.MobloginLogo} `} src={logIn} ref={imgRef} onClick={() => setShowprofile((prev) => !prev)} />
                       {showprofile ?
                         <div className={Styles.MobHomeDropdownwrapper} ref={menuRef} >
-                          <p onClick={() => { navigate("/EmployeeLogin") }}>Employer Login </p>
-                          <p onClick={() => { navigate("/JobSeekerLogin") }}>Job Seeker Login</p>
+                          <p onClick={() => { navigate("/EmployeeLogin") }}>Seller Login </p>
+                          <p onClick={() => { navigate("/JobSeekerLogin") }}>Buyer Login</p>
                         </div>
                         : ""}
                     </div>
@@ -1090,7 +1242,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                     style={props.ShowSideNave ? { marginLeft: "0px" } : { marginLeft: "-380px" }} >
                     <SidebarNav empSearchNoLogin={props.empSearchNoLogin} jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setSearchClick={props.setSearchClick} setShowMobileSearchIcon={props.setShowMobileSearchIcon} setShowSideNaveProps={props.setShowSideNave} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon}/>
                   </div>
-                  {/* {props.sortedFilteredDriveJobs.length >= 1 && (
+                  {/* {props.flashVisible && (
                        <div className={Styles.blast} style={{cursor:"pointer", marginLeft:"69%" }}>
                          <img
                            onClick={reDirecttoDrive}
@@ -1110,4 +1262,3 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
   )
 }
 export default Nav;
-

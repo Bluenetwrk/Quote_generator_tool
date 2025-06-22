@@ -734,7 +734,7 @@ const responsive = {
                 </p>
               </li>
 
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.experiance}`}>Expereince
+              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.experiance}`}>Experiance
                 <p className={styles.arrowWrapper}>
                   <i onClick={EdescendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
                   <i onClick={EascendingOrder} className={`${styles.arrow} ${styles.down}`}></i>
@@ -746,8 +746,9 @@ const responsive = {
 
             </ul>
             {PageLoader ?
-              <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "49%", marginTop: "50px" }} />
-              : ""
+                 <div style={{display:"flex", justifyContent:"center"}}>
+              <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{  marginTop: "50px" }} />
+              </div>: ""
             }
 
             {
@@ -811,7 +812,7 @@ const responsive = {
                               )
                             })
                               ?
-                              <button className={styles.Appliedbutton} title='HR will get in touch with you, Once they will check Your Profile' > Applied <span style={{ fontSize: '15px' }}>&#10004;</span></button>
+                              <button className={styles.Appliedbutton} title='HR will reach out to you after reviewing your profile' > Applied <span style={{ fontSize: '15px' }}>&#10004;</span></button>
                               :
                               items.SourceLink ?
                                 <button title='This will redirect to the source company webpage' className={styles.Applybutton} onClick={() => {
@@ -831,7 +832,10 @@ const responsive = {
                       </ul>
                     )
                   })
-                  : <p style={{ marginLeft: "47%", color: "red" }}>No Record Found</p>
+                  :
+                  <div style={{display:"flex", justifyContent:"center"}}>
+                   <p style={{ color: "red" }}>Loading......</p>
+                   </div>
                 :
                 jobs.length > 0 ?
                   jobs.map((items, i) => {
@@ -890,7 +894,7 @@ const responsive = {
                               jobseeker.jobSeekerId == jobSeekerId
                             )
                           }) ?
-                            <button className={styles.Appliedbutton} title='HR will get in touch with you, Once they will check Your Profile' > Applied <span style={{ fontSize: '15px' }}>&#10004;</span></button>
+                            <button className={styles.Appliedbutton} title='HR will reach out to you after reviewing your profile' > Applied <span style={{ fontSize: '15px' }}>&#10004;</span></button>
                             :
                             
                             items.SourceLink ?
@@ -911,7 +915,7 @@ const responsive = {
                       </ul>
                     )
                   })
-                  : <p style={{ marginLeft: "47%", color: "red" }}>No Record Found</p>
+                  : <p style={{ marginLeft: "47%", color: "red" }}>Loading......</p>
             }
           </div>
 
@@ -1545,8 +1549,9 @@ const responsive = {
 
 
           {PageLoader ?
-            <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "40%", marginTop: "50px" }} />
-            : ""
+               <div style={{display:"flex", justifyContent:"center"}}>
+            <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginTop: "50px" }} />
+           </div> : ""
           }
           <div id={styles.JobCardWrapper} >
 
@@ -1556,7 +1561,7 @@ const responsive = {
                   return (
                     <>
                       <div className={styles.JobCard} key={i}>
-                        <div className={styles.JobTitleDateWrapper} style={{display:"flex",gap:"18px"}}>
+                        <div className={styles.JobTitleDateWrapper} style={{display:"flex",flexDirection:"column"}}>
                           <p className={styles.jobTitle} onClick={() => {
                             window.scrollTo({
                               top: 0
@@ -1564,7 +1569,7 @@ const responsive = {
                             navigate(`/CareerJobdetails/${btoa(job._id)}`)
                           // }} >{job.jobTitle.toUpperCase()}</p>
                            }} >{job?.jobTitle?.charAt(0).toUpperCase()+job?.jobTitle?.substring(1)}</p>
-                          <p className={styles.Date} style={{marginRight:"-17px"}}>{new Date(job.createdAt).toLocaleString(
+                          <p style={{marginTop:"-5px"}} className={styles.Date} style={{marginRight:"-17px"}}>{new Date(job.createdAt).toLocaleString(
                             "en-US",
                             {
                               month: "short",
@@ -1658,8 +1663,10 @@ const responsive = {
                     </>
                   )
                 })
-                : <p style={{ marginLeft: "35%", color: "red" }}>No Record Found</p>
-
+                : 
+                <div style={{display:"flex", justifyContent:"center"}}>
+                <p style={{ color: "red" }}>Loading......</p>
+                </div>
             }
 
           </div>

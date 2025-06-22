@@ -754,9 +754,9 @@ background: rgb(202, 202, 202);
     border-radius: 3px;
 
 }
-.JobtitleFilter:hover{
+
+/* .JobtitleFilter:hover{
     background-color: rgb(40, 4, 99);
-    /* background-color:blue; */
     margin: 4px;
     cursor: pointer;
     color:white;
@@ -766,7 +766,7 @@ background: rgb(202, 202, 202);
     align-content: center;
     text-wrap: nowrap ;
     border-radius: 3px;
-}
+} */
 
 .active{
     background-color: rgb(40, 4, 99);

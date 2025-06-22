@@ -225,7 +225,7 @@ useEffect(() => {
       <h2 style={{marginTop:"-20px"}} className={styles.heading}>Missing Cart items?</h2>
       <p className={styles.subtext}>Login to see the items you added previously</p>
 
-      <div style={{display:"flex", gap:"10px"}}>
+      <div className={styles.addToCartLoginMenu}>
       <div className={styles.signUpWrapper} onClick={login} > 
         <div className={styles.both}>
           <img className={styles.google} src={GoogleImage} />

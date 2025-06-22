@@ -1,3 +1,84 @@
+
+.minusbtn{
+    background: red;
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 1px 0px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 26px;
+    height: 19px;
+
+}
+.suffix {
+    position: absolute;
+    left: 45px;
+    top: 78%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: black;
+  }
+
+  .suffixCTCMob {
+    position: absolute;
+    right: 266px;
+    top: 90%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: black;
+  }
+  .suffixExpMob {
+  position: absolute;
+  right: 266px;
+  top: 90%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: black;
+  }
+.tooltipWrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .tooltipIcon {
+    cursor: pointer;
+    border: 1px solid #aaa;
+    border-radius: 25px;
+    padding: 2px 6px;
+    font-size: 8px;
+    font-weight: bold;
+    background-color: black;
+    display: inline-block;
+    text-align: center;
+    color: white;
+  }
+  
+  .tooltipText {
+    visibility: hidden;
+    opacity: 0;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Show above */
+    left: 50%;
+    transform: translateX(-50%);
+    transition: opacity 0.3s;
+    width: max-content;
+    max-width: 200px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  
+  .tooltipWrapper:hover .tooltipText {
+    visibility: visible;
+    opacity: 1;
+  }
+  
 /* ------------------------Employer registration  starts-------------------- */
 .readPageBackBtn{
     background-color: rgb(40, 4, 99);
@@ -198,6 +279,16 @@
         margin-left:15px;
     }
 }
+
+
+@media (max-width:768px){
+    .suffixCTCMob {
+        right: 587px;
+      }
+      .suffixExpMob {
+      right: 587px;
+      }
+    }
 @media (max-width:650px){
     .EntireWrapper {
         margin-left: 9%;  
@@ -210,16 +301,49 @@
       }
 }
 
+@media (max-width:650px){
+.suffixCTCMob {
+    right: 307px;
+  }
+  .suffixExpMob {
+  right: 307px;
+  }
+}
+
+
 @media (max-width:376px){
     
     .dropdownwrapperHomeRegistrationMob {
         margin-left: 142px;
+      }
+      .suffixCTCMob {
+        position: absolute;
+        right: 266px;
+        top: 90%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: black;
+      }
+      .suffixExpMob {
+      position: absolute;
+      right: 266px;
+      top: 90%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: black;
       }
 }
 @media (max-width:320px){
     
     .dropdownwrapperHomeRegistrationMob {
         margin-left: 100px;
+      }
+
+      .suffixCTCMob {
+        right: 224px;
+      }
+      .suffixExpMob {
+      right: 224px;
       }
 }
 
