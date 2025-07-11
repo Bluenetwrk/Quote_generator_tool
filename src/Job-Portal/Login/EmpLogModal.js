@@ -88,7 +88,8 @@ const Modal = ({ isOpen, onClose, children }) => {
 			  if (result.status == "success") {
 				localStorage.setItem("EmpLog", JSON.stringify(btoa(token)))
 				localStorage.setItem("EmpIdG", JSON.stringify(GuserId))
-				navigate("/Search-Candidate", { state: { gserid: GuserId } })
+				// localStorage.setItem("StudId", JSON.stringify(Id))
+				navigate("/alljobs", { state: { gserid: GuserId } })
 				onClose()
 			  }
 			}).catch((err) => {
@@ -224,7 +225,8 @@ const Modal = ({ isOpen, onClose, children }) => {
 				  if (result.status == "success") {
 					localStorage.setItem("EmpLog", JSON.stringify(btoa(token)))
 					localStorage.setItem("EmpIdG", JSON.stringify(GuserId))
-					navigate("/Search-Candidate", { state: { gserid: GuserId } })
+					// localStorage.setItem("StudId", JSON.stringify(Id))
+					navigate("/alljobs", { state: { gserid: GuserId } })
 					onClose()
 				  }
 
@@ -267,7 +269,7 @@ const Modal = ({ isOpen, onClose, children }) => {
                 <>
 
       <div className={styles.BothsignUpWrapperModel}>
-        <p className={styles.Loginpage}>Seller Login </p>
+        <p className={styles.Loginpage}>Buyer Login </p>
 
 
         {/* <input maxLength="10" className={styles.inputs} type="number" placeholder='enter phone Number'

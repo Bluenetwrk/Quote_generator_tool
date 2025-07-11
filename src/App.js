@@ -1098,32 +1098,8 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
             {/* ..........Employee Private component i,e can not search in URL......... */}
             <Route element={<EmpPrivate />}>
             {/* <Route path="/scan/drive/:driveId" element={<ScanDrive  />} /> */}
-            
-            <Route path="/Seller-view-details" element={<SellerViewDetails url={axios.defaults.baseURL}
-         showMobileSearchIcon={showMobileSearchIcon} setShowMobileSearchIcon={setShowMobileSearchIcon}
-         ShowSideNave={ShowSideNave} setShowSideNave={setShowSideNave}
-         searchClick={searchClick} setSearchClick={setSearchClick}     
-          nopageFilter={nopageFilter} setNoPageFilter={setNoPageFilter} 
-          searchKey={searchKey} setsearchKey={setsearchKey}
-          Filtereredjobs={Filtereredjobs} setFiltereredjobs={setFiltereredjobs}
-          Result={Result} setResult={setResult}
-          Filterjobs={Filterjobs} setFilterjobs={setFilterjobs}
-          jobs={jobs} setJobs={setJobs}
-          count={count} setCount={setCount}
-          Active={Active} setActive={setActive}
-          jobTagsIds={jobTagsIds} setJobTagsIds={setJobTagsIds}
-          PageLoader={PageLoader} setPageLoader={setPageLoader}
-          totalCount={totalCount} settotalCount={settotalCount}
-          searchs={searchs}
-          getjobs={getjobs}
-          gettotalcount={gettotalcount}
-          searchIcon={searchIcon}
-          FilCandidate={FilCandidate}
-          setFilCandidate={setFilCandidate}
-          getAllJobSeekers={getAllJobSeekers}
-          Candidate={Candidate}
-          setCandidate={setCandidate}
-               />} />
+            <Route path="/seller-response" element={<SellerResponse url={axios.defaults.baseURL}/>} ></Route>
+            <Route path="/quote-response" element={<QuoteResponse url={axios.defaults.baseURL}/>} ></Route>
 
               <Route path="/PostJobs" element={<PostJobs url={axios.defaults.baseURL} />} />
               <Route path="/Post-Help-Questions" element={<PostHelp url={axios.defaults.baseURL} />} />
@@ -1167,8 +1143,33 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
             </Route>
             {/* ..........Jobseeker Private component i,e can not search in URL......... */}
             <Route element={<StudPrivate />}>
-            <Route path="/seller-response" element={<SellerResponse url={axios.defaults.baseURL}/>} ></Route>
-              <Route path="/quote-response" element={<QuoteResponse url={axios.defaults.baseURL}/>} ></Route>
+            {/* <Route path="/seller-response" element={<SellerResponse url={axios.defaults.baseURL}/>} ></Route> */}
+              {/* <Route path="/quote-response" element={<QuoteResponse url={axios.defaults.baseURL}/>} ></Route> */}
+              <Route path="/Seller-view-details" element={<SellerViewDetails url={axios.defaults.baseURL}
+         showMobileSearchIcon={showMobileSearchIcon} setShowMobileSearchIcon={setShowMobileSearchIcon}
+         ShowSideNave={ShowSideNave} setShowSideNave={setShowSideNave}
+         searchClick={searchClick} setSearchClick={setSearchClick}     
+          nopageFilter={nopageFilter} setNoPageFilter={setNoPageFilter} 
+          searchKey={searchKey} setsearchKey={setsearchKey}
+          Filtereredjobs={Filtereredjobs} setFiltereredjobs={setFiltereredjobs}
+          Result={Result} setResult={setResult}
+          Filterjobs={Filterjobs} setFilterjobs={setFilterjobs}
+          jobs={jobs} setJobs={setJobs}
+          count={count} setCount={setCount}
+          Active={Active} setActive={setActive}
+          jobTagsIds={jobTagsIds} setJobTagsIds={setJobTagsIds}
+          PageLoader={PageLoader} setPageLoader={setPageLoader}
+          totalCount={totalCount} settotalCount={settotalCount}
+          searchs={searchs}
+          getjobs={getjobs}
+          gettotalcount={gettotalcount}
+          searchIcon={searchIcon}
+          FilCandidate={FilCandidate}
+          setFilCandidate={setFilCandidate}
+          getAllJobSeekers={getAllJobSeekers}
+          Candidate={Candidate}
+          setCandidate={setCandidate}
+               />} />
               <Route path="/MissingCart" element={<MissingCart />} url={axios.defaults.baseURL} />
             <Route path="/scanner" element={<QRScanner />} />
               <Route path="/resumes" element={<AllResumes url={axios.defaults.baseURL}/>}></Route> 

@@ -4,13 +4,13 @@ import { jsPDF } from "jspdf";
 import Style from "./postJobs.module.css"
 
 const SellerResponse = (props) => {
-  useEffect(() => {
-    const socket = socketIO.connect(props.url, {
-      auth: {
-        token: JSON.parse(localStorage.getItem("StudId"))
-      }
-    });
-  }, [props.url]);
+  // useEffect(() => {
+  //   const socket = socketIO.connect(props.url, {
+  //     auth: {
+  //       token: JSON.parse(localStorage.getItem("StudId"))
+  //     }
+  //   });
+  // }, [props.url]);
 
   const [sellers, setSellers] = useState([
     { name: "Seller 1", description: "", link: "", hsnCode: "", quantity: 1, unitPrice: 0, buyerComments: "", totalPrice: 0 },

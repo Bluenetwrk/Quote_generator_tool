@@ -50,13 +50,7 @@ function Home({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjo
   const [isOpen, setIsOpen] = useState(false);
  
 
-  // const [isReadMore, setIsReadMore] = useState(true)
-  // const [showJobs, setshowJobs] = useState(false)
-  // const [showExperiance, setshowExperiance] = useState(false)
-  // const [showPackage, setshowPackage] = useState(false)
-
-  // const [NotFound, setNotFound] = useState("")
-  // const [Active, setActive] = useState([])
+  
   const screenSize = useScreenSize();
 
   // let JobLocationTags = ["Bangalore"]
@@ -349,8 +343,7 @@ function Home({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjo
   }
 
   function handleRecordchange(e) {
-    // sessionStorage.setItem("recordsperpageHome", JSON.stringify(e.target.value));
-    // let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpageHome"))
+    
     setJobsPerPageValue(Number(e.target.value));
     setrecordsPerPage(Number(e.target.value))
     setCurrentPage(1)
@@ -441,16 +434,7 @@ function Home({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjo
 
     setNoPageFilter(true)
     setFiltereredjobs(key)
-    // await axios.get(`/jobpost/getTagsJobs/${Active}`)
-    //   .then((res) => {
-    //     let result = (res.data)
-        
-    //     let sortedate = result.sort((a, b) => {
-    //       return new Date(b.createdAt) - new Date(a.createdAt);
-    //     });
-    //     setJobTagsIds(sortedate)
-        
-    //   })
+    
   }
 
   async function getLocation(jobLocation) {
@@ -697,8 +681,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
         referenceLink: '',
         unit: '',
         quantity: '',
-        // unitPrice: '',
-        // total: '',
+       
         commentToSeller: '',
       });
       setRows(newRows);
@@ -712,12 +695,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
       setShowDeleteOption(null);
     };
   
-    // const handleInputChange = (value, rowIndex, fieldName) => {
-    //   const updatedRows = [...rows];
-    //   updatedRows[rowIndex][fieldName] = value;
-    //   setRows(updatedRows);
-    // };
-  
+    
     const handleCellClick = (rowIndex, colIndex) => {
       setSelectedCell({ row: rowIndex, col: colIndex });
       setShowDeleteOption(null);
@@ -751,29 +729,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
          navigate("/JobSeekerLogin")
     }
   
-    // const handleSubmits = () => {
-    //   const tableData = rows.map((row, index) => ({
-    //     sno: index + 1,
-    //     ...row,
-    //   }));
-
-    //   const AllData={
-    //     tableData:tableData,
-    //     terms:terms
-    //   }
-    //   localStorage.setItem("draftApplicationData", JSON.stringify(AllData));
-    //   console.log('Saved Data:', AllData.tableData.length );
-    //   console.log('Saved Data:', AllData );
-    //    // clear
-
-    //   if(studentAuth){
-    //     handleSubmits()
-    //     setRows(initialData);
-    //   }
-    //   else
-    //    navigate("/JobSeekerLogin")
-    // };
-
+    
     const handleSubmits = () => {
       // Filter out empty rows
       const filteredRows = rows.filter(row => {
@@ -790,9 +746,9 @@ const initialRows = Array.from({ length: 10 }, () => "");
         terms: terms,
         hTitle:hTitle
       };
-    
+      console.log(AllData)
       localStorage.setItem("draftApplicationData", JSON.stringify(AllData));
-        navigate("/JobSeekerLogin");
+        navigate("/EmployeeLogin");
 
     };
 
@@ -960,7 +916,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
               <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "49%", marginTop: "50px" }} />
               : ""
             } */}
-        <div style={{display:"flex", marginLeft:"4%", gap:"4px", alignItems:"center"}}>
+        <div style={{display:"flex", marginLeft:"3%", gap:"4px", alignItems:"center"}}>
           <h2>Title : </h2>
           <input value={hTitle} onChange={(event) => updatehTitle(event)} style={{ width: "500px", height: "20px" }}></input>
         </div>
