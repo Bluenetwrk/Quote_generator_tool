@@ -252,14 +252,12 @@ function Nav(props) {
                         <div style={{color:"white",marginLeft:"10px",fontWeight:"600", fontSize:"22px"}}>  Get Quote </div>
                       </div>
                 <div style={{display:"flex"}}>
-                  <div><NavLink to="/alljobs" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>Buyer Home</NavLink>
+                  <div><NavLink to="/alljobs" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>Seller Home</NavLink>
                   </div>
-                  <div><NavLink to="/seller-response" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>Seller response</NavLink>
+                  
+                  
                   </div>
-                  <div><NavLink to="/quote-response" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>Quote response</NavLink>
-                  </div>
-                  </div>
-                  <div><NavLink to="/resumes" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>AI Resume Builder </NavLink></div>
+                  {/* <div><NavLink to="/resumes" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>AI Resume Builder </NavLink></div> */}
                   <div ref={dropdownRef} style={{ position: "relative" }}>
                             
                             <div style={{ display: "flex", marginTop: "-5px" }}>
@@ -426,6 +424,10 @@ function Nav(props) {
                    <div>
                       <NavLink to="/PostJobs" className={Styles.PostJobLink} style={navLinkStyles}>Post a Job</NavLink>
                    </div>
+                   <div><NavLink to="/seller-response" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>Seller response</NavLink>
+                  </div>
+                  <div><NavLink to="/quote-response" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>Quote response</NavLink>
+                  </div>
                    {screenSize.width > 850 && 
                    <div ref={dropdownRef} style={{ position: "relative" }}>
                             
@@ -514,7 +516,7 @@ function Nav(props) {
                  <NavLink to="/PostDrives" className={Styles.PostDriveLink} style={navLinkStyles}>Post Walkin Drive</NavLink>
                  </div>
                  <div> 
-                  <NavLink to="/Search-Candidate" className={Styles.SearchCandidates} style={navLinkStyles}>Employer Home</NavLink>
+                  <NavLink to="/Search-Candidate" className={Styles.SearchCandidates} style={navLinkStyles}>Buyer Home</NavLink>
                   </div>
                  <div>
                     <img className={`${Styles.Icon} ${Styles.EmpProfileIcon}`} src={loginuser} ref={imgRef} onClick={() => setShowprofile((prev) => !prev)} />       
@@ -647,8 +649,8 @@ function Nav(props) {
                       <div>
                       <NavLink to="/" className={Styles.HomeJobs} style={navLinkStyles}><i style={{ marginLeft: 0, marginRight: "5px" }}></i>Buyer Home</NavLink>   
                       </div>
-                      <div ref={alertRef} style={{position:"relative"}}>
-                        <div onClick={()=>setresumeAlert((prev)=>prev=!prev)} className={Styles.AllJobJobSeeker} style={{cursor:"pointer"}}>AI Resume Builder </div>
+                      {/* <div ref={alertRef} style={{position:"relative"}}> */}
+                        {/* <div onClick={()=>setresumeAlert((prev)=>prev=!prev)} className={Styles.AllJobJobSeeker} style={{cursor:"pointer"}}>AI Resume Builder </div>
                          {resumeAlert&&
                          <>
                             <div
@@ -704,8 +706,8 @@ function Nav(props) {
         </div>
                          </>
 
-                         }
-                        </div>
+                         } */}
+                        {/* </div> */}
             
 
                       <div ref={dropdownRef} style={{ position: "relative" }}>
@@ -801,8 +803,8 @@ function Nav(props) {
                          {
                            ShowRegister?
                            <div className={Styles.dropdownwrapperHomeRegistration} ref={newReg} >
-                           <p onClick={()=>{navigate("/New-Registration");setShowRegister(false)}}>Seller Registration</p>
-                           <p onClick={()=>{navigate("/Jobseeker-New-Registration");setShowRegister(false)}}>Buyer Registration</p>
+                           <p onClick={()=>{navigate("/New-Registration");setShowRegister(false)}}>Buyer Registration</p>
+                           <p onClick={()=>{navigate("/Jobseeker-New-Registration");setShowRegister(false)}}>Seller Registration</p>
                            </div>
                            :""
                          }
@@ -813,8 +815,8 @@ function Nav(props) {
                     <div className={Styles.Alldownwrapper} >
 
                       <div style={{  }} className={Styles.dropdownwrapperHome} ref={menuRef} >
-                        <p onClick={() => { handleEmpOpen(); handleStuClose() }}>Seller Login</p>
-                        <p onClick={() => { handleStuOpen(); handleClose() }}>Buyer Login</p>
+                        <p onClick={() => { handleEmpOpen(); handleStuClose() }}>Buyer Login</p>
+                        <p onClick={() => { handleStuOpen(); handleClose() }}>Seller Login</p>
                       </div>
                     </div>
 
@@ -1190,8 +1192,8 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                          <img className={`${Styles.MobloginLogo} `} src={logIn} ref={imgRef} onClick={() =>    setShowprofile((prev) => !prev)} />
                          {showprofile ?
                            <div className={Styles.MobHomeDropdownwrapper} ref={menuRef} >
-                             <p onClick={() => { navigate("/EmployeeLogin") }}>Seller Login </p>
-                             <p onClick={() => { navigate("/JobSeekerLogin") }}>Buyer Login</p>
+                             <p onClick={() => { navigate("/EmployeeLogin") }}>Buyer Login </p>
+                             <p onClick={() => { navigate("/JobSeekerLogin") }}>Seller Login </p>
                            </div>
                            : ""}
                        </div>           

@@ -74,10 +74,11 @@ useEffect(() => {
             let Id = result.id
         console.log(result)
 
+
             if (result.status == "success") {
               localStorage.setItem("StudLog", JSON.stringify(btoa(token)))
               navigate("/alljobs", {state:{name:result.name}})
-              localStorage.setItem("StudId", JSON.stringify(Id))   
+              // localStorage.setItem("StudId", JSON.stringify(Id))   
             }
           }).catch((err) => {
             alert("server issue occured")
@@ -176,8 +177,8 @@ useEffect(() => {
             alert("incorrect OTP")}
             if (result.status == "success") {
               localStorage.setItem("StudLog", JSON.stringify(token))
-              navigate("/alljobs", {state:{name:result.name}})
-              localStorage.setItem("StudId", JSON.stringify(Id))
+              navigate("/Search-Candidate", {state:{name:result.name}})
+              // localStorage.setItem("StudId", JSON.stringify(Id))
             }     
             setLoader(false)
         
@@ -205,8 +206,8 @@ useEffect(() => {
 						let Id = result.id
 						if (result.status == "success") {
 							localStorage.setItem("StudLog", JSON.stringify(btoa(token)))
-							navigate("/alljobs", { state: { name: result.name } })
-							localStorage.setItem("StudId", JSON.stringify(Id))
+							navigate("/Search-Candidate", { state: { name: result.name } })
+							// localStorage.setItem("StudId", JSON.stringify(Id))
 						}
 					}).catch((err) => {
 						alert("server issue occured")
@@ -240,7 +241,7 @@ useEffect(() => {
  */}
  
 <div className={styles.BothsignUpWrapper}>
-<p className={styles.Loginpage}> Buyer Login page  </p>
+<p className={styles.Loginpage}> Seller Login page  </p>
 
           {/* <input maxLength="10" className={styles.inputs} type="number" placeholder='enter phone Number'
             value={PhoneNumber} autoComplete="on" onChange={(e) => { setPhoneNumber(e.target.value) }} />

@@ -74,7 +74,8 @@ function EmpLogin(props) {
             if (result.status == "success") {
               localStorage.setItem("EmpLog", JSON.stringify(btoa(token)))
               localStorage.setItem("EmpIdG", JSON.stringify(GuserId))
-              navigate("/Search-Candidate", { state: { gserid: GuserId } })
+              // localStorage.setItem("StudId", JSON.stringify(Id))
+              navigate("/alljobs", { state: { gserid: GuserId } })
             }
           }).catch((err) => {
             alert("server issue occured")
@@ -259,7 +260,8 @@ function EmpLogin(props) {
           if (result.status == "success") {
             localStorage.setItem("EmpLog", JSON.stringify(btoa(token)))
             localStorage.setItem("EmpIdG", JSON.stringify(GuserId))
-            navigate("/Search-Candidate", { state: { gserid: GuserId } })
+            // localStorage.setItem("StudId", JSON.stringify(Id))
+            navigate("/alljobs", { state: { gserid: GuserId } })
           }
 				
 					}).catch((err) => {
@@ -299,7 +301,7 @@ function EmpLogin(props) {
       {/* <div id={styles.inputWrapper}> */}
       {/* <div style={{ marginTop: "10px", marginLeft: "37%" }}> */}
       <div className={styles.BothsignUpWrapper}>
-        <p className={styles.Loginpage}> Seller Login page </p>
+        <p className={styles.Loginpage}>Buyer Login page </p>
 
         {/* 
         <input maxLength="10" className={styles.inputs} type="number" placeholder='enter phone Number'

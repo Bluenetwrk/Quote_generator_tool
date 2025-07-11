@@ -212,7 +212,7 @@ let EmployeeAuth = localStorage.getItem("EmpLog")
         <p onClick={()=>{navigate("/Blogs"); update("Blogs")}} className={`${Styles.textBigSodeBar} ${value==="Blogs"?Styles.active:""}`}>Blogs</p>
        {!EmployeeAuth&&
        <>
-        <p onClick={()=>{navigate("/AllCareerJobs"); update("AllCareerJobs")}} className={`${Styles.textBigSodeBar} ${value==="AllCareerJobs"?Styles.active:""}`}>ITwalkin Career</p>   
+        {/* <p onClick={()=>{navigate("/AllCareerJobs"); update("AllCareerJobs")}} className={`${Styles.textBigSodeBar} ${value==="AllCareerJobs"?Styles.active:""}`}>ITwalkin Career</p>    */}
         <p onClick={()=>{navigate("/Walkin-Drives"); update("AllWalkinDrive")}} className={`${Styles.textBigSodeBar} ${value==="AllWalkinDrive"?Styles.active:""} `}>Walkin Drives</p>
         </>
        }
@@ -221,7 +221,7 @@ let EmployeeAuth = localStorage.getItem("EmpLog")
         <p onClick={()=>{navigate("/Services"); update("Services")}} className={`${Styles.textBigSodeBar} ${value==="Services"?Styles.active:""}`}>Our Services</p>
         <p onClick={()=>{navigate("/Contact"); update("Contact")}} className={`${Styles.textBigSodeBar} ${value==="Contact"?Styles.active:""}`}>Contact Us</p>
         <p onClick={()=>{navigate("/TermsAndCondition"); update("TermsAndCondition")}} className={`${Styles.textBigSodeBar} ${value==="TermsAndCondition"?Styles.active:""}`}>Terms & Conditions</p>
-        <i onClick={()=>{Linkedin(); }} className={`${Styles.textBigSodeBar}  fa-brands fa-linkedin`} style={{ fontSize: "xx-large" }} ></i>
+        {/* <i onClick={()=>{Linkedin(); }} className={`${Styles.textBigSodeBar}  fa-brands fa-linkedin`} style={{ fontSize: "xx-large" }} ></i> */}
          <p  className={`${Styles.textBigSodeBar} `} style={{ marginBottom: "120px", marginTop: "0px" }}>Release Version : v1.0</p> 
         <div></div>
         {/* <div className={Styles.brands}> */}

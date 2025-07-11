@@ -82,8 +82,9 @@ const Modal = ({ isStuOpen, onClose, children, msalInstance }) => {
 						let Id = result.id
 						if (result.status == "success") {
 							localStorage.setItem("StudLog", JSON.stringify(btoa(token)))
-							navigate("/alljobs", { state: { name: result.name } })
-							localStorage.setItem("StudId", JSON.stringify(Id))
+							navigate("/Search-Candidate", { state: { name: result.name } })
+							// localStorage.setItem("StudId", JSON.stringify(Id))
+							
 							onClose()
 						}
 					}).catch((err) => {
@@ -185,8 +186,8 @@ const Modal = ({ isStuOpen, onClose, children, msalInstance }) => {
 					}
 					if (result.status == "success") {
 						localStorage.setItem("StudLog", JSON.stringify(token))
-						navigate("/alljobs", { state: { name: result.name } })
-						localStorage.setItem("StudId", JSON.stringify(Id))
+						navigate("/Search-Candidate", { state: { name: result.name } })
+						// localStorage.setItem("StudId", JSON.stringify(Id))
 					}
 					setLoader(false)
 
@@ -213,8 +214,8 @@ const Modal = ({ isStuOpen, onClose, children, msalInstance }) => {
 						let Id = result.id
 						if (result.status == "success") {
 							localStorage.setItem("StudLog", JSON.stringify(btoa(token)))
-							navigate("/alljobs", { state: { name: result.name } })
-							localStorage.setItem("StudId", JSON.stringify(Id))
+							navigate("/Search-Candidate", { state: { name: result.name } })
+							// localStorage.setItem("StudId", JSON.stringify(Id))
 							onClose()
 						}
 					}).catch((err) => {
@@ -242,8 +243,8 @@ const Modal = ({ isStuOpen, onClose, children, msalInstance }) => {
 						let Id = result.id
 						if (result.status == "success") {
 							localStorage.setItem("StudLog", JSON.stringify(btoa(token)))
-							navigate("/alljobs", { state: { name: result.name } })
-							localStorage.setItem("StudId", JSON.stringify(Id))
+							navigate("/Search-Candidate", { state: { name: result.name } })
+							// localStorage.setItem("StudId", JSON.stringify(Id))
 							onClose()
 						}
 					}).catch((err) => {
@@ -284,7 +285,7 @@ const Modal = ({ isStuOpen, onClose, children, msalInstance }) => {
 				<>
 
 					<div className={styles.BothsignUpWrapperModel}>
-						<p className={styles.Loginpage}> Buyer Login  </p>
+						<p className={styles.Loginpage}> Seller Login  </p>
 
 						{/* <input maxLength="10" className={styles.inputs} type="number" placeholder='enter phone Number'
             value={PhoneNumber} autoComplete="on" onChange={(e) => { setPhoneNumber(e.target.value) }} />

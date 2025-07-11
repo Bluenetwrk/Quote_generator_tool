@@ -1,6 +1,6 @@
 
 import React, { useRef } from 'react'
-import styles from "./AppliedUserProfile.module.css"
+import styles from "../AppliedUserProfile/AppliedUserProfile.module.css"
 import { useEffect, useState } from 'react'
 import axios from "axios";
 import { Link, useNavigate, useLocation, useParams } from "react-router-dom";
@@ -69,6 +69,7 @@ function SearchCandidate({nopageFilter,setNoPageFilter,searchKey, setsearchKey,F
 
   const [currentPage, setCurrentPage] = useState(1)
   const [recordsPerPage, setrecordsPerPage] = useState(10)
+  const[jobsPerPageValue,setJobsPerPageValue]=useState(10);
 
   const lastIndex = currentPage * recordsPerPage //10
   const firstIndex = lastIndex - recordsPerPage //0
@@ -215,31 +216,7 @@ function SearchCandidate({nopageFilter,setNoPageFilter,searchKey, setsearchKey,F
         }
       }, [jobTagsIds])
 
-// -------------exp----------------
-// const [pathChanged, setPathChanged] = useState(false); 
 
-// Run getjobs() only if path changes
-// useEffect(() => {
-//   console.log("Path changed, executing getjobs...");
-//   setPathChanged(true); // Mark that getjobs() was executed
-//   getAllJobSeekers();
-
-//   // Reset after a delay to allow normal execution of getTagId() in future updates
-//   setTimeout(() => setPathChanged(false), 500); 
-// }, [location.pathname]);
-
-// Run getTagId() only if path didn't change recently
-// useEffect(() => {
-//   if (!pathChanged && jobTagsIds.length > 0) {
-//     console.log("jobtagsids-->", jobTagsIds);
-//     getTagId();
-//   }
-// }, [jobTagsIds]);
-
-
-
-
-// -----------------exp-------------
 
 
       let ids = jobTagsIds.map((id) => {
@@ -485,140 +462,209 @@ return(
       setSelectedOption(option);
       setIsOpen(false);
     };
-// const[searchClick,setSearchClick]=useState(false);
 
-// const [empHome, setEmpHome] = useState(false);
-//   const locationemp = useLocation();
+    //-----------------Buyer codes------------------------
+    
+           const [hTitle, sethTitle] = useState("");
+              const updatehTitle = (event) => {
+                sethTitle(event.target.value);
+              };
 
-//   useEffect(() => {
-//     console.log("Current Path:", locationemp.pathname);
-//     if (locationemp.pathname === "/Search-Candidate") {
-//       setEmpHome(true);  
-//     } else {
-//       console.log("hhhh")
-//       setEmpHome(false); 
-//     }
-//   }, [locationemp.pathname]); 
+              const unitOptions = ['kg', 'ltr', 'm', 'cm', 'box', 'piece'];
+                
+                
+                    const [rows, setRows] = useState([]);
+                     
+                    useEffect(() => {
+                      // If rows is empty, create initial rows
+                      if (rows.length === 0) {
+                        const initialRows = Array.from({ length: jobsPerPageValue }, () => ({
+                          description: "",
+                          referenceLink: "",
+                          unit: "",
+                          quantity: "",
+                          commentToSeller: "",
+                        }));
+                        setRows(initialRows);
+                      }
+                    }, []); // Run once on mount
+                  
+                    // Update rows length when jobsPerPageValue changes, preserving existing data
+                    useEffect(() => {
+                      setRows((prevRows) => {
+                        const currentLength = prevRows.length;
+                        if (jobsPerPageValue > currentLength) {
+                          // Add empty rows to extend the array
+                          const extraRows = Array.from({ length: jobsPerPageValue - currentLength }, () => ({
+                            description: "",
+                            referenceLink: "",
+                            unit: "",
+                            quantity: "",
+                            commentToSeller: "",
+                          }));
+                          return [...prevRows, ...extraRows];
+                        } else if (jobsPerPageValue < currentLength) {
+                          // Trim rows if jobsPerPageValue is less
+                          return prevRows.slice(0, jobsPerPageValue);
+                        }
+                        return prevRows; // same length, no change
+                      });
+                    }, [jobsPerPageValue]);
+                  
+                    // Handle input changes and update state immutably
+                    const handleInputChange = (value, rowIndex, field) => {
+                      setRows((prevRows) => {
+                        const newRows = [...prevRows];
+                        newRows[rowIndex] = { ...newRows[rowIndex], [field]: value };
+                        return newRows;
+                      });
+                    };
+                  
+                   
+                    const [hoveredAddArea, setHoveredAddArea] = useState(null);
+                    const [selectedCell, setSelectedCell] = useState(null);
+                    const [showDeleteOption, setShowDeleteOption] = useState(null);
+                    const [unitDropdownIndex, setUnitDropdownIndex] = useState(null);
+                    // const dropdownRef = useRef(null);
+                  
+                    const handleAddRow = (index) => {
+                      const newRows = [...rows];
+                      newRows.splice(index + 1, 0, {
+                        description: '',
+                        referenceLink: '',
+                        unit: '',
+                        quantity: '',
+                        // unitPrice: '',
+                        // total: '',
+                        commentToSeller: '',
+                      });
+                      setRows(newRows);
+                    };
+                  
+                    const handleDeleteRows = (index) => {
+                      if (rows.length <= 1) return;
+                      const newRows = [...rows];
+                      newRows.splice(index, 1);
+                      setRows(newRows);
+                      setShowDeleteOption(null);
+                    };
+                  
+                    // const handleInputChange = (value, rowIndex, fieldName) => {
+                    //   const updatedRows = [...rows];
+                    //   updatedRows[rowIndex][fieldName] = value;
+                    //   setRows(updatedRows);
+                    // };
+                  
+                    const handleCellClick = (rowIndex, colIndex) => {
+                      setSelectedCell({ row: rowIndex, col: colIndex });
+                      setShowDeleteOption(null);
+                    };
+                  
+                    function handleArrowClick(rowIndex, colIndex, e) {
+                      e.stopPropagation();
+                      const key = colIndex === -1 ? `${rowIndex}-sno` : `${rowIndex}-${colIndex}`;
+                      setShowDeleteOption((prev) => (prev === key ? null : key));
+                    }
+                  
+                    const handleOutsideClick = (e) => {
+                      if (!e.target.closest('td')) {
+                        setSelectedCell(null);
+                        setShowDeleteOption(null);
+                        setUnitDropdownIndex(null);
+                      }
+                    };
+                  
+                    useEffect(() => {
+                      document.addEventListener('click', handleOutsideClick);
+                      return () => document.removeEventListener('click', handleOutsideClick);
+                    }, []);
+                
+                    let studentAuth = localStorage.getItem("StudLog")
+                    // const applyforJob=()=>{
+                    //     if(studentAuth)
+                    //       handleSubmits()
+                    //     else
+                    //      navigate("/JobSeekerLogin")
+                    // }
+                  
+                    const handleSubmits = () => {
+                      const tableData = rows.map((row, index) => ({
+                        sno: index + 1,
+                        ...row,
+                      }));
+                    
+                      const AllData = {
+                        tableData: tableData,
+                        terms: terms
+                      };
+                    
+                      // console.log('Saved Data:', AllData );
+                    
+                      // Reset terms and set 10 empty rows
+                      const emptyRows = Array.from({ length: 10 }, () => ({
+                        description: "",
+                        referenceLink: "",
+                        unit: "",
+                        quantity: "",
+                        commentToSeller: "",
+                      }));
+                    
+                      setRows(emptyRows); // reset with 10 empty rows
+                      setTerms("");       // clear terms
+                    };
+                    
+                  
+                    const [terms, setTerms] = useState("");
+                    const updateTerms = (event) => {
+                      setTerms(event.target.value);
+                    };
+                  
+                    const handleUnitSelect = (rowIndex, unit) => {
+                      const current = rows[rowIndex].unit;
+                      const numberPart = current.match(/\d+/)?.[0] || "";
+                      const updatedRows = [...rows];
+                      updatedRows[rowIndex].unit = numberPart + unit;
+                      setRows(updatedRows);
+                      setUnitDropdownIndex(null);
+                    };
 
-//   console.log("pathname",empHome)
-// console.log("canidate -f -->",Candidate)
+                    useEffect(() => {
+                            const draftData = localStorage.getItem("draftApplicationData");
+                            if (draftData) {
+                              const parsedData = JSON.parse(draftData);
+                              console.log("sdsd",parsedData)
+                              if (parsedData.tableData) setRows(parsedData.tableData);
+                              console.log("sdsd",parsedData.tableData)
+                              if (parsedData.terms) setTerms(parsedData.terms);
+                              if (parsedData.hTitle) sethTitle(parsedData.hTitle);
+                              localStorage.removeItem("draftApplicationData"); // Clean up after restore
+                            }
+                          
+                            document.addEventListener('click', handleOutsideClick);
+                            return () => document.removeEventListener('click', handleOutsideClick);
+                          }, []);
+
+                          useEffect(()=>{
+console.log("rows",rows)
+                          },[rows])
+
   return (
     <>
       {screenSize.width > 850 ?
         <>
   <div className={styles.NavConetenetWrapper}>
 
-  {/* <div className={styles.LocationFilterWrapper}>
-  <div ref={dropdownRef} style={{ position: "relative" }}>
-    
-      <div style={{ display: "flex", marginLeft: "-40px", marginTop: "-5px" }}>
-        <button
-          onClick={() => setIsOpen((prev) => !prev)}
-          style={{
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            fontSize: "24px",
-            color: "#007bff",
-          }}
-        >
-          <img className={styles.jobLocationImage} src={location} alt="Location" />
-        </button>
-        <p style={{ marginTop: "17px", fontWeight: "bold", color: "white" }}>
-          {selectedOption?.label}
-        </p>
-      </div> */}
 
-      {/* Dropdown Menu */}
-      {/* {isOpen && (
-        <div
-          style={{
-            position: "absolute",
-            top: "45px",
-            left: "-43px",
-            background: "white",
-            color: "black",
-            borderRadius: "20px",
-            width: "160px",
-            padding: "15px",
-            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-            animation: "fadeIn 0.2s ease-in-out",
-          }}
-        > */}
-          {/* Speech Bubble Tail */}
-          {/* <div
-            style={{
-              position: "absolute",
-              top: "-9px",
-              left: "25px",
-              width: "0",
-              height: "0",
-              borderLeft: "10px solid transparent",
-              borderRight: "10px solid transparent",
-              borderBottom: "10px solid white",
-            }}
-          ></div> */}
-
-          {/* Options List */}
-          {/* <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-            {options.map((option) => (
-              <li
-                key={option.value}
-                onClick={() => handleSelect(option)}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  padding: "10px",
-                  cursor: "pointer",
-                  borderRadius: "10px",
-                }}
-              >
-                <img
-                  src={option.img}
-                  alt={option.label}
-                  style={{ width: "22px", height: "22px", marginRight: "12px" }}
-                />
-                <span>{option.label}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div> */}
-
-  {/* {
-    Location.map((location, i) => {
-      return (
-        <>
-        <label className={styles.JobLocationFilter}>
-        <input type="radio"  disabled={location == "Chennai" ||
-        location == "Hyderabad" || location == "Mumbai" || location == "Delhi"} name="filter" onClick={() => 
-            { getLocation(location.toLowerCase()); setActive("Bangalore") }} />{location}</label><br></br>
-            </>
-      )
-    })
-  } */}
-{/* </div> */}
-          
-{/* <div className={styles.searchBothForNavWrapper}>
-  <input className={styles.inputboxsearchNav}  type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { searchs(e) }} />
-
-  <i style={{ color: "rgb(40, 4, 99)", fontSize: "18px", cursor: "pointer" , marginLeft:"3%"}} onClick={() => { searchIcon(searchKey) }}
-    class="fa fa-search" ></i>
-</div> */}
 
 </div>
-          {/* {Result ?
-            <h4 style={{ marginLeft: "40%", marginTop: "20px" }}> {Candidate.length} matching Result Found  </h4>
-            : ""
-          } */}
+         
         </>
         : ""
       }
 
       {screenSize.width > 850 ?
         <>
-          <h2 style={{marginLeft:"10px", fontWeight:"800", marginTop:"54px", marginBottom:"-47px"}}> Seller Home </h2>
+          <h2 style={{marginLeft:"10px", fontWeight:"800", marginTop:"54px", marginBottom:"-47px"}}>Buyer Home </h2>
             <div className={styles.JobtitleFilterWrapper} style={{marginTop:"55px"}}>
                    <buton className={Active.length===0?styles.active:styles.JobtitleFilter} onClick={() => 
                 { getAllJobSeekers() }}>All</buton>
@@ -678,71 +724,251 @@ return(
             </select>  jobs per page
             </div>
 
-          <div className={styles.AllUiWrapper}>
-            <ul className={styles.ul} >
-              <li style={{width:"6%", backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.name}`}><b> SL.No</b>
-              </li>
-              <li style={{width:"18%", backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.NoticePeriod}`}><b>company Name</b>
-                <p style={{ display: "inline", marginLeft: "4%" }}>
-                  <i onClick={NoticeAscendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
-                  <i onClick={NoticeDescendingOrder} className={`${styles.arrow} ${styles.down}`}></i>
-                </p>
-              </li>
-
-              <li style={{width:"51%", backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Skills}`}> <b>Requirment Title</b> </li>
-              <li style={{width:"18%", backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.currentCTC}`}> <b>Posted on</b>
-                <p style={{ display: "inline", marginLeft: "2%" }}>
-                  <i onClick={CurrCTCAscendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
-                  <i onClick={CurrCTCDescendingOrder} className={`${styles.arrow} ${styles.down}`}></i>
-                </p>
-              </li>
-        
-              <li style={{width:"10%", backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.LastActive}`}><b>View</b>
-                <p style={{ display: "inline", marginLeft: "1%" }}>
-                  <i onClick={LastActAscendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
-                  <i onClick={LastActDescendingOrder} className={`${styles.arrow} ${styles.down}`}></i>
-                </p>
-              </li>
-
-
-            </ul>
+            <div className={styles.Uiwarpper}>
            
-            {/* {
-             
-                Candidate.length > 0 ?
-                  Candidate.map((Applieduser, i) => {
-                    return ( */}
-                      <>
- 
-                        <ul className={styles.ul} >
-                          <li style={{width:"6%"}} className={`${styles.li} ${styles.name} ${styles.onclick}`}  >
-                            {} </li>
+           <div style={{display:"flex", marginLeft:"1%", gap:"4px", alignItems:"center"}}>
+         <h2>Title : </h2>
+         <input value={hTitle} onChange={(event) => updatehTitle(event)} style={{ width: "500px", height: "20px" }}></input>
+       </div>
+           {/* <div className={styles.Uiwarpper} style={{ marginTop: "20px", marginLeft: "15px", marginRight: "20px" }}> */}
+     <div className={styles.ul} style={{ marginTop: "-30px", marginLeft:"-1%" }}>
+       <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+         <thead>
+           <tr>
+             <th style={{ width: '1px' }}></th>
+             <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white", width:"40px" }}>SL.No</th>
+             <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"200px" }}>Title</th>
+             <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"200px" }}>Description</th>
+             <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"200px" }}>Reference Link to Amazon/Flipkart</th>
+             <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"34px" }}>Quantity</th>
+             <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"44px" }}>Unit</th>
 
-                          <li style={{width:"18%"}} className={`${styles.li} ${styles.NoticePeriod}`}> {} </li>
-                          <li style={{width:"51%"}} className={`${styles.li} ${styles.Skills}`}> {} </li>
-                          <li style={{width:"18%"}} className={`${styles.li} ${styles.currentCTC}`}> {} </li>
-                         
+             <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"140px" }}>Comment to Seller</th>
+           </tr>
+         </thead>
+         <tbody>
+ {rows.map((row, rowIndex) => (
+   <tr key={rowIndex} onMouseLeave={() => setHoveredAddArea(null)}>
+     {/* Add Row Button Cell */}
+     <td
+       style={{
+         width: '1px',
+         position: 'relative',
+         background: hoveredAddArea === rowIndex ? '#f0f0f0' : '#fafafa',
+         cursor: 'pointer',
+       }}
+       onMouseEnter={() => setHoveredAddArea(rowIndex)}
+       onMouseLeave={() => setHoveredAddArea(null)}
+     >
+       {hoveredAddArea === rowIndex && (
+         <div
+           onClick={() => handleAddRow(rowIndex)}
+           style={{
+             position: 'absolute',
+             top: '50%',
+             left: '50%',
+             transform: 'translate(-50%, -50%)',
+             fontSize: '14px',
+             fontWeight: 'bold',
+             color: 'black',
+             userSelect: 'none',
+           }}
+         >
+           +
+         </div>
+       )}
+     </td>
 
-                          <li style={{width:"10%"}} className={`${styles.li} ${styles.LastActive}`}>
-                            {/* {new Date(Applieduser.updatedAt).toLocaleString(
-                              "en-US",
-                              {
-                                month: "short",
-                                day: "2-digit",
-                                year: "numeric",
-                              }
-                            )} */}
-                            <button className={styles.Applybutton} onClick={() => { navigate("/Seller-view-details") }}>View Details</button>
+     {/* S.No Cell with Delete Option */}
+     <td
+       style={{ border: '1px solid #ccc', padding: '8px', position: 'relative', cursor: 'pointer' }}
+       onClick={() => handleCellClick(rowIndex, -1)} // Using -1 as colIndex for S.No
+     >
+       {rowIndex + 1}
 
-                                           </li>
+       {/* Arrow icon for S.No cell */}
+       {selectedCell?.row === rowIndex && selectedCell?.col === -1 && (
+         <div
+           style={{
+             position: 'absolute',
+             top: '5px',
+             right: '5px',
+             fontSize: '16px',
+             fontWeight: 'bold',
+             cursor: 'pointer',
+             userSelect: 'none',
+           }}
+           onClick={(e) => {
+             e.stopPropagation();
+             handleArrowClick(rowIndex, -1, e); // Pass -1 as colIndex for S.No
+           }}
+         >
+           ▼
+         </div>
+       )}
 
-                        </ul>
-                      </>
+       {/* Delete Row option for S.No cell */}
+       {showDeleteOption === `${rowIndex}-sno` && (
+         <div
+           onClick={() => handleDeleteRows(rowIndex)}
+           style={{
+             position: 'absolute',
+             top: '25px',
+             right: '5px',
+             fontSize: '14px',
+             background: '#f44336',
+             color: '#fff',
+             padding: '5px',
+             borderRadius: '5px',
+             cursor: 'pointer',
+             zIndex: 999,
+             userSelect: 'none',
+           }}
+         >
+           Delete Row
+         </div>
+       )}
+     </td>
 
-            
-            <div>
-            </div>
-          </div >
+     {/* Other editable cells */}
+     {['title','description', 'referenceLink', 'quantity', 'unit', 'commentToSeller'].map((fieldName, colIndex) => (
+       <td
+         key={colIndex}
+         style={{ position: 'relative', border: '1px solid #ccc', padding: '0px' }}
+         onClick={() => handleCellClick(rowIndex, colIndex)}
+       >
+         <textarea
+           value={row[fieldName]}
+           readOnly={fieldName === 'unit'}
+           onClick={() => {
+             if (fieldName === 'unit') {
+               setUnitDropdownIndex(rowIndex);
+             } else {
+               setUnitDropdownIndex(null);
+             }
+           }}
+           onChange={(e) => {
+             let value = e.target.value;
+             if (fieldName === 'quantity') value = value.replace(/\D/g, '');
+             else if (fieldName === 'unit') setUnitDropdownIndex(null);
+             handleInputChange(value, rowIndex, fieldName);
+           }}
+           onInput={(e) => {
+             e.target.style.height = "auto";
+             e.target.style.height = `${e.target.scrollHeight}px`;
+           }}
+           disabled={fieldName === 'unitPrice' || fieldName === 'total'}
+           style={{
+             width: '97%',
+             border: 'none',
+             outline: 'none',
+             resize: 'none',
+             fontFamily: 'inherit',
+             fontSize: 'inherit',
+             overflow: 'hidden',
+             overflowWrap: 'break-word',
+             whiteSpace: 'pre-wrap',
+             backgroundColor: fieldName === 'unitPrice' || fieldName === 'total' ? '#f2f2f2' : 'inherit',
+             color: fieldName === 'unitPrice' || fieldName === 'total' ? '#555' : 'inherit',
+             cursor: fieldName === 'unitPrice' || fieldName === 'total' ? 'not-allowed' : 'text',
+           }}
+         />
+         {/* Arrow icon for editable cells */}
+         {selectedCell?.row === rowIndex && selectedCell?.col === colIndex && (
+           <div
+             style={{
+               position: 'absolute',
+               top: '5px',
+               right: '5px',
+               fontSize: '16px',
+               fontWeight: 'bold',
+               cursor: 'pointer',
+               userSelect: 'none',
+             }}
+             onClick={(e) => handleArrowClick(rowIndex, colIndex, e)}
+           >
+             ▼
+           </div>
+         )}
+         {/* Delete Row option for editable cells */}
+         {showDeleteOption === `${rowIndex}-${colIndex}` && (
+           <div
+             onClick={() => handleDeleteRows(rowIndex)}
+             style={{
+               position: 'absolute',
+               top: '25px',
+               right: '5px',
+               fontSize: '14px',
+               background: '#f44336',
+               color: '#fff',
+               padding: '5px',
+               borderRadius: '5px',
+               cursor: 'pointer',
+               zIndex: 999,
+               userSelect: 'none',
+             }}
+           >
+             Delete Row
+           </div>
+         )}
+         {/* Unit dropdown */}
+         {fieldName === 'unit' && unitDropdownIndex === rowIndex && (
+           <div
+             ref={dropdownRef}
+             style={{
+               position: 'absolute',
+               top: '100%',
+               left: '0',
+               backgroundColor: 'white',
+               border: '1px solid #ccc',
+               zIndex: 10,
+               maxHeight: '100px',
+               overflowY: 'auto',
+               width: '100%',
+             }}
+           >
+             {unitOptions.map((unit, i) => (
+               <div
+                 key={i}
+                 onClick={() => handleUnitSelect(rowIndex, unit)}
+                 style={{ padding: '6px', cursor: 'pointer' }}
+               >
+                 {unit}
+               </div>
+             ))}
+           </div>
+         )}
+       </td>
+     ))}
+   </tr>
+ ))}
+</tbody>
+       </table>
+     </div>
+     <div style={{ marginTop: "10px", marginBottom: "10px", marginLeft: "23px", marginRight: "0px", display: "flex", justifyContent: "space-between" }}>
+       <div>
+         <h2>Terms And Conditions</h2>
+         <textarea value={terms} onChange={(event) => updateTerms(event)} style={{ width: "630px", height: "109px", borderRadius: "10px" }}></textarea>
+       </div>
+       <button
+         onClick={handleSubmits}
+         style={{
+           padding: '10px 20px',
+           backgroundColor: 'rgb(40,4,99)',
+           color: 'white',
+           border: 'none',
+           borderRadius: '5px',
+           cursor: 'pointer',
+           height: '42px',
+           marginTop: '16px'
+         }}
+       >
+         Submit
+       </button>
+     </div>
+   {/* </div> */}
+
+         </div>
           <div style={{ display: "flex", justifyContent: "space-between"}}>
           <div style={{marginTop:"10px", marginLeft:"10px"}}>
             Show  <select onChange={(e) => { handleRecordchange(e) }}>
@@ -773,26 +999,7 @@ return(
         :
         <>
 
-        {/* <div style={{display:"flex"}}> */}
-           {/* <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Home</h2> */}
-
-          {/* <div className={styles.blogSearchContainer}> */}
-             {/* <i style={{ color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px",position:"fixed",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue)}}
-              class="searchicon fa fa-search" ></i> */}
-              {/* <i style={{ visibility:showMobileSearchIcon?"visible":"hidden", color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px", position:"absolute",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue);setShowMobileSearchIcon((currentvalue)=>!currentvalue);setShowSideNave((currentvalue)=>!currentvalue)}}
-              class="searchicon fa fa-search" ></i> */}
-            {/* <input style={{visibility:searchClick?"visible":"hidden"}} className={styles.blogInputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} /> */}
-          {/* </div> */}
-          {/* </div> */}
-
-          {/* <div className={styles.searchBoth}>
-            <p className={styles.p}>Search </p>
-            <input className={styles.inputboxsearch} type="text" placeholder="candidate's/skills/experience/qualification/noticeperiod" onChange={(e) => { search(e) }} />
-          </div> */}
-          {/* {Result ?
-            <h4 style={{ marginLeft: "19%", marginTop: "10px" }}> {Candidate.length} matching Result Found  </h4>
-            : ""
-          } */}
+       
           <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Seller Home</h2>
 
            <div className={styles.JobtitleFilterWrapper}>
@@ -824,9 +1031,7 @@ return(
 
           <div id={styles.JobCardWrapper} >
 
-            {/* {Candidate.length>0?
-            Candidate.map((job, i) => {
-              return ( */}
+           
                 <>
                   <div className={styles.JobCard} >
                     <div style={{ display: "flex" }}>
@@ -842,30 +1047,17 @@ return(
                           
                         <span className={styles.span}> <span style={{ color: "red" }}>Not Available</span></span><br></br>
                         <span className={styles.span}> <span style={{ color: "red" }}>Not Available</span></span><br></br>
-                        {/* <span className={styles.span}> {job.Qualification ? <span style={{ color: "blue" }}>{job.Qualification} </span> : <span style={{ color: "red" }}>Not updated</span>}</span><br></br> */}
-                        {/* <span className={styles.span}> {job.Experiance ? <span style={{ color: "blue" }}>{job.Experiance} </span> : <span style={{ color: "red" }}>Not updated</span>}   </span><br></br>
-                        <span className={styles.span}>{job.currentCTC ? <span style={{ color: "blue" }}>{job.currentCTC} </span> : <span style={{ color: "red" }}>Not updated</span>} </span><br></br> */}
-                        <span className={styles.span}><span style={{ color: "red" }}>Not Available</span></span><br></br>
+                         <span className={styles.span}><span style={{ color: "red" }}>Not Available</span></span><br></br>
                         <span className={styles.span}> 
                             NotAvailable
-                            {/* <u>{new Date(job.updatedAt).toLocaleString(
-                          "en-US",
-                          {
-                            month: "short",
-                            day: "2-digit",
-                            year: "numeric",
-                          }
-                        )}</u> */}
+                            
                         </span><br></br>
                       </div>
-                      {/* <img className={styles.MobileimageView} src={job.image ? job.image : profileDp} /> */}
+                      
 
                     </div>
                     <button className={styles.ApplybuttonMobile} >View Details</button>
 
-                    {/* <div className={styles.Down}>
-                      <span className={styles.span}> Skills : {job.Skills ? <span style={{ color: "blue" }}>{job.Skills} </span> : <span style={{ color: "red" }}>Not updated</span>}</span><br></br>
-                    </div> */}
                   </div>
                 </>
               

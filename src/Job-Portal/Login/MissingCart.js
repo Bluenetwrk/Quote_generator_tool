@@ -45,6 +45,7 @@ useEffect(() => {
 
   let navigate = useNavigate()
 
+  
   const login = useGoogleLogin({
     onSuccess: async (response) => {
       try {
@@ -59,25 +60,24 @@ useEffect(() => {
         setGmailuser(res.data)
         let gtoken = response.access_token
         let userId = res.data.sub
-        let Gpicture = res.data.picture
         let email = res.data.email
         let name = res.data.name
-        let isApproved=false
+        let isApproved = false
         // let image= res.data.picture
+
         // console.log("decoded name :", gemail)
         // console.log(" decoded id :", gname)
 
-        await axios.post("/StudentProfile/Glogin", {ipAddress, userId, email, name, gtoken, isApproved, Gpicture })
+        await axios.post("/EmpProfile/Glogin", { ipAddress, userId, email, name, gtoken, isApproved })
           .then((response) => {
             let result = response.data
             let token = result.token
-            let Id = result.id
-        console.log(result)
-
+            let GuserId = result.id
             if (result.status == "success") {
-              localStorage.setItem("StudLog", JSON.stringify(btoa(token)))
-              navigate("/alljobs", {state:{name:result.name}})
-              localStorage.setItem("StudId", JSON.stringify(Id))   
+              localStorage.setItem("EmpLog", JSON.stringify(btoa(token)))
+              localStorage.setItem("EmpIdG", JSON.stringify(GuserId))
+              // localStorage.setItem("StudId", JSON.stringify(Id))
+              navigate("/alljobs", { state: { gserid: GuserId } })
             }
           }).catch((err) => {
             alert("server issue occured")
@@ -190,33 +190,33 @@ useEffect(() => {
   }
 
   function microsoftLogin() {
-    instance.loginPopup(loginRequest)
-      .then(async response => {
-        // console.log(response)
-        let name = response.account.name
-        let email = response.account.username
-        let isApproved = false
-
-        await axios.post("/StudentProfile/Glogin", { ipAddress, email, name, isApproved, })
-          .then((response) => {
-            let result = response.data
-            console.log(result)
-            let token = result.token
-            let Id = result.id
-            if (result.status == "success") {
-              localStorage.setItem("StudLog", JSON.stringify(btoa(token)))
-              navigate("/alljobs", { state: { name: result.name } })
-              localStorage.setItem("StudId", JSON.stringify(Id))
-            }
-          }).catch((err) => {
-            alert("server issue occured")
-          })
-      })
-      .catch(error => {
-        // console.log("Login error", error);
-        // alert("some thing went wrong")
-      });
-  }
+		instance.loginPopup(loginRequest)
+			.then(async response => {
+				// console.log(response)
+				let name = response.account.name
+				let email = response.account.username
+				let isApproved = false
+        await axios.post("/EmpProfile/Glogin", { ipAddress,  email, name, isApproved })
+        .then((response) => {
+          let result = response.data
+          let token = result.token
+          let GuserId = result.id
+          if (result.status == "success") {
+            localStorage.setItem("EmpLog", JSON.stringify(btoa(token)))
+            localStorage.setItem("EmpIdG", JSON.stringify(GuserId))
+            // localStorage.setItem("StudId", JSON.stringify(Id))
+            navigate("/alljobs", { state: { gserid: GuserId } })
+          }
+				
+					}).catch((err) => {
+						alert("server issue occured")
+					})
+			})
+			.catch(error => {
+				// console.log("Login error", error);
+				// alert("some thing went wrong")
+			});
+	}
   return (
     <>
 
