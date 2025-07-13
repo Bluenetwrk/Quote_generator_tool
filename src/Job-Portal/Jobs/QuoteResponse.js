@@ -106,7 +106,7 @@ const QuoteResponse = () => {
               msOverflowStyle: 'none' /* IE 10+ */
             }}
           >
-            <div style={{marginTop:"-10px"}}>
+            <div style={{marginTop:"-10px", display:"flex", gap:"18px"}}>
             {quotes.map((quote, index) => (
               <button 
                 key={index}
@@ -140,13 +140,13 @@ const QuoteResponse = () => {
       {/* Header Row */}
       <ul className={styles.ul} style={{ color: 'white', fontWeight: 'bold' }}>
         <li className={`${styles.li} ${styles.Jtitle}`} style={{ backgroundColor: 'rgb(40, 4, 99)' }}>SL.NO</li>
-        <li className={`${styles.li} ${styles.Source}`} style={{ backgroundColor: 'rgb(40, 4, 99)' }}>Description</li>
-        <li className={`${styles.li} ${styles.CompanyName}`} style={{ backgroundColor: 'rgb(40, 4, 99)' }}>Link</li>
-        <li className={`${styles.li} ${styles.JobType}`} style={{ backgroundColor: 'rgb(40, 4, 99)' }}>HSN code</li>
-        <li className={`${styles.li} ${styles.date}`} style={{ backgroundColor: 'rgb(40, 4, 99)' }}>Quantity</li>
-        <li className={`${styles.li} ${styles.Location}`} style={{ backgroundColor: 'rgb(40, 4, 99)' }}>Unit Price</li>
-        <li className={`${styles.li} ${styles.Package}`} style={{ backgroundColor: 'rgb(40, 4, 99)' }}>Total Price</li>
-        <li className={`${styles.li} ${styles.Skills}`} style={{ backgroundColor: 'rgb(40, 4, 99)' }}>Buyer Comments</li>
+        <li className={`${styles.li} ${styles.Source}`} style={{ backgroundColor: 'rgb(40, 4, 99)' }}>DESCRIPTION</li>
+        <li className={`${styles.li} ${styles.CompanyName}`} style={{ backgroundColor: 'rgb(40, 4, 99)' }}>LINK</li>
+        <li className={`${styles.li} ${styles.JobType}`} style={{ backgroundColor: 'rgb(40, 4, 99)' }}>HSN CODE</li>
+        <li className={`${styles.li} ${styles.date}`} style={{ backgroundColor: 'rgb(40, 4, 99)' }}>QUANTITY</li>
+        <li className={`${styles.li} ${styles.Location}`} style={{ backgroundColor: 'rgb(40, 4, 99)' }}>UNIT PRICE</li>
+        <li className={`${styles.li} ${styles.Package}`} style={{ backgroundColor: 'rgb(40, 4, 99)' }}>TOTAL PRICE</li>
+        <li className={`${styles.li} ${styles.Skills}`} style={{ backgroundColor: 'rgb(40, 4, 99)' }}>BUYER COMMENTS</li>
       </ul>
 
       {/* Quote Rows */}

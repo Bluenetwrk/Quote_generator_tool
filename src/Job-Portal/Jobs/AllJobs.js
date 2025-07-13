@@ -485,10 +485,20 @@ return(
               {
                 jobTags.map((tags, i) => {
                   return (
-                    <button disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
+                    <button disabled={tags.value === "OFFICE EQUIPMENT" || tags.value === "OFFICE FURNITURE" || tags.value === "STATIONERY & OFFICE SUPPLIES" || tags.value === "FACILITY & MAINTENANCE SUPPLIES" || tags.value === "CORPORATE GIFTING & BRANDING" ||
+                      tags.value === "EMPLOYEE &  SAFETY ESSENTIALS" || tags.value === "EVENT & TRAINING MATERIALS" || ""}
+                      style={{backgroundColor:
+                        tags.value === "OFFICE EQUIPMENT" ? "#ff9999" :
+        tags.value === "OFFICE FURNITURE" ? "#99ccff" :
+        tags.value === "STATIONERY & OFFICE SUPPLIES" ? "#ccffcc" :
+        tags.value === "FACILITY & MAINTENANCE SUPPLIES" ? "#ffff99" :
+        tags.value === "CORPORATE GIFTING & BRANDING" ? "#ffccff" :
+        tags.value === "EMPLOYEE &  SAFETY ESSENTIALS" ? "#d9b3ff" :
+        tags.value === "EVENT & TRAINING MATERIALS" ? "#ffb366" :
+       
+        "#ffffff",}}
+                      className={tags.value === "OFFICE EQUIPMENT" || tags.value === "OFFICE FURNITURE" || tags.value === "STATIONERY & OFFICE SUPPLIES" || tags.value === "FACILITY & MAINTENANCE SUPPLIES" || tags.value === "CORPORATE GIFTING & BRANDING" ||
+                        tags.value === "EMPLOYEE &  SAFETY ESSENTIALS" || tags.value === "EVENT & TRAINING MATERIALS" || tags.value === "INDUSTRY" || tags.value === "TOOLS/PROTOCOLS" || tags.value === "COMPANY TYPE" || tags.value === "ROLE" ?
                       styles.TagHeading: 
                       //  Active === tags.value ? 
                       Active.findIndex(  (present)=>{
@@ -630,10 +640,20 @@ return(
               {
                 jobTags.map((tags, i) => {
                   return (
-                    <button disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
-                      className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
-                      tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
+<button disabled={tags.value === "OFFICE EQUIPMENT" || tags.value === "OFFICE FURNITURE" || tags.value === "STATIONERY & OFFICE SUPPLIES" || tags.value === "FACILITY & MAINTENANCE SUPPLIES" || tags.value === "CORPORATE GIFTING & BRANDING" ||
+                    tags.value === "EMPLOYEE &  SAFETY ESSENTIALS" || tags.value === "EVENT & TRAINING MATERIALS" || ""}
+                    style={{backgroundColor:
+                      tags.value === "OFFICE EQUIPMENT" ? "#ff9999" :
+      tags.value === "OFFICE FURNITURE" ? "#99ccff" :
+      tags.value === "STATIONERY & OFFICE SUPPLIES" ? "#ccffcc" :
+      tags.value === "FACILITY & MAINTENANCE SUPPLIES" ? "#ffff99" :
+      tags.value === "CORPORATE GIFTING & BRANDING" ? "#ffccff" :
+      tags.value === "EMPLOYEE &  SAFETY ESSENTIALS" ? "#d9b3ff" :
+      tags.value === "EVENT & TRAINING MATERIALS" ? "#ffb366" :
+     
+      "#ffffff",}}
+                    className={tags.value === "OFFICE EQUIPMENT" || tags.value === "OFFICE FURNITURE" || tags.value === "STATIONERY & OFFICE SUPPLIES" || tags.value === "FACILITY & MAINTENANCE SUPPLIES" || tags.value === "CORPORATE GIFTING & BRANDING" ||
+                      tags.value === "EMPLOYEE &  SAFETY ESSENTIALS" || tags.value === "EVENT & TRAINING MATERIALS" || tags.value === "INDUSTRY" || tags.value === "TOOLS/PROTOCOLS" || tags.value === "COMPANY TYPE" || tags.value === "ROLE" ?
                       styles.TagHeading: 
                       //  Active === tags.value ? 
                       Active.findIndex(  (present)=>{
