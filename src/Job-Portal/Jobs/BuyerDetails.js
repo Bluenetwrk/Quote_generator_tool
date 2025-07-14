@@ -648,7 +648,7 @@ const handleEdit=()=>{
               <option selected={jobsPerPageValue==25} value={25}>25</option>
               <option selected={jobsPerPageValue==50} value={50}>50</option>
               <option selected={jobsPerPageValue==100} value={100}>100</option>
-            </select>  jobs per page
+            </select>  rows per page
           </div>
 
           <div style={{ display:"flex", gap:"12px", marginBottom: "15px", marginTop: "20px", marginLeft: "15px" }}>
@@ -825,7 +825,7 @@ const handleEdit=()=>{
               <option selected={jobsPerPageValue==25} value={25}>25</option>
               <option selected={jobsPerPageValue==50} value={50}>50</option>
               <option selected={jobsPerPageValue==100} value={100}>100</option>
-              </select>  jobs per page
+              </select>  rows per page
             </div>
 
             <div className={styles.navigationWrapper}>
@@ -1590,7 +1590,7 @@ const handleEdit=()=>{
               <option selected={jobsPerPageValue==25} value={25}>25</option>
               <option selected={jobsPerPageValue==50} value={50}>50</option>
               <option selected={jobsPerPageValue==100} value={100}>100</option>
-            </select>  jobs per page
+            </select> rows per page
           </div>
           
           <div className={styles.navigationWrapper} style={{textAlign:"left",marginLeft:"6px"}}>

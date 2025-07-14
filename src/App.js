@@ -36,7 +36,7 @@ import EmployeeProfile from "./Job-Portal/Profile/EmployeeProfile";
 import UpdatePostedJobs from "./Job-Portal/PostJobs/updatePostedJobs";
 import UpdateCareerPostedJobs from "./Job-Portal/PostJobs/updateCareerPostedJobs";
 import UpdatePostedBlogs from "./Job-Portal/PostJobs/updatePostedBlogs";
-import MyAppliedJobs from "./Job-Portal/Jobs/MyAppliedJobs"
+import MyAppliedJobs from "./Job-Portal/Jobs/MySubmittedQuote"
 import CareerAppliedJobs from "./Job-Portal/Jobs/MyCareerAppliedJobs"
 import AppliedUserProfile from "./Job-Portal/AppliedUserProfile/AppliedUserProfile";
 import CheckStudentProfiel from "./Job-Portal/Profile/CheckStudentProfiel";
@@ -79,6 +79,7 @@ import SellerViewDetails from "./Job-Portal/Jobs/BuyerDetails";
 import SellerResponse from "./Job-Portal/PostJobs/SellerResponse";
 import QuoteResponse from "./Job-Portal/Jobs/QuoteResponse";
 import MissingCart from "./Job-Portal/Login/MissingCart";
+import MySubmittedQuote from "./Job-Portal/Jobs/MySubmittedQuote";
 // import PostFraud from "./Job-Portal/Jobs/PostFraud";
 axios.defaults.baseURL = "https://itwalkin-backend-testrelease-2-0-1-0824-ns0g.onrender.com" // Render Test
 
@@ -1202,7 +1203,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
               {/* <Route path="/scan/drive/:driveId" element={<ScanDrive  />} /> */}
               <Route path="/Update-Profile" element={<StudentUpdateProfile url={axios.defaults.baseURL} />} />
               <Route path="/My-Profile" element={<StudentProfile />} />
-              <Route path="/My-Applied-Jobs" element={<MyAppliedJobs url={axios.defaults.baseURL} />} />
+              <Route path="/My-Submitted-jobs" element={<MySubmittedQuote url={axios.defaults.baseURL} />} />
               <Route path="/My-Applied-Drives" element={<AppliedDrives url={axios.defaults.baseURL} />} />
               <Route path="/MyCareer-Applied-Jobs" element={<CareerAppliedJobs url={axios.defaults.baseURL} />} />
             </Route>

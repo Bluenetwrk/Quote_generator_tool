@@ -93,8 +93,8 @@ function Nav(props) {
     navigate("/Update-Profile")
   }
 
-  function MyJobApplied() {
-    navigate("/My-Applied-Jobs")
+  function mySubmittedQuote() {
+    navigate("/My-Submitted-jobs")
   }
   
   function MyDrivesApplied() {
@@ -352,7 +352,7 @@ function Nav(props) {
   <div className={Styles.JobSeekerdropdownwrapper} ref={menuRef} >
     <p className={Styles.text} ref={menuRef} onClick={myprofile}>My profile</p>
 
-    <p className={Styles.text} ref={menuRef} onClick={MyJobApplied}>Jobs Applied</p>
+    <p className={Styles.text} ref={menuRef} onClick={mySubmittedQuote}>My Submitted<br></br> Quote</p>
     <p className={Styles.text} ref={menuRef} onClick={MyDrivesApplied}>Registered <br></br>Walkin Drives</p>
     <p className={Styles.text} ref={menuRef} onClick={AskQuestion}>Ask Question</p>
     <p className={Styles.text} ref={menuRef} onClick={StudlogOut}>Logout</p>
@@ -887,7 +887,7 @@ function Nav(props) {
                   <div className={Styles.Alldownwrapper} >
                   <div className={Styles.MobJobseekerDropdownwrapperlogin} ref={menuRef} >
                     <p className={Styles.text} ref={menuRef} onClick={myprofile}>My profile</p>
-                    <p className={Styles.text} ref={menuRef} onClick={MyJobApplied}>Jobs Applied</p>
+                    <p className={Styles.text} ref={menuRef} onClick={mySubmittedQuote}>My Submitted <br></br> Quote</p>
                     <p className={Styles.text} ref={menuRef} onClick={MyDrivesApplied}>Registered <br></br>Walkin Drives</p>
                     <p className={Styles.text} ref={menuRef} onClick={AskQuestion}>Ask Question</p>
 
