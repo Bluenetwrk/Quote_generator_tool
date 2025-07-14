@@ -13,14 +13,14 @@ import Footer from '../Footer/Footer';
 import HTMLReactParser from 'html-react-parser'
 
 
-function AppledJobs(props) {
-  useEffect(() => {
-    const socket = socketIO.connect(props.url, {
-      auth: {
-        token: JSON.parse(localStorage.getItem("StudId"))
-      }
-    });
-  }, [])
+function MySubmittedQuote(props) {
+  // useEffect(() => {
+  //   const socket = socketIO.connect(props.url, {
+  //     auth: {
+  //       token: JSON.parse(localStorage.getItem("StudId"))
+  //     }
+  //   });
+  // }, [])
   let navigate = useNavigate()
 
   const [MyAppliedjob, setMyAppliedjob] = useState([])
@@ -33,7 +33,7 @@ function AppledJobs(props) {
 
 
 
-  let jobSeekerId = JSON.parse(localStorage.getItem("StudId"))
+  // let jobSeekerId = JSON.parse(localStorage.getItem("StudId"))
 
 
   //   async function getAppliedJob(){   
@@ -52,27 +52,27 @@ function AppledJobs(props) {
 
   
   async function getCareerjobs() {
-    let userid = JSON.parse(localStorage.getItem("StudId"))
-    const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
-    setPageLoader(true)
-    setTimeout(async () => {
+    // let userid = JSON.parse(localStorage.getItem("StudId"))
+    // const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
+    // setPageLoader(true)
+    // setTimeout(async () => {
 
-      await axios.get(`/Careerjobpost/getMyAppliedjobs/${jobSeekerId}`, { headers })
-        .then((res) => {
-          let result = res.data
-          let sortedate = result.sort(function (a, b) {
-            return new Date(b.createdAt) - new Date(a.createdAt);
-          });
-          setMyAppliedjob(oldData=>oldData.concat(sortedate))
-          setPageLoader(false)
-          if (res.data.length == 0) {
-            setNoJobFound("You have not applied any jobs yet")
-          }
+    //   await axios.get(`/Careerjobpost/getMyAppliedjobs/${jobSeekerId}`, { headers })
+    //     .then((res) => {
+    //       let result = res.data
+    //       let sortedate = result.sort(function (a, b) {
+    //         return new Date(b.createdAt) - new Date(a.createdAt);
+    //       });
+    //       setMyAppliedjob(oldData=>oldData.concat(sortedate))
+    //       setPageLoader(false)
+    //       if (res.data.length == 0) {
+    //         setNoJobFound("You have not applied any jobs yet")
+    //       }
 
-        }).catch((err) => {
-          alert("backend arror occured")
-        })
-    }, 1000)
+    //     }).catch((err) => {
+    //       alert("backend arror occured")
+    //     })
+    // }, 1000)
   }
 
   // useEffect(() => {
@@ -80,27 +80,27 @@ function AppledJobs(props) {
 
 
   async function getjobs() {
-    let userid = JSON.parse(localStorage.getItem("StudId"))
-    const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
-    setPageLoader(true)
-    setTimeout(async () => {
+    // let userid = JSON.parse(localStorage.getItem("StudId"))
+    // const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
+    // setPageLoader(true)
+    // setTimeout(async () => {
 
-      await axios.get(`/jobpost/getMyAppliedjobs/${jobSeekerId}`, { headers })
-        .then((res) => {
-          let result = (res.data)
-          let sortedate = result.sort(function (a, b) {
-            return new Date(b.createdAt) - new Date(a.createdAt);
-          });
-          setMyAppliedjob(sortedate)
-          setPageLoader(false)
-          if (res.data.length == 0) {
-            setNoJobFound("You have not applied any jobs yet")
-          }
+    //   await axios.get(`/jobpost/getMyAppliedjobs/${jobSeekerId}`, { headers })
+    //     .then((res) => {
+    //       let result = (res.data)
+    //       let sortedate = result.sort(function (a, b) {
+    //         return new Date(b.createdAt) - new Date(a.createdAt);
+    //       });
+    //       setMyAppliedjob(sortedate)
+    //       setPageLoader(false)
+    //       if (res.data.length == 0) {
+    //         setNoJobFound("You have not applied any jobs yet")
+    //       }
 
-        }).catch((err) => {
-          alert("backend arror occured")
-        })
-    }, 1000)
+    //     }).catch((err) => {
+    //       alert("backend arror occured")
+    //     })
+    // }, 1000)
   }
 
   useEffect(() => {
@@ -111,124 +111,124 @@ function AppledJobs(props) {
   }, [])
 
   async function UndoApply(id) {
-    let userid = JSON.parse(localStorage.getItem("StudId"))
-    const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
-    Swal.fire({
-      title: 'Are you sure?',
-      // icon: 'warning',      
-      width: "260",
-      // position:"top",
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
-      width: "245",
-      // position:"top",
-      customClass: {
-        popup: "alertIcon"
-      }
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axios.put(`/jobpost/DeleteJobApplied/${id}`, { jobSeekerId }, { headers })
-          .then((res) => {
-            if(res.data==="success"){
-              getjobs()
-              getCareerjobs()
-            }else{
-              alert("some thing wrong")
-            }
-          }).catch((err) => {
-            alert("server error occured")
-          })
-      }
-    })
-  }
+  //   let userid = JSON.parse(localStorage.getItem("StudId"))
+  //   const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
+  //   Swal.fire({
+  //     title: 'Are you sure?',
+  //     // icon: 'warning',      
+  //     width: "260",
+  //     // position:"top",
+  //     showCancelButton: true,
+  //     confirmButtonColor: '#3085d6',
+  //     cancelButtonColor: '#d33',
+  //     confirmButtonText: 'Yes, delete it!',
+  //     width: "245",
+  //     // position:"top",
+  //     customClass: {
+  //       popup: "alertIcon"
+  //     }
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       axios.put(`/jobpost/DeleteJobApplied/${id}`, { jobSeekerId }, { headers })
+  //         .then((res) => {
+  //           if(res.data==="success"){
+  //             getjobs()
+  //             getCareerjobs()
+  //           }else{
+  //             alert("some thing wrong")
+  //           }
+  //         }).catch((err) => {
+  //           alert("server error occured")
+  //         })
+  //     }
+  //   })
+  // }
 
-  function sortbyOldjobs() {
-    let newjob = [...MyAppliedjob]
-    let oldjobSort = newjob.sort(function (a, b) {
-      return new Date(a.createdAt) - new Date(b.createdAt);
-    })
-    setMyAppliedjob(oldjobSort)
+  // function sortbyOldjobs() {
+  //   let newjob = [...MyAppliedjob]
+  //   let oldjobSort = newjob.sort(function (a, b) {
+  //     return new Date(a.createdAt) - new Date(b.createdAt);
+  //   })
+  //   setMyAppliedjob(oldjobSort)
 
-  }
-  function sortbyNewjobs() {
-    let newjob = [...MyAppliedjob]
-    let newjobSort = newjob.sort(function (a, b) {
-      return new Date(b.createdAt) - new Date(a.createdAt);
-    })
-    setMyAppliedjob(newjobSort)
+  // }
+  // function sortbyNewjobs() {
+  //   let newjob = [...MyAppliedjob]
+  //   let newjobSort = newjob.sort(function (a, b) {
+  //     return new Date(b.createdAt) - new Date(a.createdAt);
+  //   })
+  //   setMyAppliedjob(newjobSort)
 
-  }
+  // }
 
-  function SdescendingOrder() {
-    let newJobs = [...MyAppliedjob]
-    // const desendSort = newJobs.sort(function (a, b) {
-    //   return (
-    //     b.salaryRange - a.salaryRange
-    //   )
-    // })
-    const collator = new Intl.Collator(undefined, {
-      numeric: true,
-      sensitivity: 'base'
-    });
-    const sorted = newJobs.sort((a, b) => {
-      return collator.compare(b.salaryRange, a.salaryRange)
-    })
-    setMyAppliedjob(sorted)
-  }
+  // function SdescendingOrder() {
+  //   let newJobs = [...MyAppliedjob]
+  //   // const desendSort = newJobs.sort(function (a, b) {
+  //   //   return (
+  //   //     b.salaryRange - a.salaryRange
+  //   //   )
+  //   // })
+  //   const collator = new Intl.Collator(undefined, {
+  //     numeric: true,
+  //     sensitivity: 'base'
+  //   });
+  //   const sorted = newJobs.sort((a, b) => {
+  //     return collator.compare(b.salaryRange, a.salaryRange)
+  //   })
+  //   setMyAppliedjob(sorted)
+  // }
 
-  function SascendingOrder() {
-    let newJObs = [...MyAppliedjob]
-    // const AscendSort = newJObs.sort(function (a, b) {
-    //   return (
-    //     a.salaryRange - b.salaryRange
-    //   )
-    // })
-    const collator = new Intl.Collator(undefined, {
-      numeric: true,
-      sensitivity: 'base'
-    });
-    const sorted = newJObs.sort((a, b) => {
-      return collator.compare(a.salaryRange, b.salaryRange)
-    })
-    setMyAppliedjob(sorted)
+  // function SascendingOrder() {
+  //   let newJObs = [...MyAppliedjob]
+  //   // const AscendSort = newJObs.sort(function (a, b) {
+  //   //   return (
+  //   //     a.salaryRange - b.salaryRange
+  //   //   )
+  //   // })
+  //   const collator = new Intl.Collator(undefined, {
+  //     numeric: true,
+  //     sensitivity: 'base'
+  //   });
+  //   const sorted = newJObs.sort((a, b) => {
+  //     return collator.compare(a.salaryRange, b.salaryRange)
+  //   })
+  //   setMyAppliedjob(sorted)
   }
 
   function EdescendingOrder() {
-    let newjob = [...MyAppliedjob]
-    // const descend = newjob.sort(function (a, b) {
-    //   return (
-    //     b.experiance - a.experiance
-    //   )
+    // let newjob = [...MyAppliedjob]
+    // // const descend = newjob.sort(function (a, b) {
+    // //   return (
+    // //     b.experiance - a.experiance
+    // //   )
+    // // })
+    // const collator = new Intl.Collator(undefined, {
+    //   numeric: true,
+    //   sensitivity: 'base'
+    // });
+    // const sorted = newjob.sort((a, b) => {
+    //   return collator.compare(b.experiance, a.experiance)
     // })
-    const collator = new Intl.Collator(undefined, {
-      numeric: true,
-      sensitivity: 'base'
-    });
-    const sorted = newjob.sort((a, b) => {
-      return collator.compare(b.experiance, a.experiance)
-    })
-    setMyAppliedjob(sorted)
+    // setMyAppliedjob(sorted)
 
   }
 
   function EascendingOrder() {
-    let newjob = [...MyAppliedjob]
-    // const Ascend = newjob.sort(function (a, b) {
-    //   return (
-    //     a.experiance - b.experiance
-    //   )
+    // let newjob = [...MyAppliedjob]
+    // // const Ascend = newjob.sort(function (a, b) {
+    // //   return (
+    // //     a.experiance - b.experiance
+    // //   )
+    // // })
+    // // setMyAppliedjob(Ascend)
+    // const collator = new Intl.Collator(undefined, {
+    //   numeric: true,
+    //   sensitivity: 'base'
+    // });
+    // const sorted = newjob.sort((a, b) => {
+    //   return collator.compare(a.experiance, b.experiance)
     // })
-    // setMyAppliedjob(Ascend)
-    const collator = new Intl.Collator(undefined, {
-      numeric: true,
-      sensitivity: 'base'
-    });
-    const sorted = newjob.sort((a, b) => {
-      return collator.compare(a.experiance, b.experiance)
-    })
-    setMyAppliedjob(sorted)
+    // setMyAppliedjob(sorted)
   }
 
 
@@ -273,8 +273,8 @@ console.log(records)
   return (
     <>
 
-<p className={styles.h3} style={{ textAlign: "center" }}><b>My applied Jobs</b></p>
-<p className={styles.h3}><b>You’ve successfully submitted applications for {MyAppliedjob.length} positions.Stay tuned for updates.  </b></p>
+<h2 className={styles.h3} style={{ textAlign: "center" }}><b>My Submitted Quotes</b></h2>
+{/* <p className={styles.h3}><b>You’ve successfully submitted quotes for {MyAppliedjob.length} Buyers.Stay tuned for updates.  </b></p> */}
 
       {/* <button onClick={()=>{navigate("/MyCareer-Applied-Jobs")}} style={{ backgroundColor:"rgb(40, 4, 99)",
          marginLeft:"10px", fontWeight:600, color:"white", border:"none",
@@ -285,9 +285,9 @@ console.log(records)
         <>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             {nopageFilter ?
-              <p style={{ fontWeight: 400, marginLeft: "10px" }}>Displaying <span style={{ color: "blue" }}>{Filtereredjobs}</span> from All Jobs</p>
+              <p style={{ fontWeight: 400, marginLeft: "10px" }}>Displaying <span style={{ color: "blue" }}>{Filtereredjobs}</span> from All Submitted Quotes</p>
               :
-              <p style={{ fontWeight: 400, marginLeft: "10px" }}>showing {firstIndex + 1} to {lastIndex} latest jobs</p>
+              <p style={{ fontWeight: 400, marginLeft: "10px" }}>showing {firstIndex + 1} to {lastIndex} latest submitted quotes</p>
             }
             <div className={styles.navigationWrapper}>
               <button disabled={currentPage === 1} style={{ display: "inline", margin: "5px" }} className={styles.navigation} onClick={firstPage}>
@@ -311,45 +311,45 @@ console.log(records)
               <option selected={lastIndex === 25} value={25}>25</option>
               <option selected={lastIndex === 50} value={50}>50</option>
               <option selected={lastIndex === 100} value={100}>100</option>
-            </select>  jobs per page
+            </select>  submitted quotes per page
           </div>
 
           <div className={styles.Uiwarpper}>
 
             <ul className={styles.ul}>
-              <li className={styles.li}><b>Company Name</b></li>
-              <li className={`${styles.li} ${styles.Jtitle}`}><b>Job Title</b></li>
-              <li className={`${styles.li} ${styles.JobType}`}><b>JobType</b></li>
+              <li className={styles.li}><b>S.No.</b></li>
+              <li className={`${styles.li} ${styles.Jtitle}`}><b>Company Name</b></li>
+              <li className={`${styles.li} ${styles.JobType}`}><b>Title of Purchase</b></li>
 
               {/* <li className={`${styles.li} ${styles.liDescription}`}><b>Job description</b></li> */}
-              <li className={`${styles.li} ${styles.Pdate}`}><b>Posted Date</b>
+              <li className={`${styles.li} ${styles.Pdate}`}><b>Quote Submitte Date</b>
                 <p className={styles.arrowWrapper} >
-                  <i onClick={sortbyNewjobs} className={`${styles.arrow} ${styles.up}`}> </i>
-                  <i onClick={sortbyOldjobs} className={`${styles.arrow} ${styles.down}`}></i>
+                  {/* <i onClick={sortbyNewjobs} className={`${styles.arrow} ${styles.up}`}> </i>
+                  <i onClick={sortbyOldjobs} className={`${styles.arrow} ${styles.down}`}></i> */}
                 </p >
               </li>
-              <li className={`${styles.li} ${styles.Pdate}`}><b>Applied Date</b>
+              <li className={`${styles.li} ${styles.Pdate}`}><b>Total Quoted Price</b>
 
               </li>
 
-              <li className={`${styles.li} ${styles.Location}`}><b>Location</b></li>
-              <li className={`${styles.li} ${styles.Package}`}><b>CTC </b>
+              <li className={`${styles.li} ${styles.Location}`}><b>Discount %</b></li>
+              <li className={`${styles.li} ${styles.Package}`}><b> Status</b>
                 <p className={styles.arrowWrapper}>
-                  <i onClick={SdescendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
-                  <i onClick={SascendingOrder} className={`${styles.arrow} ${styles.down}`}></i>
+                  {/* <i onClick={SdescendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
+                  <i onClick={SascendingOrder} className={`${styles.arrow} ${styles.down}`}></i> */}
                 </p>
               </li>
-              <li className={`${styles.li} ${styles.experiance}`}><b>Experience </b>
-                <p className={styles.arrowWrapper}>
+              <li className={`${styles.li} ${styles.experiance}`}><b>Quote Status </b>
+                {/* <p className={styles.arrowWrapper}>
                   <i onClick={EdescendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
                   <i onClick={EascendingOrder} className={`${styles.arrow} ${styles.down}`}></i>
-                </p>
+                </p> */}
               </li>
-              <li className={`${styles.li} ${styles.Qualif}`}><b>Qualification </b></li>
+              {/* <li className={`${styles.li} ${styles.Qualif}`}><b>Qualification </b></li>
 
               <li className={`${styles.li} ${styles.Skills}`}><b>Skills Required</b></li>
               <li className={`${styles.li} ${styles.DeleteAction}`}><b>Action</b></li>
-              <li className={`${styles.li} ${styles.Status}`}><b>Status</b></li>
+              <li className={`${styles.li} ${styles.Status}`}><b>Status</b></li> */}
             </ul>
             {PageLoader ?
               <div style={{display:"flex", justifyContent:"center"}}>
@@ -449,12 +449,12 @@ console.log(records)
                         items.jobLocation.slice(1)}</li>
                       <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange}L</li>
                       <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Y</li>
-                      <li className={`${styles.li} ${styles.Qualif}`}>{items.qualification} </li>
+                      {/* <li className={`${styles.li} ${styles.Qualif}`}>{items.qualification} </li>
 
-                      <li className={`${styles.li} ${styles.Skills}`}>{items.skills}</li>
-                      <li className={`${styles.li} ${styles.DeleteAction}`}>
-                        <button className={styles.DeleteButton} onClick={() => { UndoApply(items._id) }}>Delete</button></li>
-                      <li className={`${styles.li} ${styles.Status}`}>
+                      <li className={`${styles.li} ${styles.Skills}`}>{items.skills}</li> */}
+                      {/* <li className={`${styles.li} ${styles.DeleteAction}`}>
+                        <button className={styles.DeleteButton} onClick={() => { UndoApply(items._id) }}>Delete</button></li> */}
+                      {/* <li className={`${styles.li} ${styles.Status}`}>
 
                         {items.onHoldJobseker.find((onholdProfile) => {
                           return (
@@ -476,7 +476,7 @@ console.log(records)
                               : "Your application is submitted.It will be reviewed and we will update you soon"
                         }
 
-                      </li>
+                      </li> */}
 
                     </ul>
                   )
@@ -485,7 +485,7 @@ console.log(records)
                 : 
                 // <p style={{ marginLeft: "42%", color: "red" }}> {NoJobFound} </p>
                 <div style={{display:"flex", justifyContent:"center"}}>
-                  <p style={{ color: "red" }}> Loading...</p>
+                  <p style={{ color: "red" }}> No Record Found...</p>
                 </div>
             }
 
@@ -649,7 +649,7 @@ console.log(records)
               })
               : 
               <div style={{display:"flex", justifyContent:"center"}}>
-                <p style={{ marginLeft: "25%", color: "red" }}> Loading....</p>
+                <p style={{ marginLeft: "25%", color: "red" }}> No Record Found....</p>
               </div>
             }
 
@@ -663,4 +663,4 @@ console.log(records)
   )
 }
 
-export default AppledJobs
+export default MySubmittedQuote

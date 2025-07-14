@@ -615,7 +615,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
 
   // -----------------------table --------funtion---- starts-------------
   
-  const unitOptions = ['kg', 'ltr', 'm', 'cm', 'box', 'piece'];
+  // const unitOptions = ['kg', 'ltr', 'm', 'cm', 'box', 'piece'];
 
 
   const [rows, setRows] = useState([]);
@@ -791,10 +791,11 @@ const initialRows = Array.from({ length: 10 }, () => "");
       const current = rows[rowIndex].unit;
       const numberPart = current.match(/\d+/)?.[0] || "";
       const updatedRows = [...rows];
-      updatedRows[rowIndex].unit = numberPart + unit;
+      updatedRows[rowIndex].unit = numberPart + " " + unit.name;  // or unit.display, etc.
       setRows(updatedRows);
       setUnitDropdownIndex(null);
     };
+    
 
   //  useEffect(()=>{
   //   console.log("terms",terms)
@@ -809,6 +810,27 @@ const initialRows = Array.from({ length: 10 }, () => "");
     );
     setEnableBtn(isAnyRowFilled);
   }, [rows]);
+  const unitOptions = [
+    { name: "Cubic Centimeter", type: "Volume", display: "Cubic Centimeter" },
+    { name: "Day", type: "Time", display: "Day" },
+    { name: "Drop", type: "Quantity", display: "Drop" },
+    { name: "Drum", type: "Fluid", display: "Drum" },
+    { name: "Each", type: "Quantity", display: "Each" },
+    { name: "Foot", type: "Quantity", display: "Foot" },
+    { name: "Hour", type: "Time", display: "Hour" },
+    { name: "Inch", type: "Length", display: "Inch" },
+    { name: "Job", type: "Quantity", display: "Job" },
+    { name: "Kilo Grams", type: "Weight", display: "Kilograms" },
+    { name: "Meter", type: "Length", display: "Meter" },
+    { name: "Millimeter", type: "Length", display: "Millimeter" },
+    { name: "Minute", type: "Time", display: "Minute" },
+    { name: "Month", type: "Time", display: "Month" },
+    { name: "Pair", type: "Quantity", display: "Pair" },
+    { name: "Pound", type: "Weight", display: "Pound" },
+    { name: "Year", type: "Time", display: "Year" }
+  ];
+  
+  
   return (
     <>
       {screenSize.width > 850 ?
@@ -1114,31 +1136,53 @@ const initialRows = Array.from({ length: 10 }, () => "");
           )}
           {/* Unit dropdown */}
           {fieldName === 'unit' && unitDropdownIndex === rowIndex && (
-            <div
-              ref={dropdownRef}
-              style={{
-                position: 'absolute',
-                top: '100%',
-                left: '0',
-                backgroundColor: 'white',
-                border: '1px solid #ccc',
-                zIndex: 10,
-                maxHeight: '100px',
-                overflowY: 'auto',
-                width: '100%',
-              }}
-            >
-              {unitOptions.map((unit, i) => (
-                <div
-                  key={i}
-                  onClick={() => handleUnitSelect(rowIndex, unit)}
-                  style={{ padding: '6px', cursor: 'pointer' }}
-                >
-                  {unit}
-                </div>
-              ))}
-            </div>
-          )}
+  <div
+    ref={dropdownRef}
+    style={{
+      position: 'absolute',
+      top: '100%',
+      left: '-97px',
+      backgroundColor: 'white',
+      border: '1px solid #ccc',
+      zIndex: 10,
+      maxHeight: '200px',
+      overflowY: 'auto',
+      width: '26vw',
+    }}
+  >
+    <div style={{
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr 1fr',
+      fontWeight: 'bold',
+      padding: '6px',
+      borderBottom: '1px solid #ccc',
+      backgroundColor: '#f9f9f9',
+    }}>
+      <div>Unit Of Measurement</div>
+      <div>Type</div>
+      <div>Display</div>
+    </div>
+
+    {unitOptions.map((unit, i) => (
+      <div
+        key={i}
+        onClick={() => handleUnitSelect(rowIndex, unit)}
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr 1fr',
+          padding: '6px',
+          cursor: 'pointer',
+          borderBottom: '1px solid #eee'
+        }}
+      >
+        <div>{unit.name}</div>
+        <div>{unit.type}</div>
+        <div>{unit.display}</div>
+      </div>
+    ))}
+  </div>
+)}
+
         </td>
       ))}
     </tr>

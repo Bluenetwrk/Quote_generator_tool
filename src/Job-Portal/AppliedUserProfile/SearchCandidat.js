@@ -731,7 +731,7 @@ console.log("rows",rows)
               <option selected = {lastIndex === 25} value={25}>25</option>
               <option selected = {lastIndex === 50} value={50}>50</option>
               <option selected = {lastIndex === 100} value={100}>100</option>
-            </select>  jobs per page
+            </select>  rows per page
             </div>
 
             <div className={styles.Uiwarpper}>
@@ -986,7 +986,7 @@ console.log("rows",rows)
               <option selected = {lastIndex === 25} value={25}>25</option>
               <option selected = {lastIndex === 50} value={50}>50</option>
               <option selected = {lastIndex === 100} value={100}>100</option>
-            </select>  jobs per page
+            </select>  rows per page
           </div>
           <div className={styles.navigationWrapper}>
               <button disabled={currentPage === 1} style={{ display: "inline", margin: "5px" }} className={styles.navigation} onClick={firstPage}>
@@ -1010,7 +1010,7 @@ console.log("rows",rows)
         <>
 
        
-          <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Seller Home</h2>
+          <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Buyer Home</h2>
 
            <div className={styles.JobtitleFilterWrapper}>
                    <buton className={Active.length===0?styles.active:styles.JobtitleFilter} onClick={() => 
@@ -1046,7 +1046,7 @@ console.log("rows",rows)
                 })
               }
               </div>
-
+{/* 
 
 
           <div id={styles.JobCardWrapper} >
@@ -1082,7 +1082,7 @@ console.log("rows",rows)
                 </>
               
 
-          </div>
+          </div> */}
           <div style={{marginTop:"10px"}}>
           <Footer/>
         </div>
