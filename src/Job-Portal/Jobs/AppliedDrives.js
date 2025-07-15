@@ -14,13 +14,13 @@ import HTMLReactParser from 'html-react-parser'
 
 
 function AppliedDrives(props) {
-  useEffect(() => {
-    const socket = socketIO.connect(props.url, {
-      auth: {
-        token: JSON.parse(localStorage.getItem("StudId"))
-      }
-    });
-  }, [])
+  // useEffect(() => {
+  //   const socket = socketIO.connect(props.url, {
+  //     auth: {
+  //       token: JSON.parse(localStorage.getItem("StudId"))
+  //     }
+  //   });
+  // }, [])
   let navigate = useNavigate()
 
 
@@ -137,27 +137,27 @@ const dummyDrives = [
 
   
   async function getCareerjobs() {
-    let userid = JSON.parse(localStorage.getItem("StudId"))
-    const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
-    setPageLoader(true)
-    setTimeout(async () => {
+    // let userid = JSON.parse(localStorage.getItem("StudId"))
+    // const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
+    // setPageLoader(true)
+    // setTimeout(async () => {
 
-      await axios.get(`/Careerjobpost/getMyAppliedjobs/${jobSeekerId}`, { headers })
-        .then((res) => {
-          let result = res.data
-          let sortedate = result.sort(function (a, b) {
-            return new Date(b.createdAt) - new Date(a.createdAt);
-          });
-          setMyAppliedjob(oldData=>oldData.concat(sortedate))
-          setPageLoader(false)
-          if (res.data.length == 0) {
-            setNoJobFound("You have not applied any jobs yet")
-          }
+    //   await axios.get(`/Careerjobpost/getMyAppliedjobs/${jobSeekerId}`, { headers })
+    //     .then((res) => {
+    //       let result = res.data
+    //       let sortedate = result.sort(function (a, b) {
+    //         return new Date(b.createdAt) - new Date(a.createdAt);
+    //       });
+    //       setMyAppliedjob(oldData=>oldData.concat(sortedate))
+    //       setPageLoader(false)
+    //       if (res.data.length == 0) {
+    //         setNoJobFound("You have not applied any jobs yet")
+    //       }
 
-        }).catch((err) => {
-          alert("backend arror occured")
-        })
-    }, 1000)
+    //     }).catch((err) => {
+    //       alert("backend arror occured")
+    //     })
+    // }, 1000)
   }
 
   // useEffect(() => {
@@ -165,27 +165,27 @@ const dummyDrives = [
 
 
   async function getjobs() {
-    let userid = JSON.parse(localStorage.getItem("StudId"))
-    const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
-    setPageLoader(true)
-    setTimeout(async () => {
+    // let userid = JSON.parse(localStorage.getItem("StudId"))
+    // const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
+    // setPageLoader(true)
+    // setTimeout(async () => {
 
-      await axios.get(`/jobpost/getMyAppliedjobs/${jobSeekerId}`, { headers })
-        .then((res) => {
-          let result = (res.data)
-          let sortedate = result.sort(function (a, b) {
-            return new Date(b.createdAt) - new Date(a.createdAt);
-          });
-          setMyAppliedjob(sortedate)
-          setPageLoader(false)
-          if (res.data.length == 0) {
-            setNoJobFound("You have not applied any jobs yet")
-          }
+    //   await axios.get(`/jobpost/getMyAppliedjobs/${jobSeekerId}`, { headers })
+    //     .then((res) => {
+    //       let result = (res.data)
+    //       let sortedate = result.sort(function (a, b) {
+    //         return new Date(b.createdAt) - new Date(a.createdAt);
+    //       });
+    //       setMyAppliedjob(sortedate)
+    //       setPageLoader(false)
+    //       if (res.data.length == 0) {
+    //         setNoJobFound("You have not applied any jobs yet")
+    //       }
 
-        }).catch((err) => {
-          alert("backend arror occured")
-        })
-    }, 1000)
+    //     }).catch((err) => {
+    //       alert("backend arror occured")
+    //     })
+    // }, 1000)
   }
 
   useEffect(() => {
@@ -440,14 +440,13 @@ const handleStart = () => {
               <li className={`${styles.li} ${styles.DeleteAction}`}><b>Action</b></li>
               <li className={`${styles.li} ${styles.Status}`}><b>Status</b></li>
             </ul>
-            {PageLoader ?
+            {/* {PageLoader ?
               <div style={{display:"flex", justifyContent:"center", flexDirection:"column", alignItems:"center"}}>
-              <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginTop: "100px" }} />
-              <p style={{color:"red"}}>Loading...</p>
+              
               </div>
               : 
             (
-              dummyDrives.length > 0 ?
+              dummyDrives.length < 0 ?
 
                 dummyDrives.map((items, i) => {
                   return (
@@ -459,36 +458,10 @@ const handleStart = () => {
                       <li className={`${styles.li} ${styles.JtitleR}`}>{items.jobTitle.toUpperCase()}</li>
                       <li className={`${styles.li} ${styles.JobType}`}>{items.jobType}</li>
 
-                      {/* <li className={`${styles.li} ${styles.Pdate}`}>
-                        {new Date(items.createdAt).toLocaleString(
-                          "en-US",
-                          {
-                            month: "short",
-                            day: "2-digit",
-                            year: "numeric",
-                          }
-                        )}
-                      </li> */}
                       <li className={`${styles.li} ${styles.Pdate}`}>
   {items.postedDate}
 </li>
 
-                      {/* <li className={`${styles.li} ${styles.Pdate}`}>
-                        {new Date(
-                          items.jobSeekerId.find((id) => {
-                            return (
-                              id.jobSeekerId == jobSeekerId
-                            )
-                          }).date
-                        ).toLocaleString(
-                          "en-US",
-                          {
-                            month: "short",
-                            day: "2-digit",
-                            year: "2-digit",
-                          }
-                        )}
-                      </li> */}
                       <li className={`${styles.li} ${styles.Pdate}`}>
   {items.appliedDate
     }
@@ -514,17 +487,20 @@ const handleStart = () => {
                 })
 
                 : 
-                // <p style={{ marginLeft: "42%", color: "red" }}> {NoJobFound} </p>
+               
                 <div style={{display:"flex", justifyContent:"center"}}>
                   <p style={{ color: "red" }}> No records found</p>
                 </div>
             )
-            }
+            } */}
+           <div style={{display:"flex", justifyContent:"center"}}>
+                  <p style={{ color: "red" }}> No records found</p>
+                </div>
           </div>
         </>
         :
         <>
-        {PageLoader ? (
+        {/* {PageLoader ? (
   <div style={{ display: "flex", justifyContent: "center", alignItems:"center", flexDirection:"column" }}>
     <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginTop: "100px" }} />
     <p style={{color:"red"}}>Loading....</p>
@@ -534,21 +510,7 @@ const handleStart = () => {
     <div id={styles.JobCardWrapper}>
       {dummyDrives.length > 0 ? (
         dummyDrives.map((job, i) => {
-          // const matched = job.jobSeekerId.find(id => id.jobSeekerId == jobSeekerId);
-          // const appliedDate = matched?.date ? new Date(matched.date) : null;
-          // const formattedAppliedDate = appliedDate
-          //   ? `${appliedDate.getDate()}${(() => {
-          //       const d = appliedDate.getDate();
-          //       if (d > 3 && d < 21) return 'th';
-          //       switch (d % 10) {
-          //         case 1: return 'st';
-          //         case 2: return 'nd';
-          //         case 3: return 'rd';
-          //         default: return 'th';
-          //       }
-          //     })()} ${appliedDate.toLocaleString('en-US', { month: 'short' })}, ${appliedDate.getFullYear()}`
-          //   : '';
-
+         
           return (
             <div className={styles.JobCard} key={i}>
               <div className={styles.JobTitleDateWrapper}>
@@ -587,17 +549,6 @@ const handleStart = () => {
                 {job.jobType}
               </span><br/>
               
-
-              {/* <span className={styles.jobtypeAndDate}>Source</span> :
-              {job.Source ? (
-                <>
-                  <a className={styles.skills} href={job.SourceLink} target="_blank" rel="noopener noreferrer">
-                    {job.Source}
-                  </a><br />
-                </>
-              ) : (
-                <span className={styles.skills}>ItWalkin</span>
-              )} */}
 
               <span style={{ marginBottom: "-3px", display: "inline" }}>
                 <span style={{ marginLeft: "14px", fontWeight: "450" }}>Applied Date: </span>
@@ -642,15 +593,17 @@ const handleStart = () => {
         <div style={{ display: "flex", justifyContent: "center" }}>
           <p style={{ marginLeft: "25%", color: "red" }}>No Record Found</p>
         </div>
-      )}
-    </div>
+      )} */}
+    {/* </div> */}
 
-    <div style={{ marginTop: "80px" }}>
+    {/* <div style={{ marginTop: "80px" }}>
       <Footer />
     </div>
   </>
-)}
-
+)} */}
+<div style={{display:"flex", justifyContent:"center"}}>
+                  <p style={{ color: "red" }}> No records found</p>
+                </div>
         </>
 }
 </>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from "./Allobs.module.css";
+import styles from "./Fraud.module.css";
 
 const PostFraudForm = () => {
   const [misuseType, setMisuseType] = useState('');
