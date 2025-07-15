@@ -422,7 +422,7 @@ console.log(records)
                         )}
                       </li> */}
                       <li className={`${styles.li} ${styles.Pdate}`}>
-  {(() => {
+  {/* {(() => {
     const matched = items.jobSeekerId.find(id => id.jobSeekerId == jobSeekerId);
     if (!matched || !matched.date) return '';
 
@@ -443,7 +443,7 @@ console.log(records)
     };
 
     return `${day}${getOrdinal(day)} ${month}, ${year}`;
-  })()}
+  })()} */}
 </li>
                       <li className={`${styles.li} ${styles.Location}`}>{items.jobLocation[0].toUpperCase() +
                         items.jobLocation.slice(1)}</li>
@@ -566,7 +566,7 @@ console.log(records)
                             year: "2-digit",
                           }
                         )} */}
-                        {(() => {
+                        {/* {(() => {
     const matched = job.jobSeekerId.find(id => id.jobSeekerId == jobSeekerId);
     if (!matched || !matched.date) return '';
 
@@ -585,7 +585,7 @@ console.log(records)
       }
     };
     return `${day}${getOrdinal(day)} ${month}, ${year}`;
-  })()}
+  })()} */}
                       </span>
 
                       <div className={styles.skillWrapper}>
@@ -597,7 +597,7 @@ console.log(records)
                         <button className={styles.MobileDelete} onClick={() => { UndoApply(job._id) }}>Delete</button>
                       </div>
                       <p className={styles.MobileResult}>Result:</p><span >
-                        {
+                        {/* {
                           job.onHoldJobseker.find((onholdProfile) => {
                             return (
                               onholdProfile == jobSeekerId
@@ -619,7 +619,7 @@ console.log(records)
                               }) ? <p style={{ color: "red" }} className={styles.MobileStatus}>Sorry! Your profile has not been Matched for this job</p>
                                 : <p className={styles.MobileStatus}>Your application is submitted.It will be reviewed and we will update you soon</p>
 
-                        }
+                        } */}
 
                       </span>
 
