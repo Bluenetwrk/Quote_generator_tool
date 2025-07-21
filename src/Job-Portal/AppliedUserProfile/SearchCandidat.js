@@ -466,6 +466,7 @@ return(
     //-----------------Buyer codes------------------------
     
            const [hTitle, sethTitle] = useState("");
+             const [creationDate, setCreationDate] = useState(''); 
               const updatehTitle = (event) => {
                 sethTitle(event.target.value);
               };
@@ -632,11 +633,12 @@ return(
                             const draftData = localStorage.getItem("draftApplicationData");
                             if (draftData) {
                               const parsedData = JSON.parse(draftData);
-                              console.log("sdsd",parsedData)
+                              // console.log("sdsd",parsedData)
                               if (parsedData.tableData) setRows(parsedData.tableData);
-                              console.log("sdsd",parsedData.tableData)
+                              // console.log("sdsd",parsedData.tableData)
                               if (parsedData.terms) setTerms(parsedData.terms);
                               if (parsedData.hTitle) sethTitle(parsedData.hTitle);
+                              if (parsedData.creationDate) setCreationDate(parsedData.creationDate);
                               localStorage.removeItem("draftApplicationData"); // Clean up after restore
                             }
                           
@@ -682,7 +684,7 @@ console.log("rows",rows)
         tags.value === "EMPLOYEE &  SAFETY ESSENTIALS" ? "#d9b3ff" :
         tags.value === "EVENT & TRAINING MATERIALS" ? "#ffb366" :
        
-        "#ffffff",}}
+        "",}}
                       className={tags.value === "OFFICE EQUIPMENT" || tags.value === "OFFICE FURNITURE" || tags.value === "STATIONERY & OFFICE SUPPLIES" || tags.value === "FACILITY & MAINTENANCE SUPPLIES" || tags.value === "CORPORATE GIFTING & BRANDING" ||
                         tags.value === "EMPLOYEE &  SAFETY ESSENTIALS" || tags.value === "EVENT & TRAINING MATERIALS" || tags.value === "INDUSTRY" || tags.value === "TOOLS/PROTOCOLS" || tags.value === "COMPANY TYPE" || tags.value === "ROLE" ?
                       styles.TagHeading: 
@@ -740,6 +742,16 @@ console.log("rows",rows)
          <h2>Title : </h2>
          <input value={hTitle} onChange={(event) => updatehTitle(event)} style={{ width: "500px", height: "20px" }}></input>
        </div>
+
+       <div style={{ marginBottom: '20px' ,marginLeft:"1%", }}>
+        <label style={{ fontWeight: 'bold' }}>Date of Creation of Purchase Requirements:</label>
+        <input
+          type="date"
+          value={creationDate}
+          onChange={(e) => setCreationDate(e.target.value)}
+          style={{ marginLeft: '10px', padding: '5px' }}
+        />
+      </div>
            {/* <div className={styles.Uiwarpper} style={{ marginTop: "20px", marginLeft: "15px", marginRight: "20px" }}> */}
      <div className={styles.ul} style={{ marginTop: "-30px", marginLeft:"-1%" }}>
        <table style={{ borderCollapse: 'collapse', width: '100%' }}>
@@ -1029,7 +1041,7 @@ console.log("rows",rows)
         tags.value === "EMPLOYEE &  SAFETY ESSENTIALS" ? "#d9b3ff" :
         tags.value === "EVENT & TRAINING MATERIALS" ? "#ffb366" :
        
-        "#ffffff",}}
+        "",}}
                       className={tags.value === "OFFICE EQUIPMENT" || tags.value === "OFFICE FURNITURE" || tags.value === "STATIONERY & OFFICE SUPPLIES" || tags.value === "FACILITY & MAINTENANCE SUPPLIES" || tags.value === "CORPORATE GIFTING & BRANDING" ||
                         tags.value === "EMPLOYEE &  SAFETY ESSENTIALS" || tags.value === "EVENT & TRAINING MATERIALS" || tags.value === "INDUSTRY" || tags.value === "TOOLS/PROTOCOLS" || tags.value === "COMPANY TYPE" || tags.value === "ROLE" ?
                       styles.TagHeading: 

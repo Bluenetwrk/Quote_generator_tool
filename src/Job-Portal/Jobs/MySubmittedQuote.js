@@ -272,8 +272,18 @@ console.log(records)
 
   return (
     <>
+      <button className={styles.readPageBackBtn} 
+            onClick={() => {
+               if (window.history.length > 1) {
+                  navigate(-1);
+                 } else {
+                    navigate('/Blogs'); 
+                  }
+             }}>
+                 <div style={{fontSize:"12px", fontWeight:"800px"}}>Back</div>
+          </button>
 
-<h2 className={styles.h3} style={{ textAlign: "center" }}><b>My Submitted Quotes</b></h2>
+<h2 className={styles.h3} style={{ textAlign: "center",marginTop:"-30px"}}><b>My Submitted Quotes</b></h2>
 {/* <p className={styles.h3}><b>You’ve successfully submitted quotes for {MyAppliedjob.length} Buyers.Stay tuned for updates.  </b></p> */}
 
       {/* <button onClick={()=>{navigate("/MyCareer-Applied-Jobs")}} style={{ backgroundColor:"rgb(40, 4, 99)",
@@ -317,12 +327,12 @@ console.log(records)
           <div className={styles.Uiwarpper}>
 
             <ul className={styles.ul}>
-              <li className={styles.li}><b>S.No.</b></li>
+              <li style={{width:"5%"}} className={styles.li}><b>S.No.</b></li>
               <li className={`${styles.li} ${styles.Jtitle}`}><b>Company Name</b></li>
-              <li className={`${styles.li} ${styles.JobType}`}><b>Title of Purchase</b></li>
+              <li style={{width:"20%"}} className={`${styles.li} ${styles.JobType}`}><b>Title of Purchase</b></li>
 
               {/* <li className={`${styles.li} ${styles.liDescription}`}><b>Job description</b></li> */}
-              <li className={`${styles.li} ${styles.Pdate}`}><b>Quote Submitte Date</b>
+              <li className={`${styles.li} ${styles.Pdate}`}><b> Quote Submitted Date</b>
                 <p className={styles.arrowWrapper} >
                   {/* <i onClick={sortbyNewjobs} className={`${styles.arrow} ${styles.up}`}> </i>
                   <i onClick={sortbyOldjobs} className={`${styles.arrow} ${styles.down}`}></i> */}
