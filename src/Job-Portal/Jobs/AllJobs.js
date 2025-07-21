@@ -496,7 +496,7 @@ return(
         tags.value === "EMPLOYEE &  SAFETY ESSENTIALS" ? "#d9b3ff" :
         tags.value === "EVENT & TRAINING MATERIALS" ? "#ffb366" :
        
-        "#ffffff",}}
+        "",}}
                       className={tags.value === "OFFICE EQUIPMENT" || tags.value === "OFFICE FURNITURE" || tags.value === "STATIONERY & OFFICE SUPPLIES" || tags.value === "FACILITY & MAINTENANCE SUPPLIES" || tags.value === "CORPORATE GIFTING & BRANDING" ||
                         tags.value === "EMPLOYEE &  SAFETY ESSENTIALS" || tags.value === "EVENT & TRAINING MATERIALS" || tags.value === "INDUSTRY" || tags.value === "TOOLS/PROTOCOLS" || tags.value === "COMPANY TYPE" || tags.value === "ROLE" ?
                       styles.TagHeading: 
@@ -559,7 +559,7 @@ return(
                 </p>
               </li>
 
-              <li style={{width:"51%", backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Skills}`}> <b>Requirment Title</b> </li>
+              <li style={{width:"51%", backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Skills}`}> <b>Requirement Title</b> </li>
               <li style={{width:"18%", backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.currentCTC}`}> <b>Posted on</b>
                 <p style={{ display: "inline", marginLeft: "2%" }}>
                   <i onClick={CurrCTCAscendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
@@ -651,7 +651,7 @@ return(
       tags.value === "EMPLOYEE &  SAFETY ESSENTIALS" ? "#d9b3ff" :
       tags.value === "EVENT & TRAINING MATERIALS" ? "#ffb366" :
      
-      "#ffffff",}}
+      "",}}
                     className={tags.value === "OFFICE EQUIPMENT" || tags.value === "OFFICE FURNITURE" || tags.value === "STATIONERY & OFFICE SUPPLIES" || tags.value === "FACILITY & MAINTENANCE SUPPLIES" || tags.value === "CORPORATE GIFTING & BRANDING" ||
                       tags.value === "EMPLOYEE &  SAFETY ESSENTIALS" || tags.value === "EVENT & TRAINING MATERIALS" || tags.value === "INDUSTRY" || tags.value === "TOOLS/PROTOCOLS" || tags.value === "COMPANY TYPE" || tags.value === "ROLE" ?
                       styles.TagHeading: 

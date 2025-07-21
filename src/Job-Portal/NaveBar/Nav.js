@@ -352,7 +352,7 @@ function Nav(props) {
   <div className={Styles.JobSeekerdropdownwrapper} ref={menuRef} >
     <p className={Styles.text} ref={menuRef} onClick={myprofile}>My profile</p>
 
-    <p className={Styles.text} ref={menuRef} onClick={mySubmittedQuote}>My Submitted<br></br> Quote</p>
+    <p className={Styles.text} ref={menuRef} onClick={mySubmittedQuote}>My Submitted<br></br> Quotes</p>
     <p className={Styles.text} ref={menuRef} onClick={MyDrivesApplied}>Registered <br></br>Walkin Drives</p>
     <p className={Styles.text} ref={menuRef} onClick={AskQuestion}>Ask Question</p>
     <p className={Styles.text} ref={menuRef} onClick={StudlogOut}>Logout</p>
@@ -796,7 +796,7 @@ function Nav(props) {
                       <NavLink to="/JobSeekerLogin" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Background check</NavLink>
                       </div>
                       <div>
-                      <NavLink to="/Search-Candidate-Home" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Employer </NavLink>
+                      <NavLink to="/Search-Candidate-Home" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Seller Home </NavLink>
                       </div>
                       <div>
                          <p className={` ${Styles.openAccount}`} onClick={handleOpenAccont} ref={Reg} >Open an Account</p>

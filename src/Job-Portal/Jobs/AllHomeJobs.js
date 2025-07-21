@@ -619,7 +619,8 @@ const initialRows = Array.from({ length: 10 }, () => "");
 
 
   const [rows, setRows] = useState([]);
-  
+  const [creationDate, setCreationDate] = useState(''); 
+
   useEffect(() => {
     // If rows is empty, create initial rows
     if (rows.length === 0) {
@@ -744,7 +745,8 @@ const initialRows = Array.from({ length: 10 }, () => "");
       const AllData = {
         tableData: tableData,
         terms: terms,
-        hTitle:hTitle
+        hTitle:hTitle,
+        creationDate:creationDate
       };
       console.log(AllData)
       localStorage.setItem("draftApplicationData", JSON.stringify(AllData));
@@ -767,7 +769,8 @@ const initialRows = Array.from({ length: 10 }, () => "");
       const AllData = {
         tableData: tableData,
         terms: terms,
-        hTitle:hTitle
+        hTitle:hTitle,
+        creationDate:creationDate
       };
     
       localStorage.setItem("draftApplicationData", JSON.stringify(AllData));
@@ -830,7 +833,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
     { name: "Year", type: "Time", display: "Year" }
   ];
   
-  
+
   return (
     <>
       {screenSize.width > 850 ?
@@ -881,7 +884,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
       tags.value === "EMPLOYEE &  SAFETY ESSENTIALS" ? "#d9b3ff" :
       tags.value === "EVENT & TRAINING MATERIALS" ? "#ffb366" :
      
-      "#ffffff",}}
+      "",}}
                     className={tags.value === "OFFICE EQUIPMENT" || tags.value === "OFFICE FURNITURE" || tags.value === "STATIONERY & OFFICE SUPPLIES" || tags.value === "FACILITY & MAINTENANCE SUPPLIES" || tags.value === "CORPORATE GIFTING & BRANDING" ||
                       tags.value === "EMPLOYEE &  SAFETY ESSENTIALS" || tags.value === "EVENT & TRAINING MATERIALS" || tags.value === "INDUSTRY" || tags.value === "TOOLS/PROTOCOLS" || tags.value === "COMPANY TYPE" || tags.value === "ROLE" ?
                       styles.TagHeading :
@@ -952,6 +955,18 @@ const initialRows = Array.from({ length: 10 }, () => "");
           <h2>Title : </h2>
           <input value={hTitle} onChange={(event) => updatehTitle(event)} style={{ width: "500px", height: "20px" }}></input>
         </div>
+
+        <div style={{ marginBottom: '20px' ,marginLeft:"3%", }}>
+        <label style={{ fontWeight: 'bold' }}>Date of Creation of Purchase Requirements:</label>
+        <input
+          type="date"
+          value={creationDate}
+          onChange={(e) => setCreationDate(e.target.value)}
+          style={{ marginLeft: '10px', padding: '5px' }}
+        />
+      </div>
+
+
             <div className={styles.Uiwarpper} style={{ marginTop: "20px", marginLeft: "15px", marginRight: "20px" }}>
       <div className={styles.ul} style={{ marginTop: "-30px" }}>
         <table style={{ borderCollapse: 'collapse', width: '100%' }}>
@@ -1192,7 +1207,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
         </table>
       </div>
       <div style={{ marginTop: "10px", marginBottom: "10px", marginLeft: "23px", marginRight: "0px", display: "flex", justifyContent: "space-between" }}>
-        <div>
+        <div style={{marginTop:"87px"}}>
           <h2>Terms And Conditions</h2>
           <textarea value={terms} onChange={(event) => updateTerms(event)} style={{ width: "630px", height: "109px", borderRadius: "10px" }}></textarea>
         </div>
@@ -1289,7 +1304,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
       tags.value === "EMPLOYEE &  SAFETY ESSENTIALS" ? "#d9b3ff" :
       tags.value === "EVENT & TRAINING MATERIALS" ? "#ffb366" :
      
-      "#ffffff",}}
+      "",}}
                     className={tags.value === "OFFICE EQUIPMENT" || tags.value === "OFFICE FURNITURE" || tags.value === "STATIONERY & OFFICE SUPPLIES" || tags.value === "FACILITY & MAINTENANCE SUPPLIES" || tags.value === "CORPORATE GIFTING & BRANDING" ||
                       tags.value === "EMPLOYEE &  SAFETY ESSENTIALS" || tags.value === "EVENT & TRAINING MATERIALS" || tags.value === "INDUSTRY" || tags.value === "TOOLS/PROTOCOLS" || tags.value === "COMPANY TYPE" || tags.value === "ROLE" ?
                       styles.TagHeading :

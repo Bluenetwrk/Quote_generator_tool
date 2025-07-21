@@ -1,3 +1,19 @@
+.readPageBackBtn{
+    background-color: rgb(40, 4, 99);
+    color: white;
+    border: none;
+    padding: 0px 13px 0px 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 1.0rem; 
+    margin-left: 20px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    gap:6px;
+}
 .bgvBtn {
     display: flex;  
     align-items: center; 
@@ -105,6 +121,12 @@ color:white;
     overflow-wrap:break-word;
     text-align: center;
 }
+
+/* .Jsno {
+    width: 17%;
+    overflow-wrap:break-word;
+   
+} */
 
 .Jtitle {
     width: 17%;
