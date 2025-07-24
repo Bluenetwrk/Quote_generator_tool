@@ -361,7 +361,7 @@ function Nav(props) {
 </div>
 : ""}      
                 </div>
-                <div>
+                {/* <div>
                 {props.flashVisible && (
                        <div className={Styles.blast}>
                          <img
@@ -370,9 +370,9 @@ function Nav(props) {
                            alt="Walk-in Drive"
                            style={{ width: "60px", borderRadius: "5px", marginTop: "-10px" }}
                          />
-                       </div>
-                     )}
-                </div>
+                       </div> */}
+                     {/* )} */}
+                {/* </div> */}
                 <div>
                       {
                        <div className={Styles.blast}>
@@ -524,7 +524,7 @@ function Nav(props) {
                         <div className={Styles.Alldownwrapper} >
                           <div className={Styles.Empdropdownwrapper} ref={menuRef} >
                             <p className={Styles.text} ref={menuRef} onClick={EmployeeProfile} >My profile</p>
-                            <p className={Styles.text} ref={menuRef} onClick={mypostedjob}>My posted Jobs</p>
+                            <p className={Styles.text} ref={menuRef} onClick={mypostedjob}>My Posted <br></br>Purchase requests</p>
                             <p className={Styles.text} ref={menuRef} onClick={myposteddrive}>My posted Drives</p>
                             <p className={Styles.text} ref={menuRef} onClick={mypostedArticle}>Posted Articles</p>
                             <p className={Styles.text} ref={menuRef} onClick={PostBlogs}>Write Article</p>
@@ -533,7 +533,7 @@ function Nav(props) {
                         </div>
                         : ""}
                  </div> 
-                 <div>
+                 {/* <div>
                  {props.flashVisible && (
                        <div className={Styles.blast}>
                          <img
@@ -545,7 +545,7 @@ function Nav(props) {
                          />
                        </div>
                      )}
-                 </div> 
+                 </div>  */}
                  <div>
                       {
                        <div className={Styles.blast}>
@@ -822,7 +822,7 @@ function Nav(props) {
 
                     : ""}
                       </div>
-                      <div>
+                      {/* <div>
                       {props.flashVisible && (
                        <div className={Styles.blast}>
                          <img
@@ -834,7 +834,7 @@ function Nav(props) {
                          />
                        </div>
                      )}
-                      </div>
+                      </div> */}
                       <div>
                       {
                        <div className={Styles.blast}>

@@ -294,7 +294,7 @@ function handleRecordchange(e){
     {/* <button className={styles.searchButton} onClick={() => {
           navigate("/Search-Candidate")
         }}>Search Candidate</button> */}
-        <p style={{marginLeft:"38%", marginTop:"30px", fontSize:"large", fontWeight:"bold"}}>My Posted Jobs</p>
+        <p style={{marginLeft:"38%", marginTop:"30px", fontSize:"large", fontWeight:"bold"}}>My Posted Purchase requests</p>
         </div>
 
         <div style={{display:"flex", justifyContent:"space-between"}}>
@@ -356,7 +356,7 @@ function handleRecordchange(e){
             </li>
             <li className={`${styles.li} ${styles.Skills}`}><b>Skills Required</b></li>
             <li className={`${styles.li} ${styles.Action}`}><b>Action</b></li>
-            <li className={`${styles.li} ${styles.NuApplied}`}><b>No of JobSeeker Applied</b></li>
+            <li className={`${styles.li} ${styles.NuApplied}`}><b>Number of Quotes Received</b></li>
 
           </ul>
           {PageLoader ?

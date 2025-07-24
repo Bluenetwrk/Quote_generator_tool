@@ -900,8 +900,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
               })
             }
           </div>
-
-
+          <p style={{ fontWeight: 400, marginLeft: "10px" }}>Showing {firstIndex + 1} to {lastIndex} latest Purchase Requirements</p>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             {/* {nopageFilter ? */}
               {/* // <p style={{ fontWeight: 400, marginLeft: "10px" }}>Displaying <span style={{ color: "blue" }}>
@@ -1208,7 +1207,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
       </div>
       <div style={{ marginTop: "10px", marginBottom: "10px", marginLeft: "23px", marginRight: "0px", display: "flex", justifyContent: "space-between" }}>
         <div style={{marginTop:"87px"}}>
-          <h2>Terms And Conditions</h2>
+          <h2> Terms and Conditions </h2>
           <textarea value={terms} onChange={(event) => updateTerms(event)} style={{ width: "630px", height: "109px", borderRadius: "10px" }}></textarea>
         </div>
 
@@ -1321,7 +1320,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
             }
           </div>
 
-         
+          <p style={{ fontWeight: 400, marginLeft: "10px" }}>Showing {firstIndex + 1} to {lastIndex} latest Purchase Requirements</p>
           
      
           <div class={styles.homeMobileNextPrevBtn} style={{ diplay:"flex",flexDirection:"column",marginTop:"15px"}}>
@@ -1331,7 +1330,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
               <option selected={jobsPerPageValue==25} value={25}>25</option>
               <option selected={jobsPerPageValue==50} value={50}>50</option>
               <option selected={jobsPerPageValue==100} value={100}>100</option>
-            </select>  jobs per page
+            </select>  rows per page
           </div>
 
           <div>
@@ -1430,7 +1429,7 @@ const initialRows = Array.from({ length: 10 }, () => "");
   ))}
   
   <div style={{marginLeft:"8px"}}>
-          <h2>TermsAndConditions</h2>
+          <h2> Terms and Conditions </h2>
           <textarea onChange={(event)=>updateTerms(event)} style={{width:"300px",height:"100px", borderRadius:"10px"}}></textarea>
         </div>
 

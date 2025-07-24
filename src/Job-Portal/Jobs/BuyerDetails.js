@@ -662,8 +662,8 @@ const handleEdit=()=>{
           </div>
 
           <div style={{ display:"flex", gap:"12px", marginBottom: "15px", marginTop: "20px", marginLeft: "15px" }}>
-               <button className={styles.companyBtn}>Company 1</button>
-               <button className={styles.companyBtn}>Company 2</button>
+               <button className={styles.companyBtn}>Buyer/Purchase  Request1</button>
+               <button className={styles.companyBtn}>Buyer/Purchase  Request1</button>
           </div>
          
           <div className={styles.Uiwarpper}>
