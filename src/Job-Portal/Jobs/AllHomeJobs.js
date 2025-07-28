@@ -814,24 +814,25 @@ const initialRows = Array.from({ length: 10 }, () => "");
     setEnableBtn(isAnyRowFilled);
   }, [rows]);
   const unitOptions = [
-    { name: "Cubic Centimeter", type: "Volume", display: "Cubic Centimeter" },
-    { name: "Day", type: "Time", display: "Day" },
-    { name: "Drop", type: "Quantity", display: "Drop" },
-    { name: "Drum", type: "Fluid", display: "Drum" },
-    { name: "Each", type: "Quantity", display: "Each" },
-    { name: "Foot", type: "Quantity", display: "Foot" },
-    { name: "Hour", type: "Time", display: "Hour" },
-    { name: "Inch", type: "Length", display: "Inch" },
-    { name: "Job", type: "Quantity", display: "Job" },
-    { name: "Kilo Grams", type: "Weight", display: "Kilograms" },
-    { name: "Meter", type: "Length", display: "Meter" },
-    { name: "Millimeter", type: "Length", display: "Millimeter" },
-    { name: "Minute", type: "Time", display: "Minute" },
-    { name: "Month", type: "Time", display: "Month" },
-    { name: "Pair", type: "Quantity", display: "Pair" },
-    { name: "Pound", type: "Weight", display: "Pound" },
-    { name: "Year", type: "Time", display: "Year" }
+    { name: "Inch" },
+    { name: "Job" },
+    { name: "Kilograms" },
+    { name: "Meter" },
+    { name: "Millimeter" },
+    { name: "Minute" },
+    { name: "Month" },
+    { name: "Pair" },
+    { name: "Pound" },
+    { name: "Year" },
+    { name: "Cubic Cm" },
+    { name: "Day" },
+    { name: "Drop" },
+    { name: "Drum" },
+    { name: "Each" },
+    { name: "Foot" },
+    { name: "Hour" }
   ];
+  
   
 
   return (
@@ -1164,36 +1165,35 @@ const initialRows = Array.from({ length: 10 }, () => "");
       width: '26vw',
     }}
   >
-    <div style={{
+   
+    <div
+    style={{
       display: 'grid',
-      gridTemplateColumns: '1fr 1fr 1fr',
-      fontWeight: 'bold',
-      padding: '6px',
-      borderBottom: '1px solid #ccc',
-      backgroundColor: '#f9f9f9',
-    }}>
-      <div>Unit Of Measurement</div>
-      <div>Type</div>
-      <div>Display</div>
-    </div>
-
+      gridTemplateColumns: 'repeat(3, 1fr)',
+      gap: '8px',
+      padding: '10px'
+    }}
+  >
     {unitOptions.map((unit, i) => (
       <div
         key={i}
         onClick={() => handleUnitSelect(rowIndex, unit)}
         style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr 1fr',
-          padding: '6px',
+          padding: '8px 12px',
+          border: '1px solid #ccc',
+          borderRadius: '4px',
+          textAlign: 'center',
           cursor: 'pointer',
-          borderBottom: '1px solid #eee'
+          backgroundColor: '#f9f9f9',
+          transition: 'background-color 0.2s ease'
         }}
+        onMouseEnter={e => e.currentTarget.style.backgroundColor = '#e6f7ff'}
+        onMouseLeave={e => e.currentTarget.style.backgroundColor = '#f9f9f9'}
       >
-        <div>{unit.name}</div>
-        <div>{unit.type}</div>
-        <div>{unit.display}</div>
+        {unit.name}
       </div>
     ))}
+  </div>
   </div>
 )}
 

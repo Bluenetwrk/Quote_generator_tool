@@ -471,7 +471,27 @@ return(
                 sethTitle(event.target.value);
               };
 
-              const unitOptions = ['kg', 'ltr', 'm', 'cm', 'box', 'piece'];
+              
+
+              const unitOptions = [
+                { name: "Inch" },
+                { name: "Job" },
+                { name: "Kilograms" },
+                { name: "Meter" },
+                { name: "Millimeter" },
+                { name: "Minute" },
+                { name: "Month" },
+                { name: "Pair" },
+                { name: "Pound" },
+                { name: "Year" },
+                { name: "Cubic Cm" },
+                { name: "Day" },
+                { name: "Drop" },
+                { name: "Drum" },
+                { name: "Each" },
+                { name: "Foot" },
+                { name: "Hour" }
+              ];
                 
                 
                     const [rows, setRows] = useState([]);
@@ -624,10 +644,11 @@ return(
                       const current = rows[rowIndex].unit;
                       const numberPart = current.match(/\d+/)?.[0] || "";
                       const updatedRows = [...rows];
-                      updatedRows[rowIndex].unit = numberPart + unit;
+                      updatedRows[rowIndex].unit = numberPart + " " + unit.name;  // or unit.display, etc.
                       setRows(updatedRows);
                       setUnitDropdownIndex(null);
                     };
+                    
 
                     useEffect(() => {
                             const draftData = localStorage.getItem("draftApplicationData");
@@ -935,30 +956,50 @@ console.log("rows",rows)
          )}
          {/* Unit dropdown */}
          {fieldName === 'unit' && unitDropdownIndex === rowIndex && (
-           <div
-             ref={dropdownRef}
-             style={{
-               position: 'absolute',
-               top: '100%',
-               left: '0',
-               backgroundColor: 'white',
-               border: '1px solid #ccc',
-               zIndex: 10,
-               maxHeight: '100px',
-               overflowY: 'auto',
-               width: '100%',
-             }}
-           >
-             {unitOptions.map((unit, i) => (
-               <div
-                 key={i}
-                 onClick={() => handleUnitSelect(rowIndex, unit)}
-                 style={{ padding: '6px', cursor: 'pointer' }}
-               >
-                 {unit}
-               </div>
-             ))}
-           </div>
+          <div
+          ref={dropdownRef}
+          style={{
+            position: 'absolute',
+            top: '100%',
+            left: '-97px',
+            backgroundColor: 'white',
+            border: '1px solid #ccc',
+            zIndex: 10,
+            maxHeight: '200px',
+            overflowY: 'auto',
+            width: '26vw',
+          }}
+        >
+         
+          <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '8px',
+            padding: '10px'
+          }}
+        >
+          {unitOptions.map((unit, i) => (
+            <div
+              key={i}
+              onClick={() => handleUnitSelect(rowIndex, unit)}
+              style={{
+                padding: '8px 12px',
+                border: '1px solid #ccc',
+                borderRadius: '4px',
+                textAlign: 'center',
+                cursor: 'pointer',
+                backgroundColor: '#f9f9f9',
+                transition: 'background-color 0.2s ease'
+              }}
+              onMouseEnter={e => e.currentTarget.style.backgroundColor = '#e6f7ff'}
+              onMouseLeave={e => e.currentTarget.style.backgroundColor = '#f9f9f9'}
+            >
+              {unit.name}
+            </div>
+          ))}
+        </div>
+        </div>
          )}
        </td>
      ))}
