@@ -512,9 +512,9 @@ function Nav(props) {
                  <div>
                   <NavLink to="/Post-Help-Questions" className={Styles.PostHelpLink} style={navLinkStyles}>Post Help Questions</NavLink>
                  </div>
-                 <div>
+                 {/* <div>
                  <NavLink to="/PostDrives" className={Styles.PostDriveLink} style={navLinkStyles}>Post Walkin Drive</NavLink>
-                 </div>
+                 </div> */}
                  <div> 
                   <NavLink to="/Search-Candidate" className={Styles.SearchCandidates} style={navLinkStyles}>Buyer Home</NavLink>
                   </div>
@@ -909,7 +909,7 @@ function Nav(props) {
                 <img className={`${Styles.Icon} ${Styles.MobJobseekerProfileIcon}`} src={loginuser} ref={imgRef} onClick={() => setShowprofile((prev) => !prev)} />
 
                 </div>
-                <div>
+                {/* <div>
                 {props.flashVisible && (
                        <div className={Styles.blast} style={{cursor:"pointer"}}>
                          <img
@@ -920,7 +920,7 @@ function Nav(props) {
                          />
                        </div>
                      )}
-                </div>
+                </div> */}
                 </div>
                  </div>
 
@@ -1032,7 +1032,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                     </div>
                      : ""}
                     </div>
-                    <div>
+                    {/* <div>
                     {props.flashVisible && (
                        <div className={Styles.blast} style={{cursor:"pointer",marginLeft:"21%"}}>
                          <img
@@ -1043,7 +1043,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                          />
                        </div>
                      )}
-                    </div>
+                    </div> */}
                   </div>
                   
                   </div>
@@ -1181,13 +1181,13 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                     </div>
 
                     <div className={Styles.fullnavewrapperLSMobile}>
-                      <div>
+                      {/* <div>
                           {props.flashVisible && (
                          <div className={Styles.blast} style={{cursor:"pointer"}}>
                           <img onClick={reDirecttoDrive} src="/drive.png" alt="Walk-in Drive" ref={driveImgRef} class={Styles.flashDriveHome}/>
                          </div>
                           )}
-                      </div>
+                      </div> */}
                        <div>
                          <img className={`${Styles.MobloginLogo} `} src={logIn} ref={imgRef} onClick={() =>    setShowprofile((prev) => !prev)} />
                          {showprofile ?
