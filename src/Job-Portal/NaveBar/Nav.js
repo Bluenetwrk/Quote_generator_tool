@@ -353,7 +353,7 @@ function Nav(props) {
     <p className={Styles.text} ref={menuRef} onClick={myprofile}>My profile</p>
 
     <p className={Styles.text} ref={menuRef} onClick={mySubmittedQuote}>My Submitted<br></br> Quotes</p>
-    <p className={Styles.text} ref={menuRef} onClick={MyDrivesApplied}>Registered <br></br>Walkin Drives</p>
+    {/* <p className={Styles.text} ref={menuRef} onClick={MyDrivesApplied}>Registered <br></br>Walkin Drives</p> */}
     <p className={Styles.text} ref={menuRef} onClick={AskQuestion}>Ask Question</p>
     <p className={Styles.text} ref={menuRef} onClick={StudlogOut}>Logout</p>
 
@@ -525,7 +525,7 @@ function Nav(props) {
                           <div className={Styles.Empdropdownwrapper} ref={menuRef} >
                             <p className={Styles.text} ref={menuRef} onClick={EmployeeProfile} >My profile</p>
                             <p className={Styles.text} ref={menuRef} onClick={mypostedjob}>My Posted <br></br>Purchase requests</p>
-                            <p className={Styles.text} ref={menuRef} onClick={myposteddrive}>My posted Drives</p>
+                            {/* <p className={Styles.text} ref={menuRef} onClick={myposteddrive}>My posted Drives</p> */}
                             <p className={Styles.text} ref={menuRef} onClick={mypostedArticle}>Posted Articles</p>
                             <p className={Styles.text} ref={menuRef} onClick={PostBlogs}>Write Article</p>
                             <p className={Styles.text} ref={menuRef} onClick={logutEmp}>Logout</p>
@@ -888,7 +888,7 @@ function Nav(props) {
                   <div className={Styles.MobJobseekerDropdownwrapperlogin} ref={menuRef} >
                     <p className={Styles.text} ref={menuRef} onClick={myprofile}>My profile</p>
                     <p className={Styles.text} ref={menuRef} onClick={mySubmittedQuote}>My Submitted <br></br> Quote</p>
-                    <p className={Styles.text} ref={menuRef} onClick={MyDrivesApplied}>Registered <br></br>Walkin Drives</p>
+                    {/* <p className={Styles.text} ref={menuRef} onClick={MyDrivesApplied}>Registered <br></br>Walkin Drives</p> */}
                     <p className={Styles.text} ref={menuRef} onClick={AskQuestion}>Ask Question</p>
 
                     <p className={Styles.text} ref={menuRef} onClick={StudlogOut}>Logout</p>
@@ -1025,7 +1025,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                      <div  className={Styles.EmpMobDropdownwrapperMobile} ref={menuRef} >
                     <p className={Styles.text} ref={menuRef} onClick={EmployeeProfile} >My profile</p>
                     <NavLink to="/postedjobs" className={`${Styles.text} `} > Posted jobs</NavLink>
-                    <p className={Styles.text} ref={menuRef} onClick={myposteddrive}>Posted Drives</p>
+                    {/* <p className={Styles.text} ref={menuRef} onClick={myposteddrive}>Posted Drives</p> */}
                     <p className={Styles.text} ref={menuRef} onClick={mypostedArticle}>Posted Articles</p>
                     <p className={Styles.text} ref={menuRef} onClick={PostBlogs}>Write Article</p>
                     <p className={Styles.text} ref={menuRef} onClick={logutEmp}>Logout</p>

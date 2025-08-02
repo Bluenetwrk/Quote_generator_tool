@@ -620,7 +620,7 @@ const dropdownRef = useRef(null);
                 {jobs.length} </span>Jobs with following matching tags:
                 <span style={{ color: "blue" }}>{Active.toString()}</span></p>
               :
-              <p style={{ fontWeight: 400, marginLeft: "10px" }}>showing {firstIndex + 1} to {lastIndex} latest Candidates</p>
+              <p style={{ fontWeight: 400, marginLeft: "10px" }}>Showing {firstIndex + 1} to {lastIndex} Latest Buyer Inquiries/requirements</p>
             }
             <div className={styles.navigationWrapper}>
               <button disabled={currentPage === 1} style={{ display: "inline", margin: "5px" }} className={styles.navigation} onClick={firstPage}>
@@ -650,33 +650,33 @@ const dropdownRef = useRef(null);
               <option selected={jobsPerPageValue==25} value={25}>25</option>
               <option selected={jobsPerPageValue==50} value={50}>50</option>
               <option selected={jobsPerPageValue==100} value={100}>100</option>
-              </select>  Candidates per page
+              </select>  row per page
             </div>
 
             
           <div className={styles.AllUiWrapper}>
             <ul className={styles.ul} >
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.nameHome}`}><b>Jobseeker Name</b>  </li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.NoticePeriod}`}><b>Notice Period</b> 
+              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.nameHome}`}><b>S.no</b>  </li>
+              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.NoticePeriod}`}><b>Title</b> 
               <p style={{ display: "inline", marginLeft:"4%"}}>
                   <i onClick={NoticeAscendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
                   <i onClick={NoticeDescendingOrder} className={`${styles.arrow} ${styles.down}`}></i>
                 </p> 
                </li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.age}`}> <b>Age</b>
+              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.age}`}> <b>Description</b>
               <p style={{ display: "inline", marginLeft: "7%" }}>
                   <i onClick={AgeAscendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
                   <i onClick={AgeDescendingOrder} className={`${styles.arrow} ${styles.down}`}></i>
                 </p>
                </li>
-               <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Qualification}`}><b>Qualification</b> </li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Experiance}`}><b>Experience</b> 
+               <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Qualification}`}><b>Reference Link to Amazon/Flipkart</b> </li>
+              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Experiance}`}><b>Quantity</b> 
               <p style={{ display: "inline", marginLeft: "1%" }}>
                   <i onClick={ExpAscendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
                   <i onClick={ExpDescendingOrder} className={`${styles.arrow} ${styles.down}`}></i>
                 </p>  </li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Skills}`}> <b>Skills</b> </li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.currentCTC}`}> <b>Cur. CTC</b> 
+              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Skills}`}> <b>Unit</b> </li>
+              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.currentCTC}`}> <b>Comment to Buyer</b> 
               <p style={{ display: "inline", marginLeft: "2%" }}>
                   <i onClick={CurrCTCAscendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
                   <i onClick={CurrCTCDescendingOrder} className={`${styles.arrow} ${styles.down}`}></i>
@@ -770,7 +770,7 @@ const dropdownRef = useRef(null);
               <option selected = {lastIndex === 25} value={25}>25</option>              
               <option selected = {lastIndex === 50} value={50}>50</option>              
               <option selected = {lastIndex === 100} value={100}>100</option>               */}
-            </select>  Candidates per page
+            </select>  rows per page
           </div>
 
           <div className={styles.navigationWrapper}>

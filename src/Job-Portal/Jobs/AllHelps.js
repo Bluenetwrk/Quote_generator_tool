@@ -69,7 +69,7 @@ function AllHelps({ Active, getjobs, setJobs, setActive, count, setCount,nopageF
   const helpData = [
     { 
       id: 1, 
-      question: "How to Register as an Employer?", 
+      question: "How to Register as an Buyer?", 
       source: "ITWalkin", 
       companyName: "ITWalkin", 
       postedby: "ITWalkin", 
@@ -79,7 +79,7 @@ function AllHelps({ Active, getjobs, setJobs, setActive, count, setCount,nopageF
   },
   { 
     id: 2, 
-    question: "How to Register as a Jobseeker?", 
+    question: "How to Register as an Seller?", 
     source: "ITWalkin", 
     companyName: "ITWalkin", 
     postedby: "ITWalkin", 
