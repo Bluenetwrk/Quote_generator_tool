@@ -374,11 +374,11 @@ console.log(records)
                   return (
                 
                     <ul className={styles.ul} key={i}>
-                      <li style={{ cursor: "pointer", textDecoration: "underline" }} className={styles.li} onClick={() => { navigate(`/CheckEmpHalfProfile/${btoa(items.empId)}`) }} >
+                      {/* <li style={{ cursor: "pointer", textDecoration: "underline" }} className={styles.li} onClick={() => { navigate(`/CheckEmpHalfProfile/${btoa(items.empId)}`) }} > */}
                         {/* {items.Logo ?
                     < img style={{ width: "40%", height: "40px" }} src={items.Logo} />
                     : ""}<br></br> */}
-                        {items.companyName}</li>
+                        {/* {items.companyName}</li> */}
 
                       <li className={`${styles.li} ${styles.JtitleR}`}
                       onClick={() => navigate(`/Jobdetails/${btoa(items._id)}?index=${i}`, {state: {transferRecords, },})}>{items.jobTitle.toUpperCase()}</li>

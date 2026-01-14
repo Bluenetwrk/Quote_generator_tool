@@ -71,7 +71,7 @@ const [immage, setimmage] = useState()
   async function getUser() {
     const headers = { authorization: 'BlueItImpulseWalkinIn'};
 
-    await axios.get(`/EmpProfile/getProfile/${empId}`, {headers})
+    await axios.get(`QgtBuyerProfile/getProfile/${empId}`, {headers})
       .then((res) => {
         let result = res.data.result
         if (result) {
@@ -112,7 +112,7 @@ const [immage, setimmage] = useState()
     //   name, email, phoneNumber, Aadhar, panCard,CompanyName,CompanyContact, CompanyGSTIN, CompanyWebsite, CompanyAddress,
     //   CompanyEmail, TypeofOrganisation 
     // )
-    await axios.put(`/EmpProfile/updatProfile/${empId}`, { PrimeryuserDesignation, secondaryuserDesignation, Secondaryusername,
+    await axios.put(`/QgtBuyerProfile/updateProfile/${empId}`, { PrimeryuserDesignation, secondaryuserDesignation, Secondaryusername,
       Secondaryuseremailid, Secondaryusercontactnumber, CompanyCIN, AboutCompany, name, email, phoneNumber, Aadhar, panCard, 
       CompanyName, CompanyContact, CompanyGSTIN, CompanyWebsite, CompanyAddress, CompanyEmail, TypeofOrganisation}, {headers})
       .then(async (res) => {
@@ -171,6 +171,26 @@ const [immage, setimmage] = useState()
       }).catch((err) => {
         alert("server issue occured")
       })
+  }
+  const [showdelete, setShowdelete]=useState(false)
+
+async function DeleteProfile(){
+  let confirm = window.confirm("are you sure to delete your Account? your account will be deleted permanently, click on 'Ok', if you wish delete your Account permanently ")
+if(confirm){
+  await axios.delete(`/QgtBuyerProfile/deleteProfile/${empId}`)
+  .then((res)=>{
+    if(res.data==="success"){
+    alert("Account deleted successfully ")
+    navigate("/")
+    localStorage.clear()
+    }else{
+    alert("some thing went wrong try again")
+
+    }
+  }).catch((err)=>{
+    alert("some thing went wrong try again ")
+  })  
+}
   }
 
   function handlephoneNumber(e){
@@ -377,7 +397,15 @@ const [immage, setimmage] = useState()
           <div className={styles.EmpimageViewWrapper} style={{height:"76px",width:"94px"}}>
             {file?"":<img className={styles.EmpimageView} src={image ? image : Companylogo} />}
             {file?<img className={styles.EmpfileView} src={file} />:""}
-
+            <div style={{position:"absolute", marginLeft:"50%", marginTop:"40px"}}>
+              <input type='checkbox' onClick={()=>{setShowdelete(prev=>!prev)}} />
+             <span>Delete Profile</span><br></br>
+             {showdelete?
+<button className={{}} style={{backgroundColor:"red", color:"white", 
+border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
+:""
+             }
+             </div>
             <div className={styles.EmpaddfileDiconwrapper}>
               <input className={`${styles.addfile} ${styles.EmpaddfileD}`} type="file" accept='.png, .jpg, .jpeg' onChange={prevewImage} />
               <div className={styles.Emploader}> {loader ? <TailSpin height={"40px"} /> : ""} </div>

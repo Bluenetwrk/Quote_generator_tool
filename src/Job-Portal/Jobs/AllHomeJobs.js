@@ -99,39 +99,38 @@ function Home({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjo
   }
 
   async function getjobs() {
-    setCount(1)
-    setActive([])
-    setJobTagsIds([])
+    // setCount(1)
+    // setActive([])
+    // setJobTagsIds([])
 
-    setPageLoader(true)
-    setNoPageFilter(false)
-    const headers = { authorization: 'BlueItImpulseWalkinIn' };
-    // await axios.get("/jobpost/getHomejobs", { headers })
-    await axios.get(`/jobpost/getLimitJobs/${recordsPerPage}`, { params: { currentPage }, headers })
-      .then((res) => {
-        let result = (res.data)
-        gettotalcount()
+    // setPageLoader(true)
+    // setNoPageFilter(false)
+    // const headers = { authorization: 'BlueItImpulseWalkinIn' };
+    // await axios.get(`/jobpost/getLimitJobs/${recordsPerPage}`, { params: { currentPage }, headers })
+    //   .then((res) => {
+    //     let result = (res.data)
+    //     gettotalcount()
 
-        let sortedate = result.sort(function (a, b) {
-          return new Date(b.createdAt) - new Date(a.createdAt);
-        });
+    //     let sortedate = result.sort(function (a, b) {
+    //       return new Date(b.createdAt) - new Date(a.createdAt);
+    //     });
       
-        setJobs(sortedate)
-        setFilterjobs(sortedate)
-        setPageLoader(false)
-      }).catch((err) => {
-        console.log(err)
-        alert("some thing went wrong")
-      })
+    //     setJobs(sortedate)
+    //     setFilterjobs(sortedate)
+    //     setPageLoader(false)
+    //   }).catch((err) => {
+    //     console.log(err)
+    //     alert("some thing went wrong")
+    //   })
   }
 
-  useEffect(() => {
-    if (jobTagsIds.length < 1) {
-      getjobs()
-    } else {
-      getTagId();
-    }
-  }, [currentPage, recordsPerPage])
+  // useEffect(() => {
+  //   if (jobTagsIds.length < 1) {
+  //     getjobs()
+  //   } else {
+  //     getTagId();
+  //   }
+  // }, [currentPage, recordsPerPage])
 
 
   // async function applyforJob(id) {
@@ -974,14 +973,14 @@ const initialRows = Array.from({ length: 10 }, () => "");
             <tr>
               <th style={{ width: '1px' }}></th>
               <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white", width:"40px" }}>SL.No</th>
-              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"200px" }}>Title</th>
-              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"200px" }}>Description</th>
+              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"200px" }}>TITLE</th>
+              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"200px" }}>DESCRIPTION</th>
 
-              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"200px" }}>Reference Link to Amazon/Flipkart</th>
+              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"200px" }}>REFRENCE LINK TO AMAZON/FLIPKART</th>
 
-              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"34px" }}>Quantity</th>
-              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"44px" }}>Unit</th>
-              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"140px" }}>Comment to Seller</th>
+              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"34px" }}>QUANTITY</th>
+              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"44px" }}>UNIT</th>
+              <th style={{ border: '1px solid #ccc', padding: '8px', backgroundColor: "rgb(40,4,99)", color: "white",width:"140px" }}>COMMENT TO SELLER</th>
             </tr>
           </thead>
           <tbody>

@@ -263,7 +263,7 @@ let question =true
                                         <div style={{display:"flex", alignItems:"center", gap:"90px", marginBottom:"14px"}}>
                                            <h4 className={Style.jobHeadline}  >Ask Question**</h4>
                                            <div className={Style.hint}> 
-                                            ( This  will be forwarded to the employers/consultants)
+                                            ( This will be forwarded to the respective buyers or sellers)
                                             </div>
                                         </div>
                                         <input maxLength="200" className={Style.inputbox} type="text" value={jobtitle} onChange={(e) => { handlejobtitle(e) }} />
@@ -299,17 +299,32 @@ let question =true
                                         
 
                                         <p><input type="checkbox" onChange={() => { setconcent((prev) => !prev) }} />
-                                            I have read the terms and conditions of ITwalkin.com and I agree to all the
+                                            I have read the terms and conditions of getquote.shop  and I agree to all the
                                             <span style={{ color: "blue", cursor: "pointer" }} onClick={() => (window.open("/TermsAndCondition"))}> terms and conditons</span> before posting my question </p>
 
 
                                         {/* {Logo ? <p ><span style={{ color: "blue" }}>Note** :</span> Logo will also be posted with the Job</p> : ""} */}
                                         
                                     </div >
-                                    <div className={Style.submitDeleteBtn}>   
-                                        <button style={{width:"200px", marginLeft:"-4%px"}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Submit</button>
-                                        {/* <button style={{width:"200px",backgroundColor:"red"}} disabled={concent} className={Style.disableButton} >Delete</button> */}
-                                        </div>
+                                    <div style={{ display: "flex", justifyContent: "center", gap: "20px", marginTop: "20px", marginLeft:"10px" }}>   
+  <button 
+    style={{ width: "200px" }} 
+    disabled={concent} 
+    className={concent ? Style.disableButton : Style.button} 
+    onClick={postJob}
+  >
+    Submit
+  </button>
+
+  <button 
+    style={{ width: "200px", backgroundColor: "red", color: "#fff", border: "none", borderRadius: "6px" }} 
+    disabled={concent} 
+    className={Style.disableButton}
+  >
+    Delete
+  </button>
+</div>
+
                                 </div >
                             </div>
              

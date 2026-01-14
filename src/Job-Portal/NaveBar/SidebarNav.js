@@ -227,8 +227,8 @@ else{
        {
         show?
         <div style={{marginLeft:"10px"}}>
-<p onClick={() => { navigate("/New-Registration");props.setShowSideNaveProps(false);setShow(false); window.scrollTo({top:0}) }} className={`${Styles.textinMobileSodeBar} `}>Buyer Registration </p>
-<p onClick={() => { navigate("/Jobseeker-New-Registration");props.setShowSideNaveProps(false);setShow(false); window.scrollTo({top:0}) }}className={`${Styles.textinMobileSodeBar} `} >Seller Registration</p>
+<p onClick={() => { navigate("/EmployeeLogin", {state: { loginpage: "BuyerRegCheck" }});props.setShowSideNaveProps(false);setShow(false); window.scrollTo({top:0}) }} className={`${Styles.textinMobileSodeBar} `}>Buyer Registration </p>
+<p onClick={() => { navigate("/JobSeekerLogin", {state: { loginpage: "SellerRegCheck" }});props.setShowSideNaveProps(false);setShow(false); window.scrollTo({top:0}) }}className={`${Styles.textinMobileSodeBar} `} >Seller Registration</p>
         </div>
         :""
        }

@@ -81,7 +81,7 @@ import QuoteResponse from "./Job-Portal/Jobs/QuoteResponse";
 import MissingCart from "./Job-Portal/Login/MissingCart";
 import MySubmittedQuote from "./Job-Portal/Jobs/MySubmittedQuote";
 // import PostFraud from "./Job-Portal/Jobs/PostFraud";
-axios.defaults.baseURL = "https://itwalkin-backend-testrelease-2-0-1-0824-ns0g.onrender.com" // Render Test
+axios.defaults.baseURL = "https://quotegenerator-backend-azy1.onrender.com" // Render Test
 
 function App() {
 

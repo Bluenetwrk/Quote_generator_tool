@@ -560,7 +560,21 @@ const handleEdit=()=>{
 }
 
   return (
+    
     <>
+    <button
+    className={styles.tvbackbtn}
+    onClick={() => {
+      if (window.history.length > 1) {
+        navigate(-1);
+      } else {
+        navigate("/alljobs");
+      }
+    }}
+  >
+    <div style={{ fontSize: "12px", fontWeight: "800" }}>Back</div>
+  </button>
+      
       {screenSize.width > 850 ?
 
         <>
@@ -747,7 +761,7 @@ const handleEdit=()=>{
 
       <div style={{marginTop:"10px", marginBottom:"10px", marginLeft:"23px",marginRight:"0px", display:"flex", justifyContent:"space-between"}}>
         <div style={{marginTop:"109px",marginBottom:"-32px"}}>
-          <h2>TermsAndConditions</h2>
+          <h2>Terms And Conditions</h2>
           <textarea  style={{width:"430px",height:"80px", borderRadius:"10px"}}></textarea>
         </div> 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '300px', margin: '20px' }}>

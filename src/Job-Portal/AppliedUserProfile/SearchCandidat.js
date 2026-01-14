@@ -92,22 +92,22 @@ function SearchCandidate({nopageFilter,setNoPageFilter,searchKey, setsearchKey,F
   }
 
   async function getAllJobSeekers() {
-    setNoPageFilter(false)
-    setActive([])
-    setJobTagsIds([])
+    // setNoPageFilter(false)
+    // setActive([])
+    // setJobTagsIds([])
 
-    const headers = { authorization: 'BlueItImpulseWalkinIn' };
-    await axios.get(`/StudentProfile/getLimitJobs/${recordsPerPage}`, { params: { currentPage }, headers })
+    // const headers = { authorization: 'BlueItImpulseWalkinIn' };
+    // await axios.get(`/StudentProfile/getLimitJobs/${recordsPerPage}`, { params: { currentPage }, headers })
 
-      .then((res) => {
-        let result = (res.data)
-        gettotalcount()
-        let sortedate = result.sort(function (a, b) {
-          return new Date(b.createdAt) - new Date(a.createdAt);
-        });
-        setCandidate(sortedate)
-        setFilCandidate(sortedate)
-      })
+    //   .then((res) => {
+    //     let result = (res.data)
+    //     gettotalcount()
+    //     let sortedate = result.sort(function (a, b) {
+    //       return new Date(b.createdAt) - new Date(a.createdAt);
+    //     });
+    //     setCandidate(sortedate)
+    //     setFilCandidate(sortedate)
+    //   })
   }
       useEffect(() => {
         if (jobTagsIds.length < 1) {
@@ -609,17 +609,24 @@ return(
                     // }
                   
                     const handleSubmits = () => {
-                      const tableData = rows.map((row, index) => ({
+                      const filteredRows = rows.filter(row =>
+                        Object.values(row).some(
+                          val => val && val.toString().trim() !== ""
+                        )
+                      );
+                      
+                      const tableData = filteredRows.map((row, index) => ({
                         sno: index + 1,
-                        ...row,
+                        ...row
                       }));
-                    
+                      
                       const AllData = {
-                        tableData: tableData,
-                        terms: terms
+                        tableData,
+                        terms
                       };
-                    
-                      // console.log('Saved Data:', AllData );
+                      
+                      console.log("Submitted Data:", AllData);
+                      
                     
                       // Reset terms and set 10 empty rows
                       const emptyRows = Array.from({ length: 10 }, () => ({

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import React from 'react'
 import styles from "./login.module.css"
 import axios from "axios"
@@ -40,8 +40,24 @@ useEffect(() => {
     .catch(error => console.log(error))
 }, []);
 
+  const [regAlert, setRegAlert] = useState(false);
+  const alertRef = useRef(null);
+  
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+    if (alertRef.current && !alertRef.current.contains(event.target)) {
+      setRegAlert(false);
+    }
+    };
+  
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+    document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []); 
 
   let location = useLocation()
+  const { loginpage } = location.state || {};
 
   let navigate = useNavigate()
 
@@ -67,18 +83,26 @@ useEffect(() => {
         // console.log("decoded name :", gemail)
         // console.log(" decoded id :", gname)
 
-        await axios.post("/StudentProfile/Glogin", {ipAddress, userId, email, name, gtoken, isApproved, Gpicture })
+        await axios.post("/QgtSellerProfile/Glogin", {ipAddress, userId, email, name, gtoken, isApproved, Gpicture })
           .then((response) => {
             let result = response.data
             let token = result.token
             let Id = result.id
-        console.log(result)
-
-
-            if (result.status == "success") {
+        // console.log(result)
+          if(loginpage==="SellerRegCheck" && result.action == "login"){
+              // alert("Account already exists. Please log in")
+              setRegAlert(true)
+              }
+           else if (result.status == "success") {
               localStorage.setItem("StudLog", JSON.stringify(btoa(token)))
+              localStorage.setItem("StudId", JSON.stringify(Id)) 
+              if(loginpage==="SellerRegCheck" ){
+                navigate("/Update-Profile", {state:{name:result.name, profileAlert: true }})
+              }
+              else{
               navigate("/alljobs", {state:{name:result.name}})
-              // localStorage.setItem("StudId", JSON.stringify(Id))   
+              }
+                
             }
           }).catch((err) => {
             alert("server issue occured")
@@ -177,8 +201,8 @@ useEffect(() => {
             alert("incorrect OTP")}
             if (result.status == "success") {
               localStorage.setItem("StudLog", JSON.stringify(token))
-              navigate("/Search-Candidate", {state:{name:result.name}})
-              // localStorage.setItem("StudId", JSON.stringify(Id))
+              navigate("/alljobs", {state:{name:result.name}})
+              localStorage.setItem("StudId", JSON.stringify(Id))
             }     
             setLoader(false)
         
@@ -206,8 +230,8 @@ useEffect(() => {
 						let Id = result.id
 						if (result.status == "success") {
 							localStorage.setItem("StudLog", JSON.stringify(btoa(token)))
-							navigate("/Search-Candidate", { state: { name: result.name } })
-							// localStorage.setItem("StudId", JSON.stringify(Id))
+							navigate("/alljobs", { state: { name: result.name } })
+							localStorage.setItem("StudId", JSON.stringify(Id))
 						}
 					}).catch((err) => {
 						alert("server issue occured")
@@ -220,28 +244,99 @@ useEffect(() => {
 	}
   return (
     <>
-    {/* <div className={styles.LoginpageWapper}> */}
-
     
-      {/* <p className={styles.topuperror}>{topuperror}</p>
-      <div id={styles.inputWrapper}>
-        <div id={styles.inputsTag}>
+  {regAlert==true &&
 
-          <input className={styles.inputs} type="mail" placeholder='enter mail address'
-            value={email} onChange={(e) => { setEmail(e.target.value) }} />
-          {error && !email ? <p >field is missing</p> : ""}
-
-          <input className={styles.inputs} type="name" placeholder='enter password'
-            value={password} onChange={(e) => { setPassword(e.target.value) }} />
-          {error && !password ? <p >field is missing</p> : ""}
-
-          <button className={`${styles.button} ${styles.inputs}`} >Login</button>
-        </div>
-      </div>
- */}
+<div style={{position:"relative"}}>	 
+ <div
+ style={{
+   position: 'absolute',
+   top:'2px',
+   left:0,
+   width: '100vw',
  
+   zIndex: 9998,
+   display: 'flex',
+   alignItems: 'top',
+   justifyContent: 'center',
+ 
+ }}
+>
+ <div
+   ref={alertRef}
+   onClick={(e) => e.stopPropagation()}
+   style={{
+     width: '300px',
+     padding: '20px',
+     backgroundColor: 'rgb(40,4,99)',
+     color: 'white',
+     fontSize: '12px',
+     borderRadius: '5px',
+     zIndex: 9999,
+     boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+     textAlign: 'center',
+    
+   }}
+ >
+  Account Already Exists!
+   <div style={{ marginTop: '15px', display: "flex", justifyContent: "center", gap: "5px" }}>
+     <button
+      onClick={() => { 
+       navigate("/JobSeekerLogin"); 
+ setRegAlert(false);
+}
+}
+     
+      style={{
+         padding: '8px 16px',
+         backgroundColor: '#4CAF50',
+         color: 'white',
+         border: 'none',
+         borderRadius: '5px',
+         fontSize: '12px',
+         cursor: 'pointer',
+        
+       }}
+     >
+      Login as Seller
+     </button>
+     <button
+       onClick={() => { 
+ navigate("/"); 
+ setRegAlert(false);
+ }}
+       style={{
+         padding: '8px 16px',
+         backgroundColor: '#f44336',
+         color: 'white',
+         border: 'none',
+         borderRadius: '5px',
+         fontSize: '12px',
+         cursor: 'pointer',
+          
+         
+       }}
+     >
+       Home
+     </button>
+   </div>
+ </div>
+</div>
+
+</div>
+}
 <div className={styles.BothsignUpWrapper}>
-<p className={styles.Loginpage}> Seller Login page  </p>
+  {loginpage==="SellerRegCheck"?
+    <p className={styles.Loginpage} style={{marginLeft:"27px"}}> New Seller Registration page</p>
+    :
+  <p className={styles.Loginpage}> Seller Login page  </p>
+  }
+{/* <div className={styles.signUpWrapper}  >
+        <div className={styles.both}>
+          <img className={styles.google} src={linkedIn} />
+          <span className={styles.signUpwrap} >Continue with Linkedin</span>
+        </div>
+      </div>  */}
 
           {/* <input maxLength="10" className={styles.inputs} type="number" placeholder='enter phone Number'
             value={PhoneNumber} autoComplete="on" onChange={(e) => { setPhoneNumber(e.target.value) }} />
@@ -273,7 +368,31 @@ useEffect(() => {
 
 
 
+{loginpage==="SellerRegCheck"?
+<>
+      <div className={styles.signUpWrapper} onClick={login} >
+        <div className={styles.both}>
+          <img className={styles.google} src={GoogleImage} />
+          <span className={styles.signUpwrap} style={{fontSize:"11px"}}> Create Account with Google</span>
+        </div>
+       </div>
 
+      <div className={styles.signUpWrapper} onClick={microsoftLogin}  >
+        <div className={styles.both}>
+          <img className={styles.google} src={MicosoftImage} />
+          <span className={styles.signUpwrap} style={{fontSize:"11px"}}>Create Account with Microsoft</span>
+        </div>
+      </div>
+
+       <div className={styles.signUpWrapper}  >
+        <div className={styles.both}>
+          <img className={styles.google} src={linkedIn} />
+          <span className={styles.signUpwrap} style={{fontSize:"11px"}} >Create Account with Linkedin</span>
+        </div>
+      </div> 
+      </>
+      :
+      <>
       <div className={styles.signUpWrapper} onClick={login} >
         <div className={styles.both}>
           <img className={styles.google} src={GoogleImage} />
@@ -288,12 +407,15 @@ useEffect(() => {
         </div>
       </div>
 
-      {/* <div className={styles.signUpWrapper}  >
+       <div className={styles.signUpWrapper}  >
         <div className={styles.both}>
           <img className={styles.google} src={linkedIn} />
           <span className={styles.signUpwrap} >Continue with Linkedin</span>
         </div>
-      </div> */}
+      </div> 
+      </>
+
+}
 
 
       {/* <div className={styles.signUpWrapper}  >
@@ -312,7 +434,7 @@ useEffect(() => {
   //       </div>
   ""
         :
-  <div style={{marginTop:"50px",}}>
+  <div style={{marginTop: "206px",}}>
 
         <Footer/>   
         </div>

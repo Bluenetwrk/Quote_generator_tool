@@ -58,6 +58,10 @@ function Nav(props) {
   let newReg = useRef();
   let Reg = useRef();
 
+   
+  const[sellerRegCheck, setsellerRegCheck]=useState(false);
+  const[buyerRegCheck, setbuyerRegCheck]=useState(false);
+
   window.addEventListener("click", (e) => {
     if (e.target !== newReg.current && e.target !== Reg.current) {
       setShowRegister(false)
@@ -69,6 +73,21 @@ function Nav(props) {
     }
   })
 
+  const loginModalRef = useRef(null);
+      
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (loginModalRef.current && !loginModalRef.current.contains(event.target)) {
+        handleStuClose()
+        handleClose()
+      }
+    }
+ 
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 // window.addEventListener("click", (e) => {
   //   if (e.target !== SmenuRef.current && e.target !== SimgRef.current) {
   //     setShowSideNave(false)
@@ -339,9 +358,9 @@ function Nav(props) {
                 </div>
 
                 <div className={Styles.fullnavewrapperRS} >
-                <div>
+                {/* <div>
                       <NavLink to="/My-Applied-Jobs" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Background check</NavLink>
-                      </div>
+                      </div> */}
                 <div>
                 <img className={`${Styles.Icon} ${Styles.JobSeekerprofileIcon
 
@@ -426,7 +445,7 @@ function Nav(props) {
                    </div>
                    <div><NavLink to="/seller-response" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>Seller response</NavLink>
                   </div>
-                  <div><NavLink to="/quote-response" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>Quote response</NavLink>
+                  <div><NavLink to="/quote-response" className={Styles.AllJobJobSeeker}  style={navLinkStyles}> Download Quotes</NavLink>
                   </div>
                    {screenSize.width > 850 && 
                    <div ref={dropdownRef} style={{ position: "relative" }}>
@@ -525,6 +544,7 @@ function Nav(props) {
                           <div className={Styles.Empdropdownwrapper} ref={menuRef} >
                             <p className={Styles.text} ref={menuRef} onClick={EmployeeProfile} >My profile</p>
                             <p className={Styles.text} ref={menuRef} onClick={mypostedjob}>My Posted <br></br>Purchase requests</p>
+                            <p className={Styles.text} ref={menuRef} >My Saved <br></br>Purchase requests</p>
                             {/* <p className={Styles.text} ref={menuRef} onClick={myposteddrive}>My posted Drives</p> */}
                             <p className={Styles.text} ref={menuRef} onClick={mypostedArticle}>Posted Articles</p>
                             <p className={Styles.text} ref={menuRef} onClick={PostBlogs}>Write Article</p>
@@ -792,9 +812,9 @@ function Nav(props) {
                     {/* <div>
                       <NavLink to="/fraud-form" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Fraud </NavLink>
                       </div> */}
-                      <div>
+                      {/* <div>
                       <NavLink to="/JobSeekerLogin" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Background check</NavLink>
-                      </div>
+                      </div> */}
                       <div>
                       <NavLink to="/Search-Candidate-Home" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Seller Home </NavLink>
                       </div>
@@ -802,9 +822,9 @@ function Nav(props) {
                          <p className={` ${Styles.openAccount}`} onClick={handleOpenAccont} ref={Reg} >Open an Account</p>
                          {
                            ShowRegister?
-                           <div className={Styles.dropdownwrapperHomeRegistration} ref={newReg} >
-                           <p onClick={()=>{navigate("/New-Registration");setShowRegister(false)}}>Buyer Registration</p>
-                           <p onClick={()=>{navigate("/Jobseeker-New-Registration");setShowRegister(false)}}>Seller Registration</p>
+                           <div className={Styles.dropdownwrapperHomeRegistration}  >
+                           <p onClick={() => { handleEmpOpen(); handleStuClose();setbuyerRegCheck(true) }}>Buyer Registration</p>
+                           <p onClick={() => { handleStuOpen(); handleClose();setsellerRegCheck(true) }}>Seller Registration</p>
                            </div>
                            :""
                          }
@@ -815,8 +835,8 @@ function Nav(props) {
                     <div className={Styles.Alldownwrapper} >
 
                       <div style={{  }} className={Styles.dropdownwrapperHome} ref={menuRef} >
-                        <p onClick={() => { handleEmpOpen(); handleStuClose() }}>Buyer Login</p>
-                        <p onClick={() => { handleStuOpen(); handleClose() }}>Seller Login</p>
+                        <p onClick={() => { handleEmpOpen(); handleStuClose();setbuyerRegCheck(false) }}>Buyer Login</p>
+                        <p onClick={() => { handleStuOpen(); handleClose();setsellerRegCheck(false) }}>Seller Login</p>
                       </div>
                     </div>
 
@@ -852,8 +872,10 @@ function Nav(props) {
                   </div>
                   
                   <>
-                    <StuModal isStuOpen={Stuopen} onClose={() => { handleStuClose() }} />
-                    <Modal isOpen={open} onClose={() => { handleClose() }} />
+                  <div ref={loginModalRef}>
+                    <StuModal sellerRegCheck={sellerRegCheck} isStuOpen={Stuopen} onClose={() => { handleStuClose() }} />
+                    <Modal buyerRegCheck={buyerRegCheck} isOpen={open} onClose={() => { handleClose() }} />
+                    </div>
                   </>
 
 

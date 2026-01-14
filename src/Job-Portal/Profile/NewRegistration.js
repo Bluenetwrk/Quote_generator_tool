@@ -23,7 +23,7 @@ import JoditEditor from 'jodit-react'
 import Style from "../PostJobs/postJobs.module.css"
 import CustomTextEditor from '../Editor/CustomTextEditor';
 import CustomAlert from '../Alert/customAlert';
-
+import linkedIn from "../img/icons8-linked-in-48.png"
 function EmployeeUpdateProfile(props) {
   const editor=useRef(null)
 // primery email id should be gmail acc
@@ -117,7 +117,7 @@ const [immage, setimmage] = useState()
         // console.log("decoded name :", gemail)
         // console.log(" decoded id :", gname)
 
-        await axios.post("/EmpProfile/Glogin", { ipAddress, userId, email, name, gtoken, isApproved ,
+        await axios.post("QgtBuyerProfile/Glogin", { ipAddress, userId, email, name, gtoken, isApproved ,
           PrimeryuserDesignation, Secondaryusername, Secondaryuseremailid,
       Secondaryusercontactnumber, phoneNumber, Aadhar, panCard, CompanyName, CompanyContact, CompanyGSTIN,
       CompanyWebsite,CompanyAddress,CompanyEmail, TypeofOrganisation,CompanyCIN, secondaryuserDesignation,AboutCompany
@@ -362,7 +362,7 @@ const [immage, setimmage] = useState()
     //   CompanyEmail, TypeofOrganisation 
     // )
   console.log("dd",PrimeryuserDesignation)
-    await axios.post(`/EmpProfile/NewEmployeeRegistration`, { PrimeryuserDesignation, Secondaryusername, Secondaryuseremailid,
+    await axios.post(`QgtBuyerProfile/NewBuyerRegistration`, { PrimeryuserDesignation, Secondaryusername, Secondaryuseremailid,
       Secondaryusercontactnumber,  name, email, phoneNumber, Aadhar, panCard, CompanyName, CompanyContact, CompanyGSTIN,
       CompanyWebsite,CompanyAddress,CompanyEmail, TypeofOrganisation,CompanyCIN, secondaryuserDesignation,AboutCompany},{headers})
       .then(async (res) => {
@@ -542,426 +542,131 @@ const helpData = [
   //    console.log("about updated",AboutCompany)
   // },[AboutCompany])
 
- return (
+  return (
     <>
-            <CustomAlert
+      <CustomAlert
         show={alertVisible}
         title="Registration successful!"
         message="Start posting jobs and hiring top talent now"
         onClose={() => setAlertVisible(false)}
       />
-
-      {/* <div className={styles.EntireFullWrapper}>
-
-        <div className={styles.EntireWrapper}> */}
-        {/* <img style={{ height:"25px", color:"grey", marginTop:"20px", marginLeft:"8%", cursor:"pointer",
-             width:"28px"}} onClick={()=>{navigate(-1)}}  src={Arrowimage} /> */}
-             {/* <div style={{display:"flex", justifyContent:"space-between"}}>
-             <button class={styles.empRegBackButton} style={{cursor:"pointer",height:"40px"}} 
-             onClick={()=>{navigate(-1)}}>Back</button> */}
-             {/* <h1 style={{marginRight:"70px"}}>New Employer/Consultant Registration Form</h1> */}
-             {/* </div> */}
-
-        {/* <h3 style={{color:"rgb(40, 4, 99)", marginLeft:"2%"}}>Update your Profi</h3> */}
-
-
-          {/* <div className={styles.EmpimageViewWrapper}> */}
-            {/* {file?"":<img className={styles.EmpimageView} src={image ? image : Companylogo} />}
-            {file?<img className={styles.EmpfileView} src={file} />:""} */}
-
-            {/* <div className={styles.EmpaddfileDiconwrapper}>
-              <input className={`${styles.addfile} ${styles.EmpaddfileD}`} type="file" accept='.png, .jpg, .jpeg' onChange={prevewImage} />
-              <div className={styles.Emploader}> {loader ? <TailSpin height={"40px"} /> : ""} </div> */}
-
-              {/* <img style ={{color:"blue" , marginTop:"4px", width:"15%"}} src={delet} onClick={deletePic}/> */}
-            {/* </div> */}
-
-          {/* </div> */}
-          {/* <div className={styles.saveDelete}>
-            {file && !loader ? <button className={styles.EmpsaveImage} onClick={uploadImage}>Save</button> : ""}
-            {immage ? <button className={styles.EmpDeleteImage} onClick={deletePic}>Delete</button> : ""}
-          </div> */}
-
-          {/* <p style={{ fontStyle: "italic", color: "green" }}>{topMessage}</p> */}
-{screenSize.width>850?
-   
-<>
-
-
-<div className={styles.RegEntireFullWrapper}>
-
-        <div className={styles.EntireWrapper}>
-         <div style={{display:"flex", justifyContent:"space-between"}}>
-             <button class={styles.empRegBackButton} style={{cursor:"pointer",height:"40px"}} 
-             onClick={()=>{navigate(-1)}}>Back</button>
-             <h1 style={{whiteSpace:"normal"}}>New Employer/Consultant Registration Form</h1>
-
-             <div>
-             <button ref={helpBtnRef} class={styles.empRegBackButton} style={{cursor:"pointer",height:"40px",marginRight:"10px"}} 
-             onClick={()=>setHelpClicked((prev)=>!prev)}>Help</button>
-    
-             {helpClicked &&(
-              <div className={styles.dropdownwrapperHomeRegistration} ref={helpRef}>
-                <p onClick={()=>{navigate(`/support/help/${btoa(1)}`, { state: { helpItem: helpData[0] } });setHelpClicked(false)}}>How to create a new Account</p>
-                <p onClick={()=>{navigate("/support/help");setHelpClicked(false)}}>More help topics</p>
+  
+      <div className={styles.pageWrapper}>
+        <div className={styles.formCard}>
+  
+          {/* Header */}
+          <div className={styles.header}>
+            <button className={styles.backBtn} onClick={() => navigate(-1)}>
+              Back
+            </button>
+  
+            <h2>Buyer Registration Form</h2>
+  
+            <button
+              ref={helpBtnRef}
+              className={styles.helpBtn}
+              onClick={() => setHelpClicked(prev => !prev)}
+            >
+              Help
+            </button>
+  
+            {helpClicked && (
+              <div className={styles.helpDropdown} ref={helpRef}>
+                <p onClick={() => navigate(`/support/help/${btoa(1)}`)}>
+                  How to create a new Account
+                </p>
+                <p onClick={() => navigate("/support/help")}>
+                  More help topics
+                </p>
               </div>
-             )
-            }
-           </div>
-
-         </div>
-         <p style={{ fontStyle: "italic", color: "green" }}>{topMessage}</p>
-
-
-          <div className={styles.inputWrapper}>
-{!RegLoader?
-<>
-
-            <label className={styles.inputName}>
-              <h4>Company Name: </h4>
-              <input maxLength="40" className={styles.input} value={CompanyName} onChange={(e) => {handleCompanyname(e) }} type="text" />
-            </label>
-
-            <div className={styles.inputName}>
-              <h4>Type of Organisation : </h4>
-              {/* <input className={styles.input} value={TypeofOrganisation} onChange={(e) => { setTypeofOrganisation(e.target.value) }} type="text" /> */}
-           
-            <select className={styles.input } style={{height:"35px"}}onChange={(e)=>{setTypeofOrganisation(e.target.value)}}>
-            {/* {TypeofOrganisation? <option style={{color:"blue"}} >{TypeofOrganisation}</option>
-            :<option value="" >Select Company type</option>
-            } */}
-              <option value="Pvt.Ltd.">Pvt. Ltd.</option>
-              <option value="Firm">Firm</option>
-              <option value="Consultancy">Consultancy</option> 
-              <option value="Individual">Individual</option> 
-            </select>                                 
-            </div>  
-
-            <label className={styles.inputName}>
-              <h4>Company Email id:</h4>
-              <input className={styles.input} value={CompanyEmail} onChange={(e) => { handleCompanyEmail(e) }} type="text" /><br></br>
-              <span style={{color:"red", marginLeft:"5%"}}>{compemailError}</span>
-            </label>
-
-            <label className={styles.inputName}>
-              <h4>Company Contact No:</h4>
-              <input maxLength="15"  className={styles.input} value={CompanyContact} onChange={(e) => { handleCompanyPhoneNumber(e) }} type="number" />
-            </label>
-
-            {/* <label className={styles.inputName}>
-              <h4>Company Pan Card Number:</h4>
-              <input maxLength="12" className={styles.input} value={panCard} onChange={(e) => {PanCardhandleChange(e)} } type="text" />
-            </label>
-            <label className={styles.inputName}>
-              <h4>Company CIN Number:</h4>
-              <input maxLength="12" className={styles.input} value={CompanyCIN} onChange={(e) => {handleChangeCompanyCIN(e)} } type="text" />
-            </label>
-
-            <label className={styles.inputName}>
-              <h4>Company GSTIN: </h4>
-              <input maxLength="15" className={styles.input} value={CompanyGSTIN} onChange={(e) => { handleGstn(e) }} type="text" />
-            </label>
-
-            <label className={styles.inputName}>
-              <h4>Company Website:</h4>
-              <input maxLength="40" className={styles.input} value={CompanyWebsite} onChange={(e) => { handleCompanyWebsite(e) }} type="text" />
-            </label> */}
-
-            <label className={styles.inputName}>
-              <h4>Company Address:</h4>
-              <input  ref={inputRef} maxLength="200" className={styles.input} value={CompanyAddress} onChange={(e) => { handleCompanyAddress(e) }} type="text" />
-            </label>
-
-            <label className={styles.inputName}>
-              <h4>Primary User Name : <span style={{fontWeight:800, fontSize:"medium"}} title='(primary user will have the admin right for your
-                company, primary user can add or remove multiple secondary user)'><i class="fa-solid fa-circle-info"></i></span></h4>
-              <input maxLength="40" className={styles.input}  value={name}  onChange={(e) => { setname(e.target.value) }} type="text" />
-            </label>
-
-            <label className={styles.inputName}>
-              <h4>Primary User Email Id:</h4>
-              <input className={styles.input} value={email}  onChange={(e) => { handlesetemail(e) }} type="text" />
-             <br></br> <span style={{color:"red", marginLeft:"5%"}}>{emailError}</span>           
-            </label>
-            
-            <label className={styles.inputName}>
-              <h4>Primary user Designation:</h4>
-              <input maxLength="90" className={styles.input} value={PrimeryuserDesignation} onChange={(e) => {handlePrimeryuserDesignation(e) }} type="text" />
-            </label>
-
-            <label className={styles.inputName}>
-              <h4>Country:</h4>
-              <select className={styles.input} style={{height:"32px"}} value={selectedCountry} onChange={handleCountryChange}>
-                <option value="" >Select a country</option>
-                {countries.map((country, index) => (
-                  <option key={index} value={country}>{country}</option>
-                ))}
-              </select>
-            </label>
-
-{/* 
-            <label className={styles.inputName}>
-              <h4>Aadhaar number:
-              <span style={{fontWeight:800, fontSize:"medium"}} title='(Applicable for individual job posters)'>
-                <i class="fa-solid fa-circle-info"></i></span> </h4>
-              <input maxLength="12" className={styles.input} value={Aadhar} onChange={(e) => {AadharhandleChange(e)} } type="number" />
-            </label>
-
-            <label className={styles.inputName}>
-              <h4>Primary User Phone number:</h4>
-            <input maxLength="15" className={styles.input}  value={phoneNumber} onChange={(e) => { handlephoneNumber(e) }} type="number" />
-            </label> */}
-            
-{/* 
-            <label className={styles.inputName}>
-              <h4>Secondary user name : <span style={{fontWeight:800, fontSize:"medium"}} 
-            title='(secondary user will be able to post a job search candidates)'><i class="fa-solid fa-circle-info"></i></span></h4>
-              <input maxLength="90" className={styles.input} value={Secondaryusername} onChange={(e) => {handleSecondaryusername(e) }} type="text" />
-            </label>
-
-            <label className={styles.inputName}>
-              <h4>Secondary user Designation:</h4>
-              <input maxLength="90" className={styles.input} value={PrimeryuserDesignation} onChange={(e) => {handleSecondaryuserDesignation(e) }} type="text" />
-            </label>
-
-            
-            <label className={styles.inputName}>
-              <h4>Secondary user email id:</h4>
-              <input maxLength="90" className={styles.input} value={Secondaryuseremailid} onChange={(e) => {handleSecondaryuseremailid(e) }} type="text" />
-            </label>
-            <label className={styles.inputName}>
-              <h4>Secondary user contact number:</h4>
-              <input maxLength="90" className={styles.input} value={Secondaryusercontactnumber} onChange={(e) => {handleSecondaryusercontactnumber(e) }} type="text" />
-            </label> */}
-
-
-<div className={styles.EmpEditor}>
-            <h4>About Company:</h4>
-            <div className={`screen1 ${styles.screen1}`} style={{ marginTop: "-10px", marginLeft: "11px", width: "103%" }}>
-    {/* <JoditEditor ref={editor} value={AboutCompany.toString()} onChange={(e) => setAboutCompany(e)} /> */}
-    <CustomTextEditor ref={editor} className={Style.inputbox} value={AboutCompany} onChange={setAboutCompany}/>
-
-</div>
-
-</div>
-            {/* <label className={styles.inputName}>
-              <h4>Type of Organisation:</h4>
-              <input className={styles.input} value={TypeofOrganisation} onChange={(e) => { setTypeofOrganisation(e.target.value) }} type="text" />
-            </label> */}
-         
-            {/* <button className={styles.Save} onClick={(e) => { saveUpdate(e) }}>Save</button> */}
-            {/* 
-
-            <button className={styles.cancel} onClick={() => { navigate(-1) }} >cancel</button> */}
-        <div className={STyles.signUpWrapper} style={{marginLeft:"20px", marginBottom:"20px"}} onClick={(e) => { saveMicrosoft(e) }} >
-          <div className={STyles.both}>
-            <img className={STyles.google} src={ MicosoftImage}/> 
-            <p className={STyles.signUpwrap} >Register with Microsoft</p>
+            )}
           </div>
-        </div>
-
-            <div className={STyles.signUpWrapper} style={{marginLeft:"50px", marginBottom:"20px"}} onClick={!email? NoEmailAlert : emailError? InvalidEmailAlert :login}>
-          <div className={STyles.both}>
-            <img className={STyles.google} src={GoogleImage} />
-            <p className={STyles.signUpwrap} >Register with Google</p>
-          </div>
-        </div>
-        </>
-        :<div style={{margin:"auto", marginTop:"80px", marginBottom:"300px"}}><TailSpin color="blue" height={100} /></div>}
-</div>
-
-</div>
-
-</div>
- 
-</>
-          :
-          <>
-  <div className={styles.EntireFullWrapper}>
-
-<div className={styles.EntireWrapper} style={{height:"100%",width:"96%",marginLeft:"8px"}}>
-         <div style={{display:"flex",justifyContent:"space-between"}}>
-             <button class={styles.empRegBackButton} style={{cursor:"pointer",height:"40px", width:"62px"}} 
-             onClick={()=>{navigate(-1)}}>Back</button>
-               <button ref={helpBtnRef} class={styles.empRegBackButton} style={{cursor:"pointer",height:"40px",marginRight:"10px"}} 
-             onClick={()=>setHelpClicked((prev)=>!prev)}>Help</button>
-    
-             {helpClicked &&(
-              <div className={styles.dropdownwrapperHomeRegistrationMob} ref={helpRef}>
-                <p onClick={()=>{navigate(`/support/help/${btoa(1)}`, { state: { helpItem: helpData[0] } });setHelpClicked(false)}}>How to create a new Account</p>
-                <p onClick={()=>{navigate("/support/help");setHelpClicked(false)}}>More help topics</p>
-              </div>
-             )
-            }
-             </div>
-         <h1 style={{marginLeft:"5px",marginRight:"0px",whiteSpace:"normal",fontSize:"21px"}}>New Employer/ Consultant Registration Form</h1>
-
-         <p style={{ fontStyle: "italic", color: "green" }}>{topMessage}</p>
-
-         <label className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>Company Name: </h4>
-              <input maxLength="25" className={styles.Mobileinput} value={CompanyName} onChange={(e) => { handleCompanyname(e) }} type="text" />
-            </label>
-
-          
-            <label className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>Company Email id:</h4>
-              <input className={styles.Mobileinput} value={CompanyEmail} onChange={(e) => { handleCompanyEmail(e) }} type="text" />
-           <br></br>
-           <span style={{color:"red", marginLeft:"5%"}}>{emailError}</span>
-            </label>
-
-            <label className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>Company Contact No:</h4>
-              <input maxLength="15" className={styles.Mobileinput} value={CompanyContact} onChange={(e) => { handleCompanyPhoneNumber(e) }} type="number" />
-            </label>
-              
-              
-            <label className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>Company Address:</h4>
-              <input ref={inputRef} maxLength="90" className={styles.Mobileinput} value={CompanyAddress} onChange={(e) => {handleCompanyAddress(e) }} type="text" />
-            </label>
-
-            <label className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>Primary User Name : <span style={{fontWeight:800, fontSize:"medium"}} title='(primary user will have the admin right for your
-                company, primary user can add or remove multiple secondary user)'><i class="fa-solid fa-circle-info"></i></span></h4>
-              <input maxLength="40" className={styles.Mobileinput}  value={name}  onChange={(e) => { setname(e.target.value) }} type="text" />
-            </label>
-
-            <label className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>Primary User Email Id:</h4>
-              <input className={styles.Mobileinput} value={email}  onChange={(e) => { setemail(e.target.value) }} type="text" />
-            </label>
-            
-            <label className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>Primary user Designation:</h4>
-              <input maxLength="90" className={styles.Mobileinput} value={PrimeryuserDesignation} onChange={(e) => {handlePrimeryuserDesignation(e) }} type="text" />
-            </label>
-            <label className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>Country:</h4>
-              <select className={styles.Mobileinput} value={selectedCountry} onChange={handleCountryChange}>
-                <option value="" >Select a country</option>
-                {countries.map((country, index) => (
-                  <option key={index} value={country}>{country}</option>
-                ))}
-              </select>
-            </label>
-
-            {/* <label className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>Aadhaar number:</h4>
-              <input maxLength="16" className={styles.Mobileinput} value={Aadhar} onChange={(e) => { AadharhandleChange(e) }} type="number" />
-            </label> */}
-
-            {/* <label className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>Pan Card Number:</h4>
-              <input className={styles.Mobileinput} value={panCard} onChange={(e) => { PanCardhandleChange(e) }} type="text" />
-            </label> */}
-
-            {/* <label className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>Company Name: </h4>
-              <input maxLength="25" className={styles.Mobileinput} value={CompanyName} onChange={(e) => { handleCompanyname(e) }} type="text" />
-            </label> */}
-
-            {/* <label className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>Company Email id:</h4>
-              <input maxLength="25" className={styles.Mobileinput} value={CompanyEmail} onChange={(e) => { handleCompanyEmail(e) }} type="text" />
-           <br></br>
-           <span style={{color:"red", marginLeft:"5%"}}>{emailError}</span>
-
-            </label> */}
-
-            {/* <label className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>Company Contact No:</h4>
-              <input maxLength="15" className={styles.Mobileinput} value={CompanyContact} onChange={(e) => { handleCompanyPhoneNumber(e) }} type="number" />
-            </label> */}
-
-            {/* <label className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>Company GSTIN: </h4>
-              <input maxLength="15" className={styles.Mobileinput} value={CompanyGSTIN} onChange={(e) => { handleGstn(e) }} type="text" />
-            </label> */}
-
-            {/* <label className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>Company Website:</h4>
-              <input maxLength="25" className={styles.Mobileinput} value={CompanyWebsite} onChange={(e) => { handleCompanyWebsite(e)}} type="text" />
-            </label> */}
-            {/* <label className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>About us:</h4>
-              <input maxLength="25" className={styles.Mobileinput} value={CompanyWebsite} onChange={(e) => { handleCompanyWebsite(e)}} type="text" />
-            </label> */}
-{/* 
-            <label className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>Company Address:</h4>
-              <input maxLength="90" className={styles.Mobileinput} value={CompanyAddress} onChange={(e) => {handleCompanyAddress(e) }} type="text" />
-            </label> */}
-
-            {/* <label className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>Secondary user name : <span style={{fontWeight:800, fontSize:"medium"}} 
-            title='(secondary user will be able to post a job search candidates)'><i class="fa-solid fa-circle-info"></i></span></h4>
-              <input maxLength="90" className={styles.Mobileinput} value={Secondaryusername} onChange={(e) => {handleSecondaryusername(e) }} type="text" />
-            </label> */}
-
-            {/* <label className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>Secondary user Designation:</h4>
-              <input maxLength="90" className={styles.Mobileinput} value={PrimeryuserDesignation} onChange={(e) => {handleSecondaryuserDesignation(e) }} type="text" />
-            </label> */}
-
-            
-            {/* <label className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>Secondary user email id:</h4>
-              <input maxLength="90" className={styles.Mobileinput} value={Secondaryuseremailid} onChange={(e) => {handleSecondaryuseremailid(e) }} type="text" />
-            </label>
-            <label className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>Secondary user contact number:</h4>
-              <input maxLength="90" className={styles.Mobileinput} value={Secondaryusercontactnumber} onChange={(e) => {handleSecondaryusercontactnumber(e) }} type="text" />
-            </label>
-            */}
-            <div className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>Type of Organisation: </h4>          
-            <select className={styles.Mobileinput } style={{height:"35px"}}onChange={(e)=>{setTypeofOrganisation(e.target.value)}}>
-            {/* {TypeofOrganisation? <option style={{color:"blue"}} >{TypeofOrganisation}</option>
-            :<option value="" >Select Company type</option>
-            } */}
-              <option value="Pvt.Ltd.">Pvt. Ltd.</option>
-              <option value="Firm">Firm</option>
-              <option value="Consultancy">Consultancy</option> 
-              <option value="Individual">Individual</option> 
-
-            </select>  
+  
+          {/* Form */}
+          <div className={styles.formGrid}>
+  
+            <div className={styles.field}>
+              <label>Buyer / Company Name</label>
+              <input value={CompanyName} onChange={handleCompanyname} />
             </div>
-            
-<div className={styles.Editor} style={{marginLeft:"7px", marginTop:"-10px"}}>
-            <h4>About Company:</h4>
-            <div className={`screen2 ${styles.screen2}`}>
-{/* <JoditEditor  ref={editor}  value={AboutCompany.toString()} onChange={(e)=>{setAboutCompany(e)}} /> */}
-<CustomTextEditor ref={editor}  value={AboutCompany.toString()} onChange={(e)=>{setAboutCompany(e)}} ></CustomTextEditor>
-</div>
-</div>
-
-            <div className={STyles.signUpWrapper} style={{marginLeft:"10px", marginBottom:"20px"}} onClick={(e) => { saveMicrosoft(e) }} >
-          <div className={STyles.both}>
-            <img className={STyles.google} src={ MicosoftImage}/> 
-            <p className={STyles.signUpwrap} >Register with Microsoft</p>
+  
+            <div className={styles.field}>
+              <label>Buyer Email ID</label>
+              <input value={CompanyEmail} onChange={handleCompanyEmail} />
+              <span className={styles.error}>{compemailError}</span>
+            </div>
+  
+            <div className={styles.field}>
+              <label>Contact Number</label>
+              <input value={CompanyContact} onChange={handleCompanyPhoneNumber} />
+            </div>
+  
+            <div className={styles.field}>
+              <label>Contact Person Name</label>
+              <input value={name} onChange={e => setname(e.target.value)} />
+            </div>
+  
+            <div className={styles.field}>
+              <label>Country</label>
+              <select value={selectedCountry} onChange={handleCountryChange}>
+                <option value="">Select a country</option>
+                {countries.map((c, i) => (
+                  <option key={i} value={c}>{c}</option>
+                ))}
+              </select>
+            </div>
+  
+            <div className={styles.field}>
+              <label>Business Type</label>
+              <select onChange={e => setTypeofOrganisation(e.target.value)}>
+                <option value="">Select business type</option>
+                <option value="Pvt.Ltd.">Pvt. Ltd.</option>
+                <option value="Firm">Firm</option>
+                <option value="Consultancy">Consultancy</option>
+                <option value="Individual">Individual</option>
+              </select>
+            </div>
+  
+            <div className={styles.field}>
+              <label>Products / Services Interested In</label>
+              <select>
+                <option>Select one or more</option>
+              </select>
+            </div>
+  
+            <div className={styles.field}>
+              <label>Preferred Currency</label>
+              <select>
+                <option>Select currency</option>
+              </select>
+            </div>
+  
+            <div className={styles.field}>
+              <label>GST / Tax ID (optional)</label>
+              <input />
+            </div>
+  
+            <div className={`${styles.field} ${styles.full}`}>
+              <label>About Buyer (optional)</label>
+              <textarea placeholder="Start writing..." />
+            </div>
+  
           </div>
-        </div>
-
-            <div className={STyles.signUpWrapper} style={{marginLeft:"10px", marginBottom:"20px"}} onClick={!email? NoEmailAlert : emailError? InvalidEmailAlert :login}>
-          <div className={STyles.both}>
-            <img className={STyles.google} src={GoogleImage} />
-            <p className={STyles.signUpwrap} >Continue with Google</p>
+  
+          {/* Social Buttons */}
+          <div className={styles.socialRow}>
+            <button onClick={saveMicrosoft}>
+              <img src={MicosoftImage} alt="" /> Register with Microsoft
+            </button>
+  
+            <button onClick={!email ? NoEmailAlert : emailError ? InvalidEmailAlert : login}>
+              <img src={GoogleImage} alt="" /> Register with Google
+            </button>
           </div>
+  
         </div>
-
-            <div style={{marginTop:"60px"}}>
-          <Footer/>
-        </div>
-        </div>
-
       </div>
-          </>
-}
-        
-
     </>
-  )
+  );
 }
-export default EmployeeUpdateProfile
+  export default EmployeeUpdateProfile;

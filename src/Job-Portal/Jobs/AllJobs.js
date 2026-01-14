@@ -91,22 +91,22 @@ function AllJobs({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filterere
   }
 
   async function getAllJobSeekers() {
-    setNoPageFilter(false)
-    setActive([])
-    setJobTagsIds([])
+    // setNoPageFilter(false)
+    // setActive([])
+    // setJobTagsIds([])
 
-    const headers = { authorization: 'BlueItImpulseWalkinIn' };
-    await axios.get(`/StudentProfile/getLimitJobs/${recordsPerPage}`, { params: { currentPage }, headers })
+    // const headers = { authorization: 'BlueItImpulseWalkinIn' };
+    // await axios.get(`/StudentProfile/getLimitJobs/${recordsPerPage}`, { params: { currentPage }, headers })
 
-      .then((res) => {
-        let result = (res.data)
-        gettotalcount()
-        let sortedate = result.sort(function (a, b) {
-          return new Date(b.createdAt) - new Date(a.createdAt);
-        });
-        setCandidate(sortedate)
-        setFilCandidate(sortedate)
-      })
+    //   .then((res) => {
+    //     let result = (res.data)
+    //     gettotalcount()
+    //     let sortedate = result.sort(function (a, b) {
+    //       return new Date(b.createdAt) - new Date(a.createdAt);
+    //     });
+    //     setCandidate(sortedate)
+    //     setFilCandidate(sortedate)
+    //   })
   }
       useEffect(() => {
         if (jobTagsIds.length < 1) {
@@ -283,7 +283,7 @@ return(
 
     setNoPageFilter(true)
     setFiltereredjobs(key)
-    await axios.get(`/StudentProfile/getTagsJobs/${Active}`)
+    await axios.get(`/QgtBuyerProfile/getTagsItems/${Active}`)
       .then((res) => {
         let result = (res.data)
         // console.log(result)

@@ -39,7 +39,7 @@ let navigate = useNavigate()
     async function getProfile() {
         const headers = { authorization: 'BlueItImpulseWalkinIn'};
         setPageLoader(true)
-        await axios.get(`/EmpProfile/getProfile/${empId}`, {headers})
+        await axios.get(`QgtBuyerProfile/getProfile/${empId}`, {headers})
             .then((res) => {
                 let result = res.data.result
                 setProfileData([result])
