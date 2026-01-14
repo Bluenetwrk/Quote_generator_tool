@@ -185,14 +185,14 @@ function StudentUpdateProfile(props) {
   async function getUser() {
     let userid = JSON.parse(localStorage.getItem("StudId"))
     const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
-    await axios.get(`/StudentProfile/getProfile/${studId}`, { headers })
+    await axios.get(`/QgtSellerProfile/getProfile/${studId}`, { headers })
       .then((res) => {
         let result = res.data.result
         if (result) {
           setResulttagTag(result.Tags)
           setname(result.name)
           setemail(result.email)
-          setimage(result.image)
+          setimage(result.Gpicture)
           setimmage(result.image)
           setphoneNumber(result.phoneNumber)
           setAadhar(result.Aadhar)
@@ -234,7 +234,7 @@ function StudentUpdateProfile(props) {
     let userid = JSON.parse(localStorage.getItem("StudId"))
     const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
     // e.preventDefault()
-    await axios.put(`/StudentProfile/updatProfile/${studId}`, {
+    await axios.put(`/QgtSellerProfile/updateProfile/${studId}`, {
       name, email, phoneNumber, Aadhar, panCard, city, NoticePeriod, 
       ExpectedSalary, currentCTC, age, Qualification, Skills, Experiance, Tags, college
     }, { headers })
@@ -290,7 +290,7 @@ const [showdelete, setShowdelete]=useState(false)
 async function DeleteProfile(){
   let confirm = window.confirm("are you sure to delete your Account? your account will be deleted permanently, click on 'Ok', if you wish delete your Account permanently ")
 if(confirm){
-  await axios.delete(`/StudentProfile/deleteJobSeeker/${stuId }`)
+  await axios.delete(`/QgtSellerProfile/deleteProfile/${stuId }`)
   .then((res)=>{
     if(res.data==="success"){
     alert("Account deleted successfully ")
@@ -501,7 +501,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
                     tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
                     Style.TagHeading: 
                     //  Active === tags.value ? 
-                    Tags.findIndex(  (present)=>{
+                    Tags?.findIndex(  (present)=>{
                       return(
                         present===tags.value
                       )
@@ -633,7 +633,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
                     tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
                     Style.TagHeading: 
                     //  Active === tags.value ? 
-                    Tags.findIndex(  (present)=>{
+                    Tags?.findIndex(  (present)=>{
                       return(
                         present===tags.value
                       )

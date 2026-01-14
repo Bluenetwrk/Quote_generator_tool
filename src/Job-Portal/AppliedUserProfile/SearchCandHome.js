@@ -88,26 +88,24 @@ const [selectedOption, setSelectedOption] = useState(options[0]);
       })
   }
    
-  async function getAllJobSeekers() {
-    setCount(1)
-    setActive([])
-    setJobTagsIds([])
+  async function getAllJobSeekers() { 
+    // setActive([])
+    // setJobTagsIds([]) 
+    // setNoPageFilter(false)
+    // const headers = { authorization: 'BlueItImpulseWalkinIn' };
+    
+    // await axios.get(`/StudentProfile/getLimitJobs/${recordsPerPage}`, { params: { currentPage }, headers })
 
-    setNoPageFilter(false)
-    const headers = { authorization: 'BlueItImpulseWalkinIn' };
-    // await axios.get("StudentProfile/getAllJobseekers", { headers })
-    await axios.get(`/StudentProfile/getLimitJobs/${recordsPerPage}`, { params: { currentPage }, headers })
-
-      .then((res) => {
-        let result = (res.data)
-        // console.log(result)
-        gettotalcount()
-        let sortedate = result.sort(function (a, b) {
-          return new Date(b.createdAt) - new Date(a.createdAt);
-        });
-        setCandidate(sortedate)
-        setFilCandidate(sortedate)
-      })
+    //   .then((res) => {
+    //     let result = (res.data)
+    //     // console.log(result)
+    //     gettotalcount()
+    //     let sortedate = result.sort(function (a, b) {
+    //       return new Date(b.createdAt) - new Date(a.createdAt);
+    //     });
+    //     setCandidate(sortedate)
+    //     setFilCandidate(sortedate)
+    //   })
   }
 
     useEffect(() => {

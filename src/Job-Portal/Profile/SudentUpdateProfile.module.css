@@ -1,4 +1,350 @@
-
+.alignRight {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: left;
+  }
+  .textareaGrid {
+    grid-column: 1 / -1; /* take full row of formGrid */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  
+  .textareaGrid textarea {
+    min-height: 110px;
+    resize: vertical;
+  }
+  
+  .fileName {
+    font-size: 13px;
+    margin-top: 6px;
+    color: #555;
+  }
+  
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .textareaGrid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .fileName {
+    font-size: 13px;
+    color: #555;
+    margin-top: 6px;
+  }
+  
+/* Page wrapper */
+.pageWrapper {
+    min-height: 100vh;
+    background: #f7f8fc;
+    display: flex;
+    justify-content: center;
+    padding: 30px 10px;
+    box-sizing: border-box;
+  }
+  
+  /* Card */
+  .formCard {
+    width: 100%;
+    max-width: 980px;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px 30px 32px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+  }
+  
+  /* Heading */
+  .formCard h2 {
+    text-align: center;
+    margin-bottom: 28px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #1f2937;
+  }
+  
+  /* Grid layout */
+  .formGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px 22px;
+  }
+  
+  /* Inputs & Selects */
+  .formGrid input,
+  .formGrid select,
+  .formGrid textarea {
+    width: 100%;
+    padding: 11px 14px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1.5px solid #6b5cff;
+    outline: none;
+    box-sizing: border-box;
+    background: #fff;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .formGrid input::placeholder,
+  .formGrid textarea::placeholder {
+    color: #9ca3af;
+  }
+  
+  /* Focus state */
+  .formGrid input:focus,
+  .formGrid select:focus,
+  .formGrid textarea:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+  }
+  
+  /* Textarea */
+  .formGrid textarea {
+    resize: vertical;
+    min-height: 90px;
+  }
+  
+  /* Full width field */
+  .full {
+    grid-column: span 2;
+  }
+  
+  /* Google button */
+  .googleBtn {
+    margin-top: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #ffffff;
+    border: 1.5px solid #d1d5db;
+    border-radius: 10px;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: box-shadow 0.2s ease, transform 0.1s ease;
+  }
+  
+  .googleBtn img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .googleBtn:hover {
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    transform: translateY(-1px);
+  }
+  
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .formCard {
+      padding: 22px 18px;
+    }
+  
+    .formGrid {
+      grid-template-columns: 1fr;
+    }
+  
+    .full {
+      grid-column: span 1;
+    }
+  }
+  /* Page background */
+.pageWrapper {
+    min-height: 100vh;
+    background: #f5f7fb;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px 12px;
+  }
+  
+  /* Main Card */
+  .formCard {
+    width: 100%;
+    max-width: 900px;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 24px 26px 30px;
+    border: 2px solid #6b4eff;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Header */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+  
+  .header h2 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    text-align: center;
+    flex: 1;
+  }
+  
+  /* Buttons */
+  .backBtn,
+  .helpBtn {
+    background: #3c1c82;
+    color: #ffffff;
+    border: none;
+    padding: 7px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .backBtn:hover,
+  .helpBtn:hover {
+    background: #2e1465;
+  }
+  
+  /* Help dropdown */
+  .helpDropdown {
+    position: absolute;
+    right: 0;
+    top: 45px;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 230px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    z-index: 10;
+  }
+  
+  .helpDropdown p {
+    padding: 10px 14px;
+    margin: 0;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .helpDropdown p:hover {
+    background: #f0f0ff;
+  }
+  
+  /* Form Grid */
+  .formGrid {
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 20px;
+  }
+  
+  /* Field */
+  .field {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .field label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #222;
+  }
+  
+  /* Inputs */
+  .field input,
+  .field select,
+  .field textarea {
+    height: 38px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #cfd4e1;
+    font-size: 14px;
+    outline: none;
+  }
+  
+  .field textarea {
+    height: 90px;
+    resize: none;
+  }
+  
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    border-color: #6b4eff;
+  }
+  
+  /* Full width field */
+  .full {
+    grid-column: span 2;
+  }
+  
+  /* Error text */
+  .error {
+    font-size: 12px;
+    color: red;
+    margin-top: 4px;
+  }
+  
+  /* Social buttons */
+  .socialRow {
+    margin-top: 26px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  
+  .socialRow button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    background: #ffffff;
+    border: 1px solid #cfd4e1;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  .socialRow button img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .socialRow button:hover {
+    background: #f3f4ff;
+    border-color: #6b4eff;
+  }
+  
+  /* ------------------ MOBILE ------------------ */
+  @media (max-width: 768px) {
+    .formCard {
+      padding: 18px 16px 22px;
+    }
+  
+    .header h2 {
+      font-size: 18px;
+    }
+  
+    .formGrid {
+      grid-template-columns: 1fr;
+    }
+  
+    .full {
+      grid-column: span 1;
+    }
+  
+    .socialRow {
+      flex-direction: column;
+    }
+  
+    .socialRow button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+  
 .minusbtn{
     background: red;
     color: rgb(255, 255, 255);

@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext } from "react"
+import { useState, useEffect, createContext, useRef } from "react"
 import React from 'react'
 import styles from "./login.module.css"
 import axios from "axios"
@@ -7,7 +7,7 @@ import GoogleImage from "../img/icons8-google-48.png"
 import MicosoftImage from "../img/icons8-windows-10-48.png"
 import linkedIn from "../img/icons8-linked-in-48.png"
 import github from "../img/icons8-github-50.png"
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import { useGoogleLogin } from '@react-oauth/google';
 import { GoogleLogin } from '@react-oauth/google';
 import image from "../img/user_3177440.png"
@@ -42,7 +42,24 @@ function EmpLogin(props) {
       .catch(error => console.log(error))
   }, []);
 
+    const [regAlert, setRegAlert] = useState(false);
+    const alertRef = useRef(null);
+    
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+      if (alertRef.current && !alertRef.current.contains(event.target)) {
+        setRegAlert(false);
+      }
+      };
+    
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, []); 
 
+ let location = useLocation()
+  const { loginpage } = location.state || {};
 
   const login = useGoogleLogin({
     onSuccess: async (response) => {
@@ -61,22 +78,34 @@ function EmpLogin(props) {
         let email = res.data.email
         let name = res.data.name
         let isApproved = false
+        let Gpicture = res.data.picture
         // let image= res.data.picture
 
         // console.log("decoded name :", gemail)
         // console.log(" decoded id :", gname)
 
-        await axios.post("/EmpProfile/Glogin", { ipAddress, userId, email, name, gtoken, isApproved })
+        await axios.post("/QgtBuyerProfile/Glogin", { ipAddress, userId, email,Gpicture, name, gtoken, isApproved })
           .then((response) => {
             let result = response.data
             let token = result.token
             let GuserId = result.id
-            if (result.status == "success") {
+            if(loginpage==="BuyerRegCheck" && result.action == "login"){
+              // alert("Account already exists. Please log in")
+              setRegAlert(true)
+              }
+            else if (result.status == "success") {
               localStorage.setItem("EmpLog", JSON.stringify(btoa(token)))
               localStorage.setItem("EmpIdG", JSON.stringify(GuserId))
-              // localStorage.setItem("StudId", JSON.stringify(Id))
-              navigate("/alljobs", { state: { gserid: GuserId } })
+              if(loginpage==="BuyerRegCheck" ){
+                navigate("/UpdateProfile", { state: { gserid: GuserId, profileAlert: true  } })
+              }
+              else if (loginpage==="fraud-form"){
+                navigate("/fraud-form", { state: { gserid: GuserId } })
+              }
+              else
+                  navigate("/Search-Candidate", { state: { gserid: GuserId } })
             }
+            
           }).catch((err) => {
             alert("server issue occured")
           })
@@ -260,8 +289,7 @@ function EmpLogin(props) {
           if (result.status == "success") {
             localStorage.setItem("EmpLog", JSON.stringify(btoa(token)))
             localStorage.setItem("EmpIdG", JSON.stringify(GuserId))
-            // localStorage.setItem("StudId", JSON.stringify(Id))
-            navigate("/alljobs", { state: { gserid: GuserId } })
+            navigate("/Search-Candidate", { state: { gserid: GuserId } })
           }
 				
 					}).catch((err) => {
@@ -300,8 +328,90 @@ function EmpLogin(props) {
 
       {/* <div id={styles.inputWrapper}> */}
       {/* <div style={{ marginTop: "10px", marginLeft: "37%" }}> */}
+      {regAlert==true &&
+<div style={{position:"relative"}}>	 
+ <div
+ style={{
+   position: 'absolute',
+   top:'2px',
+   left:0,
+   width: '100vw',
+   zIndex: 9998,
+   display: 'flex',
+   alignItems: 'top',
+   justifyContent: 'center',
+ 
+ }}
+>
+ <div
+   ref={alertRef}
+   onClick={(e) => e.stopPropagation()}
+   style={{
+     width: '300px',
+     padding: '20px',
+     backgroundColor: 'rgb(40,4,99)',
+     color: 'white',
+     fontSize: '12px',
+     borderRadius: '5px',
+     zIndex: 9999,
+     boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+     textAlign: 'center',
+    
+   }}
+ >
+  Account Already Exists!
+   <div style={{ marginTop: '15px', display: "flex", justifyContent: "center", gap: "5px" }}>
+     <button
+      onClick={() => { 
+       navigate("/EmployeeLogin"); 
+ setRegAlert(false);
+}
+}
+     
+      style={{
+         padding: '8px 16px',
+         backgroundColor: '#4CAF50',
+         color: 'white',
+         border: 'none',
+         borderRadius: '5px',
+         fontSize: '12px',
+         cursor: 'pointer',
+        
+       }}
+     >
+      Login as Buyer
+     </button>
+     <button
+       onClick={() => { 
+ navigate("/"); 
+ setRegAlert(false);
+ }}
+       style={{
+         padding: '8px 16px',
+         backgroundColor: '#f44336',
+         color: 'white',
+         border: 'none',
+         borderRadius: '5px',
+         fontSize: '12px',
+         cursor: 'pointer',
+          
+         
+       }}
+     >
+       Home
+     </button>
+   </div>
+ </div>
+</div>
+
+</div>
+}
       <div className={styles.BothsignUpWrapper}>
-        <p className={styles.Loginpage}>Buyer Login page </p>
+        {loginpage==="BuyerRegCheck"?
+        <p className={styles.Loginpage} style={{marginLeft:"18px"}}> New Buyer Registration page </p>
+        :
+        <p className={styles.Loginpage}> Buyer Login page </p>
+        }
 
         {/* 
         <input maxLength="10" className={styles.inputs} type="number" placeholder='enter phone Number'
@@ -332,27 +442,51 @@ function EmpLogin(props) {
         
         <h4 className={styles.OR}>OR</h4> */}
 
-
+{loginpage==="BuyerRegCheck"?
+          <>
         <div className={styles.signUpWrapper} onClick={login} >
           <div className={styles.both}>
             <img className={styles.google} src={GoogleImage} />
-            <p className={styles.signUpwrap} >Continue with Google</p>
+            <p className={styles.signUpwrap} style={{fontSize:"11px"}}> Create Account with Google</p>
           </div>
         </div>
 
         <div className={styles.signUpWrapper} onClick={microsoftLogin} >
           <div className={styles.both}>
             <img className={styles.google} src={MicosoftImage} />
-            <p className={styles.signUpwrap} >Continue with Microsoft</p>
+            <p className={styles.signUpwrap} style={{fontSize:"11px"}} > Create Account with Microsoft</p>
           </div>
         </div>
-        {/* <div className={styles.signUpWrapper}  >
+         <div className={styles.signUpWrapper}  >
           <div className={styles.both}>
             <img className={styles.google} src={linkedIn} />
-            <span className={styles.signUpwrap} >Continue with Linkedin</span>
+            <span className={styles.signUpwrap} style={{fontSize:"11px"}}> Create Account with Linkedin</span>
           </div>
-        </div> */}
+        </div> 
+        </>
+        :
+        <>
+        <div className={styles.signUpWrapper} onClick={login} >
+          <div className={styles.both}>
+            <img className={styles.google} src={GoogleImage} />
+            <p className={styles.signUpwrap} > Continue with Google</p>
+          </div>
+        </div>
 
+        <div className={styles.signUpWrapper} onClick={microsoftLogin} >
+          <div className={styles.both}>
+            <img className={styles.google} src={MicosoftImage} />
+            <p className={styles.signUpwrap} > Continue with Microsoft</p>
+          </div>
+        </div>
+         <div className={styles.signUpWrapper}  >
+          <div className={styles.both}>
+            <img className={styles.google} src={linkedIn} />
+            <span className={styles.signUpwrap} > Continue with Linkedin</span>
+          </div>
+        </div> 
+        </>
+}
 
         {/* <div className={styles.signUpWrapper} >
           <div className={styles.both}>
@@ -367,7 +501,7 @@ function EmpLogin(props) {
         // </div>
         ""
         :
-        <div style={{ marginTop: "50px", }}>
+        <div style={{ marginTop: "206px",height:"183px" }}>
 
           <Footer />
         </div>

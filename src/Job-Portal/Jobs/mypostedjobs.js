@@ -295,6 +295,7 @@ function handleRecordchange(e){
           navigate("/Search-Candidate")
         }}>Search Candidate</button> */}
         <p style={{marginLeft:"38%", marginTop:"30px", fontSize:"large", fontWeight:"bold"}}>My Posted Purchase requests</p>
+        
         </div>
 
         <div style={{display:"flex", justifyContent:"space-between"}}>

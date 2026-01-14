@@ -13,6 +13,24 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
+  .tvbackbtn {
+    background-color: rgb(40, 4, 99);
+    color: white;
+    border: none;
+    padding: 0px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: -25px;
+    font-weight: 500;
+    font-size: 1rem;
+    margin-left: 20px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    align-self: flex-start; /* ensures it's aligned left */
+    margin-top: 10px;
+  }
   
 .quotebtn {
     padding: 10px 20px;

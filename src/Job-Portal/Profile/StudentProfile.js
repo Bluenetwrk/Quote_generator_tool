@@ -41,7 +41,7 @@ let navigate = useNavigate()
         let userid = JSON.parse(localStorage.getItem("StudId"))
         const headers = { authorization: userid +" "+ atob(JSON.parse(localStorage.getItem("StudLog"))) };
         setPageLoader(true)
-        await axios.get(`/StudentProfile/getProfile/${studId}`, {headers})
+        await axios.get(`QgtSellerProfile/getProfile/${studId}`, {headers})
             .then((res) => {
                 let result = res.data.result
                 setProfileData([result])
@@ -122,7 +122,7 @@ let navigate = useNavigate()
               profileData.map((item, i) => {
                return (
                  <div key={i}>
-                   <img className={styles.imageV} src={item.image?item.image : profileDp}/>
+                   {/* <img className={styles.imageV} src={item.image?item.image : profileDp}/> */}
                  </div>
               )})
              }
@@ -317,115 +317,7 @@ profileData.map((item, i) => {
 
          </div>
          <div style={{ marginTop: '20px', textAlign: 'center',}}>
-      {/* Notch-style 'i' icon */}
-      {/* <div
-        onClick={toggleConsent}
-        style={{
-          width: '22px',
-          height: '22px',
-          borderRadius: '50%',
-          backgroundColor: 'rgb(40,4,99)',
-          color: 'white',
-          display: 'inline-flex',
-          alignItems: 'center',
-          cursor: 'pointer',
-          fontWeight: 'bold',
-          fontSize: '14px',
-          position:'relative',
-          display:'flex',
-          justifyContent: 'center',
-          textAlign:"center",
-          marginLeft:"60px",
-          marginBottom:"20px"
-        }}
-        title="Consent Info"
-      >
-        i
-      </div> */}
-        
-      {/* Consent Box */}
-      {/* <div style={{marginBottom:"90px"}}>
-      {showConsent && (
-        <div
-          style={{
-            position:"absolute",
-            marginTop: '1px',
-            padding: '15px',
-            border: '1px solid #ccc',
-            borderRadius: '8px',
-            width: '90%',
-            marginLeft: '60px',
-            marginRight: 'auto',
-            textAlign: 'left',
-            backgroundColor: '#f9f9f9',
-            fontSize: '14px',
-            marginBottom:"50px"
-          }}
-        >
-          <p style={{ marginBottom: '10px' }}>
-             I consent to the background check and authorize the verification of my details.
-          </p>
-
-          <div style={{ marginBottom: '0px' }}>
-            <label>
-              <input
-                type="radio"
-                name="consent"
-                value="yes"
-                checked={consent === 'yes'}
-                onChange={() => setConsent('yes')}
-              />
-              {' '}Yes, I agree
-            </label>
-            <br />
-            <label>
-              <input
-                type="radio"
-                name="consent"
-                value="no"
-                checked={consent === 'no'}
-                onChange={() => setConsent('no')}
-              />
-              {' '}No, I decline
-            </label>
-          </div> */}
-
-          {/* <p style={{ margin: '10px 0 5px' }}><strong>Jobseeker Signature:</strong></p> */}
-
-          {/* <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            <label style={{ fontSize: '13px' }}>
-              Signature:
-              <input
-                type="text"
-                value={signature}
-                onChange={(e) => setSignature(e.target.value)}
-                placeholder="Type name"
-                style={{
-                  width: '100%',
-                  padding: '4px',
-                  fontSize: '13px',
-                  marginTop: '3px',
-                }}
-              />
-            </label>
-            <label style={{ fontSize: '13px' }}>
-              Date:
-              <input
-                type="date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '4px',
-                  fontSize: '13px',
-                  marginTop: '3px',
-                }}
-              />
-            </label>
-          </div> */}
-        {/* </div>
-      )}
-      </div> */}
+     
 
     </div>
     <div style={{marginBottom:"-5px"}}></div>
@@ -480,116 +372,7 @@ profileData.map((item, i) => {
                   <span className={styles.span}> HRs/Employer FeedBack : {job.Skills?<span style={{ color: "blue" }}>{job.Skills} </span>:<span style={{color:"red"}}>No FeedBack</span>}</span><br></br>
                   </div>
       </div>
-      {/* <div style={{ marginTop: '20px', textAlign: 'center' }}> */}
-      {/* Notch-style 'i' icon */}
-      {/* <div
-        onClick={toggleConsent}
-        style={{
-          width: '22px',
-          height: '22px',
-          borderRadius: '50%',
-          backgroundColor: 'rgb(40,4,99)',
-          color: 'white',
-          display: 'inline-flex',
-          alignItems: 'center',
-          cursor: 'pointer',
-          fontWeight: 'bold',
-          fontSize: '14px',
-          position:'relative',
-          display:'flex',
-          justifyContent: 'center',
-          textAlign:"center",
-          marginLeft:"20px",
-          marginBottom:"20px"
-        }}
-        title="Consent Info"
-      >
-        i
-      </div> */}
-
-      {/* Consent Box */}
-      {/* {showConsent && (
-        <div
-          style={{
-            position:"absolute",
-            marginTop: '15px',
-            padding: '15px',
-            border: '1px solid #ccc',
-            borderRadius: '8px',
-            width: '90%',
-            maxWidth: '350px',
-            marginLeft: '60px',
-            marginRight: 'auto',
-            textAlign: 'left',
-            backgroundColor: '#f9f9f9',
-            fontSize: '14px',
-            marginTop:"-20px"
-          }}
-        >
-          <p style={{ marginBottom: '10px' }}>
-             I consent to the background check and authorize the verification of my details.
-          </p>
-
-          <div style={{ marginBottom: '10px' }}>
-            <label>
-              <input
-                type="radio"
-                name="consent"
-                value="yes"
-                checked={consent === 'yes'}
-                onChange={() => setConsent('yes')}
-              />
-              {' '}Yes, I agree
-            </label>
-            <br />
-            <label>
-              <input
-                type="radio"
-                name="consent"
-                value="no"
-                checked={consent === 'no'}
-                onChange={() => setConsent('no')}
-              />
-              {' '}No, I decline
-            </label>
-          </div>
-
-          <p style={{ margin: '10px 0 5px' }}><strong>Jobseeker Signature:</strong></p>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            <label style={{ fontSize: '13px' }}>
-              Signature:
-              <input
-                type="text"
-                value={signature}
-                onChange={(e) => setSignature(e.target.value)}
-                placeholder="Type name"
-                style={{
-                  width: '100%',
-                  padding: '4px',
-                  fontSize: '13px',
-                  marginTop: '3px',
-                }}
-              />
-            </label>
-            <label style={{ fontSize: '13px' }}>
-              Date:
-              <input
-                type="date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '4px',
-                  fontSize: '13px',
-                  marginTop: '3px',
-                }}
-              />
-            </label>
-          </div>
-        </div>
-      )}
-    </div> */}
+     
     </>
   )
 })}

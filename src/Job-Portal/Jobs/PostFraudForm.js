@@ -51,7 +51,7 @@ const PostFraudForm = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}> Report Misuse of ITWalkin</h2>
+      <h2 className={styles.title}> Report Misuse of Getquoteshop</h2>
       
       {showSuccessMessage && (
         <div className={styles.successMessage}>
@@ -69,7 +69,7 @@ const PostFraudForm = () => {
             className={styles.select}
           >
             <option value="">-- Select --</option>
-            <option value="Fake job postings">Fake job postings</option>
+            <option value="Fake job postings">Fake purchase requirements in Report Fraud</option>
             <option value="Impersonation">Impersonation</option>
             <option value="Scam">Scam</option>
           </select>
@@ -92,7 +92,7 @@ const PostFraudForm = () => {
           <input type="file" onChange={handleFileChange} />
         </label> */}
 
-        <label className={styles.label}>
+        {/* <label className={styles.label}>
            Your Contact Email (Optional)
           <input
             type="email"
@@ -101,7 +101,7 @@ const PostFraudForm = () => {
             placeholder="example@email.com"
             className={styles.input}
           />
-        </label>
+        </label> */}
 
         <div className={styles.buttonContainer}>
           <button type="submit" className={styles.submitButton}>✅ Submit Report</button>

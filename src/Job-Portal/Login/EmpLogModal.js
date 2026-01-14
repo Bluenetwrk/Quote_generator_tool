@@ -1,5 +1,5 @@
 // Modal.js
-import { useState, useEffect, createContext } from "react"
+import { useState, useEffect, createContext, useRef } from "react"
 import React from 'react'
 import styles from "./login.module.css"
 import axios from "axios"
@@ -16,7 +16,7 @@ import { TailSpin } from "react-loader-spinner"
 import { useMsal } from "@azure/msal-react";
 import { loginRequest } from "../Config";
 
-const Modal = ({ isOpen, onClose, children }) => {
+const Modal = ({buyerRegCheck, isOpen, onClose, children }) => {
 	const { instance } = useMsal();
 	
 	const [gmailuser, setGmailuser] = useState("")
@@ -56,7 +56,21 @@ const Modal = ({ isOpen, onClose, children }) => {
 		.catch(error => console.log(error))
 	}, []);
   
-  
+	const [regAlert, setRegAlert] = useState(false);
+	const alertRef = useRef(null);
+
+	useEffect(() => {
+	  const handleClickOutside = (event) => {
+	  if (alertRef.current && !alertRef.current.contains(event.target)) {
+		setRegAlert(false);
+	  }
+	  };
+	
+	  document.addEventListener('mousedown', handleClickOutside);
+	  return () => {
+	  document.removeEventListener('mousedown', handleClickOutside);
+	  };
+	}, []); 
   
 	const login = useGoogleLogin({
 	  onSuccess: async (response) => {
@@ -80,16 +94,26 @@ const Modal = ({ isOpen, onClose, children }) => {
 		  // console.log("decoded name :", gemail)
 		  // console.log(" decoded id :", gname)
   
-		  await axios.post("/EmpProfile/Glogin", { ipAddress, userId, email, name, gtoken, isApproved })
+		  await axios.post("QgtBuyerProfile/Glogin", { ipAddress, userId, email, name, gtoken, isApproved })
 			.then((response) => {
 			  let result = response.data
+			  console.log(response.data)
 			  let token = result.token
 			  let GuserId = result.id
-			  if (result.status == "success") {
+
+			  if(buyerRegCheck==true && result.action == "login"){
+				// alert("Account already exists. Please log in")
+				setRegAlert(true)
+			  }
+			  else if (result.status == "success") {
 				localStorage.setItem("EmpLog", JSON.stringify(btoa(token)))
 				localStorage.setItem("EmpIdG", JSON.stringify(GuserId))
-				// localStorage.setItem("StudId", JSON.stringify(Id))
-				navigate("/alljobs", { state: { gserid: GuserId } })
+				if(buyerRegCheck==true) {
+					navigate("/UpdateProfile", { state: { name: result.name, profileAlert: true  } })
+				} 
+				else{
+				navigate("/Search-Candidate", { state: { gserid: GuserId } })
+				}
 				onClose()
 			  }
 			}).catch((err) => {
@@ -217,7 +241,7 @@ const Modal = ({ isOpen, onClose, children }) => {
 				let name = response.account.name
 				let email = response.account.username
 				let isApproved = false
-				await axios.post("/EmpProfile/Glogin", { ipAddress, email, name, isApproved })
+				await axios.post("QgtBuyerProfile/Glogin", { ipAddress, email, name, isApproved })
 				.then((response) => {
 				  let result = response.data
 				  let token = result.token
@@ -243,21 +267,89 @@ const Modal = ({ isOpen, onClose, children }) => {
 
 	return (
 		<>
-		{/* <div
-			style={{
-				position: "fixed",
-				top: 0,
-				left: 0,
-				width: "100%",
-				height: "100%",
-				background: "rgba(0, 0, 0, 0.5)",
-				display: "flex",
-				alignItems: "center",
-				justifyContent: "center",
-				zIndex:100
-			}}
-		> */}
-				 <div className={styles.ModelWrapper}>
+		
+		 {regAlert==true?
+
+<div style={{position:"relative"}}>	 
+<div
+style={{
+ position: 'absolute',
+ top:'2px',
+ left:0,
+ width: '100vw',
+ zIndex: 9998,
+ display: 'flex',
+ alignItems: 'top',
+ justifyContent: 'center',
+
+}}
+>
+<div
+ ref={alertRef}
+ onClick={(e) => e.stopPropagation()}
+ style={{
+   width: '300px',
+   padding: '20px',
+   backgroundColor: 'rgb(40,4,99)',
+   color: 'white',
+   fontSize: '12px',
+   borderRadius: '5px',
+   zIndex: 9999,
+   boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+   textAlign: 'center',
+  
+ }}
+>
+Account Already Exists!
+ <div style={{ marginTop: '15px', display: "flex", justifyContent: "center", gap: "5px" }}>
+   <button
+	onClick={() => { 
+	 navigate("/EmployeeLogin"); 
+	 setRegAlert(false);
+	 onClose();
+   }
+   }
+   
+	style={{
+	   padding: '8px 16px',
+	   backgroundColor: '#4CAF50',
+	   color: 'white',
+	   border: 'none',
+	   borderRadius: '5px',
+	   fontSize: '12px',
+	   cursor: 'pointer',
+	  
+	 }}
+   >
+	Login as Buyer
+   </button>
+   <button
+	 onClick={() => { 
+	   navigate("/"); 
+	   setRegAlert(false);
+	   onClose();
+	 }}
+	 style={{
+	   padding: '8px 16px',
+	   backgroundColor: '#f44336',
+	   color: 'white',
+	   border: 'none',
+	   borderRadius: '5px',
+	   fontSize: '12px',
+	   cursor: 'pointer',
+		
+	   
+	 }}
+   >
+	 Home
+   </button>
+ </div>
+</div>
+</div>
+
+</div>
+:
+				 <div className={styles.ModelWrapper} style={{height:"163px"}}>
 			
 <p onClick={onClose} style={
 					{position:"absolute", marginLeft:"85%", marginTop:"0px", cursor:"pointer", display:"inline"}}>
@@ -269,86 +361,60 @@ const Modal = ({ isOpen, onClose, children }) => {
                 <>
 
       <div className={styles.BothsignUpWrapperModel}>
-        <p className={styles.Loginpage}>Buyer Login </p>
+		{buyerRegCheck==true?
+		<p className={styles.Loginpage}>New Buyer Registration </p>
+        :<p className={styles.Loginpage}>Buyer Login </p>
+		}
 
-
-        {/* <input maxLength="10" className={styles.inputs} type="number" placeholder='enter phone Number'
-          value={PhoneNumber} autoComplete="on" onChange={(e) => { setPhoneNumber(e.target.value) }} />
-
-        {showotp ?
-          <>
-            <input className={styles.inputs} placeholder='enter OTP'
-              value={otp} onChange={(e) => { setotp(e.target.value) }} />
-            <button className={`${styles.button} ${styles.inputs}`} onClick={confirmOtp}>Confirm OTP</button>
-
-            <p style={{ color: "blue", textDecoration: "underline", cursor: "pointer" }} onClick={() => { setshowotp(false); setPhoneNumber(""); setotp("") }}>Want to change the number?</p>
-
-
-          </>
-          :
-          PhoneNumber.length == 10 ?
-            <button className={`${styles.button} ${styles.inputs}`} onClick={sendOtp} disabled>Send OTP</button>
-            :
-            <button className={`${styles.button} ${styles.inputs}`} onClick={() => { alert("invalid phone number") }}>Send OTP</button>
-
-        }
-        {Loader ?
-          <div style={{ marginLeft: "10%" }}>
-            <TailSpin color=" rgb(40, 4, 99)" height={40} />
+        {buyerRegCheck===true?
+        <>
+        <div className={styles.signUpWrapper} onClick={login} >
+          <div className={styles.both}>
+            <img className={styles.google} src={GoogleImage} />
+            <p className={styles.signUpwrap} style={{fontSize:"11px"}} >Create Account with Google</p>
           </div>
-          : ""}
-        
-        <h4 className={styles.OR}>OR</h4> */}
+        </div>
 
-
+        <div className={styles.signUpWrapper} onClick={microsoftLogin} >
+          <div className={styles.both}>
+            <img className={styles.google} src={MicosoftImage} />
+            <p className={styles.signUpwrap} style={{fontSize:"11px"}}>Create Account with Microsoft</p>
+          </div>
+        </div>
+		<div className={styles.signUpWrapper}  >
+          <div className={styles.both}>
+            <img className={styles.google} src={linkedIn} />
+            <p className={styles.signUpwrap} style={{fontSize:"11px"}} >Create Account with Linkedin</p>
+          </div>
+        </div>
+		</>
+		:
+		<>
         <div className={styles.signUpWrapper} onClick={login} >
           <div className={styles.both}>
             <img className={styles.google} src={GoogleImage} />
             <p className={styles.signUpwrap} >Continue with Google</p>
           </div>
         </div>
-        
-
-        {/* <div className={styles.signUpWrapper} onClick={getToken} >
-          <div className={styles.both}>
-            <img className={styles.google} src={MicosoftImage} />
-            <p className={styles.signUpwrap} >Get Microsoft Token</p>
-          </div>
-        </div> */}
-
-        <div className={styles.signUpWrapper} onClick={microsoftLogin} >
-          <div className={styles.both}>
-            <img className={styles.google} src={MicosoftImage} />
-            <p className={styles.signUpwrap} >Continue with Microsoft</p>
-          </div>
-        </div>
-        {/* <div className={styles.signUpWrapper}  >
-          <div className={styles.both}>
-            <img className={styles.google} src={linkedIn} />
-            <p className={styles.signUpwrap} >Continue with Linkedin</p>
-          </div>
-        </div>
-        <div className={styles.signUpWrapper} onClick={register} >
-          <div className={styles.both}>
-            <img className={styles.google} src={linkedIn} />
-            <p className={styles.signUpwrap} >register microsoft</p>
-          </div>
-        </div> */}
-		
-		
-        {/* <div className={styles.signUpWrapper}  >
-          <div className={styles.both}>
-            <img className={styles.google} src={github} />
-            <p className={styles.signUpwrap} >Continue with Github</p>
-          </div>
-        </div> */}
-		
+		<div className={styles.signUpWrapper} onClick={microsoftLogin} >
+		<div className={styles.both}>
+		  <img className={styles.google} src={MicosoftImage} />
+		  <p className={styles.signUpwrap} >Continue with Microsoft</p>
+		</div>
+	  </div>
+	  <div className={styles.signUpWrapper}  >
+		<div className={styles.both}>
+		  <img className={styles.google} src={linkedIn} />
+		  <p className={styles.signUpwrap} >Continue with Linkedin</p>
+		</div>
+	  </div>
+	  </>
+		}	
       </div>
-
-				</>
+	</>
                 
-			</div>
-		{/* </div> */}
+	</div>
+}
 		</>
 	);
 };
